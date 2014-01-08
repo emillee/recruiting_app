@@ -1,5 +1,6 @@
 Nytech::Application.routes.draw do
   resources :users
+  resources :jobs
   resource :session, only: [:new, :create, :destroy]
   
   match '/home',    to: 'static_pages#home', via: :get
