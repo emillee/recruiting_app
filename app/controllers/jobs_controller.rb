@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-class JobsController < ApplicationController 
-  
-  def index
-    @jobs = Job.all
-  end
-  
-end
-=======
 class JobsController < ApplicationController
   
   def new
@@ -34,4 +25,4 @@ class JobsController < ApplicationController
   end
   
 end
->>>>>>> Jobs
+
