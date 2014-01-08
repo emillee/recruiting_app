@@ -1,0 +1,16 @@
+<nav class="navbar-wrapper">
+	<%= link_to 'NYTech.io', root_url %>
+	
+	<div class="menu">
+		<%= link_to 'Jobs', '#' %>
+	</div>
+
+	<div class="session">
+		<% if signed_in? %>
+			Logged in: <%= current_user.email %>
+			<%= link_to "Log Out", logout_url, method: :delete %>
+		<% else %>
+			<%= link_to "Log In", login_url %>
+		<% end %>
+	</div>
+</nav>
