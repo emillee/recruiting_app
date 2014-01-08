@@ -1,0 +1,12 @@
+<%= form_for(@user) do |f| %>
+
+	<%= render 'shared/error_messages', object: f.object %>
+
+	<%= f.text_field :email, placeholder: 'Enter Email' %>
+
+	<%= f.password_field :password, placeholder: 'Enter password' %>
+
+	<%= f.submit "Submit" %>
+
+<% end %>
+

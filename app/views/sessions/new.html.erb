@@ -1,0 +1,9 @@
+<%= form_for(:session, url: session_url) do |f| %>
+
+	<%= f.text_field :email, placeholder: "Enter email" %>
+	
+	<%= f.password_field :password, placeholder: "Enter password" %>
+	
+	<%= f.submit "Submit" %>
+	
+<% end %>
