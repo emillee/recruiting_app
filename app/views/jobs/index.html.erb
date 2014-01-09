@@ -1,0 +1,14 @@
+<div class="jobs-wrapper">
+
+	<%= link_to "Post a job", new_job_url %>
+	
+	<% @jobs.each do |job| %>
+		
+		<%= link_to job.title_specific, job.link %> at <%= job.company %>
+		
+		<%= job.description %>
+		
+		
+	<% end %>
+	
+</div>

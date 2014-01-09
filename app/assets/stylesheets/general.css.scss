@@ -8,6 +8,7 @@ body {
 nav.navbar-wrapper {
   font-size: 1.2em;
   line-height: 30px;
+  padding: 5px;
   border-bottom: 1px solid rgba(0,0,0,.25);
   
   div.menu {
@@ -32,5 +33,4 @@ div.jobs-wrapper {
   margin-left: 200px;
   height: 100%;
   width: 100%;
-  background-color: rgba(245,245,245,1);
 }
