@@ -1,16 +1,23 @@
 <div class="sidebar-wrapper">
 	<% if request.env['PATH_INFO'] == '/jobs' %>
 	
+		<h1>Job Category:</h1>
 		<ul>
-			Job Category:
-			<% Job.unique_departments.each do |dept| %>
+			<% Job.unique_categories.each do |dept| %>
 				<li><%= dept %></li>
 			<% end %>
 		</ul>
 		
+		<h1>Experience (Yrs):</h1>
 		<ul>
-			Years Experience:
-			<% ['Less than 1', '1 - 3', '3 - 5', '5+'].each do |exp| %>
+			<% ['Entry (0-1)', 'Junior (1-2)', 'Experienced (2-4)', 'Veteran (5+)', 'Exec (10+)'].each do |exp| %>
+				<li><%= exp %></li>
+			<% end %>
+		</ul>
+		
+		<h1>Type (Yrs):</h1>
+		<ul>
+			<% ['Full-Time', 'Part-Time', 'Freelance', 'Internship'].each do |exp| %>
 				<li><%= exp %></li>
 			<% end %>
 		</ul>

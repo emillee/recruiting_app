@@ -24,6 +24,12 @@ class JobsController < ApplicationController
     @jobs = Job.all
   end
   
+  # NON RESTFUL-------------------------------------------------------------
+  def import
+    Job.import(params[:file])
+    redirect_to jobs_url, notice: "Jobs imported"
+  end
+  
 	#-------------------------------------------------------------------------
 	private
 

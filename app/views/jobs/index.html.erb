@@ -1,14 +1,45 @@
 <div class="jobs-wrapper">
 
-	<%= link_to "Post a job", new_job_url %>
+	<div class='new-job-wrapper'>
+		<%= link_to "Post a job", new_job_url, class: 'new-job-post' %>
+
+		<div id="file">Click to import file</div>
+
+		<%= form_tag import_jobs_url, multipart: true do %>
+			<%= file_field_tag :file %>
+			<%= submit_tag 'Import' %>
+		<% end %>
+		
+	</div>
 	
-	<% @jobs.each do |job| %>
-		
-		<%= link_to job.title_specific, job.link %> at <%= job.company %>
-		
-		<%= job.description %>
-		
-		
-	<% end %>
-	
+	<ul class="job-posts">
+		<% @jobs.each do |job| %>		
+			<li>
+				<a href="<%= job.link %>">
+					<img src="<%= asset_path( 'betaworks.jpeg' ) %>" />
+					<div class="description">
+						<p><%= job.title %> | <%= job.company %></p>
+						<p><%= job.description %></p>
+					</div>
+				</a>
+			</li>
+		<% end %>
+	</ul>
+
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+		var fileInput = $(':file').wrap(wrapper);
+
+		fileInput.change(function(){
+		  $this = $(this);
+		  $('#file').text($this.val());
+		})
+
+		$('#file').click(function(){
+		  fileInput.click();
+		}).show();
+	})
+</script>
