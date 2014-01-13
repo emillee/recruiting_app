@@ -1,26 +1,50 @@
 <div class="sidebar-wrapper">
 	<% if request.env['PATH_INFO'] == '/jobs' %>
-	
-		<h1>Job Category:</h1>
-		<ul>
-			<% Job.unique_categories.each do |dept| %>
-				<li><%= dept %></li>
-			<% end %>
-		</ul>
+
+		<%= form_tag jobs_url, method: :get do %>
+			<h1>Job Category:</h1>
+			<ul class="job-filters">
+				<% Job.unique_categories.each do |category| %>
+					<li>
+						<%= label_tag category %>
+						<%= check_box_tag "search[category][]", category, false, id: category, class: "job-filters" %>
+					</li>
+				<% end %>
+			</ul>
 		
-		<h1>Experience (Yrs):</h1>
-		<ul>
-			<% ['Entry (0-1)', 'Junior (1-2)', 'Experienced (2-4)', 'Veteran (5+)', 'Exec (10+)'].each do |exp| %>
-				<li><%= exp %></li>
-			<% end %>
-		</ul>
+			<h1>Experience (Yrs):</h1>
+			<ul>
+				<% [['Internship', 'Internship'],
+						['Entry (0-1)', 0], 
+						['Junior (1-2)', 2], 
+						['Mid (2-3)', 3], 
+						['Experienced (3-5+)', 5], 
+						['Veteran (5+)', 5],
+						['Exec (10+)', 10]].each do |label, num_years| %>
+					<li>
+						<%= label_tag label, raw(label) %>
+						<%= check_box_tag "search[experience][]", num_years, false, id: label, class: "job-filters" %>
+					</li>
+				<% end %>
+			</ul>
 		
-		<h1>Type (Yrs):</h1>
-		<ul>
-			<% ['Full-Time', 'Part-Time', 'Freelance', 'Internship'].each do |exp| %>
-				<li><%= exp %></li>
-			<% end %>
-		</ul>
+			<!-- ><h1>Type (Yrs):</h1>
+			<ul>
+				<% ['Full-Time', 'Part-Time', 'Freelance', 'Internship'].each do |exp| %>
+					<li><%= exp %></li>
+				<% end %>
+			</ul> -->
+		
+			<%= submit_tag "Search" %>
+		<% end %>
 		
 	<% end %>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.job-filters').on('click', function() {
+			$(this).parents('form:first').submit();
+		})
+	})
+</script>

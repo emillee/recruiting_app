@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  keywords: MyString
+  category: MyString
+  experience: 1
+
+two:
+  keywords: MyString
+  category: MyString
+  experience: 1

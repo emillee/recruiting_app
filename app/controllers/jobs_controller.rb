@@ -21,7 +21,16 @@ class JobsController < ApplicationController
   end
   
   def index
-    @jobs = Job.all
+    if params[:search]
+      @jobs = Job.search(
+        category = params[:search][:category],
+        experience = params[:search][:experience]
+      )
+    else
+      @jobs = Job.all
+    end
+    
+    @search = Search.new
   end
   
   # NON RESTFUL-------------------------------------------------------------
@@ -34,7 +43,7 @@ class JobsController < ApplicationController
 	private
 
 	def job_params
-		params.require(:job).permit(:title_specific, :department,:experience_required,
+		params.require(:job).permit(:title_specific, :category,:experience_required,
 		  :company, :description, :link)
 	end
   

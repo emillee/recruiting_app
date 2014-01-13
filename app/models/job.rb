@@ -17,4 +17,17 @@ class Job < ActiveRecord::Base
       Job.create!(row.to_hash)
     end
   end
+  
+  def self.search(category = nil, experience = nil)
+    if category.blank?
+      all
+    else
+      @jobs = where("category IN (?)", category)
+      if !experience.nil?
+         @jobs = @jobs.where("experience_required IN (?)", experience)
+      end
+    end
+    
+    @jobs
+  end
 end
