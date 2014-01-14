@@ -1,8 +1,15 @@
 <nav class="navbar-wrapper">
-	<%= link_to 'NYTech.io', root_url, class: "logo" %>
+	<a href='#'><i class="fa fa-bars"></i></a>
+	<%= link_to 'nytech.io', root_url, class: "logo" %>
 	
 	<div class="menu">
-		<%= link_to 'Jobs', jobs_url %>
+		I'm interested in: 
+		<% if request.env['PATH_INFO'] == '/jobs' %>
+			<%= link_to 'Jobs', jobs_url, class: "selected" %>
+		<% else %>
+			<%= link_to 'Jobs', jobs_url %>
+		<% end %>
+		<%= link_to 'Events', '#' %>
 		<%= link_to 'Freelance', '#' %>
 		<%= link_to 'Startups', '#' %>
 		<%= link_to 'Coworking', '#' %>
@@ -11,9 +18,13 @@
 
 	<div class="session">
 		<% if signed_in? %>
-			<%= link_to "Log Out", logout_url, method: :delete %>
+			<i class="fa fa-power-off"></i> 
+			<%= link_to "Log Out", logout_url, method: :delete %>		
 		<% else %>
 			<%= link_to "Log In", login_url %>
 		<% end %>
 	</div>
 </nav>
+
+<nav class="navbar-wrapper-two"></nav>
+
