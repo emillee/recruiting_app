@@ -12,10 +12,11 @@ nav.navbar-wrapper {
   height: 30px;
   width: 100%;
   padding: 5px;
-  border-bottom: 1px solid rgba(0,0,0,.25);
+  border-bottom: 1px solid rgba(0,0,0,.05);
   
   a, a:visited {
-    color: #566473;;
+    color: #566473;
+    margin-left: 15px;
   }
   
   .logo {
@@ -43,28 +44,45 @@ nav.navbar-wrapper {
 div.sidebar-wrapper {
   margin-top: 30p;
   height: 100%;
-  width: 180px;
+  width: 200px;
   position: fixed;
-  border-right: 1px solid rgba(0,0,0,.25);
   font-family: 'Lato', sans-serif;
+  background-color: rgba(243,249,245,.75);
+  border-right: 1px solid rgba(0,0,0,.05);
   
   h1:first-of-type {
     margin-top: 10px;
   }
   
   h1 {
-    text-indent: 10px;
+    text-indent: 15px;
     line-height: 35px;
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 5px;
-    color: rgba(130,130,130,1);
+    margin-bottom: -5px;
+    color: rgba(50,50,50,1);
+    text-transform: uppercase;
   }
   
   li {
-    text-indent: 15px;
-    line-height: 25px;
+    text-indent: 20px;
+    line-height: 30px;
     font-size: 16px;
-    color: rgba(172,172,172,1);
+    color: rgba(160,160,160,1);
+  }
+  
+  li:hover, .selected {
+    background-color: #2ecc71;
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+  }
+  
+  input[type='checkbox'] {
+    display: none;
+  }
+  
+  input[type='submit'] {
+    display: none;
   }
 }
 

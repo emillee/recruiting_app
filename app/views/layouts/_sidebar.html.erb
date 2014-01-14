@@ -1,19 +1,20 @@
 <div class="sidebar-wrapper">
 	<% if request.env['PATH_INFO'] == '/jobs' %>
 
-		<%= form_tag jobs_url, method: :get do %>
+		<%= form_tag jobs_url, method: :get, id: 'job-filter-form', remote: true do %>
 			<h1>Job Category:</h1>
 			<ul class="job-filters">
 				<% Job.unique_categories.each do |category| %>
 					<li>
-						<%= label_tag category %>
-						<%= check_box_tag "search[category][]", category, false, id: category, class: "job-filters" %>
+						<!-- appears that the javascript for clicking only works if label doesn't match  -->
+						<%= label_tag "#{category}-#{category}", category %>
+						<%= check_box_tag "search[category][]", category, false, id: category %>
 					</li>
 				<% end %>
 			</ul>
 		
 			<h1>Experience (Yrs):</h1>
-			<ul>
+			<ul class="job-filters">
 				<% [['Internship', 'Internship'],
 						['Entry (0-1)', 0], 
 						['Junior (1-2)', 2], 
@@ -22,8 +23,8 @@
 						['Veteran (5+)', 5],
 						['Exec (10+)', 10]].each do |label, num_years| %>
 					<li>
-						<%= label_tag label, raw(label) %>
-						<%= check_box_tag "search[experience][]", num_years, false, id: label, class: "job-filters" %>
+						<%= label_tag "#{label}-#{label}", label %>
+						<%= check_box_tag "search[experience][]", num_years, false, id: label %>
 					</li>
 				<% end %>
 			</ul>
@@ -42,9 +43,28 @@
 </div>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
+		
+		$('li').on('click', function(e) {
+			var $cb = $(this).find(":checkbox")[0];
+			if(e.target != $cb) $cb.checked = !$cb.checked
+			$(this).toggleClass("selected", $cb.checked);
+		})
+		
 		$('.job-filters').on('click', function() {
 			$(this).parents('form:first').submit();
+			console.log('hello')
+		})
+		
+		$('#job-filter-form').on("ajax:success", function(event, data) {	
+			var $jobs = $(data).find('.job-posts');
+			$('.job-posts').empty();
+			$('.job-posts').html($jobs)
 		})
 	})
+	
 </script>
+
+
+
