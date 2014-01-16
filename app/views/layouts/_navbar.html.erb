@@ -3,17 +3,18 @@
 	<%= link_to 'nytech.io', root_url, class: "logo" %>
 	
 	<div class="menu">
-		I'm interested in: 
+		Show me: 
+		&nbsp; 
 		<% if request.env['PATH_INFO'] == '/jobs' %>
 			<%= link_to 'Jobs', jobs_url, class: "selected" %>
 		<% else %>
 			<%= link_to 'Jobs', jobs_url %>
 		<% end %>
 		<%= link_to 'Events', '#' %>
-		<%= link_to 'Freelance', '#' %>
-		<%= link_to 'Startups', '#' %>
-		<%= link_to 'Coworking', '#' %>
-		<%= link_to 'Accelerators/Incubators', '#' %>
+		<%= link_to 'People', '#' %>
+		<%= link_to 'Directory', '#' %>
+		<%= link_to 'Groups', '#' %>
+		<%= link_to 'More +', '#' %>
 	</div>
 
 	<div class="session">
@@ -26,5 +27,30 @@
 	</div>
 </nav>
 
-<nav class="navbar-wrapper-two"></nav>
+<nav class="navbar-wrapper-two">
+	<h3>[Emil's:]</h3>
+	<h3 class="dashboard"><a href='#'>
+		Dashboard
+		<i class="fa fa-bar-chart-o"></i>
+		</a>
+	</h3>
+	
+	<h3 class="mail"><a href='#'>
+		Mail
+		<i class="fa fa-envelope-o"></i>
+		</a>
+	</h3>
+	
+	<h3 class="rolodex"><a href='#'>
+		Rolodex
+		<i class="fa fa-barcode"></i>
+		</a>
+	</h3>
+	
+	<h3 class="profile"><a href='#'>
+		Profile
+		<i class="fa fa-fighter-jet"></i>
+		</a>
+	</h3>
+</nav>
 

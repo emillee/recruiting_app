@@ -16,11 +16,11 @@
 		<% @jobs.each do |job| %>		
 			<li>
 				<a href="<%= job.link %>">
-					<img src="<%= asset_path( 'betaworks.jpeg' ) %>" />
 					<div class="description">
 						<p><%= job.title %> | <%= job.company %></p>
 						<p><%= job.description %></p>
 					</div>
+					<img src='<%= asset_path("#{job.company.downcase}" + ".jpeg") %>' />
 				</a>
 			</li>
 		<% end %>
