@@ -1,7 +1,7 @@
 class Job < ActiveRecord::Base
   
   def self.unique_categories
-    uniques= []
+    uniques = []
 
     Job.all.each do |job|
       uniques << job.category if !uniques.include?(job.category)

@@ -4,6 +4,7 @@ class Search < ActiveRecord::Base
     @jobs ||= find_jobs
   end
   
+  # ------------------------------------------------------------------
   private
   
   def find_jobs
