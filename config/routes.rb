@@ -7,6 +7,7 @@ Nytech::Application.routes.draw do
   resources :searches, only: [:new, :show, :create, :destroy]
   
   match '/home',    to: 'static_pages#home', via: :get
+  match '/signup',  to: 'users#new', via: :get
   match '/logout',  to: 'sessions#destroy', via: :delete
   match '/login',   to: 'sessions#new', via: :get
    

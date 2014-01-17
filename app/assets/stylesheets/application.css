@@ -11,6 +11,10 @@
  *= require_self
  *= require reset
  *= require general
+ *= require navbar
+ *= require session
+ *= require sidebar
+ *= require job_posts
  */
  
  

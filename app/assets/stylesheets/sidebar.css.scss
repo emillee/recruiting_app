@@ -1,0 +1,49 @@
+div.sidebar-wrapper {
+  margin-top: 75px;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  font-family: 'Lato', sans-serif;
+  background-color: rgba(243,249,245,.75);
+  
+  h1, li {
+    font-size: 16px;    
+  }
+  
+  h1 {
+    text-indent: 15px;
+    line-height: 35px;
+    margin-top: 7px;
+    margin-bottom: -4px;
+    color: rgba(50,50,50,1);
+    text-transform: uppercase;    
+  }
+  
+  li {
+    text-indent: 20px;
+    line-height: 30px;
+    color: rgba(160,160,160,1);
+    
+    i {
+      position: absolute;
+      right: 10px;
+      margin-top: 7px;
+      display: none;
+    }
+    
+    &:hover, &.selected {
+      background-color: #2ecc71;
+      color: rgba(255,255,255,1);
+      cursor: pointer;
+      
+      i {
+        display: inline-block;
+        opacity: .75;
+      }
+    }
+  }
+  
+  input[type='checkbox'], input[type='submit'] {
+    display: none;
+  }
+}

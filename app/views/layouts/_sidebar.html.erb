@@ -9,6 +9,7 @@
 						<!-- appears that the javascript for clicking only works if label doesn't match  -->
 						<%= label_tag "#{category}-#{category}", category %>
 						<%= check_box_tag "search[category][]", category, false, id: category %>
+						<i class="fa fa-play"></i>
 					</li>
 				<% end %>
 			</ul>
@@ -25,6 +26,7 @@
 					<li>
 						<%= label_tag "#{label}-#{label}", label %>
 						<%= check_box_tag "search[experience][]", num_years, false, id: label %>
+						<i class="fa fa-play"></i>
 					</li>
 				<% end %>
 			</ul>
