@@ -5,8 +5,7 @@
 			<h1>Job Category:</h1>
 			<ul class="job-filters">
 				<% Job.unique_categories.each do |category| %>
-					<li>
-						<!-- appears that the javascript for clicking only works if label doesn't match  -->
+					<li class="job-sidebar">
 						<%= label_tag "#{category}-#{category}", category %>
 						<%= check_box_tag "search[category][]", category, false, id: category %>
 						<i class="fa fa-play"></i>
@@ -23,7 +22,7 @@
 						['Experienced (3-5+)', 5], 
 						['Veteran (5+)', 5],
 						['Exec (10+)', 10]].each do |label, num_years| %>
-					<li>
+					<li class="job-sidebar">
 						<%= label_tag "#{label}-#{label}", label %>
 						<%= check_box_tag "search[experience][]", num_years, false, id: label %>
 						<i class="fa fa-play"></i>
@@ -31,42 +30,12 @@
 				<% end %>
 			</ul>
 		
-			<!-- ><h1>Type (Yrs):</h1>
-			<ul>
-				<% ['Full-Time', 'Part-Time', 'Freelance', 'Internship'].each do |exp| %>
-					<li><%= exp %></li>
-				<% end %>
-			</ul> -->
-		
 			<%= submit_tag "Search" %>
 		<% end %>
-		
 	<% end %>
 </div>
 
-<script type="text/javascript">
 
-	$(document).ready(function() {
-		
-		$('li').on('click', function(e) {
-			var $cb = $(this).find(":checkbox")[0];
-			if(e.target != $cb) $cb.checked = !$cb.checked
-			$(this).toggleClass("selected", $cb.checked);
-		})
-		
-		$('.job-filters').on('click', function() {
-			$(this).parents('form:first').submit();
-			console.log('hello')
-		})
-		
-		$('#job-filter-form').on("ajax:success", function(event, data) {	
-			var $jobs = $(data).find('.job-posts');
-			$('.job-posts').empty();
-			$('.job-posts').html($jobs)
-		})
-	})
-	
-</script>
 
 
 

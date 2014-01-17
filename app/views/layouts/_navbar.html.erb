@@ -3,13 +3,13 @@
 	<%= link_to 'nytech.io', root_url, class: "logo" %>
 	
 	<div class="menu">
-		Show me: 
-		&nbsp; 
+		Show me: &nbsp; 
 		<% if request.env['PATH_INFO'] == '/jobs' %>
 			<%= link_to 'Jobs', jobs_url, class: "selected" %>
 		<% else %>
 			<%= link_to 'Jobs', jobs_url %>
 		<% end %>
+		
 		<%= link_to 'Events', '#' %>
 		<%= link_to 'People', '#' %>
 		<%= link_to 'Directory', '#' %>
@@ -31,9 +31,9 @@
 
 <nav class="navbar-wrapper-two">
 	<h3>[Emil's:]</h3>
-	<h3 class="dashboard"><a href='#'>
-		Dashboard
-		<i class="fa fa-bar-chart-o"></i>
+	<h3 class="dashboard">
+		<a href='#'>Dashboard
+			<i class="fa fa-bar-chart-o"></i>
 		</a>
 	</h3>
 	
