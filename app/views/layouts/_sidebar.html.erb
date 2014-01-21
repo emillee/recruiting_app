@@ -1,18 +1,18 @@
 <div class="sidebar-wrapper">
-	<% if request.env['PATH_INFO'] == '/jobs' %>
+	<% if current_user %>
+		<%= form_for current_user, remote: true, id: "job-filter-form"  do |f| %>
 
-		<%= form_tag jobs_url, method: :get, id: 'job-filter-form', remote: true do %>
 			<h1>Job Category:</h1>
 			<ul class="job-filters">
 				<% Job.unique_categories.each do |category| %>
 					<li class="job-sidebar">
-						<%= label_tag "#{category}-#{category}", category %>
-						<%= check_box_tag "search[category][]", category, false, id: category %>
+							<%= label_tag category %>
+							<%= check_box_tag "user[job_settings][category][]", category %>
 						<i class="fa fa-play"></i>
 					</li>
 				<% end %>
 			</ul>
-		
+			
 			<h1>Experience (Yrs):</h1>
 			<ul class="job-filters">
 				<% [['Internship', 'Internship'],
@@ -24,16 +24,21 @@
 						['Exec (10+)', 10]].each do |label, num_years| %>
 					<li class="job-sidebar">
 						<%= label_tag "#{label}-#{label}", label %>
-						<%= check_box_tag "search[experience][]", num_years, false, id: label %>
+						<%= check_box_tag "user[job_settings][experience][]", num_years %>
 						<i class="fa fa-play"></i>
 					</li>
 				<% end %>
 			</ul>
-		
-			<%= submit_tag "Search" %>
+			
+			
+			<%= f.submit "Submit" %>
 		<% end %>
-	<% end %>
+		
+		<% end %>
+		
+
 </div>
+
 
 
 

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+    
 	def new
 		@user = User.new
 	end
@@ -28,8 +28,8 @@ class UsersController < ApplicationController
 
 		if @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
-      sign_in(@user)
-			redirect_to @user
+			sign_in(@user)
+			redirect_to jobs_url
 		else
 			render :edit
 		end
@@ -54,8 +54,9 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:email, :password,:password_digest)
+		params.require(:user).permit(:email, :password, :password_digest, 
+		  {job_settings: { category: [], experience: [] }})
 	end
-
+	
 end
 

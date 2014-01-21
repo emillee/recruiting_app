@@ -31,4 +31,5 @@ class Job < ActiveRecord::Base
     
     jobs
   end
+
 end
