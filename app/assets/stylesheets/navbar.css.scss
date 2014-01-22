@@ -62,6 +62,18 @@ nav.navbar-wrapper {
       font-size: 16px;
     }
   }
+  
+  span.coming-soon {
+    color: red;
+    position: absolute;
+    border: 1px solid red;
+    line-height: 30px;
+    width: 500px;
+    left: 490px;
+    top: 6px;
+    text-align: right;
+    padding-right: 10px;
+  }
 }
 
 nav.navbar-wrapper-two {

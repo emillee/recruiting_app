@@ -1,12 +1,9 @@
 == README
 
 NYTech
-- A hub for NYTech professionals
+- Note: if you uncheck one box, it doesn't clear form
+- Add search
+- Add dashboard/login
 
-
-<%= form_tag jobs_url, method: :get, id: 'job-filter-form', remote: true do %>
-
-
-
-	<%= submit_tag "Search" %>
-<% end %>
+Roadmap
+- Second navbar

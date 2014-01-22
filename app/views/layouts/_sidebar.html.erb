@@ -1,31 +1,33 @@
 <div class="sidebar-wrapper">
 	<% if current_user %>
-		<%= form_for current_user, remote: true, id: "job-filter-form"  do |f| %>
+		<%= form_for current_user, remote: true, html: { id: "job-filter-form" } do |f| %>
 
 			<h1>Job Category:</h1>
 			<ul class="job-filters">
 				<% Job.unique_categories.each do |category| %>
-					<li class="job-sidebar">
+					<% checked = category_checked?(category) %>
+					<li class="job-sidebar <%= 'selected' if checked %>">
 							<%= label_tag category %>
-							<%= check_box_tag "user[job_settings][category][]", category %>
-						<i class="fa fa-play"></i>
+							<%= check_box_tag "user[job_settings][category][]", category, checked %>
+						<i class="fa fa-check-circle"></i>
 					</li>
 				<% end %>
 			</ul>
 			
 			<h1>Experience (Yrs):</h1>
 			<ul class="job-filters">
-				<% [['Internship', 'Internship'],
+				<% [['Internship', 0],
 						['Entry (0-1)', 0], 
 						['Junior (1-2)', 2], 
 						['Mid (2-3)', 3], 
 						['Experienced (3-5+)', 5], 
 						['Veteran (5+)', 5],
 						['Exec (10+)', 10]].each do |label, num_years| %>
-					<li class="job-sidebar">
+					<% checked = num_years_checked?(num_years) %>
+					<li class="job-sidebar <%= 'selected' if checked %>">
 						<%= label_tag "#{label}-#{label}", label %>
-						<%= check_box_tag "user[job_settings][experience][]", num_years %>
-						<i class="fa fa-play"></i>
+						<%= check_box_tag "user[job_settings][experience][]", num_years, checked %>
+						<i class="fa fa-check-circle"></i>
 					</li>
 				<% end %>
 			</ul>

@@ -18,18 +18,36 @@ class Job < ActiveRecord::Base
     end
   end
   
-  def self.search(category = nil, experience = nil)
-    if category.blank?
-      all
+  def self.search(settings_hash)
+    if settings_hash.empty?
+      jobs = self.all
     else
-      jobs = where("category IN (?)", category)
+      if settings_hash[:category] 
+        jobs = where("category IN (?)", settings_hash[:category])
+      else
+        jobs = self.all
+      end
       
-      if !experience.nil?
-        jobs = jobs.where("experience_required IN (?)", experience)
+      if !settings_hash[:experience].nil?
+        jobs = jobs.where("experience_required IN (?)", settings_hash[:experience])
       end
     end
     
     jobs
   end
+	  	  
+  # def self.search(category = nil, experience = nil)
+  #   if category.blank?
+  #     all
+  #   else
+  #     jobs = where("category IN (?)", category)
+  #     
+  #     if !experience.nil?
+  #       jobs = jobs.where("experience_required IN (?)", experience)
+  #     end
+  #   end
+  #   
+  #   jobs
+  # end
 
 end

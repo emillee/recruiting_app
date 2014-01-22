@@ -21,11 +21,8 @@ class JobsController < ApplicationController
   end
   
   def index
-    if params[:search]
-      @jobs = Job.search(
-        category = params[:search][:category],
-        experience = params[:search][:experience]
-      )
+    if current_user && !current_user.job_settings.blank?
+      @jobs = Job.search(current_user.job_settings)
     else
       @jobs = Job.all
     end

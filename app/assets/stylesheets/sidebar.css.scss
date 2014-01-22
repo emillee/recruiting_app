@@ -32,7 +32,6 @@ div.sidebar-wrapper {
     }
     
     &:hover, &.selected {
-      background-color: #2ecc71;
       color: rgba(255,255,255,1);
       cursor: pointer;
       
@@ -41,9 +40,21 @@ div.sidebar-wrapper {
         opacity: .75;
       }
     }
+    
+    &:hover {
+      background-color: rgba(46, 204, 113, .5); 
+    }
+    
+    &.selected {
+      background-color: rgba(46, 204, 113, 1); 
+      &:hover {
+        background-color: rgba(46, 204, 113, .75);         
+      };
+    }
+    
   }
   
-//  input[type='checkbox'], input[type='submit'] {
-//    display: none;
-//  }
+  input[type='checkbox'], input[type='submit'] {
+    display: none;
+  }
 }
