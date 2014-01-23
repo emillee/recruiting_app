@@ -4,7 +4,7 @@ ready = function() {
  
   $('li.job-sidebar').on('click', function(e) {
     var $checkbox = $(this).find(":checkbox")[0];
-    if(e.target != $checkbox) $checkbox.checked = !$checkbox.checked
+    if (e.target != $checkbox) $checkbox.checked = !$checkbox.checked
     $(this).toggleClass("selected", $checkbox.checked);
   })
 
@@ -17,6 +17,11 @@ ready = function() {
     $('.job-posts').empty().html($jobs)
   })
   
+  $('#clear-all').click(function() {
+    $('.job-sidebar').find(':checkbox').prop('checked', false)
+    $('.job-sidebar').removeClass('selected')
+    $('.job-filters').parents('form:first').submit();
+  })
 };
 
 $(document).ready(ready);

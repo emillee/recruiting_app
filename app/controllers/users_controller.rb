@@ -26,7 +26,13 @@ class UsersController < ApplicationController
 	def update
     @user = User.find(params[:id])
 
-		if @user.update_attributes(user_params)
+		if params[:user].nil?
+		  @user.job_settings = {}
+		  @user.save
+		  @jobs = Job.all
+		  redirect_to jobs_url
+		elsif 
+		  @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
 			sign_in(@user)
 			redirect_to jobs_url
