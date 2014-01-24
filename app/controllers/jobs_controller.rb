@@ -1,5 +1,9 @@
 class JobsController < ApplicationController
   
+  def root_action
+    redirect_to jobs_url
+  end
+  
   def new
     @job = Job.new
   end

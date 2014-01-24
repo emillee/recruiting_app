@@ -25,14 +25,30 @@ class UsersController < ApplicationController
 
 	def update
     @user = User.find(params[:id])
-
-		if params[:user].nil?
-		  @user.job_settings = {}
-		  @user.save
+    
+    keywords_arr = params[:user][:job_settings][:keywords]
+    without_blanks = []
+    
+    if keywords_arr
+      keywords_arr.each do |keyword|
+        without_blanks << keyword unless keyword == ""
+      end
+    end
+    
+    if without_blanks.empty?
+      params[:user][:job_settings].delete(:keywords)
+    else
+      params[:user][:job_settings][:keywords] = without_blanks
+    end
+    
+    # this is if all checkboxes are blank or clear button hit. 
+    # The empty search input box submits ""
+    # Is there a better way to do this?
+		if params[:user][:job_settings].nil?
+		  @user.update_column('job_settings', {})
 		  @jobs = Job.all
 		  redirect_to jobs_url
-		elsif 
-		  @user.update_attributes(user_params)
+		elsif @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
 			sign_in(@user)
 			redirect_to jobs_url
@@ -61,7 +77,7 @@ class UsersController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(:email, :password, :password_digest, 
-		  {job_settings: { category: [], experience: [] }})
+		  {job_settings: { keywords: [], category: [], experience: [] }})
 	end
 	
 end

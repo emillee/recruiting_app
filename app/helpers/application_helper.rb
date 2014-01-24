@@ -12,4 +12,8 @@ module ApplicationHelper
     return false
   end
   
+  def show_keywords?
+    current_user.job_settings[:keywords]
+  end
+  
 end

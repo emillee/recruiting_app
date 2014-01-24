@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   
   before_save { self.email = self.email.downcase }
-  before_save :create_session_token  
+  before_save :create_session_token
   
   serialize :job_settings, Hash
   after_initialize :initialize_job_settings

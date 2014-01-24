@@ -4,6 +4,7 @@ Nytech::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :jobs do 
     collection { post :import }
+    member { get :root_action}
   end
     
   match '/home',    to: 'static_pages#home', via: :get
@@ -11,5 +12,5 @@ Nytech::Application.routes.draw do
   match '/logout',  to: 'sessions#destroy', via: :delete
   match '/login',   to: 'sessions#new', via: :get
    
-  root to: 'static_pages#home'
+  root to: 'jobs#root_action'
 end

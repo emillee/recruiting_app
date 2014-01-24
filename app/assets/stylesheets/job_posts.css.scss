@@ -1,8 +1,8 @@
 div.jobs-wrapper {
-  position: relative;
-  top: 75px;
+  position: absolute;
+  top: 65px;
+  left: 235px;
   padding: 20px;
-  margin-left: 250px;
   height: 100%;
   width: 100%;
   
@@ -10,7 +10,7 @@ div.jobs-wrapper {
     border: 3px solid #ecf0f1;
     background-color: rgba(236,240,241,.1);
     line-height: 35px;
-    height: 35px;
+    height: 30px;
     width: 900px;
     margin-top: 20px;
     margin-bottom: 20px;
