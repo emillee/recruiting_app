@@ -31,23 +31,17 @@ class Job < ActiveRecord::Base
       if !settings_hash[:experience].nil?
         jobs = jobs.where("experience_required IN (?)", settings_hash[:experience])
       end
+      
+      if !settings_hash[:keywords].nil?
+        settings_hash[:keywords].each do |search_query|
+          jobs = jobs.where("description @@ :q", q: search_query)
+        end      
+      end
     end
     
     jobs
   end
 	  	  
-  # def self.search(category = nil, experience = nil)
-  #   if category.blank?
-  #     all
-  #   else
-  #     jobs = where("category IN (?)", category)
-  #     
-  #     if !experience.nil?
-  #       jobs = jobs.where("experience_required IN (?)", experience)
-  #     end
-  #   end
-  #   
-  #   jobs
-  # end
+
 
 end

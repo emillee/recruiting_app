@@ -18,8 +18,9 @@ ready = function() {
   })
   
   $('#clear-all').click(function() {
-    $('.job-sidebar').find(':checkbox').prop('checked', false)
-    $('.job-sidebar').removeClass('selected')
+    $('.keywords-li').click();
+    $('.job-sidebar').find(':checkbox').prop('checked', false);
+    $('.job-sidebar').removeClass('selected');
     $('.job-filters').parents('form:first').submit();
   })
   

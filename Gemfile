@@ -13,6 +13,7 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'nokogiri'
 gem "anemone", "~> 0.7.2"
 gem 'fastercsv'
+gem "mechanize", "~> 2.7.2"
 
 group :development do
   gem 'better_errors'
