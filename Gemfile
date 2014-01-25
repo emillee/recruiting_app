@@ -14,6 +14,7 @@ gem 'nokogiri'
 gem "anemone", "~> 0.7.2"
 gem 'fastercsv'
 gem "mechanize", "~> 2.7.2"
+gem 'seed_dump'
 
 group :development do
   gem 'better_errors'
