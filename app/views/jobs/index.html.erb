@@ -16,8 +16,8 @@
 			<li>
 				<a href="<%= job.link %>">
 					<div class="description">
-						<p><%= job.title %> | <%= job.company %></p>
-						<p><%= job.description %></p>
+						<p><%= job.title %></p>
+						<p><%= job.description.split(' ')[0..30].join(' ') %>...</p>
 					</div>
 					<img src='<%= asset_path("#{job.company.downcase}" + ".jpeg") %>' />
 				</a>

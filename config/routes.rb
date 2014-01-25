@@ -1,4 +1,9 @@
 Nytech::Application.routes.draw do
+  get "companies/create"
+  get "companies/destroy"
+  get "companies/edit"
+  get "companies/update"
+  get "companies/index"
   resources :users
   resources :searches, only: [:new, :show, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
