@@ -5,9 +5,18 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Serif);
 
 // GENERAL STYLES
+
+html {
+  background: url('empirestate.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
+  padding-top: 50px;
 }
 
 .modal-background {

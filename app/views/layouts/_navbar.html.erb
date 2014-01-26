@@ -1,61 +1,37 @@
-<nav class="navbar-wrapper">
-	<a href='#'><i class="fa fa-bars"></i></a>
-	<%= link_to 'nytech.io', root_url, class: "logo" %>
-	
-	<div class="menu">
-		Show me: &nbsp; 
-		<% if request.env['PATH_INFO'] == '/jobs' %>
-			<%= link_to 'Jobs', jobs_url, class: "selected" %>
-		<% else %>
-			<%= link_to 'Jobs', jobs_url %>
-		<% end %>
-		
-		<%= link_to 'Events', '#' %>
-		<%= link_to 'People', '#' %>
-		<%= link_to 'Directory', '#' %>
-		<%= link_to 'Groups', '#' %>
-		<%= link_to 'More +', '#' %>
-	</div>
-	
-	<!-- <span class="coming-soon">Coming Soon!</span> -->
+<div class="navbar navbar-fixed-top" role="navigation">
 
-	<div class="session">
-		<% if signed_in? %>
-			<i class="fa fa-power-off"></i> 
-			<%= link_to "Log Out", logout_url, method: :delete %>		
-		<% else %>
-			<%= link_to "New User? Sign Up!", signup_url %>
-			&nbsp; | &nbsp;
-			<%= link_to "Log In", login_url %>
-		<% end %>
-	</div>
-</nav>
+    <nav class="navbar-wrapper">
+      <a href='#'><i class="fa fa-bars"></i></a>
+      <%= link_to 'nytech.io', root_url, class: "logo" %>
 
-<nav class="navbar-wrapper-two">
-	
-	<!-- <h3>[Emil's:]</h3>
-	<h3 class="dashboard">
-		<a href='#'>Dashboard
-			<i class="fa fa-bar-chart-o"></i>
-		</a>
-	</h3>
-	
-	<h3 class="mail"><a href='#'>
-		Mail
-		<i class="fa fa-envelope-o"></i>
-		</a>
-	</h3>
-	
-	<h3 class="rolodex"><a href='#'>
-		Rolodex
-		<i class="fa fa-barcode"></i>
-		</a>
-	</h3>
-	
-	<h3 class="profile"><a href='#'>
-		Profile
-		<i class="fa fa-fighter-jet"></i>
-		</a>
-	</h3> -->
-</nav>
+      <div class="menu">
+        Show me: &nbsp;
+        <% if request.env['PATH_INFO'] == '/jobs' %>
+            <%= link_to 'Jobs', jobs_url, class: "selected" %>
+        <% else %>
+            <%= link_to 'Jobs', jobs_url %>
+        <% end %>
 
+        <%= link_to 'Events', '#' %>
+        <%= link_to 'People', '#' %>
+        <%= link_to 'Directory', '#' %>
+        <%= link_to 'Groups', '#' %>
+        <%= link_to 'More +', '#' %>
+      </div>
+
+      <!-- <span class="coming-soon">Coming Soon!</span> -->
+
+      <div class="session">
+        <% if signed_in? %>
+            <i class="fa fa-power-off"></i>
+            <%= link_to "Log Out", logout_url, method: :delete %>
+        <% else %>
+            <%= link_to "New User? Sign Up!", signup_url %>
+            &nbsp; | &nbsp;
+            <%= link_to "Log In", login_url %>
+        <% end %>
+      </div>
+    </nav>
+    <nav class="navbar-wrapper-two">
+    </nav>
+</div>

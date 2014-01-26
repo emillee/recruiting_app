@@ -15,6 +15,7 @@
  *= require session
  *= require sidebar
  *= require job_posts
+ *= require bootstrap
  */
  
  

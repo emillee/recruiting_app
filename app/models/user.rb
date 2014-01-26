@@ -1,9 +1,6 @@
 class User < ActiveRecord::Base
   has_many(
-      :skill_sets,
-      class_name: 'SkillSet',
-      foreign_key: :user_id,
-      primary_key: :id
+      :skill_sets
   )
 
   attr_reader :password # for password length validation
