@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     
     if user && user.password_match?(params[:session][:password])
       sign_in(user)
-      flash[:success] = 'You are now logged into NyTech.io'
+      flash[:coming_soon] = 'You are now logged into NyTech.io'
       redirect_back_or(root_url)
     else
       flash.now[:error] = 'Invalid login credentials. Please try again.'

@@ -3,6 +3,7 @@
 @import url(http://fonts.googleapis.com/css?family=Lato);
 @import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 @import url(http://fonts.googleapis.com/css?family=PT+Serif);
+@import url(http://fonts.googleapis.com/css?family=Pathway+Gothic+One);
 
 // GENERAL STYLES
 body {
@@ -20,6 +21,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+.hide {
+  opacity: 0;
 }
 
 
