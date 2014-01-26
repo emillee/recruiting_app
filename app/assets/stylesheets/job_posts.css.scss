@@ -1,17 +1,14 @@
 div.jobs-wrapper {
   position: absolute;
-  top: 75px;
-  left: 200px;
-  padding: 35px 100px;
-  height: 100%;
-  width: 100%;
-  background-color: black;
-  background: url('empirestate.jpeg');
-  -webkit-filter: blur(0px) grayscale(50%);
+  padding: 15px;
+//  height: 100%;
+//  width: 100%;
+  top: 110px;
+  left: 265px;
+  background-color: rgba(0,0,0,.25);
   
   .new-job-wrapper {
     border: 3px solid #ecf0f1;
-    background-color: rgba(236,240,241,.1);
     line-height: 35px;
     height: 30px;
     width: 900px;
@@ -53,13 +50,18 @@ div.jobs-wrapper {
     width: 900px;
 
     li {
-      border: 1px solid rgba(0,0,0,.01);
+//      border: 5px solid rgba(0,0,0,.1);
       height: 101px;
       margin-bottom: 15px;
       box-shadow: 0px 1px 1px #888888;
       background-color: white;
       padding: 5px;
+      border-radius: 1px;
     }
+    
+    li:last-of-type{
+      margin-bottom: 0px;
+    };
     
     img {
       height: 100px;
@@ -92,6 +94,32 @@ div.jobs-wrapper {
   }
 }
 
+div.jobs-background {
+  opacity: .9;
+  z-index: -9999;
+  position: absolute;
+  top: 75px;
+  background: url('empirestate.jpeg');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  -webkit-filter: blur(0px) sepia(30%) grayscale(40%) brightness(100%);
+}
+
+div.jobs-background-overlay {
+  z-index: -9998;
+  position: absolute;
+  top: 75px;
+  left: 200px;
+//    background: url(
+//      data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAUElEQVQYV2NkYGAwBuKzQAwDID4IoIgxIikAMZE1oRiArBDdZBSNMIXoJiFbDZYDKcSmCOYimDuNSVKIzRNYrUYOFuQgweoZbIoxgoeoAAcAEckW11HVTfcAAAAASUVORK5CYII=
+//    ) repeat;
+ background: url(pattern.png) repeat;   
+  
+  height: 100%;
+  width: 100%;
+  opacity: .4;    
+}
 
 
 
