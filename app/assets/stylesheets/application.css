@@ -11,6 +11,7 @@
  *= require_self
  *= require reset
  *= require general
+ *= require flash
  *= require navbar
  *= require session
  *= require sidebar

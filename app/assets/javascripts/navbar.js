@@ -1,12 +1,9 @@
 $(document).ready(function() {
   
   $('.coming-soon').delay(1000).fadeOut();
-  // 
-  // $('.navbar-wrapper').on('mouseenter', function() {
-  //   $('.coming-soon').toggleClass('hide')
-  // })
-  // 
-  // $('.navbar-wrapper').on('mouseleave', function() {
-  //   $('.coming-soon').toggleClass('hide')
-  // })
+  
+  $('.coming-soon-icon').on('click', function() {
+    $('.coming-soon').fadeIn().delay(1000).fadeOut();
+  })
+
 })

@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 	def destroy
 		user = User.find(params[:id])
 		if user.destroy
-		  flash[:success] = "User deleted"
+		  flash[:welcome] = welcome_message
 	  else
 	    flash[:error] = "Unable to delete user"
     end

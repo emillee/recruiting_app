@@ -10,17 +10,24 @@
 			<%= link_to 'Jobs', jobs_url %>
 		<% end %>
 		
-		<%= link_to 'Events', '#' %>
-		<%= link_to 'People', '#' %>
-		<%= link_to 'Directory', '#' %>
-		<%= link_to 'Groups', '#' %>
-		<%= link_to 'More +', '#' %>
+		<%= link_to 'Events', '#', class: "coming-soon-icon" %>
+		<%= link_to 'People', '#', class: "coming-soon-icon" %>
+		<%= link_to 'Directory', '#', class: "coming-soon-icon" %>
+		<%= link_to 'Groups', '#', class: "coming-soon-icon" %>
+		<%= link_to 'More +', '#', class: "coming-soon-icon" %>
 	</div>
 	
-	<span class="coming-soon">
-		<span class="wrapper"></span>
-		<h1><- Coming Soon!</h1>
-	</span>
+	<% if flash[:welcome] %>
+
+
+
+			<span class="coming-soon">
+				<span class="wrapper"></span>
+				<h1><- Coming Soon!</h1>
+			</span>
+
+
+	<% end %>
 
 	<div class="session">
 		<% if signed_in? %>
