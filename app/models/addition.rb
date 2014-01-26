@@ -11,4 +11,5 @@ class Addition < ActiveRecord::Base
       foreign_key: :skill_id,
       primary_key: :id
   )
+#  todo added expeierence column
 end
