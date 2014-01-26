@@ -1,3 +1,8 @@
+#encoding: utf-8
+if RUBY_VERSION =~ /1.9/
+  Encoding.default_external = Encoding::UTF_8
+  Encoding.default_internal = Encoding::UTF_8
+end
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
@@ -15,6 +20,7 @@ gem "anemone", "~> 0.7.2"
 gem 'fastercsv'
 gem "mechanize", "~> 2.7.2"
 gem 'seed_dump'
+gem 'acts_as_tree', :git => 'git://github.com/amerine/acts_as_tree.git'
 
 group :development do
   gem 'better_errors'
