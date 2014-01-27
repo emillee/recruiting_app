@@ -1,15 +1,16 @@
 Nytech::Application.routes.draw do
-  get "companies/create"
-  get "companies/destroy"
-  get "companies/edit"
-  get "companies/update"
-  get "companies/index"
   resources :users
   resources :searches, only: [:new, :show, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
-  resources :jobs do 
+  resources :companies
+
+  resources :jobs, only: [:show, :index, :new, :creates] do 
     collection { post :import }
     member { get :root_action}
+  end
+  
+  namespace :admin do 
+    resources :jobs, :companies
   end
     
   match '/home',    to: 'static_pages#home', via: :get

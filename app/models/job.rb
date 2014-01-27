@@ -43,6 +43,14 @@ class Job < ActiveRecord::Base
     end
   end
   
+  def set_secondary_dept
+    if self.title
+      dept = Job.find_by_title(self.title).secondary_dept
+      self.secondary_dept = dept unless dept.nil?
+      self.save if self.secondary_dept
+    end
+  end
+  
   def get_text
     html = open(link)
     doc = Nokogiri.HTML(html)
