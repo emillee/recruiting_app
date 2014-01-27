@@ -43,21 +43,11 @@ class JobsController < ApplicationController
 	#-------------------------------------------------------------------------
 	private
 
-	def job_params
-		params.require(:job).permit(:title_specific, :category,:experience_required,
-		  :company, :description, :link, :is_draft, :company_id)
-	end
+  	def job_params
+  		params.require(:job).permit(:title_specific, :category,:experience_required,
+  		  :company, :description, :link, :is_draft, :company_id)
+  	end
   
 end
 
-# create_table "jobs", force: true do |t|
-#   t.string   "title_specific"
-#   t.string   "department"
-#   t.string   "experience_required"
-#   t.string   "company"
-#   t.text     "description"
-#   t.string   "link"
-#   t.datetime "created_at"
-#   t.datetime "updated_at"
-# end
 

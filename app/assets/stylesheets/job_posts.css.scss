@@ -1,70 +1,27 @@
 div.jobs-wrapper {
   position: absolute;
   padding: 15px;
-//  height: 100%;
-//  width: 100%;
   top: 110px;
   left: 265px;
   background-color: rgba(0,0,0,.25);
-  
-  .new-job-wrapper {
-    border: 3px solid #ecf0f1;
-    line-height: 35px;
-    height: 30px;
-    width: 900px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 3px;
-    padding-right: 1px;
-    
-    a.new-job-post {
-      float: right;
-      line-height: 30px;
-      margin-right: 10px;
-    }
-    
-    div#file {
-      float: right;
-      color: gray;
-      margin-right: 100px;
-    }
-
-    form {
-      display: inline-block;
-      float: right;
-      width: 20px;
-      margin-right: -170px;
-      margin-top: -3px;
-      
-      #file {
-        display: none;
-      }
-      
-      input {
-        border: none;
-      }
-    }
-  }
   
   ul.job-posts {
     width: 900px;
 
     li {
-//      border: 5px solid rgba(0,0,0,.1);
-      height: 101px;
-      margin-bottom: 15px;
-      box-shadow: 0px 1px 1px #888888;
+      height: 105px;
+      margin-bottom: 15px;  
       background-color: white;
       padding: 5px;
       border-radius: 1px;
+      
+      &:last-of-type {
+        margin-bottom: 0px;   
+      }
     }
     
-    li:last-of-type{
-      margin-bottom: 0px;
-    };
-    
     img {
-      height: 100px;
+      height: 105px;
       float: right;
       display: inline-block;
       border-radius: 1px;
@@ -75,23 +32,62 @@ div.jobs-wrapper {
       float: left;
       height: 75px;
       width: 600px;
-      display: inline-block;
-      overflow: none;
       margin-left: 5px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 900;
+      color: black;
+      margin-bottom: 2px;
     }
     
     p {
-      margin-bottom: 2px;
-      color: gray;
+      color: #555555;
       font-size: 16px;
     }
-    
-    p:first-of-type {
-      font-size: 18px;
-      font-weight: 900;
-      color: black;
-    }
+
   }
+  
+  //  this isn't in use right now, was for importing via CSV
+  //  .new-job-wrapper {
+  //    border: 3px solid #ecf0f1;
+  //    line-height: 35px;
+  //    height: 30px;
+  //    width: 900px;
+  //    margin-top: 20px;
+  //    margin-bottom: 20px;
+  //    margin-left: 3px;
+  //    padding-right: 1px;
+  //    
+  //    a.new-job-post {
+  //      float: right;
+  //      line-height: 30px;
+  //      margin-right: 10px;
+  //    }
+  //    
+  //    div#file {
+  //      float: right;
+  //      color: gray;
+  //      margin-right: 100px;
+  //    }
+  //
+  //    form {
+  //      display: inline-block;
+  //      float: right;
+  //      width: 20px;
+  //      margin-right: -170px;
+  //      margin-top: -3px;
+  //      
+  //      #file {
+  //        display: none;
+  //      }
+  //      
+  //      input {
+  //        border: none;
+  //      }
+  //    }
+  //  }
 }
 
 div.jobs-background {
@@ -99,7 +95,7 @@ div.jobs-background {
   z-index: -9999;
   position: absolute;
   top: 75px;
-  background: url('empirestate.jpeg');
+  background: url('app_images/empirestate.jpeg');
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -111,11 +107,7 @@ div.jobs-background-overlay {
   position: absolute;
   top: 75px;
   left: 200px;
-//    background: url(
-//      data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAUElEQVQYV2NkYGAwBuKzQAwDID4IoIgxIikAMZE1oRiArBDdZBSNMIXoJiFbDZYDKcSmCOYimDuNSVKIzRNYrUYOFuQgweoZbIoxgoeoAAcAEckW11HVTfcAAAAASUVORK5CYII=
-//    ) repeat;
- background: url(pattern.png) repeat;   
-  
+  background: url('app_images/pattern.png') repeat;   
   height: 100%;
   width: 100%;
   opacity: .4;    

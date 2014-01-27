@@ -34,15 +34,10 @@ nav.navbar-wrapper {
       padding: 4px 10px;  
       border-radius: 2px;
 
-      &:hover {
+      &:hover, &.selected {
         background-color: rgba(0,0,0,.5);
         color: white;
-      }   
-    }
-    
-    a.selected {
-      background-color: rgba(0,0,0,.5);
-      color: white;
+      }       
     }
   }
   
@@ -74,7 +69,7 @@ nav.navbar-wrapper {
     border: 2px solid rgba(0,0,0,.5);
     
     span.wrapper {
-      background: url(binding_dark.png);
+      background: url('app_images/binding_dark.png');
       opacity: .4;    
       height: 23px;
       width: 100%;
@@ -94,9 +89,8 @@ nav.navbar-wrapper {
       color:white;
       text-shadow: 0px 1px 1px white;
       font-family: 'Pathway Gothic One', sans-serif;
-      background: url(binding_dark.png);
+      background: url('app_images/binding_dark.png');
       opacity: .65;
-      float: left;
       font-size: 14px;
       width: 90px;
     }

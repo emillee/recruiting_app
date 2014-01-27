@@ -13,9 +13,11 @@ class SearchesController < ApplicationController
     @search = Search.find(params[:id])
   end
   
+  #-----------------------------------------------------------------------------------
   private
-  def search_params
-    params.require(:search).permit(:keywords, :category, :experience)
-  end
+  
+    def search_params
+      params.require(:search).permit(:keywords, :category, :experience)
+    end
 
 end

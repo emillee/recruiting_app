@@ -55,6 +55,7 @@ class UsersController < ApplicationController
 		else
 			render :edit
 		end
+		
 	end
 
 	def index
@@ -75,10 +76,10 @@ class UsersController < ApplicationController
 	#-------------------------------------------------------------------------
 	private
 
-	def user_params
-		params.require(:user).permit(:email, :password, :password_digest, 
-		  {job_settings: { keywords: [], category: [], experience: [] }})
-	end
+  	def user_params
+  		params.require(:user).permit(:email, :password, :password_digest, 
+  		  {job_settings: { keywords: [], category: [], experience: [] }})
+  	end
 	
 end
 

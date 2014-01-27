@@ -1,32 +1,31 @@
 <div class="jobs-wrapper">
-
-	<!-- <div class='new-job-wrapper'>
-		<%= link_to "Post a job", '#', class: 'new-job-post' %>
-
-		<div id="file">Click to import file</div>
-
-		<%= form_tag import_jobs_url, multipart: true do %>
-			<%= file_field_tag :file %>
-			<%= submit_tag 'Import' %>
-		<% end %>
-	</div> -->
-	
 	<ul class="job-posts">
 		<% @jobs.each do |job| %>		
 			<li>
-				<a href="<%= job.link %>">
+				<a href="<%= job.link %>" target="_blank">
 					<div class="description">
-						<p><%= job.title %></p>
+						<h1><%= job.title %></h1>
 						<p><%= job.description.split(' ')[0..30].join(' ') %>...</p>
 					</div>
-					<img src='<%= asset_path("#{job.company.downcase}" + ".jpeg") %>' />
+					<img src='<%= asset_path("company_icons/#{job.company.downcase}" + ".jpeg") %>' />
 				</a>
 			</li>
 		<% end %>
 	</ul>
-
 </div>
 
 <div class="jobs-background"></div>
 <div class="jobs-background-overlay"></div>
+
+
+<!-- <div class='new-job-wrapper'>
+	<%= link_to "Post a job", '#', class: 'new-job-post' %>
+
+	<div id="file">Click to import file</div>
+
+	<%= form_tag import_jobs_url, multipart: true do %>
+		<%= file_field_tag :file %>
+		<%= submit_tag 'Import' %>
+	<% end %>
+</div> -->
 

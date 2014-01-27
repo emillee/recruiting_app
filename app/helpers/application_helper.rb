@@ -16,8 +16,4 @@ module ApplicationHelper
     current_user.job_settings[:keywords]
   end
   
-  def welcome_message
-    
-  end
-  
 end

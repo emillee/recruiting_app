@@ -3,7 +3,7 @@
 <div class="session-form">
 	<%= form_for(:session, url: session_url) do |f| %>
 
-		<%= f.text_field :email, placeholder: "Enter email" %>
+		<%= f.text_field :email, placeholder: "Enter email", autofocus: true %>
 		
 		<%= f.password_field :password, placeholder: "Enter password" %>
 	

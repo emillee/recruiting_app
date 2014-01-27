@@ -28,12 +28,13 @@ class User < ActiveRecord::Base
   
   # Private----------------------------------------------------------
   private
-  def create_session_token
-    self.session_token = SecureRandom.urlsafe_base64
-  end
   
-	def initialize_job_settings
-	  self.job_settings ||= {}
-  end
+    def create_session_token
+      self.session_token = SecureRandom.urlsafe_base64
+    end
+  
+  	def initialize_job_settings
+  	  self.job_settings ||= {}
+    end
   
 end
