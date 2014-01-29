@@ -25,7 +25,7 @@
 				</ul>
 			</div>
 			
-			<h1>Job Category:</h1>
+			<h1>Department:</h1>
 			<ul class="job-filters">
 				<% Job.unique_categories.each do |category| %>
 					<% checked = category_checked?(category) %>
@@ -36,6 +36,24 @@
 					</li>
 				<% end %>
 			</ul>
+		
+<!-- 			<% if @jobs %>
+				<% sub_dept_arr = [] %>
+				<% @jobs.each { |job| sub_dept_arr << job.sub_dept if job.sub_dept } %>
+				<% if sub_dept_arr.any? %>
+					<h1>Department:</h1>
+					<ul class="job-filters">
+						<% sub_dept_arr.each do |sub| %>
+							<% checked = sub_dept_checked?(sub) %>
+							<li class="job-sidebar <%= 'selected' if checked %>">
+									<%= label_tag sub %>
+									<%= check_box_tag "user[job_settings][sub][]", sub, checked %>
+								<i class="fa fa-check-circle"></i>
+							</li>
+						<% end %>
+					</ul>
+				<% end %>
+			<% end %> -->
 			
 			<h1>Experience (Yrs):</h1>
 			<ul class="job-filters">
@@ -61,9 +79,3 @@
 	
 	<button id="clear-all">Clear All</button>
 </div>
-
-
-
-
-
-

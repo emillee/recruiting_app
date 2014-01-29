@@ -1,4 +1,4 @@
-div.jobs-wrapper {
+div.companies-wrapper {
   position: absolute;
   padding: 15px;
   top: 110px;
@@ -9,7 +9,7 @@ div.jobs-wrapper {
     width: 900px;
 
     li {
-      height: 105px;
+      height: 100%;
       margin-bottom: 15px;  
       background-color: white;
       padding: 5px;
@@ -115,21 +115,3 @@ div.jobs-background-overlay {
   width: 100%;
   opacity: .4;    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,15 @@
+<div class="jobs-wrapper">
+	<ul class="job-posts">
+		<% @draft_jobs.each do |job| %>		
+			<li>
+				company: <%= job.listing_company.name %>
+				title: <%= job.title %>
+				primary_dept: <%= job.primary_dept %>
+				secondary_dept: <%= job.secondary_dept %>
+			</li>
+		<% end %>
+	</ul>
+</div>
+
+<div class="jobs-background"></div>
+<div class="jobs-background-overlay"></div>

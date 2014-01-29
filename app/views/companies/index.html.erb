@@ -1,2 +1,40 @@
-<h1>Companies#index</h1>
-<p>Find me in app/views/companies/index.html.erb</p>
+<%= render 'sidebar' %>
+
+<div class="companies-wrapper">
+	<ul class="job-posts">
+		<% @companies.each do |company| %>
+			<li>
+				company: <%= company.name %>
+				
+				<br>
+				<br>
+				
+				<% company.job_listings.each do |job| %>
+					<p>id: <%= job.id %>
+					<p>link: <%= link_to "#{job.link}", "#{job.link}" %></p>
+					<p>title: <%= job.title %></p>
+					<p>primary_dept: <%= job.dept %></p>
+					<p>secondary_dept: <%= job.sub_dept %></p>
+					<p>required skills:</p>
+					<p>years: <%= job.years_exp %></p>
+					<%= link_to "Get inputs", "jobs/#{job.id}/get_input" %>
+					<br><br>
+				<% end %>
+				
+				<br>
+				<br>
+				
+				<%= form_for([company, @job]) do |f| %>
+					<%= f.text_field :link %>
+					<%= f.submit "Create New Job" %>
+				<% end %>
+			</li>		
+		<% end %>
+				
+	</ul>
+	
+	
+</div>
+
+<div class="jobs-background"></div>
+<div class="jobs-background-overlay"></div>

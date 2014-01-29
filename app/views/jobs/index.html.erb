@@ -1,3 +1,5 @@
+<%= render 'sidebar' %>
+
 <div class="jobs-wrapper">
 	<ul class="job-posts">
 		<% @jobs.each do |job| %>		
@@ -5,9 +7,13 @@
 				<a href="<%= job.link %>" target="_blank">
 					<div class="description">
 						<h1><%= job.title %></h1>
-						<p><%= job.description.split(' ')[0..30].join(' ') %>...</p>
+						<% if job.description %>
+							<p><%= job.description.split(' ')[0..25].join(' ') %>...</p>
+						<% end %>
 					</div>
-					<img src='<%= asset_path("company_icons/#{job.company.downcase}" + ".jpeg") %>' />
+					<% if job.listing_company %>
+						<img src='<%= asset_path("company_icons/#{job.listing_company.name.downcase}" + ".jpeg") %>' />
+					<% end %>
 				</a>
 			</li>
 		<% end %>

@@ -3,7 +3,8 @@
 <div class="session-form">
 	<%= form_for(@user) do |f| %>
 
-		<%= render 'shared/error_messages', object: f.object %>
+		<%= render 'shared/errors', object: f.object %>
+		<%= render 'shared/flash' %>		
 
 		<%= f.text_field :email, placeholder: 'Enter Email' %>
 

@@ -12,6 +12,12 @@ module ApplicationHelper
     return false
   end
   
+  def sub_dept_checked?(sub_dept)
+    return false if current_user.job_settings[:sub_dept].nil?
+    return true if current_user.job_settings[:sub_dept].include?(sub_dept)
+    return false
+  end
+  
   def show_keywords?
     current_user.job_settings[:keywords]
   end

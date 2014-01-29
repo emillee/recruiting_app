@@ -9,7 +9,9 @@ class JobsController < ApplicationController
   end
   
   def create
-    @job = Job.new(job_params)
+    @company = Company.find(params[:company_id])
+    @job = @company.job_listings.new(job_params)
+    @job.input_job_data
     
     if @job.save
       flash[:success] = "Job saved successfully"
@@ -30,8 +32,6 @@ class JobsController < ApplicationController
     else
       @jobs = Job.all
     end
-    
-    @search = Search.new
   end
   
   # NON RESTFUL-------------------------------------------------------------
@@ -44,10 +44,13 @@ class JobsController < ApplicationController
 	private
 
   	def job_params
-  		params.require(:job).permit(:title_specific, :category,:experience_required,
-  		  :company, :description, :link, :is_draft, :company_id)
+  		params.require(:job).permit(:link, :title, :full_text, :is_draft,
+  		  :company_id, :dept, :sub_dept, :years_exp, :key_skill_one, :key_skill_two,
+  		  :description)
   	end
   
 end
+
+
 
 

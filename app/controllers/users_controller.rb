@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 			flash[:success] = "Welcome to NYTech.io!"
 			redirect_to(@user)
 		else
+		  flash[:notice] = "didn't work"
 			render :new
 		end
 	end
@@ -76,9 +77,10 @@ class UsersController < ApplicationController
 	#-------------------------------------------------------------------------
 	private
 
+    # To fix: is it security risk for is_admin
   	def user_params
   		params.require(:user).permit(:email, :password, :password_digest, 
-  		  {job_settings: { keywords: [], category: [], experience: [] }})
+  		  {job_settings: { keywords: [], category: [], experience: [] }}, :is_admin)
   	end
 	
 end

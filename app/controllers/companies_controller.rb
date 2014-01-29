@@ -18,7 +18,13 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.all
+    @job = Job.new
+    
+    if current_user && !current_user.job_settings.blank?
+      @companies = Company.search(current_user.job_settings)
+    else
+      @companies = Company.all.limit(20)
+    end
   end
   
   
