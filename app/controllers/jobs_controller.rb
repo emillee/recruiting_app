@@ -15,7 +15,7 @@ class JobsController < ApplicationController
     
     if @job.save
       flash[:success] = "Job saved successfully"
-      redirect_to(@job)
+      redirect_to companies_url
     else
       flash[:error] = "Please try again"
       render :new

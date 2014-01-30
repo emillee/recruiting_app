@@ -25,40 +25,11 @@
 				</ul>
 			</div>
 			
-			<!-- <h1>Job Category:</h1>
-			<ul class="job-filters">
-				<% Job.unique_categories.each do |category| %>
-					<% checked = category_checked?(category) %>
-					<li class="job-sidebar <%= 'selected' if checked %>">
-							<%= label_tag category %>
-							<%= check_box_tag "user[job_settings][category][]", category, checked %>
-						<i class="fa fa-check-circle"></i>
-					</li>
-				<% end %>
-			</ul>
-			
-			<h1>Experience (Yrs):</h1>
-			<ul class="job-filters">
-				<% [['Internship', 0],
-						['Entry (0-1)', 0], 
-						['Junior (1-2)', 2], 
-						['Mid (2-3)', 3], 
-						['Experienced (3-5+)', 5], 
-						['Veteran (5+)', 5],
-						['Exec (10+)', 10]].each do |label, num_years| %>
-					<% checked = num_years_checked?(num_years) %>
-					<li class="job-sidebar <%= 'selected' if checked %>">
-						<%= label_tag "#{label}-#{label}", label %>
-						<%= check_box_tag "user[job_settings][experience][]", num_years, checked %>
-						<i class="fa fa-check-circle"></i>
-					</li>
-				<% end %>
-			</ul> -->
-			
 			<%= f.submit "Submit" %>
 		<% end %>
 	<% end %>
 	
 	<button id="clear-all">Clear All</button>
+	
 </div>
 

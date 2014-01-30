@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
+  
   validates :name, presence: true
   
   has_many(
@@ -7,14 +8,6 @@ class Company < ActiveRecord::Base
     foreign_key: :company_id,
     primary_key: :id
   )
-  
-  def self.search_name(query)
-    rank = <<-RANK
-      ts_rank(to_tsvector(name), plainto_tsquery(#{sanitize(query)}))
-    RANK
-    
-    where("name @@ :q", q: "%#{query}").order("#{rank} DESC")
-  end
   
   # To fix: this needs a lot of work
   def self.search(settings_hash)
@@ -34,15 +27,8 @@ class Company < ActiveRecord::Base
   end
   
   def self.all_company_names
-    return @all_company_names unless @all_company_names.nil?
-    
-    @all_company_names = []
-    self.all.each do |co|
-      @all_company_names << co.name
-    end
-    
-    @all_company_names.uniq!
-    @all_company_names
+    all_names = Company.all.map(&:name).uniq!
+    all_names
   end
     
   

@@ -11,12 +11,6 @@ class CompaniesController < ApplicationController
     @company.find(params[:id]).destroy
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def index
     @job = Job.new
     

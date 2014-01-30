@@ -1,6 +1,7 @@
 class Job < ActiveRecord::Base
   
   before_create :set_is_draft
+  
   belongs_to(
     :listing_company,
     class_name: 'Company',
@@ -16,7 +17,6 @@ class Job < ActiveRecord::Base
     self.get_sub_dept
   end
   
-  # WORKS
   def get_text
     html = open(link)
     doc = Nokogiri.HTML(html)
@@ -26,7 +26,6 @@ class Job < ActiveRecord::Base
     self.save
   end
 
-  # WORKS
   def get_company
     Company.all.each do |company|
       self.company_id = company.id if self.first_thirty.match(/#{company.name}/i)
@@ -35,7 +34,6 @@ class Job < ActiveRecord::Base
     self.save
   end
   
-  # WORKS
   def get_title
     Job.all_unique_titles.each do |uniq_title|
       self.title = uniq_title if self.first_thirty.match(/#{uniq_title}/i)
@@ -44,7 +42,6 @@ class Job < ActiveRecord::Base
     self.save
   end
   
-  # WORKS
   def get_dept
     if self.title
       job = Job.all.find { |job| job.title == self.title && !job.dept.nil? }
@@ -54,7 +51,6 @@ class Job < ActiveRecord::Base
     self.save
   end
 
-  # WORKING ON
   def get_sub_dept
     if self.title
       job = Job.all.find { |job| job.title == self.title && !job.sub_dept.nil? }
@@ -63,7 +59,6 @@ class Job < ActiveRecord::Base
     self.sub_dept = job.sub_dept if job.sub_dept
     self.save
   end
-  
   
   #-------------------------------------------------------
   
@@ -79,8 +74,8 @@ class Job < ActiveRecord::Base
     if settings_hash.empty?
       jobs = self.all
     else
-      if settings_hash[:category] 
-        jobs = where("dept IN (?)", settings_hash[:category])
+      if settings_hash[:dept] 
+        jobs = where("dept IN (?)", settings_hash[:dept])
       else
         jobs = self.all
       end
@@ -108,28 +103,15 @@ class Job < ActiveRecord::Base
   
   
   def self.all_unique_titles
-    return @unique_titles unless @unique_titles.nil?
-    
-    @unique_titles ||= []
-    Job.all.each do |job|
-      @unique_titles << job.title
-    end
-    
-    # sort by descending order -- improves accuracy?
-    @unique_titles.uniq!
-    @unique_titles.compact!
-    @unique_titles.sort_by(&:length).reverse
+    unique_titles = Job.all.map(&:title).uniq!
+    unique_titles.sort_by(&:length).reverse
+    unique_titles
   end
   
   
-  def self.unique_categories
-    uniques = []
-
-    Job.all.each do |job|
-      uniques << job.dept if !uniques.include?(job.dept)
-    end
-    
-    uniques
+  def self.unique_depts
+    depts = Job.all.map(&:dept).uniq!
+    depts
   end
   
   #-------------------------------------------------------------------------------

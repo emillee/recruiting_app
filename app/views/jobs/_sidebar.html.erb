@@ -10,7 +10,7 @@
 			</div>
 			
 			<div class="keywords-wrapper 
-			<%= "hidden" unless show_keywords? %>">
+				<%= "hidden" unless show_keywords? %>">
 				<h1 class="keywords-h1">Search Words:</h1>
 				<ul class="job-filters keywords-ul">
 					<% if current_user.job_settings[:keywords] %>
@@ -27,11 +27,11 @@
 			
 			<h1>Department:</h1>
 			<ul class="job-filters">
-				<% Job.unique_categories.each do |category| %>
-					<% checked = category_checked?(category) %>
+				<% Job.unique_depts.each do |dept| %>
+					<% checked = dept_checked?(dept) %>
 					<li class="job-sidebar <%= 'selected' if checked %>">
-							<%= label_tag category %>
-							<%= check_box_tag "user[job_settings][category][]", category, checked %>
+							<%= label_tag dept %>
+							<%= check_box_tag "user[job_settings][dept][]", dept, checked %>
 						<i class="fa fa-check-circle"></i>
 					</li>
 				<% end %>
@@ -78,4 +78,5 @@
 	<% end %>
 	
 	<button id="clear-all">Clear All</button>
+	
 </div>

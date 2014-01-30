@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     # To fix: is it security risk for is_admin
   	def user_params
   		params.require(:user).permit(:email, :password, :password_digest, 
-  		  {job_settings: { keywords: [], category: [], experience: [] }}, :is_admin)
+  		  {job_settings: { keywords: [], dept: [], experience: [] }}, :is_admin)
   	end
 	
 end

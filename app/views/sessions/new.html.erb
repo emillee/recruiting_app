@@ -1,6 +1,7 @@
 <div class="modal-background"></div>
 
 <div class="session-form">
+	
 	<%= form_for(:session, url: session_url) do |f| %>
 
 		<%= f.text_field :email, placeholder: "Enter email", autofocus: true %>
@@ -10,4 +11,5 @@
 		<%= f.submit "Submit" %>
 	
 	<% end %>
+
 </div>

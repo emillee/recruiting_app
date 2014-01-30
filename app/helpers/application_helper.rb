@@ -1,8 +1,8 @@
 module ApplicationHelper
 
-  def category_checked?(category)
-    return false if current_user.job_settings[:category].nil?
-    return true if current_user.job_settings[:category].include?(category)
+  def dept_checked?(dept)
+    return false if current_user.job_settings[:dept].nil?
+    return true if current_user.job_settings[:dept].include?(dept)
     return false
   end
     
