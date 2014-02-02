@@ -2,6 +2,7 @@ Nytech::Application.routes.draw do
   resources :users
   resources :searches, only: [:new, :show, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
+  resources :taxonomies, only: [:index]
   resources :companies do
     resources :jobs, only: [:create]
   end

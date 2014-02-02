@@ -27,7 +27,7 @@
 			
 			<h1>Department:</h1>
 			<ul class="job-filters">
-				<% Job.unique_depts.each do |dept| %>
+				<% Taxonomy.departments.each do |dept| %>
 					<% checked = dept_checked?(dept) %>
 					<li class="job-sidebar <%= 'selected' if checked %>">
 							<%= label_tag dept %>
