@@ -25,19 +25,13 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    anemone (0.7.2)
-      nokogiri (>= 1.3.0)
-      robotex (>= 1.0.0)
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
-    birch (0.0.8)
     builder (3.1.4)
-    classifier (1.3.4)
-      fast-stemmer (>= 1.0.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -50,15 +44,11 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.0.2)
-    fast-stemmer (1.0.2)
     fastercsv (1.5.5)
     hike (1.2.3)
     hirb (0.7.1)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    httparty (0.10.2)
-      multi_json (~> 1.0)
-      multi_xml (>= 0.5.2)
     i18n (0.6.9)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -83,7 +73,6 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
-    multi_xml (0.5.3)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.1)
     nokogiri (1.6.1)
@@ -91,7 +80,6 @@ GEM
     ntlm-http (0.1.1)
     pg (0.17.1)
     polyglot (0.3.3)
-    progressbar (0.21.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -111,22 +99,14 @@ GEM
     rake (10.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
-    robotex (1.0.0)
-    rubyzip (0.9.9)
     sass (3.2.13)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    schiphol (0.9.5)
-      progressbar (>= 0.10.0)
-      rubyzip (~> 0.9.9)
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    seed_dump (3.1.0)
-      activerecord
-      activesupport
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -140,10 +120,6 @@ GEM
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
-    treat (2.0.7)
-      birch
-      schiphol
-      yomu
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -157,21 +133,16 @@ GEM
       unf_ext
     unf_ext (0.0.6)
     webrobots (0.1.1)
-    yomu (0.1.9)
-      mime-types (~> 1.23)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  anemone (~> 0.7.2)
   bcrypt-ruby
   better_errors
-  classifier (~> 1.3.4)
   coffee-rails (~> 4.0.0)
   fastercsv
   hirb
-  httparty
   jbuilder (~> 1.2)
   jquery-rails
   mechanize (~> 2.7.2)
@@ -180,7 +151,5 @@ DEPENDENCIES
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
   sdoc
-  seed_dump
-  treat
   turbolinks
   uglifier (>= 1.3.0)

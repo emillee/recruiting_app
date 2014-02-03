@@ -12,6 +12,7 @@
  *= require reset
  *= require general
  *= require navbar
+ *= require filter_form
  *= require session
  *= require sidebar
  *= require job_posts

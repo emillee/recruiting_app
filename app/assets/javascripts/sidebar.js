@@ -6,6 +6,7 @@ ready = function() {
     var $checkbox = $(this).find(":checkbox")[0];
     if (e.target != $checkbox) $checkbox.checked = !$checkbox.checked
     $(this).toggleClass("selected", $checkbox.checked);
+    $(this).closest('.fa-check').toggleClass('hidden');
   });
 
   $('.job-filters').on('click', function() {

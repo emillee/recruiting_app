@@ -21,6 +21,7 @@ Nytech::Application.routes.draw do
   match '/signup',  to: 'users#new', via: :get
   match '/logout',  to: 'sessions#destroy', via: :delete
   match '/login',   to: 'sessions#new', via: :get
+  match '/filters', to: 'jobs#filters', via: :get
    
   root to: 'jobs#root_action'
 end

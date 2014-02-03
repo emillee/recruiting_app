@@ -1,0 +1,30 @@
+<div class="modal-background"></div>
+
+<div class="filter">
+		<div class="sidebar-wrapper">
+		<% if current_user %>
+			<%= form_for current_user, remote: true, html: { id: "job-filter-form" } do |f| %>
+
+			
+				<h1 class="department">
+					My skills:
+				</h1>
+				<ul class="job-filters">
+					<% ['Coding', 'Business', 'Marketing', 'Stragegy'].each do |dept| %>
+						<% checked = dept_checked?(dept) %>
+						<li class="job-sidebar department <%= 'selected' if checked %>">
+								<%= label_tag dept %>
+								<%= check_box_tag "user[job_settings][dept][]", dept, checked %>
+							<i class="fa fa-check-circle"></i>
+						</li>
+					<% end %>
+				</ul>
+			
+				<%= f.submit "Submit" %>
+			<% end %>
+		<% end %>
+	
+		<button id="clear-all">Clear All</button>
+	</div>
+	
+</div>

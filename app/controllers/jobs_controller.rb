@@ -34,6 +34,9 @@ class JobsController < ApplicationController
     end
   end
   
+  def filters
+  end
+  
   # NON RESTFUL-------------------------------------------------------------
   def import
     Job.import(params[:file])

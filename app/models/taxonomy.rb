@@ -40,15 +40,18 @@ class Taxonomy < ActiveRecord::Base
   
   def self.departments
     [
-      'Admin',
-      'Bus Dev, Sales',
-      'Design, Product Mgmt',
+      'Administrative',
+      'Bus. Development',
+      'Design',
       'Engineering',
-      'Finance',
-      'HR, Recruiting',
+      'Finance, Accting',
+      'Human Resources',
       'Legal',
       'Marketing',
-      'Operations'
+      'Operations',
+      'Product Management',
+      'Project Management',
+      'Sales'
     ]
   end
 

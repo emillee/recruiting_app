@@ -1,20 +1,67 @@
 div.sidebar-wrapper {
-  margin-top: 75px;
-  height: 100%;
+  margin-top: 100px;
+  margin-left: 25px;
   width: 200px;
+  height: 693px;
   position: fixed;
   font-family: 'Lato', sans-serif;
-  background-color: rgba(243,249,245,.75);
+  border: 2px solid rgba(255,255,255,.5);
+  background-color: rgba(255,255,255,.25);
+
+  input[type='checkbox'], input[type='submit'] {
+    display: none;
+  }
   
-  form {
-    border-bottom: 2px solid rgba(0,0,0,.1);
-    padding-bottom: 15px;
+  .sidebar-main {
+    height: 575px;
+    overflow: scroll;
+  }
+  
+  li {
+    text-indent: 20px;
+    line-height: 30px;
+    color: #2c3e50;
+    
+    label {
+      text-transform: capitalize;
+    }
+    
+    i {
+      position: absolute;
+      right: 10px;
+      margin-top: 7px;
+      display: none;
+      
+    }
+    
+    &:hover, &.selected {
+      color: rgba(255,255,255,1);
+      cursor: pointer;
+      
+      i {
+        display: inline-block;
+        opacity: .75;
+      }
+    }
+    
+    &:hover {
+      background-color: rgba(46, 204, 113, .35); 
+    }
+    
+    &.selected {
+      background-color: rgba(46, 204, 113, 1); 
+      
+//      &:hover {
+//        background-color: rgba(46, 204, 113, .65);         
+//      };
+    }
+    
   }
 
   .search {
     padding: 14px 13px;
     border-bottom: 2px solid rgba(0,0,0,.1);
-    background-color: rgba(255,255,255,.5);
+    background-color: white;
     
     .wrapper {
       width: 170px;
@@ -49,73 +96,73 @@ div.sidebar-wrapper {
   }
   
   h1 {
-    text-indent: 25px;
-    line-height: 35px;
-    margin-top: 7px;
-    margin-bottom: -4px;
-    color: rgba(50,50,50,1);
-    text-transform: uppercase;    
-  }
-  
-  li {
-    text-indent: 27px;
+    text-indent: 15px;
     line-height: 30px;
-    color: rgba(160,160,160,1);
+    margin-bottom: 0px;
+    color: black;
+    text-transform: uppercase; 
     
-    i {
-      position: absolute;
-      right: 10px;
-      margin-top: 7px;
-      display: none;
-    }
-    
-    &:hover, &.selected {
-      color: rgba(255,255,255,1);
+    &.department {
       cursor: pointer;
-      
-      i {
-        display: inline-block;
-        opacity: .75;
-      }
     }
     
-    &:hover {
-      background-color: rgba(46, 204, 113, .5); 
+    &.department i {
+      font-size: 12px;
+      position: relative;
+      top: -2px;
+      left: 32px;
     }
-    
-    &.selected {
-      background-color: rgba(46, 204, 113, 1); 
-      border-left: 3px solid black;
-      &:hover {
-        background-color: rgba(46, 204, 113, .75);         
-      };
-    }
-    
   }
   
-  #clear-all {
-    border: none;
-    margin-top: 20px;
-    margin-left: 15px;
-    height: 25px;
-    width: 168px;
-    border: 3px solid #7f8c8d;
-    color: #2c3e50;
-    background-color: #bdc3c7;
-    cursor: pointer;
+  .dept-wrapper {
+    background-color: rgba(255,255,255,.9);
     
-    &:hover {
-      border: 3px solid #bdc3c7;
-      color: white;
-      background-color: #7f8c8d;
-    };
-    
-    &:focus {
-      outline: none;
-    };
+    h1 {
+      background-color: rgba(255,255,255,.4);
+    }
+
   }
   
-  input[type='checkbox'], input[type='submit'] {
+  h1.role {
+    background-color: white;
+    margin-top: 1px;
+  }
+  
+  .role-wrapper {
     display: none;
   }
+  
+  .exp-wrapper {
+    display: none;
+  }
+  
+  .clear {
+    background-color: white;
+    height: 65px;
+  
+    #clear-all {
+      border: none;
+      margin-top: 20px;
+      margin-left: 15px;
+      height: 25px;
+      width: 168px;
+      border: 3px solid #7f8c8d;
+      color: #2c3e50;
+      background-color: #bdc3c7;
+      cursor: pointer;
+    
+      &:hover {
+        border: 3px solid #bdc3c7;
+        color: white;
+        background-color: #7f8c8d;
+      };
+    
+      &:focus {
+        outline: none;
+      };
+    }
+  
+
+  }
+  
 }
