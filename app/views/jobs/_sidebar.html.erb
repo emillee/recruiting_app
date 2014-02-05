@@ -29,9 +29,8 @@
 				<div class="dept-wrapper">
 					<h1 class="department">
 						Department:
-						<a href="/filters">
-							<i class="fa fa-expand"></i>
-						</a>
+						<i class="fa fa-minus-circle"></i>
+						<i class="fa fa-plus-square-o hidden"></i>
 					</h1>
 					<ul class="job-filters">
 						<% Taxonomy.departments.each do |dept| %>
@@ -46,7 +45,7 @@
 					</ul>
 				</div><!-- dept-wrapper -->
 				
-				<% if current_user.job_settings[:dept] %>
+				<!-- <% if current_user.job_settings[:dept] %>
 					<% sub_dept_arr = [] %>
 					<% @jobs.each { |job| sub_dept_arr << job.sub_dept if job.sub_dept } %>
 					<% if sub_dept_arr.any? %>
@@ -64,7 +63,7 @@
 							</ul>
 						</div>
 					<% end %>
-				<% end %>
+				<% end %> -->
 
 				<div class="exp-wrapper">
 					<h1>Experience (Yrs):</h1>
@@ -80,7 +79,7 @@
 							<li class="job-sidebar <%= 'selected' if checked %>">
 								<%= label_tag "#{label}-#{label}", label %>
 								<%= check_box_tag "user[job_settings][experience][]", num_years, checked %>
-								<i class="fa fa-check-circle"></i>
+								<i class="fa fa-check"></i>
 							</li>
 						<% end %>
 					</ul>

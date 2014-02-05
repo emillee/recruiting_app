@@ -1,6 +1,21 @@
 var ready;
 
 ready = function() {
+  
+  $('h1.department').on('click', function() {
+    var $ul = $(this).closest('.dept-wrapper').children('ul');
+    var $checkbox_lis = $ul.children('li');
+    var $checkboxes = $checkbox_lis.find(":checkbox");
+    
+    $checkboxes.each(function() {
+      if (this.checked === false) {
+        $(this).parent('li').toggleClass('hidden');
+      }
+    })
+    
+    $('.fa-minus-circle').toggleClass('hidden');
+    $('.fa-plus-square-o').toggleClass('hidden');
+  });
  
   $('li.job-sidebar').on('click', function(e) {
     var $checkbox = $(this).find(":checkbox")[0];

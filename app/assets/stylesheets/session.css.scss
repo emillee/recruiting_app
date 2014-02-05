@@ -38,6 +38,7 @@ div.session-form {
     border: 3px solid white;
     color: white;
     background-color: rgba(255,255,255,.4);  
+    cursor: pointer;
     
     &:hover, &:focus {
       background-color: #2c3e50;        

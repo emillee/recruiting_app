@@ -4,8 +4,13 @@
 	<ul class="job-posts">
 		<% @companies.each do |company| %>
 			<li>
-				company: <%= company.name %>
-				
+				<h1>company: <%= company.name %></h1>
+				<h3>funding: <%= company.total_money_raised || "" %></h3>
+				<h3>employees: <%= company.num_employees || "" %></h3>
+				<h3>twitter: <%= company.twitter_username || "" %></h3>
+				<h3>category: <%= company.category_code || "" %></h3>
+				<h3>city: <%= company.city || "" %></h3>
+												
 				<br>
 				<br>
 				

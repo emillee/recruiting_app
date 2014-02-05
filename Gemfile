@@ -13,11 +13,15 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'nokogiri'
 gem 'fastercsv'
 gem "mechanize", "~> 2.7.2"
+gem 'omniauth-twitter'
+gem 'httparty'
+gem 'figaro'
+gem 'twitter'
+
 # gem "anemone", "~> 0.7.2"
 # gem 'seed_dump'
 # gem 'treat'
 # gem "classifier", "~> 1.3.4"
-# gem 'httparty'
 
 group :development do
   gem 'better_errors'
