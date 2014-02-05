@@ -11,7 +11,8 @@ class JobsController < ApplicationController
   def create
     @company = Company.find(params[:company_id])
     @job = @company.job_listings.new(job_params)
-    @job.input_job_data
+    @job_scraper = JobScraper.new(@job)
+    @job_scraper.input_job_data
     
     if @job.save
       flash[:success] = "Job saved successfully"

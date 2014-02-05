@@ -10,55 +10,6 @@ class Job < ActiveRecord::Base
   )
   
   # populate a job listing from a link
-  def input_job_data
-    self.get_text
-    self.get_title
-    self.get_dept
-    self.get_sub_dept
-  end
-  
-  def get_text
-    html = open(link)
-    doc = Nokogiri.HTML(html)
-    doc.css('script').remove
-    text = doc.at('body').inner_text
-    self.full_text = text.squish
-    self.save
-  end
-
-  def get_company
-    Company.all.each do |company|
-      self.company_id = company.id if self.first_thirty.match(/#{company.name}/i)
-    end
-    
-    self.save
-  end
-  
-  def get_title
-    Job.all_unique_titles.each do |uniq_title|
-      self.title = uniq_title if self.first_thirty.match(/#{uniq_title}/i)
-    end
-    
-    self.save
-  end
-  
-  def get_dept
-    if self.title
-      job = Job.all.find { |job| job.title == self.title && !job.dept.nil? }
-    end
-    
-    self.dept = job.dept if job.dept
-    self.save
-  end
-
-  def get_sub_dept
-    if self.title
-      job = Job.all.find { |job| job.title == self.title && !job.sub_dept.nil? }
-    end
-    
-    self.sub_dept = job.sub_dept if job.sub_dept
-    self.save
-  end
   
   #-------------------------------------------------------
   
@@ -103,9 +54,9 @@ class Job < ActiveRecord::Base
   
   
   def self.all_unique_titles
-    unique_titles = Job.all.map(&:title).uniq!
+    unique_titles = Job.all.map(&:title).compact!
+    unique_titles.uniq!
     unique_titles.sort_by(&:length).reverse
-    unique_titles
   end
   
   
