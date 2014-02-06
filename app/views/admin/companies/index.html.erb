@@ -1,28 +1,33 @@
-<%= render 'sidebar' %>
+<!-- <%= render 'sidebar' %> -->
 
-<div class="jobs-wrapper">
-	<ul class="job-posts">
+<!-- <div class="jobs-wrapper">
+	<ul class="job-posts"> -->
 		<% @companies.each do |company| %>
-			<li>
-				company: <%= company.name %>
-				
+			<table class="jobs-table">
+				<h1>company: <%= company.name %></h1>
 				<% company.job_listings.each do |job| %>
-					title: <%= job.title %>
-					primary_dept: <%= job.primary_dept %>
-					secondary_dept: <%= job.secondary_dept %>
-					required skills:
-					years: <%= job.required_experience %>
-					degree: <%= job.degree %>
+					<tr>
+						<th>title</th>
+						<th>primary_dept</th>
+						<th>secondary_dept: </th>
+						<th>years: </th>
+					</tr>
+					
+					<tr>
+						<td><%= job.title %></td>
+						<td><%= job.dept %></td>
+						<td><%= job.sub_dept %></td>
+						<td><%= job.years_exp %></td>
+					</tr>
 					
 				<% end %>
-			</li>
 			
 			<%= button_to "Add Job", company_jobs_url(company) %>
 		<% end %>
 				
-	</ul>
+	<!-- </ul>
 	
 </div>
 
 <div class="jobs-background"></div>
-<div class="jobs-background-overlay"></div>
+<div class="jobs-background-overlay"></div> -->

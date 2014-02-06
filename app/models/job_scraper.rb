@@ -58,9 +58,12 @@ class JobScraper
   end
   
   def get_years_exp
-    years = @job.full_text.match(/(\d+)\+ years/)[1]
-    @job.years_exp = years
-    @job.save
+    years = @job.full_text.match(/(\d+)\+ years/) || 
+      @job.full_text.match(/(\d)-\d years/)[1]
+    if years
+      @job.years_exp = years
+      @job.save
+    end
   end
   
   

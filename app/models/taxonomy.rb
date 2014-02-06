@@ -228,6 +228,14 @@ class Taxonomy < ActiveRecord::Base
     ]
   end
   
+  def self.ENGINEERING_TITLES
+    [
+      'Data Operations Associate',      
+      'Automation Engineer',
+      'Director of Engineering',
+    ]
+  end
+  
   def self.RAW_TITLES 
     [
       'Assistant Office Manager',
@@ -235,9 +243,6 @@ class Taxonomy < ActiveRecord::Base
       'Office Coordinator',
       'Personal Assistant',
       'Business Development Director',
-      'Data Operations Associate',
-      'Automation Engineer',
-      'Director of Engineering',
       'Front End Developer',
       'Lead Security Engineer',
       'Manual Quality Assurance Engineer',

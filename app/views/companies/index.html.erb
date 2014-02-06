@@ -15,13 +15,12 @@
 				<br>
 				
 				<% company.job_listings.each do |job| %>
-					<p>id: <%= job.id %>
-					<p>link: <%= link_to "#{job.link}", "#{job.link}" %></p>
-					<p>title: <%= job.title %></p>
-					<p>primary_dept: <%= job.dept %></p>
-					<p>secondary_dept: <%= job.sub_dept %></p>
-					<p>required skills:</p>
-					<p>years: <%= job.years_exp %></p>
+					<p>ID: <%= job.id %>
+					<p>Link: <%= link_to "#{job.link}", "#{job.link}" %></p>
+					<p>Title: <%= job.title %></p>
+					<p>Dept: <%= job.dept %></p>
+					<p>SubDept: <%= job.sub_dept %></p>
+					<p>Exp Req: <%= job.years_exp %></p>
 					<%= link_to "Get inputs", "jobs/#{job.id}/get_input" %>
 					<br><br>
 				<% end %>

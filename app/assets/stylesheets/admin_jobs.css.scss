@@ -1,8 +1,16 @@
 .pretty {
-  background-color: green;
+  background-color: white;
   position: relative;
   top: 100px;
   left: 100px;
+  
+  th {
+    text-align: left;
+  }
+  
+  th, td {
+    padding: 5px;
+  }
 }
 
 .pretty th .current {

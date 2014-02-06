@@ -3,21 +3,27 @@
 		
 		<table class="pretty">
 			<tr>
+				<th>ID</th>
 				<th>Company Name</th>
 				<th><%= sortable("title") %></th>
 				<th><%= sortable("dept") %></th>
-				<th><%= sortable("sub_dept") %></th></th>
+				<th><%= sortable("sub_dept") %></th>
+				<th>Years Exp</th>
+				<td>Link</td>
 			</tr>
 			
 			<% @jobs.each do |job| %>		
 				<tr>
-					<td>company: <%= job.listing_company.name %></td>
-					<td>title: <%= job.title %></td>
-					<td>primary_dept: <%= job.dept %></td>
-					<td>secondary_dept: <%= job.sub_dept %></td>
-				</li>
+					<td><%= job.id %></td>
+					<td><%= job.listing_company.name %></td>
+					<td><%= job.title %></td>
+					<td><%= job.dept %></td>
+					<td><%= job.sub_dept %></td>
+					<td><%= job.years_exp || '-' %></td>
+					<td><%= job.link %></td>
+				</tr>
 			<% end %>
-
+			
 	</table>
 	<!-- </ul>
 </div> -->

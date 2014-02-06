@@ -32,7 +32,7 @@ class Job < ActiveRecord::Base
       end
       
       if !settings_hash[:experience].nil?
-        jobs = jobs.where("years_exp IN (?)", settings_hash[:experience])
+        jobs = jobs.where("years_exp < (?)", settings_hash[:experience].max)
       end
       
       if !settings_hash[:keywords].nil?
