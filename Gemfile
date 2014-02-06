@@ -18,6 +18,10 @@ gem 'httparty'
 gem 'figaro'
 gem 'twitter'
 
+
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'jquery-ui-rails'
+
 # gem "anemone", "~> 0.7.2"
 # gem 'seed_dump'
 # gem 'treat'
