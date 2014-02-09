@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)http://agevik.se/post/72876032312/20-lessons-about-making-viral-apps-i-learned-the-hard -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://ogp.me/ns/fb#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="quant.js" async="" type="text/javascript"></script><script type="text/javascript" async="" src="ga.js"></script><script id="facebook-jssdk" src="all.js"></script><script>var __pbpa = true;</script><script>var translated_warning_string = 'Warning: Never enter your Tumblr password unless \u201chttps://www.tumblr.com/login\u201d\x0ais the address in your web browser.\x0a\x0aYou should also see a green \u201cTumblr, Inc.\u201d identification in the address bar.\x0a\x0aSpammers and other bad guys use fake forms to steal passwords.\x0a\x0aTumblr will never ask you to log in from a user\u2019s blog.\x0a\x0aAre you absolutely sure you want to continue?';</script><script type="text/javascript" language="javascript" src="pre_tumblelog.js"></script>
+
+
+    
+        
+        <title>Niklas Agevik's blog - 20 lessons about making viral apps I learned the hard way</title>
+        <link rel="icon" href="avatar_ce21303cc560_128.png">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://agevik.se/rss">
+        <meta name="description" content="20 lessons about making viral apps I learned the hard way I have a lot of people to thank for this post - too many to mention that have shared their knowledge with me. But above all, this post would...">
+        <meta name="viewport" content="width=775"> <!-- iPhone -->
+      
+        <meta name="image:Background" content="">
+        <meta name="image:Header" content="">
+        <meta name="text:Google Analytics ID" content=""> 	 	
+        <meta name="text:Disqus Shortname" content="">     
+        <meta name="if:Show My Portrait" content="">
+        <meta name="if:Huge Photos" content="">
+        <meta name="if:Dark Layout" content="">
+        <link rel="apple-touch-icon" href="avatar_ce21303cc560_128.png"> 
+        <link rel="stylesheet" href="screen.css" type="text/css" media="screen" charset="utf-8">  
+        <style type="text/css">
+        
+        
+        
+        
+        
+          html, body {
+            background: #d1d2d1 url(http://static.tumblr.com/snnreod/DTFl8fjqb/background.jpg) top left repeat;
+          }  
+        
+        
+           
+
+           
+        
+
+
+        
+ 
+        
+        /* Simpler Date for Toggle
+        
+        
+        .date_and_notes {
+          text-align: left;  
+          padding: 15px 0 0 0;  
+          margin: 0 30px;
+          font-size: 1em;
+          background: transparent;
+        }
+
+        .date_and_notes a {
+          display: block; 
+          color: #303030;text-decoration: none; 
+          font-weight: normal; 
+          cursor: pointer;
+          }
+
+        .date_and_notes a:hover {color: #232323;}
+
+        .date_and_notes a:active {
+          position: relative;
+          top: 1px;
+        }
+
+        .post .photo, .post .video, .post .conversation, .post .regular, .post .photoset, .post .link  {
+          padding: 10px 30px 30px 30px;
+        }
+        */
+      
+            
+        
+        </style>
+
+        <!--[if lt IE 7]>
+            <style type="text/css">
+                .post div.labels {
+                    right: 450px;
+                }
+            </style>
+        <![endif]-->
+    <!-- TWITTER TAGS --><meta charset="utf-8"><meta name="twitter:card" content="summary"><meta name="twitter:description" content="I have a lot of people to thank for this post - too many to mention that have shared their knowledge with me. But above all, this post would not have been possible without the team we have at Instabridge.
+ So, 20 lessons about making viral apps I learned the hard way:
+ 1) Buying downloads is cheap. Facebook is cheapest, AdMob is second cheapest. It should not cost more than $1 to buy a download. If you spend more than $1000 to get your first 1,000 users you are doing something wrong. There is no shame in buying downloads.
+ 2) Having an app that requires a user’s friends to use the app is a problem to be solved, not a viral hook.
+ 3) Users uninstall apps aggressively. Expect users to churn. Mobilewalla claims a typical users uninstalls 90% of the apps they download.
+ 3) Retention is your most important measure. Acquiring users is one thing, keeping them hooked is another. Separate the two. Doing well on one front doesn’t translate into doing well on the other.
+ 4) The younger users are, the more they hate having to login with Facebook. Never force a user to use Facebook login to use your app.
+ 5) Learn App store SEO (AEO). Users routinely search for apps in Google Play and the iOS App Store. This is so important it should affect all details of your app including the name you choose and the icon. Experiment.
+ 6) In Western Europe and the US, Android fragmentation is a negligible problem when you start out. Require Android &amp;gt;4.0. Test with the Samsung Galaxy S2, S3, S4, HTC One, Nexus 4 and Nexus 5. Once you are on your way to become the next WhatsApp test with more phones.
+ 7) You need to have a QA process from the start. There’s a reason Jan Koum, the CEO and founder of WhatsApp, has the title “Head of QA testing” on LinkedIn. Phones &amp;#8220;in the wild&amp;#8221; have all kinds of weird configurations that will kill your app (out of memory, out of storage space, running an old version of the OS). You can buy QA testing cheap on Elance. This applies to both iOS and Android. 
+ 8) Mixpanel is the gold standard for measurements in mobile apps. Live by Mixpanel, die by Mixpanel. 
+ 9) One hour of user testing will tell you more about user behaviours than reading articles like this. Grab someone that has no idea of what your app does, ask them to install it and watch what they do. Give out free movie tickets or whatever it takes to get new test users. 
+ 10) Repeat after me: Notifications are not for retention. Annoying notifications is the top reason why users uninstall apps. Use notifications only when they add value for end users.
+ 11) Users have no idea what they want in apps. Expect them to be wrong if you ask them what they want. 
+ 12) The average user only uses 15 apps per week. Become one of them or become forgotten.
+ 13) The app market is local. Focus on markets where you want to grow. Translate into native languages if necessary. Sites like Onehourtranslation.com are cheap and good. 
+ 14) Articles in mainstream media like newspapers, and tech blogs don’t convert into downloads. Become featured on sites users browse looking for apps to download like TouchArcade.com (iOS) or Androidpolice.com (Android) to get downloads. But see point 15 first.
+ 15) The downloads your app get from being mentioned in blogs will be  negligible in both the short run and the long run if you are successful. 
+ 16) All the user needs to make a decision on whether to download your app or not should be available on your app page in the App Store or Google Play. Users should not have to visit a web site to get the information they need.
+ 17) The single most important metric for your website is how many milliseconds it takes for the user to leave it and get to the App Store.
+ 18) The conversion rate for Facebook invites is 0.4%. The conversion rate for SMS invites is &amp;lt; 0.6%. For your app to spread via Facebook invites or SMS invites a user needs to send on average ~250 invites during their lifetime. Also see 19.
+ 19) The stats in point 18 are for &amp;#8220;blind&amp;#8221; invites - i.e. the user sends the invite without doing any other action to get their friend to install the app. If they verbally tell their friends to install the app the conversion is obviously higher. But if your users are already telling their friends to install the app, what was the point of sending an invite in the first place?
+ 20) When in doubt on an UI or UX decision do what successful mobile first startups do: WhatsApp, Viber, Waze or Instagram. Ignore what Facebook or Twitter does."><meta name="twitter:title" content="20 lessons about making viral apps I learned the hard way"><meta name="twitter:url" content="http://agevik.se/post/72876032312/20-lessons-about-making-viral-apps-i-learned-the-hard"><meta name="twitter:site" content="tumblr"><meta name="twitter:creator" content="niklas_a"><meta name="twitter:app:name:iphone" content="Tumblr"><meta name="twitter:app:name:ipad" content="Tumblr"><meta name="twitter:app:name:googleplay" content="Tumblr"><meta name="twitter:app:id:iphone" content="305343404"><meta name="twitter:app:id:ipad" content="305343404"><meta name="twitter:app:id:googleplay" content="com.tumblr"><meta name="twitter:app:url:iphone" content="tumblr://x-callback-url/blog?blogName=niklas-a&amp;postID=72876032312&amp;referrer=twitter-cards"><meta name="twitter:app:url:ipad" content="tumblr://x-callback-url/blog?blogName=niklas-a&amp;postID=72876032312&amp;referrer=twitter-cards"><meta name="twitter:app:url:googleplay" content="tumblr://x-callback-url/blog?blogName=niklas-a&amp;postID=72876032312&amp;referrer=twitter-cards">
+
+<script src="tumblelog.js"></script><style type="text/css"></style><style type="text/css" id="tumblr_teaser_follow_css">
+#tumblr_teaser_follow {
+display: block;
+opacity: 1;
+visibility: hidden;
+position: fixed;
+bottom: 0px;
+right: 0px;
+width: 1px;
+height: 1px;
+z-index: 2147483647;
+}
+#tumblr_teaser_follow.open {
+visibility: visible;
+width: 310px;
+height: 110px;
+}
+</style><style type="text/css" id="tumblr_iframe_css">
+#tumblr_controls {
+display: block;
+opacity: 1;
+visibility: hidden;
+position: absolute;
+top: 0px;
+right: 0px;
+width: 272px;
+height: 26px;
+z-index: 2147483647;
+}
+#tumblr_controls.visible {
+visibility: visible;
+}
+.tumblr_mobile_banner {
+position: relative;
+}
+html.tumblr_mobile_banner body iframe#tumblr_controls.visible.tumblr_sticky_iframe {
+position: absolute !important;
+visibility: visible !important;
+top: 0 !important;
+opacity: 1 !important;
+}
+.tumblr_mobile_banner #tumblr_controls {
+position: absolute !important;
+visibility: visible !important;
+top: 0 !important;
+-webkit-transform: translateY(-100%);
+-moz-transform: translateY(-100%);
+-ms-transform: translateY(-100%);
+-o-transform: translateY(-100%);
+transform: translateY(-100%);
+-webkit-transition: -webkit-transform 0.2s ease-out;
+-moz-transition: -moz-transform 0.2s ease-out;
+-ms-transition: -ms-transform 0.2s ease-out;
+-o-transition: -o-transform 0.2s ease-out;
+transition: transform 0.2s ease-out;
+}
+.tumblr_mobile_banner #tumblr_controls.visible {
+-webkit-transform: none;
+-moz-transform: none;
+-ms-transform: none;
+-o-transform: none;
+transform: none;
+}
+</style>
+<meta http-equiv="x-dns-prefetch-control" content="off">
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_reset > div{overflow:hidden}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}
+.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_fluid span{width:100%}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+.fbpluginrecommendationsbarleft{left:10px}
+.fbpluginrecommendationsbarright{right:10px}</style></head>
+    <body marginwidth="0" marginheight="0" data-twttr-rendered="true">
+   <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="xd_arbiter.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="xd_arbiter(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="f3863d6eac" frameborder="0" allowtransparency="true" scrolling="no" src="ping.html" style="display: none;"></iframe></div></div></div>
+   <script>(function(d, s, id) {
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/sv_SE/all.js#xfbml=1&appId=125836487516244";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));</script>
+        <div id="content" class="clearfix">
+          <div id="header" class="clearfix">
+            <h1>
+              
+              <a class="no_header" href="http://agevik.se/">Niklas Agevik's blog</a>
+            </h1>
+          </div><!-- end #header -->  
+          <div id="sidebar">
+            <div id="description">
+               
+                 <img id="tumblr_portrait" src="avatar_ce21303cc560_128.png" width="128" height="128" alt="This is a picture of Niklas Agevik&#39;s blog">
+               
+               <p></p><p></p>
+<p>
+Hi! I'm Niklas. I'm the CEO and co-founder of <a href="http://instabridge.com/">Instabridge</a>, a small company with big ambitions. Like taking over the world for example. 
+</p><p>You should follow me on Twitter. Sometimes I say something interesting there.</p>        <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="follow_button.1390956745.html" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 116px; height: 20px;"></iframe>
+                <script src="widgets.js" type="text/javascript"></script>
+               </div>
+                
+                 <a class="page_link" href="http://agevik.se/about"><span>About Me</span></a>
+                         
+               <a class="page_link" href="http://agevik.se/archive"><span>Archive</span></a>
+               
+                
+               <a class="page_link" href="http://agevik.se/submit"><span>Submit</span></a>
+               
+               <div id="search">
+        		   	<form action="http://agevik.se/search" method="get">
+        		   	    <label><span>Search</span></label>
+        		   	    <input type="text" name="q" value="">
+        		   	    <input id="search_submit" type="submit" value="Search" alt="Search">
+        		   	</form> 	 	 	   
+        		   </div>
+          </div><!-- end #sidebar -->
+               <div class="postcontainer clearfix">
+              
+                  <div class="post_inner_container clearfix">
+            
+                <div class="post clearfix">
+              
+              
+                    <div class="date_and_notes">
+                       
+                         <a href="20-lessons-about-making-viral-apps-i-learned-the-hard.html">January 10th, 2014 at 5:12PM</a>
+                       
+
+                        
+                    </div>
+                
+                     
+                          <div class="regular clearfix">
+                              <h2>20 lessons about making viral apps I learned the hard way</h2>
+                               <div class="post_semi_top"></div>
+                              <div class="regular_body">
+                                <p></p><p>I have a lot of people to thank for this post - too many to mention that have shared their knowledge with me. But above all, this post would not have been possible without the team we have at Instabridge.</p>
+<p>So, 20 lessons about making viral apps I learned the hard way:</p>
+<p>1) Buying downloads is cheap. Facebook is cheapest, AdMob is second cheapest. It should not cost more than $1 to buy a download. If you spend more than $1000 to get your first 1,000 users you are doing something wrong. There is no shame in buying downloads.</p>
+<p>2) Having an app that requires a user’s friends to use the app is a problem to be solved, not a viral hook.</p>
+<p>3) Users uninstall apps aggressively. Expect users to churn. Mobilewalla claims a typical users uninstalls&nbsp;<a href="http://usatoday30.usatoday.com/MONEY/usaedition/2012-01-31-App-Love-is-Fleeting_ST_U.htm">90% of the apps</a>&nbsp;they download.</p>
+<p>3) Retention is your most important measure. Acquiring users is one thing, keeping them hooked is another. Separate the two. Doing well on one front doesn’t translate into doing well on the other.</p>
+<p>4) The younger users are, the more they hate having to login with Facebook. Never force a user to use Facebook login to use your app.</p>
+<p>5) Learn App store SEO (AEO). Users routinely search for apps in Google Play and the iOS App Store. This is so important it should affect all details of your app including the name you choose and the icon. Experiment.</p>
+<p>6) In Western Europe and the US, <a href="http://blog.instabridge.com/post/57424346106/dealing-with-android-fragmentation-how-bad-is-it-for">Android fragmentation is a negligible problem when you start out</a>. Require Android &gt;4.0. Test with the Samsung Galaxy S2, S3, S4, HTC One, Nexus 4 and Nexus 5. Once you are on your way to become the next WhatsApp test with more phones.</p>
+<p>7) You need to have a QA process from the start. There’s a reason Jan Koum, the CEO and founder of WhatsApp, has the title “Head of QA testing” on LinkedIn. Phones “in the wild” have all kinds of weird configurations that will kill your app (out of memory, out of storage space, running an old version of the OS).&nbsp;You can buy QA testing cheap on Elance. This applies to both iOS and Android.&nbsp;</p>
+<p>8) Mixpanel is the gold standard for measurements in mobile apps. Live by Mixpanel, die by Mixpanel.&nbsp;</p>
+<p>9) One hour of user testing will tell you more about user behaviours than reading articles like this. Grab someone that has no idea of what your app does, ask them to install it and watch what they do. Give out free movie tickets or whatever it takes to get new test users.&nbsp;</p>
+<p>10) Repeat after me: Notifications are not for retention. Annoying notifications is <a href="http://appiterate.com/7-reasons-why-your-mobile-app-gets-uninstalled/">the top reason why users uninstall apps</a>. Use notifications only when they add value for end users.</p>
+<p>11) Users have no idea what they want in apps. Expect them to be wrong if you ask them what they want.&nbsp;</p>
+<p>12) The average user only uses&nbsp;<a href="http://techcrunch.com/2011/12/18/app-ocalypse/">15 apps per week</a>. Become one of them or become forgotten.</p>
+<p>13) The app market is local. Focus on markets where you want to grow. Translate into native languages if necessary. Sites like <a href="http://www.onehourtranslation.com/">Onehourtranslation.com</a> are cheap and good.&nbsp;</p>
+<p>14) Articles in mainstream media like newspapers, and tech blogs don’t convert into downloads. Become featured on sites users browse looking for apps to download like TouchArcade.com (iOS) or Androidpolice.com (Android) to get downloads. But see point 15 first.</p>
+<p>15) The downloads your app get from being mentioned in blogs will be &nbsp;negligible in both the short run and the long run if you are successful.&nbsp;</p>
+<p>16) All the user needs to make a decision on whether to download your app or not should be available on your app page in the App Store or Google Play. Users should not have to visit a web site to get the information they need.</p>
+<p>17) The single most important metric for your website is how many milliseconds it takes for the user to leave it and get to the App Store.</p>
+<p>18) The conversion rate for Facebook invites is 0.4%. The conversion rate for SMS invites is &lt; 0.6%. For your app to spread via Facebook invites or SMS invites a user needs to send on average ~250 invites during their lifetime. Also see 19.</p>
+<p>19) The stats in point 18 are for “blind” invites - i.e. the user sends the invite without doing any other action to get their friend to install the app. If they verbally tell their friends to install the app the conversion is obviously higher. But if your users are already telling their friends to install the app, what was the point of sending an invite in the first place?</p>
+<p>20) When in doubt on an UI or UX decision do what successful mobile first startups do: WhatsApp, Viber, Waze or Instagram. Ignore what Facebook or Twitter does.</p><p></p>
+                              </div>
+                             
+                          </div>
+                      
+
+                        	
+                   
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                   
+                    
+                       <div id="post_notes"><ol class="notes"><!-- START NOTES --><li class="note like tumblelog_waynesutton without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://waynesutton.tumblr.com/" title="SocialWayne.com on Tumblr "><img src="avatar_ae0e6b9d3c56_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://waynesutton.tumblr.com/" title="SocialWayne.com on Tumblr">waynesutton</a> likes this</span><div class="clear"></div></li><li class="note reblog tumblelog_ptdecker without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://ptdecker.tumblr.com/" title="Rambling Mind Blasts"><img src="default_avatar_16.png" class="avatar " alt=""></a><span class="action" data-post-url="http://ptdecker.tumblr.com/post/75752503923"><a rel="nofollow" href="http://ptdecker.tumblr.com/" class="tumblelog" title="Rambling Mind Blasts">ptdecker</a> reblogged this from <a rel="nofollow" href="http://agevik.se/" class="source_tumblelog" title="Niklas Agevik&#39;s blog">niklas-a</a></span><div class="clear"></div></li><li class="note like tumblelog_davidguerraterol without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://davidguerraterol.tumblr.com/" title="David Guerra Terol "><img src="avatar_ec4eeb1bde4e_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://davidguerraterol.tumblr.com/" title="David Guerra Terol">davidguerraterol</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_thetylerhayes without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://thetylerhayes.com/" title="The Tyler Hayes "><img src="avatar_30e9b9f8baa9_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://thetylerhayes.com/" title="The Tyler Hayes">thetylerhayes</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_callsquare without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://callsquare.tumblr.com/" title="Untitled "><img src="octahedron_closed_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://callsquare.tumblr.com/" title="Untitled">callsquare</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_fmassin without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://franckmassin.com/" title="Franck Massin "><img src="avatar_c502fb468441_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://franckmassin.com/" title="Franck Massin">fmassin</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_christianhern without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://christianhern.tumblr.com/" title="The Socialist "><img src="avatar_1d5141c229b7_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://christianhern.tumblr.com/" title="The Socialist">christianhern</a> likes this</span><div class="clear"></div></li><li class="note reblog tumblelog_akshita without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://akshita.tumblr.com/" title="Footloose"><img src="avatar_6c85759be765_16.png" class="avatar " alt=""></a><span class="action" data-post-url="http://akshita.tumblr.com/post/75678444367"><a rel="nofollow" href="http://akshita.tumblr.com/" class="tumblelog" title="Footloose">akshita</a> reblogged this from <a rel="nofollow" href="http://agevik.se/" class="source_tumblelog" title="Niklas Agevik&#39;s blog">niklas-a</a></span><div class="clear"></div></li><li class="note like tumblelog_kristofferstenqvist without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://kristofferstenqvist.se/" title="kristoffer stenqvist - a life in pictures "><img src="avatar_7cc6f8501604_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://kristofferstenqvist.se/" title="kristoffer stenqvist - a life in pictures">kristofferstenqvist</a> likes this</span><div class="clear"></div></li><li class="note reblog tumblelog_kristofferstenqvist without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://kristofferstenqvist.se/" title="kristoffer stenqvist - a life in pictures"><img src="avatar_7cc6f8501604_16.png" class="avatar " alt=""></a><span class="action" data-post-url="http://kristofferstenqvist.se/post/74937898752"><a rel="nofollow" href="http://kristofferstenqvist.se/" class="tumblelog" title="kristoffer stenqvist - a life in pictures">kristofferstenqvist</a> reblogged this from <a rel="nofollow" href="http://agevik.se/" class="source_tumblelog" title="Niklas Agevik&#39;s blog">niklas-a</a></span><div class="clear"></div></li><li class="note reblog tumblelog_shobhitic without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://shobhitic.tumblr.com/" title="shobhitic"><img src="avatar_8c5e86dd677c_16.png" class="avatar " alt=""></a><span class="action" data-post-url="http://shobhitic.tumblr.com/post/74935234030"><a rel="nofollow" href="http://shobhitic.tumblr.com/" class="tumblelog" title="shobhitic">shobhitic</a> reblogged this from <a rel="nofollow" href="http://agevik.se/" class="source_tumblelog" title="Niklas Agevik&#39;s blog">niklas-a</a></span><div class="clear"></div></li><li class="note reblog tumblelog_burakaydn without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://burakaydn.tumblr.com/" title="Burak AYDIN"><img src="avatar_0e79392f9bd4_16.png" class="avatar " alt=""></a><span class="action" data-post-url="http://burakaydn.tumblr.com/post/74867064902"><a rel="nofollow" href="http://burakaydn.tumblr.com/" class="tumblelog" title="Burak AYDIN">burakaydn</a> reblogged this from <a rel="nofollow" href="http://agevik.se/" class="source_tumblelog" title="Niklas Agevik&#39;s blog">niklas-a</a></span><div class="clear"></div></li><li class="note like tumblelog_innovez without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://innovez.tumblr.com/" title="innovez [in-oh-vey] - innovate! "><img src="avatar_55f8941debe9_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://innovez.tumblr.com/" title="innovez [in-oh-vey] - innovate!">innovez</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_tumnerd without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://tumnerd.tumblr.com/" title="Private Code "><img src="avatar_0b2b65bac53f_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://tumnerd.tumblr.com/" title="Private Code">tumnerd</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_aginnt without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://www.aginnt.com/" title="Aaron Ginn&#39;s Thoughts "><img src="avatar_d283849dac42_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://www.aginnt.com/" title="Aaron Ginn&#39;s Thoughts">aginnt</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_chinob without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://chinob.tumblr.com/" title="Chino|obviously. "><img src="avatar_2212d2e1a319_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://chinob.tumblr.com/" title="Chino|obviously.">chinob</a> likes this</span><div class="clear"></div></li><li class="note reblog tumblelog_watashiwabanana without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://watashiwabanana.tumblr.com/" title="Cry, laugh, live."><img src="avatar_010b6f691d1b_16.png" class="avatar " alt=""></a><span class="action" data-post-url="http://watashiwabanana.tumblr.com/post/74776962698"><a rel="nofollow" href="http://watashiwabanana.tumblr.com/" class="tumblelog" title="Cry, laugh, live.">watashiwabanana</a> reblogged this from <a rel="nofollow" href="http://agevik.se/" class="source_tumblelog" title="Niklas Agevik&#39;s blog">niklas-a</a></span><div class="clear"></div></li><li class="note like tumblelog_watashiwabanana without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://watashiwabanana.tumblr.com/" title="Cry, laugh, live. "><img src="avatar_010b6f691d1b_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://watashiwabanana.tumblr.com/" title="Cry, laugh, live.">watashiwabanana</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_boring4life without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://boring4life.tumblr.com/" title=":D "><img src="avatar_8f9ccd8af977_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://boring4life.tumblr.com/" title=":D">boring4life</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_laneyluck without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://laneyluck.tumblr.com/" title="laney.luck "><img src="avatar_5c40033b9682_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://laneyluck.tumblr.com/" title="laney.luck">laneyluck</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_theonlyplacethereis without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://theonlyplacethereis.tumblr.com/" title="theonlyplacethereis "><img src="avatar_1bec6c65cfbd_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://theonlyplacethereis.tumblr.com/" title="theonlyplacethereis">theonlyplacethereis</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_nas2lor without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://blog.nazeraminou.me/" title="Nazer Aminou "><img src="avatar_d554e3594ef0_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://blog.nazeraminou.me/" title="Nazer Aminou">nas2lor</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_bennypage without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://bennypage.tumblr.com/" title="benjamin page "><img src="avatar_65eead993491_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://bennypage.tumblr.com/" title="benjamin page">bennypage</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_darchin without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://blog.boolt.in/" title="Darchin "><img src="avatar_b811df76db61_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://blog.boolt.in/" title="Darchin">darchin</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_mbanusic without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://mbanusic.com/" title="mbanusic "><img src="avatar_28b26bf660d6_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://mbanusic.com/" title="mbanusic">mbanusic</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_rikakis without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://rikakis.tumblr.com/" title="Untitled "><img src="cone_open_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://rikakis.tumblr.com/" title="Untitled">rikakis</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_fritjofsson without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://fritjofsson.tumblr.com/" title="Fritjof&#39;s Field "><img src="avatar_d7bf0c5e6fd6_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://fritjofsson.tumblr.com/" title="Fritjof&#39;s Field">fritjofsson</a> likes this</span><div class="clear"></div></li><li class="note like tumblelog_spacephilosopher without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://spacephilosopher.tumblr.com/" title="Space Philosopher "><img src="avatar_d4c28871e2b3_16.png" class="avatar " alt=""></a><span class="action"><a rel="nofollow" href="http://spacephilosopher.tumblr.com/" title="Space Philosopher">spacephilosopher</a> likes this</span><div class="clear"></div></li><li class="note reblog tumblelog_niklas-a original_post without_commentary"><a rel="nofollow" class="avatar_frame" target="_blank" href="http://agevik.se/" title="Niklas Agevik&#39;s blog"><img src="avatar_ce21303cc560_16.png" class="avatar " alt=""></a><span class="action" data-post-url="http://agevik.se/post/72876032312"><a rel="nofollow" href="http://agevik.se/" class="tumblelog" title="Niklas Agevik&#39;s blog">niklas-a</a> posted this</span><div class="clear"></div></li><!-- END NOTES --></ol>
+ </div>  	 
+                        
+                   
+                   <div class="just_notes clearfix">
+                     <a class="notes" href="20-lessons-about-making-viral-apps-i-learned-the-hard.html">27 notes</a>
+                     
+        
+                     
+                     
+                     
+                                        <br><br><div style="font-size: 13px; text-align: left;"><a class="dsq-comment-count notes" href="http://agevik.se/post/72876032312/20-lessons-about-making-viral-apps-i-learned-the-hard#disqus_thread">Comments</a></div>
+                                        
+                  
+                  
+                  
+                                    <p><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="tweet_button.1390956745.html" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 110px; height: 20px;"></iframe><script type="text/javascript" src="widgets.js"></script></p>
+                                    
+                                   <fb:like send="true" layout="button_count" width="450" show_faces="true" class=" fb_iframe_widget" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=125836487516244&amp;href=http%3A%2F%2Fagevik.se%2Fpost%2F72876032312%2F20-lessons-about-making-viral-apps-i-learned-the-hard&amp;layout=button_count&amp;locale=sv_SE&amp;sdk=joey&amp;send=true&amp;show_faces=true&amp;width=450"><span style="vertical-align: bottom; width: 122px; height: 20px;"><iframe name="fed0908fc" width="450px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="like.html" style="border: none; visibility: visible; width: 122px; height: 20px;" class=""></iframe></span></fb:like>
+                                    
+                                    
+                  
+                     
+                                        
+                   </div>   
+
+                   
+                </div>
+                                    
+                
+
+                
+                <div class="short_url">Short URL for this post: <strong>http://tmblr.co/ZPqGxx13tm04u</strong></div> 
+                
+          
+                   
+                                                     
+                   
+                   <div id="brutal_disqus_container">
+                     <div id="disqus_thread"><div dir="ltr" style="overflow: hidden;"><div style="width: 54px; height: 54px; margin: 0px auto; overflow: hidden; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFMAAABmCAMAAACA210sAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAlhQTFRFMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtWDj2BwAAAMh0Uk5TAAABAQICAwMEBAUFBgYHBwgICQkKCgsLDAwNDQ4ODw8QEBEREhITExQUFRUWFhcXGBgZGRoaGxscHB0dHh4fHyAgISEjIyQkJSUmJigoKSkqKisrLCwtLS4uLy8wMDExMjIzMzQ0NTU2Njc3ODg5OTo6Ozs8PD09Pj4/P0BAQUFCQkNDRERFRUZGR0dISElJS0tMTE1NTk5PT1BQUVFSUlNTVFRVVVZWV1dYWFlZWlpbW1xcXV1eXl9fYGBhYWJiY2NkZGVlZmaMInkiAAAFVklEQVRo3u2Yf0hbVxTHP/flmYYQxFoXghMJzkpXQmszCd0ma7eKKyKuSOlKGaV0RaRzsIHIGDK2MqSsXVvKcKWIG6V0ItI5Z1tXZBsiIkWciC0iYsMIIbisC1mWhpDG/RFjfpvr4O2vnH+Se+/J575z3z3n5n4F2Uy12aotpUY1HFp1OecXo+S00vo6q9kYXF2ZnfLG+0QWYH2jw5jcEZi6P50dW33qoBL//sl4TqbpyPHSzB97bo2GMjr1bcfUjcbcWXIwlZb24uxBenvH0sM+b0s0om2PAJPBC+hS3KxfvrUtx8IZD+z9LZDcUfL1zqTWj98DtLVP/JP2nIc74+vonplfWQ2EDcZya22deb3T1zOZtOq9saf0jMy6vSarywdU3tAvdIRTmGdOxz5Dd8cWkqeyNzXG1i16ZWijs+MEQPjaUCTh+EU9DFxNZna2AhAZvPUkPXDLqebY++3rj7/xfhXwfTyX5LX/EhA9tZxYz/bjACx0/vQ0YzEDk9O27QD2vx/Gej6oBiKdcylub24DsWN8g9ncAcDAp39mfUV/jJp3Aux//Big9CMF+Go8xcfveR14/k6cuatHB0Qvf5MrZ55NiH0Ajl/8wKEDgOezNOeVV8tAca8z9Zd3AFy4nTsLmRX7AP2Ld9bgxAvA4Ey6S9HLwNP11HrHCnBjmM2sbwTA1gJUAWQgmQKwxpiWkwAz19ncriwBtJugDMCZ4eAOAeYY84QeCPZE8zBDn0eA4qOgAvgzPQKASQEobQbo85DPlgcBjhkIA2SpNSVAQAFoMADeYfLbzSBQ8hpPACwZw2YV8CoATQCDIQmmbwTgMCsA9oxhO4BTASw1QGQMGRsBqDPNADSr6aPNADNKnD7rlWI6lwG1bioCVDSlDb5iB6ITClAL8AA5mwbY9eTXjaRPWs1ugEmvEt/AjySZjwCs9EcAQ3tK8bpUAkT7UYBKgGVJphOgAucAwI2kgfq+KoChJVRQTYA/IMl0AZTB9Vob9+cBSn1RxeJorAVg6RqoYIwngJRFQgYwQqSr19ILUH6LkCl+Iru6QglmEGkosdT0nXWsApzVo4+PLXZ5Y6NBWAdLmbrOxXcfoO6NxHk81BsmiVksjTSkRKV0bBAnvl3amDXiLwZTsV+OWQmQyA/9UF2V2Rj0OmcnvMmROPcAVXNbYLoS5W90NMNFAX4HsEnGvjt7NU5nLgA4JJn78yedEj9XasukkDXVQGQ2L9O9DKhNUswmgJlAXiZjAEdUCWRJC8Bd8jP9AOGIBPOkAfBNSjBbAW7LrOZRgIFQfubuXUBI4uwwdKuAL9/sCnAE4GeJPIrV9WuB/MziBgCJk7i9BWB+VKLKHDYAiwuo5RUW9/QmyJMAgXNRCWYrgP5qhVmBQHeus87Y1QhAjztvPDocbwNsLzcJQN+oPsy6p2wXXgLg4j0kmO9Zk9ui9tBfzrV0r/L3P9wOwPXvJHacKLudkT/O4fHkW4Jib2pYv3dclPlPhTh9Jl6nPW7vQcP698W5RddqMGQyVpbb7fHqEjg3KVUTxLA56Ha7XB63OwKV3ZuU0QfnPXLlUOxxpcTZ0laS4755dVz2yMq4Fxtbj2WppO6bd8P8Zyao9Q0OU8q9Z3p8Koq8CZF1h9lqaixlRn0w5HWtLCytsSVTc8y0rahIpxNFz3S6Ip1Y26J2ITTQLoQG2oXQQLsQGmgXQgPtQmigXQgNtAuhgXYhNNAuhAbahShoFwXtoqBdFLSLgnZR0C4K2kVBuyhoFwXtIofOIDTQLoQG2sVzGmgX72qgXfyggXaxVwPtQmigXYj/S7tQU7WLrQCBfwFnft8xK3413wAAAABJRU5ErkJggg==); background-repeat: no-repeat no-repeat;"><style type="text/css">.disqus-loader{animation:disqus-embed-spinner .7s infinite linear;-webkit-animation:disqus-embed-spinner .7s infinite linear}@keyframes disqus-embed-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@-webkit-keyframes disqus-embed-spinner{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}</style><div class="disqus-loader" style="width: 29px; height: 29px; margin: 11px 14px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFMAAABmCAMAAACA210sAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAlhQTFRFMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtMzY63+TtWDj2BwAAAMh0Uk5TAAABAQICAwMEBAUFBgYHBwgICQkKCgsLDAwNDQ4ODw8QEBEREhITExQUFRUWFhcXGBgZGRoaGxscHB0dHh4fHyAgISEjIyQkJSUmJigoKSkqKisrLCwtLS4uLy8wMDExMjIzMzQ0NTU2Njc3ODg5OTo6Ozs8PD09Pj4/P0BAQUFCQkNDRERFRUZGR0dISElJS0tMTE1NTk5PT1BQUVFSUlNTVFRVVVZWV1dYWFlZWlpbW1xcXV1eXl9fYGBhYWJiY2NkZGVlZmaMInkiAAAFVklEQVRo3u2Yf0hbVxTHP/flmYYQxFoXghMJzkpXQmszCd0ma7eKKyKuSOlKGaV0RaRzsIHIGDK2MqSsXVvKcKWIG6V0ItI5Z1tXZBsiIkWciC0iYsMIIbisC1mWhpDG/RFjfpvr4O2vnH+Se+/J575z3z3n5n4F2Uy12aotpUY1HFp1OecXo+S00vo6q9kYXF2ZnfLG+0QWYH2jw5jcEZi6P50dW33qoBL//sl4TqbpyPHSzB97bo2GMjr1bcfUjcbcWXIwlZb24uxBenvH0sM+b0s0om2PAJPBC+hS3KxfvrUtx8IZD+z9LZDcUfL1zqTWj98DtLVP/JP2nIc74+vonplfWQ2EDcZya22deb3T1zOZtOq9saf0jMy6vSarywdU3tAvdIRTmGdOxz5Dd8cWkqeyNzXG1i16ZWijs+MEQPjaUCTh+EU9DFxNZna2AhAZvPUkPXDLqebY++3rj7/xfhXwfTyX5LX/EhA9tZxYz/bjACx0/vQ0YzEDk9O27QD2vx/Gej6oBiKdcylub24DsWN8g9ncAcDAp39mfUV/jJp3Aux//Big9CMF+Go8xcfveR14/k6cuatHB0Qvf5MrZ55NiH0Ajl/8wKEDgOezNOeVV8tAca8z9Zd3AFy4nTsLmRX7AP2Ld9bgxAvA4Ey6S9HLwNP11HrHCnBjmM2sbwTA1gJUAWQgmQKwxpiWkwAz19ncriwBtJugDMCZ4eAOAeYY84QeCPZE8zBDn0eA4qOgAvgzPQKASQEobQbo85DPlgcBjhkIA2SpNSVAQAFoMADeYfLbzSBQ8hpPACwZw2YV8CoATQCDIQmmbwTgMCsA9oxhO4BTASw1QGQMGRsBqDPNADSr6aPNADNKnD7rlWI6lwG1bioCVDSlDb5iB6ITClAL8AA5mwbY9eTXjaRPWs1ugEmvEt/AjySZjwCs9EcAQ3tK8bpUAkT7UYBKgGVJphOgAucAwI2kgfq+KoChJVRQTYA/IMl0AZTB9Vob9+cBSn1RxeJorAVg6RqoYIwngJRFQgYwQqSr19ILUH6LkCl+Iru6QglmEGkosdT0nXWsApzVo4+PLXZ5Y6NBWAdLmbrOxXcfoO6NxHk81BsmiVksjTSkRKV0bBAnvl3amDXiLwZTsV+OWQmQyA/9UF2V2Rj0OmcnvMmROPcAVXNbYLoS5W90NMNFAX4HsEnGvjt7NU5nLgA4JJn78yedEj9XasukkDXVQGQ2L9O9DKhNUswmgJlAXiZjAEdUCWRJC8Bd8jP9AOGIBPOkAfBNSjBbAW7LrOZRgIFQfubuXUBI4uwwdKuAL9/sCnAE4GeJPIrV9WuB/MziBgCJk7i9BWB+VKLKHDYAiwuo5RUW9/QmyJMAgXNRCWYrgP5qhVmBQHeus87Y1QhAjztvPDocbwNsLzcJQN+oPsy6p2wXXgLg4j0kmO9Zk9ui9tBfzrV0r/L3P9wOwPXvJHacKLudkT/O4fHkW4Jib2pYv3dclPlPhTh9Jl6nPW7vQcP698W5RddqMGQyVpbb7fHqEjg3KVUTxLA56Ha7XB63OwKV3ZuU0QfnPXLlUOxxpcTZ0laS4755dVz2yMq4Fxtbj2WppO6bd8P8Zyao9Q0OU8q9Z3p8Koq8CZF1h9lqaixlRn0w5HWtLCytsSVTc8y0rahIpxNFz3S6Ip1Y26J2ITTQLoQG2oXQQLsQGmgXQgPtQmigXQgNtAuhgXYhNNAuhAbahShoFwXtoqBdFLSLgnZR0C4K2kVBuyhoFwXtIofOIDTQLoQG2sVzGmgX72qgXfyggXaxVwPtQmigXYj/S7tQU7WLrQCBfwFnft8xK3413wAAAABJRU5ErkJggg==); background-position: -54px 0px; background-repeat: no-repeat no-repeat;"></div></div><p align="center">Disqus seems to be taking longer than usual. <a href="http://agevik.se/post/72876032312/20-lessons-about-making-viral-apps-i-learned-the-hard#" onclick="DISQUS.reset({reload: true}); return false;">Reload</a>?</p></div><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" tabindex="0" title="Disqus" width="100%" src="saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 0px !important;" scrolling="no" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                     <script type="text/javascript" src="embed.js"></script>
+                     <noscript>&lt;a href="http://tumblrtest2.disqus.com/?url=ref"&gt;View the discussion thread.&lt;/a&gt;</noscript>
+                   </div>
+                   <div style="text-align: right; margin-top: 5px">
+                     
+                   </div>
+                   
+                   
+               
+                
+            
+                  
+                      
+                       
+                      <script type="text/javascript">
+                      //<![CDATA[
+                      (function() {
+                        var links = document.getElementsByTagName('a');
+                        var query = '?';
+                        for(var i = 0; i < links.length; i++) {
+                          if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                          }
+                        }
+                        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/tumblrtest2/get_num_replies.js' + query + '"></' + 'script>');
+                        })();
+                        //]]>
+                        </script><script charset="utf-8" type="text/javascript" src="get_num_replies.js"></script>
+                        
+                      
+                  
+            
+            
+                  <div id="footer">
+
+                    
+                     <div id="footer_content" class="clearfix">
+                      
+                      
+                      
+                      </div>
+                      
+                      <div id="footer_info">
+                        <p><strong>Brutal Simplicity</strong> theme by <a href="http://kevin.tumblr.com/">Kevin Burg</a></p>
+                      </div>
+                      
+                  </div>
+            
+                    </div><!-- end .post_inner_container -->
+                    
+                
+                    
+                    
+                    </div> <!-- end .postcontainer -->
+                    
+                     
+          
+         
+        </div>
+        
+        
+         
+            <script type="text/javascript">
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-23623088-1']);
+              _gaq.push(['_trackPageview']);
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+            </script>
+            
+        
+    <!-- BEGIN TUMBLR CODE --><iframe scrolling="no" width="1" height="1" frameborder="0" style="background-color:transparent; overflow:hidden; position:absolute; top:0; left:0 z-index:9999;" id="ga_target" src="analytics.html"></iframe><script type="text/javascript">
+    (function(){
+        var analytics_frame = document.getElementById('ga_target');
+        var analytics_iframe_loaded;
+        var user_logged_in;
+        var blog_is_nsfw = 'No';
+
+        var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+        var eventer = window[eventMethod];
+        var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+        eventer(messageEvent,function(e) {
+            var message = (e.data && e.data.split) ? e.data.split(';') : '';
+            switch (message[0]) {
+                case 'analytics_iframe_loaded':
+                    analytics_iframe_loaded = true;
+                    postCSMessage();
+                    postGAMessage();
+                    break;
+                case 'user_logged_in':
+                    user_logged_in = message[1];
+                    postGAMessage();
+                    break;
+            }
+        }, false);
+
+        analytics_frame.src = "http://assets.tumblr.com/analytics.html?bef7446068aa5ddce42aa12134c58086#http://agevik.se"
+        function postGAMessage() {
+            if (analytics_iframe_loaded && user_logged_in) {
+                var is_ajax = false;
+                analytics_frame.contentWindow.postMessage(['tick_google_analytics', is_ajax, user_logged_in, blog_is_nsfw, '/post/72876032312/20-lessons-about-making-viral-apps-i-learned-the-hard?route=%2Fpost%2F%3Aid%2F%3Asummary'].join(';'), analytics_frame.src.split('/analytics.html')[0]);
+            }
+        }
+        function postCSMessage() {
+            COMSCORE = true;
+            analytics_frame.contentWindow.postMessage('enable_comscore;' + window.location, analytics_frame.src.split('/analytics.html')[0]);
+        }
+    })();
+</script><script type="text/javascript">
+      var _qevents = _qevents || [];
+
+      (function() {
+       var elem = document.createElement('script');
+
+       elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+       elem.async = true;
+       elem.type = "text/javascript";
+       var scpt = document.getElementsByTagName('script')[0];
+       scpt.parentNode.insertBefore(elem, scpt);
+      })();
+    </script><script type="text/javascript">
+        _qevents.push( { qacct: 'p-19UtqE8ngoZbM' } );
+    </script><noscript>&lt;div style="display: none;"&gt;&lt;img src="//pixel.quantserve.com/pixel/'p-19UtqE8ngoZbM'.gif" height="1" width="1" alt="Quantcast"/&gt;&lt;/div&gt;</noscript><script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1391744454&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvYWdldmlrLnNlXC9wb3N0XC83Mjg3NjAzMjMxMlwvMjAtbGVzc29ucy1hYm91dC1tYWtpbmctdmlyYWwtYXBwcy1pLWxlYXJuZWQtdGhlLWhhcmQiLCJyZXF0eXBlIjowLCJyb3V0ZSI6IlwvcG9zdFwvOmlkXC86c3VtbWFyeSJ9&U=NDKFEHIOAG&K=a927406bc74b62840a797537da49327e200c465ce3edb14b79b209dcdc72264f&R=http%3A%2F%2Fquibb.com%2Flinks%2F20-lessons-about-making-viral-apps-i-learned-the-hard-way--4%2Fview'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript>&lt;img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1391744454&amp;J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvYWdldmlrLnNlXC9wb3N0XC83Mjg3NjAzMjMxMlwvMjAtbGVzc29ucy1hYm91dC1tYWtpbmctdmlyYWwtYXBwcy1pLWxlYXJuZWQtdGhlLWhhcmQiLCJyZXF0eXBlIjowLCJyb3V0ZSI6IlwvcG9zdFwvOmlkXC86c3VtbWFyeSIsIm5vc2NyaXB0IjoxfQ==&amp;U=NDKFEHIOAG&amp;K=8c0a5a37f398dfaaa0821d2b0c8706c0ef322644a7c78566ff7f89e43ba7f82a&amp;R=http%3A%2F%2Fquibb.com%2Flinks%2F20-lessons-about-making-viral-apps-i-learned-the-hard-way--4%2Fview"&gt;</noscript><script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1391744454&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL2FnZXZpay5zZVwvcG9zdFwvNzI4NzYwMzIzMTJcLzIwLWxlc3NvbnMtYWJvdXQtbWFraW5nLXZpcmFsLWFwcHMtaS1sZWFybmVkLXRoZS1oYXJkIiwicmVxdHlwZSI6MCwicm91dGUiOiJcL3Bvc3RcLzppZFwvOnN1bW1hcnkiLCJwb3N0cyI6W3sicG9zdGlkIjoiNzI4NzYwMzIzMTIiLCJibG9naWQiOiIxMTE4NzIzNSIsInNvdXJjZSI6MzN9XX0=&U=PLJOCGNNIB&K=a750c4a5209cbfff51b5c3a9b2c37c899bb380fcf046642b9caf328cda940a89&R=http%3A%2F%2Fquibb.com%2Flinks%2F20-lessons-about-making-viral-apps-i-learned-the-hard-way--4%2Fview'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript>&lt;img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1391744454&amp;J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL2FnZXZpay5zZVwvcG9zdFwvNzI4NzYwMzIzMTJcLzIwLWxlc3NvbnMtYWJvdXQtbWFraW5nLXZpcmFsLWFwcHMtaS1sZWFybmVkLXRoZS1oYXJkIiwicmVxdHlwZSI6MCwicm91dGUiOiJcL3Bvc3RcLzppZFwvOnN1bW1hcnkiLCJwb3N0cyI6W3sicG9zdGlkIjoiNzI4NzYwMzIzMTIiLCJibG9naWQiOiIxMTE4NzIzNSIsInNvdXJjZSI6MzN9XSwibm9zY3JpcHQiOjF9&amp;U=PLJOCGNNIB&amp;K=d4d18c84ea947b2f1205c2fe734ba355833654289caf34bf34dca2bf50371a42&amp;R=http%3A%2F%2Fquibb.com%2Flinks%2F20-lessons-about-making-viral-apps-i-learned-the-hard-way--4%2Fview"&gt;</noscript><script type="text/javascript" src="rapid-3.9.js"></script><script>
+                    (function(YAHOO) {
+                        if (YAHOO) {
+                            YAHOO.i13n.beacon_server = 'nol.yahoo.com';
+                            var keys = { pd:'/post/:id/:summary', _li:0, i_rad:0, i_strm:0 };
+                            YAHOO.rapid = new YAHOO.i13n.Rapid({spaceid:1197719230, client_only:1, yql_enabled:false, keys:keys});
+                        }
+                    })(window.YAHOO);
+                </script><iframe id="tumblr_controls" width="272" height="26" frameborder="0" scrolling="no" style="position: fixed; z-index: 2147483647; top: 0px; right: 0px; border: 0px; background-color: transparent; overflow: hidden;" src="iframe.html" class=" visible"></iframe><div id="teaser_iframe_container" style="display:none;"><iframe scrolling="no" frameborder="0" src="teaser.html" id="teaser_iframe" width="1" height="1"></iframe></div><script type="text/javascript">
+    (function(Tumblr){
+        var follow_iframe_initialized = false;
+        if (Tumblr.FollowTeaser && Tumblr.PostMessageListener) {
+            // Don't do anything until the first initialize event
+            Tumblr.PostMessageListener.initialize(function(message, origin) {
+                if (follow_iframe_initialized || message.length < 2) return;
+
+                if (message[0] === 'follow_iframe' && message[1] === 'enable') {
+                    Tumblr.FollowTeaser.current_page = 1;
+                    Tumblr.FollowTeaser.infer_infinite_scroll = true;
+                    Tumblr.FollowTeaser.create_from_tumblr_controls("http:\/\/assets.tumblr.com\/assets\/html\/iframe\/follow.html?_v=56e4184b66097e6a5c065daa9aead726");
+                    Tumblr.FollowTeaser.scroll_listener(true);
+                    follow_iframe_initialized = true;
+                }
+            });
+        }
+    })(this.Tumblr || (this.Tumblr = {}));
+</script><!--[if IE]><script type="text/javascript">document.getElementById('tumblr_controls').allowTransparency=true;</script><![endif]--><!-- END TUMBLR CODE -->
+
+
+    
+    
+    
+</body></html>

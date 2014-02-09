@@ -54,6 +54,15 @@ class Taxonomy < ActiveRecord::Base
       'Sales'
     ]
   end
+  
+  
+  
+  # SCRATCH
+  #-------------------------------------------------------
+  
+  def self.eng_hash 
+
+  end
 
   def self.dept_hash
     {
@@ -203,10 +212,8 @@ class Taxonomy < ActiveRecord::Base
       
       "strategy" => [
         "strategy associate"
-      ]
-      
+      ] 
     }
-    
   end
 
   def self.LEVELS

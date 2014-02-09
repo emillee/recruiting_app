@@ -1,0 +1,53 @@
+<div class="company">
+	<h1><%= link_to "#{@company.name}", company_url(@company) %></h1>
+	<h3>career page link: <%= best_in_place @company, :career_page_link %></h3>
+	<h3>funding: <%= @company.total_money_raised || "" %></h3>
+	<h3>employees: <%= @company.num_employees || "" %></h3>
+	<h3>twitter: <%= @company.twitter_username || "" %></h3>
+	<h3>category: <%= @company.category_code || "" %></h3>
+	<h3>city: <%= @company.city || "" %></h3>
+	
+	<br>
+	
+	<Post a new Job>
+	<%= form_for([@company, @job]) do |f| %>
+		<%= f.text_field :link, class: "hello" %>
+		<%= f.submit "Create New Job" %>
+	<% end %>
+	
+	<br><br>
+	
+	<% @company.job_listings.order("created_at DESC").each do |job| %>
+		<td><%= job.id %></td>
+		<p>Link: <%= link_to "#{job.link}", "#{job.link}" %></p>
+		<p>Title: <%= best_in_place job, :title %></p>
+		<p>Dept: <%= best_in_place job, :dept, type: :input, inner_class: 'dept', data: { autocomplete: true } %></p>
+		<p>SubDept: <%= best_in_place job, :sub_dept %></p>
+		<p>YearsExp: <%= best_in_place job, :years_exp %></p>
+		<p>KeySkillOne: <%= best_in_place job, :key_skill_one %></p>
+		<p>KeySkillTwo: <%= best_in_place job, :key_skill_two %></p>
+		<p><%= link_to 'Destroy job', job_url(job), method: :delete %>
+		<br><br>
+	<% end %>
+	
+	<br>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("span[data-autocomplete='true']").on('click', function() {
+		  $('.dept').autocomplete({
+		    source: "/search_suggestions", minLength: 0
+		  })
+		})
+	})
+</script>
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,10 @@
 class Admin::JobsController < Admin::ApplicationController
   helper_method :sort_column, :sort_direction
 
+  def new
+    @job = Job.new
+  end
+
   def index
     @jobs = Job.order(sort_column + ' ' + sort_direction)
   end

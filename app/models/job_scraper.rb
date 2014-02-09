@@ -32,13 +32,22 @@ class JobScraper
   end
   
   def get_title
+    title_match, index = nil, nil
+    
     Job.all_unique_titles.each do |uniq_title|
       if @job.full_text.match(/#{uniq_title}/i)
-        @job.title = uniq_title 
-        @job.save
-        return
+        if title_match.nil?
+          title_match = uniq_title
+          index = @job.full_text.index(uniq_title.downcase)
+        elsif index && @job.full_text.index(uniq_title) < index
+          title_match = uniq_title
+          index = @job.full_text.index(uniq_title)
+        end         
       end
     end
+    
+    @job.title = title_match
+    @job.save
   end
   
   def get_dept
@@ -58,12 +67,18 @@ class JobScraper
   end
   
   def get_years_exp
-    years = @job.full_text.match(/(\d+)\+ years/) || 
-      @job.full_text.match(/(\d)-\d years/)[1]
-    if years
-      @job.years_exp = years
-      @job.save
+    if @job.full_text.match(/(\d+)\+ years/)
+      years = @job.full_text.match(/(\d+)\+ years/)[1]
+    elsif @job.full_text.match(/(\d)-\d years/)
+      years = @job.full_text.match(/(\d)-\d years/)[1]
+    elsif @job.full_text.match(/(\d) years/)
+      years = @job.full_text.match(/(\d+) years/)[1]
+    else
+      years = nil
     end
+
+    @job.years_exp = years
+    @job.save
   end
   
   

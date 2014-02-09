@@ -1,4 +1,6 @@
 Nytech::Application.routes.draw do
+  resources :search_suggestions
+
   resources :users
   resources :searches, only: [:new, :show, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
@@ -7,14 +9,14 @@ Nytech::Application.routes.draw do
     resources :jobs, only: [:create]
   end
 
-  resources :jobs, only: [:show, :index, :new] do 
+  resources :jobs, only: [:show, :index, :new, :update, :destroy] do 
     collection { post :import }
     member { get :root_action }
     member { post :get_input }
   end
   
   namespace :admin do 
-    resources :jobs, :companies, only: [:index]
+    resources :jobs, :companies, only: [:index, :new]
   end
     
   match '/home',    to: 'static_pages#home', via: :get

@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
   
+  respond_to :html, :json
+  
   def root_action
     redirect_to jobs_url
   end
@@ -16,10 +18,19 @@ class JobsController < ApplicationController
     
     if @job.save
       flash[:success] = "Job saved successfully"
-      redirect_to companies_url
+      redirect_to company_url(@company)
     else
       flash[:error] = "Please try again"
       render :new
+    end
+  end
+  
+  def update
+    @job = Job.find(params[:id])
+    if @job.update_attributes(job_params)
+      flash[:success] = "Job updated"
+      @company = @job.listing_company
+      respond_with @company
     end
   end
   
@@ -33,6 +44,13 @@ class JobsController < ApplicationController
     else
       @jobs = Job.all
     end
+  end
+  
+  def destroy
+    @job = Job.find(params[:id])
+    @company = @job.listing_company
+    @job.destroy
+    redirect_to company_url(@company)
   end
   
   def filters

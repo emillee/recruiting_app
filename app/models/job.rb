@@ -9,8 +9,6 @@ class Job < ActiveRecord::Base
     primary_key: :id
   )
   
-  # populate a job listing from a link
-  
   #-------------------------------------------------------
   
   def self.import(file)

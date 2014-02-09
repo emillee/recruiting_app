@@ -17,6 +17,8 @@
  *= require sidebar
  *= require job_posts
  *= require companies
+ *= require admin
+ *= require jquery.ui.all
  */
  
  
