@@ -22,7 +22,6 @@ gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-gem 'jquery-ui-rails'
 
 gem 'seed_dump'
 

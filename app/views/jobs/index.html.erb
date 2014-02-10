@@ -12,7 +12,7 @@
 						<% end %>
 					</div>
 					<% if job.listing_company %>
-						<img src='<%= asset_path("company_icons/#{job.listing_company.name.downcase}" + ".jpeg") %>' />
+						<img src='<%= image_path("company_icons/#{job.listing_company.name.downcase}" + ".jpeg") %>' />
 					<% end %>
 				</a>
 			</li>
