@@ -13,8 +13,38 @@ ready = function() {
       }
     })
     
-    $('.fa-minus-circle').toggleClass('hidden');
-    $('.fa-plus-square-o').toggleClass('hidden');
+    $('.department .fa-minus-circle').toggleClass('hidden');
+    $('.department .fa-plus-square-o').toggleClass('hidden');
+  });
+  
+  $('h1.sub_dept').on('click', function() {
+    var $ul = $(this).closest('.dept-wrapper').children('ul');
+    var $checkbox_lis = $ul.children('li');
+    var $checkboxes = $checkbox_lis.find(":checkbox");
+    
+    $checkboxes.each(function() {
+      if (this.checked === false) {
+        $(this).parent('li').toggleClass('hidden');
+      }
+    })
+    
+    $('.sub_dept .fa-minus-circle').toggleClass('hidden');
+    $('.sub_dept .fa-plus-square-o').toggleClass('hidden');
+  });
+  
+  $('h1.experience').on('click', function() {
+    var $ul = $(this).closest('.dept-wrapper').children('ul');
+    var $checkbox_lis = $ul.children('li');
+    var $checkboxes = $checkbox_lis.find(":checkbox");
+    
+    $checkboxes.each(function() {
+      if (this.checked === false) {
+        $(this).parent('li').toggleClass('hidden');
+      }
+    })
+    
+    $('.experience .fa-minus-circle').toggleClass('hidden');
+    $('.experience .fa-plus-square-o').toggleClass('hidden');
   });
  
   $('li.job-sidebar').on('click', function(e) {

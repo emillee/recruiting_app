@@ -43,6 +43,10 @@ class JobsController < ApplicationController
       @jobs = Job.search(current_user.job_settings)
     else
       @jobs = Job.all
+      respond_to do |format|
+        format.html
+        format.csv { render text: @jobs.to_csv }
+      end      
     end
   end
   

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$('.jobs.index').ready(function() {
   
   var wrapper = $('<div/>').css( 
     { height: 0, width: 0, 'overflow': 'hidden' }

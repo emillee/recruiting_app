@@ -6,7 +6,7 @@
 			<li>
 				<a href="<%= job.link %>" target="_blank">
 					<div class="description">
-						<h1><%= job.title %></h1>
+						<h1><%= job.title %> <%= job.id %></h1>
 						<% if job.description %>
 							<p><%= job.description.split(' ')[0..25].join(' ') %>...</p>
 						<% end %>

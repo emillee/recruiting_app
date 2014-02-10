@@ -29,16 +29,17 @@ div.sidebar-wrapper {
     margin-bottom: 0px;
     color: black;
     text-transform: uppercase; 
+    position: relative;
     
-    &.department {
+    &.department, &.sub_dept {
       cursor: pointer;
     }
     
-    &.department i {
+    i {
       font-size: 12px;
-      position: relative;
-      top: -2px;
-      left: 34px;
+      position: absolute;
+      top: 9px;
+      right: 12px;
     }
   }
   
@@ -132,7 +133,7 @@ div.sidebar-wrapper {
   }
   
   .role-wrapper {
-    display: none;
+//    display: none;
   }
   
   .exp-wrapper {

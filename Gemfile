@@ -12,7 +12,6 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 
 gem 'nokogiri'
-gem 'fastercsv'
 gem "mechanize", "~> 2.7.2"
 gem 'omniauth-twitter'
 gem 'httparty'

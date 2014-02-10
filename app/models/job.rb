@@ -28,6 +28,10 @@ class Job < ActiveRecord::Base
       else
         jobs = self.all
       end
+
+      if !settings_hash[:sub_dept].nil?
+        jobs = jobs.where("sub_dept IN (?)", settings_hash[:sub_dept])
+      end
       
       if !settings_hash[:experience].nil?
         jobs = jobs.where("years_exp < (?)", settings_hash[:experience].max)
@@ -62,6 +66,13 @@ class Job < ActiveRecord::Base
     depts = Job.all.map(&:dept).uniq!
     depts
   end
+  
+  # def self.unique_sub_depts(jobs)
+  #   sub_depts = []
+  #   sub_depts << jobs.each(:sub_dept)
+  #   sub_depts.uniq!
+  #   sub_depts
+  # end
   
   #-------------------------------------------------------------------------------
   private

@@ -45,45 +45,58 @@
 					</ul>
 				</div><!-- dept-wrapper -->
 				
-				<!-- <% if current_user.job_settings[:dept] %>
-					<% sub_dept_arr = [] %>
-					<% @jobs.each { |job| sub_dept_arr << job.sub_dept if job.sub_dept } %>
-					<% if sub_dept_arr.any? %>
-						<div class="role-wrapper">
-							<h1 class="role">Role:</h1>
+				<% if current_user.job_settings[:dept] %>
+					<div class="dept-wrapper">
+						<% sub_dept_arr = [] %>
+						<% Job.all.each { |job| sub_dept_arr << job.sub_dept if
+								current_user.job_settings[:dept].include?(job.dept) } %>
+						<% sub_dept_arr.uniq! %>
+						<% sub_dept_arr.sort! %>
+						<% if sub_dept_arr.any? %>
+							<h1 class="sub_dept">
+								Role:
+								<i class="fa fa-minus-circle department"></i>
+								<i class="fa fa-plus-square-o hidden department"></i>
+							</h1>
 							<ul class="job-filters">
 								<% sub_dept_arr.each do |sub| %>
 									<% checked = sub_dept_checked?(sub) %>
 									<li class="job-sidebar <%= 'selected' if checked %>">
 										<%= label_tag sub %>
-										<%= check_box_tag "user[job_settings][sub][]", sub, checked %>
-										<i class="fa fa-check-circle"></i>
+										<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
+										<i class="fa fa-check sub_dept"></i>
 									</li>
 								<% end %>
 							</ul>
-						</div>
-					<% end %>
-				<% end %> -->
-
-				<div class="exp-wrapper">
-					<h1>Experience (Yrs):</h1>
-					<ul class="job-filters">
-						<% [['Internship', 0],
-								['Entry (0-1)', 0], 
-								['Junior (1-2)', 2], 
-								['Mid (2-3)', 3], 
-								['Experienced (3-5+)', 5], 
-								['Veteran (5+)', 5],
-								['Exec (10+)', 10]].each do |label, num_years| %>
-							<% checked = num_years_checked?(num_years) %>
-							<li class="job-sidebar <%= 'selected' if checked %>">
-								<%= label_tag "#{label}-#{label}", label %>
-								<%= check_box_tag "user[job_settings][experience][]", num_years, checked %>
-								<i class="fa fa-check"></i>
-							</li>
 						<% end %>
-					</ul>
-				</div>
+					<% end %>
+				</div>	
+
+				<% if current_user.job_settings[:dept] %>
+						<div class="dept-wrapper">
+						<h1 class="experience">
+							Experience (Yrs):
+							<i class="fa fa-minus-circle"></i>
+							<i class="fa fa-plus-square-o hidden"></i>
+						</h1>
+						<ul class="job-filters">
+							<% [['Internship', 0],
+									['Entry (0-1)', 0], 
+									['Junior (1-2)', 2], 
+									['Mid (2-3)', 3], 
+									['Experienced (3-5+)', 5], 
+									['Veteran (5+)', 5],
+									['Exec (10+)', 10]].each do |label, num_years| %>
+								<% checked = num_years_checked?(num_years) %>
+								<li class="job-sidebar <%= 'selected' if checked %>">
+									<%= label_tag "#{label}-#{label}", label %>
+									<%= check_box_tag "user[job_settings][experience][]", num_years, checked %>
+									<i class="fa fa-check"></i>
+								</li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
 				
 				<%= f.submit "Submit" %>
 			<% end %>
