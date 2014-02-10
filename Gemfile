@@ -24,8 +24,9 @@ gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquer
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
 
+gem 'seed_dump'
+
 # gem "anemone", "~> 0.7.2"
-# gem 'seed_dump'
 # gem 'treat'
 # gem "classifier", "~> 1.3.4"
 

@@ -17,7 +17,7 @@ class JobScraper
     doc = Nokogiri.HTML(html)
     doc.css('script').remove
     text = doc.at('body').inner_text
-    @job.full_text = text.squish
+    @job.full_text = text.squish.downcase
     @job.save
   end
 
@@ -39,9 +39,11 @@ class JobScraper
         if title_match.nil?
           title_match = uniq_title
           index = @job.full_text.index(uniq_title.downcase)
-        elsif index && @job.full_text.index(uniq_title) < index
+        elsif index && @job.full_text.index(uniq_title.downcase) < index
           title_match = uniq_title
           index = @job.full_text.index(uniq_title)
+          puts title_match
+          puts index
         end         
       end
     end

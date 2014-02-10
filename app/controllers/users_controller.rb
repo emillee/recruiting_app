@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
 	def create
-		@user = User.new(user_params)
+		@user = params[:user] ? User.new(user_params) : User.new_guest
 		if @user.save
 			sign_in(@user)
 			flash[:success] = "Welcome to NYTech.io!"
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     # To fix: is it security risk for is_admin
   	def user_params
   		params.require(:user).permit(:email, :password, :password_digest, 
-  		  {job_settings: { keywords: [], dept: [], experience: [] }}, :is_admin)
+  		  {job_settings: { keywords: [], dept: [], experience: [] }}, :is_admin, :guest)
   	end
 	
 end

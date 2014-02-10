@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
   
   attr_reader :password # for password length validation
   
-  validates :password, length: { minimum: 6, allow_nil: true }
-  validates :email, presence: true
+  validates :password, length: { minimum: 6, allow_nil: true }, unless: :guest?
+  validates :email, presence: true, unless: :guest?
   
-  before_save { self.email = self.email.downcase }
+  before_save { self.email = self.email.downcase unless self.email.nil? }
   before_create :create_session_token
   
   # To fix: it doesn't work if this is before_create
@@ -16,6 +16,14 @@ class User < ActiveRecord::Base
 
   
   # Sessions / Authentication------------------------------------------
+  def self.new_guest 
+    self.new(
+      email: "guest", 
+      guest: true,
+      password: SecureRandom.urlsafe_base64
+    )
+  end
+  
   def password=(password_string)
     @password = password_string # for password length validation
     self.password_digest = BCrypt::Password.create(password_string)

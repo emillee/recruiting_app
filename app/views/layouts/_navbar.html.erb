@@ -31,7 +31,9 @@
 			<i class="fa fa-power-off"></i> 
 			<%= link_to "Log Out", logout_url, method: :delete %>		
 		<% else %>
-			<%= link_to "New User? Sign Up!", signup_url %>
+			<%= link_to "Sign Up!", signup_url %>
+			&nbsp; | &nbsp;
+			<%= link_to "Sign in as Guest", users_url, method: :post %>			
 			&nbsp; | &nbsp;
 			<%= link_to "Log In", login_url %>
 		<% end %>
