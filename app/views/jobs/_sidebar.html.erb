@@ -77,11 +77,11 @@
 					</h1>
 					<ul class="job-filters">
 						<% [['Internship', 0],
-								['Entry (0-1)', 0], 
+								['Entry (0-1)', 1], 
 								['Junior (1-2)', 2], 
 								['Mid (2-3)', 3], 
 								['Experienced (3-5+)', 5], 
-								['Veteran (5+)', 5],
+								['Veteran (5+)', 8],
 								['Exec (10+)', 10]].each do |label, num_years| %>
 							<% checked = num_years_checked?(num_years) %>
 							<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
