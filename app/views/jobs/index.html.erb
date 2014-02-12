@@ -9,6 +9,8 @@
 						<h1><%= job.title %> <%= job.id %></h1>
 						<% if job.description %>
 							<p><%= job.description.split(' ')[0..25].join(' ') %>...</p>
+						<% else %>
+							<p><%= job.full_text.split(' ')[0..25].join(' ') %>...</p>
 						<% end %>
 					</div>
 					<% if job.listing_company %>

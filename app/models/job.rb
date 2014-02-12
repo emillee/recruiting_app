@@ -9,6 +9,9 @@ class Job < ActiveRecord::Base
     primary_key: :id
   )
   
+  # CLASSIFIER -------------------------------------------------------------------------------
+  
+  
   #-------------------------------------------------------
   
   def self.import(file)
@@ -73,6 +76,20 @@ class Job < ActiveRecord::Base
   #   sub_depts.uniq!
   #   sub_depts
   # end
+  
+  def classify_level(text)
+    expert = YAML::load_file("#{Rails.root}/app/assets/ml_data/expert.yml")
+    solid = YAML::load_file("#{Rails.root}/app/assets/ml_data/solid.yml")
+    working_knowlege = YAML::load_file("#{Rails.root}/app/assets/ml_data/working_knowlege.yml")
+    
+    classifier = Classifier.new('Expert', 'Solid', 'Working Knowledge')
+    
+    expert.each { |exp| classifier.train_expert exp }
+    solid.each { |sol| classifier.train_solid sol }
+    working_knowledge.each { |wk| classifier.train_working_knowledge wk }
+    
+    classifier.classify text
+  end
   
   #-------------------------------------------------------------------------------
   private
