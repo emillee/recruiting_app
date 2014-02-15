@@ -57,13 +57,22 @@ class JobsController < ApplicationController
     redirect_to company_url(@company)
   end
   
-  def filters
-  end
-  
   # NON RESTFUL-------------------------------------------------------------
   def import
     Job.import(params[:file])
     redirect_to jobs_url, notice: "Jobs imported"
+  end
+  
+  def update_key_skills
+    @job = Job.find(params[:id])
+    @company = @job.listing_company
+    
+    params[:job][:key_skills].split(';').each do |key_skill|
+      @job.key_skills += [key_skill]
+    end
+    
+    @job.save    
+    render company_url(@company)
   end
   
 	#-------------------------------------------------------------------------
@@ -72,7 +81,7 @@ class JobsController < ApplicationController
   	def job_params
   		params.require(:job).permit(:link, :title, :full_text, :is_draft,
   		  :company_id, :dept, :sub_dept, :years_exp, :key_skill_one, :key_skill_two,
-  		  :description, :key_phrase_one, :key_phrase_two, :key_phrase_three, :key_phrase_four)
+  		  :description, :key_phrase_one, :key_phrase_two, :key_phrase_three, :key_phrase_four, :key_skills)
   	end
   
 end

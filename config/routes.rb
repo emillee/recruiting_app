@@ -13,6 +13,7 @@ Nytech::Application.routes.draw do
     collection { post :import }
     member { get :root_action }
     member { post :get_input }
+    member { put :update_key_skills }
   end
   
   namespace :admin do 

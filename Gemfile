@@ -19,22 +19,20 @@ gem 'figaro'
 gem 'twitter'
 gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'rails_12factor', group: :production
 
-# gem 'treat'
 gem "classifier", "~> 1.3.4"
+gem 'gsl'
+# gem 'treat'
 # gem 'fuzzy_match'
 # gem 'amatch'
 # gem 'madeleine'
 # gem 'tf_idf'
 
-gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-gem 'gsl'
-
-# gem 'seed_dump'
-gem 'rails_12factor', group: :production
 
 # gem "anemone", "~> 0.7.2"
-
+# gem 'seed_dump'
 
 group :development do
   gem 'better_errors'

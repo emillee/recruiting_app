@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211180757) do
+ActiveRecord::Schema.define(version: 20140214175939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "companies", force: true do |t|
     t.string   "name",               null: false
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140211180757) do
     t.text     "description"
     t.string   "key_phrase_three"
     t.string   "key_phrase_four"
+    t.string   "key_skills",       default: [], array: true
   end
 
   create_table "search_suggestions", force: true do |t|
@@ -59,6 +61,7 @@ ActiveRecord::Schema.define(version: 20140211180757) do
     t.string "level"
     t.string "base_title"
     t.string "dept"
+    t.hstore "expert_phrases"
   end
 
   create_table "users", force: true do |t|

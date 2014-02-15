@@ -67,7 +67,7 @@
 					<% end %>
 				</ul>
 			</div>	
-
+			
 			<% if current_user.job_settings[:dept] %>
 				<div class="wrapper">
 					<h1 class="experience">
@@ -87,6 +87,35 @@
 							<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
 								<%= label_tag "#{label}-#{label}", label %>
 								<%= check_box_tag "user[job_settings][experience][]", num_years, checked %>
+								<i class="fa fa-check"></i>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			
+			
+			<% if current_user.job_settings[:sub_dept] %>
+				<div class="wrapper">
+					<h1 class="experience">
+						Key Skills:
+						<i class="fa fa-minus-circle hidden"></i>
+						<i class="fa fa-plus-square-o"></i>
+					</h1>
+					<ul class="job-filters">
+						<% key_skills_arr = [] %>
+						<% @jobs.each do |job| %>
+							<% if job.key_skills %>
+								<% key_skills_arr += job.key_skills %>
+								<% key_skills_arr.uniq! %>
+							<% end %>
+						<% end %>
+						
+						<% key_skills_arr.each do |skill| %>
+							<% checked = skill_checked?(skill) %>
+							<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
+								<%= label_tag skill %>
+								<%= check_box_tag "user[job_settings][key_skills][]", skill, checked %>
 								<i class="fa fa-check"></i>
 							</li>
 						<% end %>

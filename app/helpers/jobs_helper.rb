@@ -28,6 +28,12 @@ module JobsHelper
     return false
   end
   
+  def skill_checked?(skill)
+    return false if current_user.job_settings[:key_skills].nil?
+    return true if current_user.job_settings[:key_skills].include?(skill)
+    return false
+  end
+  
   def show_keywords?
     current_user.job_settings[:keywords]
   end

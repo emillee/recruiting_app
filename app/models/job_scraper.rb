@@ -1,7 +1,5 @@
 class JobScraper 
   
-  
-  
   def initialize(job)
     @job = job
   end

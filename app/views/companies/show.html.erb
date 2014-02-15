@@ -29,8 +29,8 @@
 		<p>KeyPhraseThree: <%= best_in_place job, :key_phrase_three %></p>
 		<p>KeyPhraseFour: <%= best_in_place job, :key_phrase_four %></p>
 		<p>Full Text: <%= best_in_place job, :full_text, type: :textarea %></p>
-		<p>Description: <%= best_in_place job, :description, type: :textarea %></p>
-		<p><%= link_to 'Destroy job', job_url(job), method: :delete %>
+		<p>Key Skills: <%= best_in_place job, :key_skills, path: update_key_skills_job_url(job) %></p>
+		<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %>
 		<br><br>
 	<% end %>
 	

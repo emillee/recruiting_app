@@ -11,9 +11,6 @@ class Job < ActiveRecord::Base
   
   # CLASSIFIER -------------------------------------------------------------------------------
   
-  
-  #-------------------------------------------------------
-  
   def self.import(file)
     Job.delete_all
     
@@ -80,9 +77,9 @@ class Job < ActiveRecord::Base
   def classify_level(text)
     expert = YAML::load_file("#{Rails.root}/app/assets/ml_data/expert.yml")
     solid = YAML::load_file("#{Rails.root}/app/assets/ml_data/solid.yml")
-    working_knowlege = YAML::load_file("#{Rails.root}/app/assets/ml_data/working_knowlege.yml")
+    working_knowledge = YAML::load_file("#{Rails.root}/app/assets/ml_data/working_knowledge.yml")
     
-    classifier = Classifier.new('Expert', 'Solid', 'Working Knowledge')
+    classifier = Classifier::Bayes.new('Expert', 'Solid', 'Working Knowledge')
     
     expert.each { |exp| classifier.train_expert exp }
     solid.each { |sol| classifier.train_solid sol }
