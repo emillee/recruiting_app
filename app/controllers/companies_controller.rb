@@ -36,7 +36,6 @@ class CompaniesController < ApplicationController
     # end
   end
   
-  
   #------------------------------------------------------------------------------
 	private
 	
@@ -45,3 +44,23 @@ class CompaniesController < ApplicationController
   	end
 	
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

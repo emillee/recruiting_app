@@ -6,6 +6,7 @@ Nytech::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :taxonomies, only: [:index]
   resources :companies do
+    collection { get :autocomplete_fields }
     resources :jobs, only: [:create]
   end
 

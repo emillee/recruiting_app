@@ -42,3 +42,14 @@
 
 <div class="jobs-background"></div>
 <div class="jobs-background-overlay"></div>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("span[data-autocomplete='true']").on('click', function() {
+		  $('.dept').autocomplete({
+		    source: "/search_suggestions", minLength: 0
+		  })
+		})
+	})
+</script>
