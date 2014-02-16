@@ -31,6 +31,7 @@ class Company < ActiveRecord::Base
     all_names
   end
   
+  # SCRATCH FORMULAS FOR COMPANIES ---------------------------
   def get_crunchbase_info
     base_uri = "http://api.crunchbase.com/v/1/company/"
     name = "#{self.name.gsub(/\s/, '#')}"

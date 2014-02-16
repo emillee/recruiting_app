@@ -5,18 +5,19 @@ class JobScraper
   end
   
   def input_job_data
-    get_text
+    get_full_text
     get_title
     get_dept
     get_sub_dept
     get_years_exp
   end
   
-  def get_text
+  def get_full_text
     html = HTTParty.get(@job.link)
     doc = Nokogiri.HTML(html)
     doc.css('script').remove
     text = doc.at('body').inner_text
+    text = text.gsub(/\n/, '.')
     @job.full_text = text.squish.downcase
     @job.save
   end

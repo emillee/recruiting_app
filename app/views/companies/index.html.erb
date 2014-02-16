@@ -4,42 +4,40 @@
 	<ul class="job-posts">
 		<% @companies.each do |company| %>
 			<li>
-				<h1><%= link_to "#{company.name}", company_url(company) %></h1>
-				<h3>ID: <%= company.id %></h3>
+				<h1><%= link_to "#{company.name}", company_url(company) %> &nbsp; ID: <%= company.id %></h1>
 				<h3>career page link: <%= best_in_place company, :career_page_link %></h3>
 				<h3>funding: <%= company.total_money_raised || "" %></h3>
 				<h3>employees: <%= company.num_employees || "" %></h3>
 				<h3>twitter: <%= company.twitter_username || "" %></h3>
-				<h3>category: <%= best_in_place company, :category_code || "" %></h3>
+				<h3>category: <%= company.category_code || "" %></h3>
 				<h3>city: <%= company.city || "" %></h3>
-												
+			
 				<br>
-				<br>
-				
-				<% company.job_listings.each do |job| %>
-					<p>ID: <%= job.id %>
-					<p>Link: <%= link_to "#{job.link}", "#{job.link}" %></p>
-					<p>Title: <%= job.title %></p>
-					<p>Dept: <%= job.dept %></p>
-					<p>SubDept: <%= job.sub_dept %></p>
-					<p>Exp Req: <%= job.years_exp %></p>
-					<%= link_to "Get inputs", "jobs/#{job.id}/get_input" %>
-					<br><br>
-				<% end %>
-				
-				<br>
-				<br>
-				
-				<%= form_for([company, @job]) do |f| %>
-					<%= f.text_field :link %>
+				<p>Post a new Job</p>
+				<%= form_for([@company, @job]) do |f| %>
+					<%= f.text_field :link, class: "hello" %>
 					<%= f.submit "Create New Job" %>
 				<% end %>
-			</li>		
+				<br>
+			
+				<% company.job_listings.order("created_at DESC").each do |job| %>
+					<h1><%= best_in_place job, :title %> &nbsp; ID: <%= job.id %></h1>
+					<p>Link: <%= link_to "#{job.link}", "#{job.link}" %></p>
+					<p>Dept: <%= best_in_place job, :dept, type: :input, inner_class: 'dept', data: { autocomplete: true } %></p>
+					<p>SubDept: <%= best_in_place job, :sub_dept %></p>
+					<p>YearsExp: <%= best_in_place job, :years_exp %></p>
+					<p>KeyPhraseOne: <%= best_in_place job, :key_phrase_one %></p>
+					<p>KeyPhraseTwo: <%= best_in_place job, :key_phrase_two %></p>
+					<p>KeyPhraseThree: <%= best_in_place job, :key_phrase_three %></p>
+					<p>KeyPhraseFour: <%= best_in_place job, :key_phrase_four %></p>
+					<p>Full Text: <%= best_in_place job, :full_text, type: :textarea %></p>
+					<p>Key Skills: <%= best_in_place job, :key_skills, path: update_key_skills_job_url(job) %></p>
+					<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %>
+					<br><br>
+				<% end %>
+			</li>
 		<% end %>
-				
 	</ul>
-	
-	
 </div>
 
 <div class="jobs-background"></div>

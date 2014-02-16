@@ -11,14 +11,6 @@ class Job < ActiveRecord::Base
   
   # CLASSIFIER -------------------------------------------------------------------------------
   
-  def self.import(file)
-    Job.delete_all
-    
-    CSV.foreach(file.path, headers: true) do |row|
-      Job.create!(row.to_hash)
-    end
-  end
-  
   def self.search(settings_hash)
     if settings_hash.empty?
       jobs = self.all
@@ -53,8 +45,7 @@ class Job < ActiveRecord::Base
   def first_thirty
     self.full_text.split(' ')[0..30].join(' ')
   end
-  
-  
+
   def self.all_unique_titles
     unique_titles = Job.all.map(&:title).compact!
     unique_titles.uniq!
@@ -66,13 +57,6 @@ class Job < ActiveRecord::Base
     depts = Job.all.map(&:dept).uniq!
     depts
   end
-  
-  # def self.unique_sub_depts(jobs)
-  #   sub_depts = []
-  #   sub_depts << jobs.each(:sub_dept)
-  #   sub_depts.uniq!
-  #   sub_depts
-  # end
   
   def classify_level(text)
     expert = YAML::load_file("#{Rails.root}/app/assets/ml_data/expert.yml")
@@ -88,6 +72,16 @@ class Job < ActiveRecord::Base
     classifier.classify text
   end
   
+  # SCRATCH -------------------------------------------------------------------------------
+
+  def self.import(file)
+    Job.delete_all
+
+    CSV.foreach(file.path, headers: true) do |row|
+      Job.create!(row.to_hash)
+    end
+  end
+   
   #-------------------------------------------------------------------------------
   private
   
@@ -95,4 +89,5 @@ class Job < ActiveRecord::Base
       self.is_draft = true
     end	 
     
+   
 end
