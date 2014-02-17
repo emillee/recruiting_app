@@ -14,7 +14,7 @@
 			
 				<br>
 				<p>Post a new Job</p>
-				<%= form_for([@company, @job]) do |f| %>
+				<%= form_for([company, @job]) do |f| %>
 					<%= f.text_field :link, class: "hello" %>
 					<%= f.submit "Create New Job" %>
 				<% end %>
@@ -32,6 +32,7 @@
 					<p>KeyPhraseFour: <%= best_in_place job, :key_phrase_four %></p>
 					<p>Full Text: <%= best_in_place job, :full_text, type: :textarea %></p>
 					<p>Key Skills: <%= best_in_place job, :key_skills, path: update_key_skills_job_url(job) %></p>
+					<p><%= link_to 'Import Data', import_data_job_url(job), method: :post %>
 					<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %>
 					<br><br>
 				<% end %>

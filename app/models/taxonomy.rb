@@ -1,4 +1,6 @@
 class Taxonomy < ActiveRecord::Base  
+  
+  include CsvMethods
     
   def self.set_dept
     Taxonomy.all.each do |taxonomy|
@@ -50,15 +52,6 @@ class Taxonomy < ActiveRecord::Base
   
   # SCRATCH FORMULAS
   #-------------------------------------------------------
-
-  def self.to_csv
-    CSV.generate do |csv|
-      csv << column_names
-      all.each do |product|
-        csv << product.attributes.values_at(*column_names)
-      end
-    end
-  end
 
   def extract_level_and_base_title
     level = []

@@ -9,6 +9,20 @@ class Job < ActiveRecord::Base
     primary_key: :id
   )
   
+  include Scrape
+  include ImportData
+  include RegexMethods
+  
+  
+  def import_data
+    self.get_text_from_link
+    self.get_title
+    self.clean_extra_text_and_periods
+    self.get_dept
+    self.get_sub_dept
+    self.get_years_exp
+  end
+  
   # CLASSIFIER -------------------------------------------------------------------------------
   
   def self.search(settings_hash)
@@ -70,16 +84,6 @@ class Job < ActiveRecord::Base
     working_knowledge.each { |wk| classifier.train_working_knowledge wk }
     
     classifier.classify text
-  end
-  
-  # SCRATCH -------------------------------------------------------------------------------
-
-  def self.import(file)
-    Job.delete_all
-
-    CSV.foreach(file.path, headers: true) do |row|
-      Job.create!(row.to_hash)
-    end
   end
    
   #-------------------------------------------------------------------------------

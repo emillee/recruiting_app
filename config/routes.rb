@@ -11,9 +11,7 @@ Nytech::Application.routes.draw do
   end
 
   resources :jobs, only: [:show, :index, :new, :update, :destroy] do 
-    collection { post :import }
-    member { get :root_action }
-    member { post :get_input }
+    member { post :import_data }
     member { put :update_key_skills }
   end
   
@@ -31,3 +29,9 @@ Nytech::Application.routes.draw do
    
   root to: 'jobs#root_action'
 end
+
+# ARCHIVE
+# resources :jobs, only: [:show, :index, :new, :update, :destroy] do 
+#   collection { post :import }
+#   member { get :root_action }
+# end

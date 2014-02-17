@@ -1,11 +1,19 @@
 class CompaniesController < ApplicationController
   
   respond_to :html, :json
-  
-  def show
-    @company = Company.find(params[:id])
-    @job = @company.job_listings.build
+
+  # RESTful Routes ---------------------------------------------------------------------------
+
+  def index
+    @job = Job.new
+    
+    # if current_user && !current_user.job_settings.blank?
+    #   @companies = Company.search(current_user.job_settings)
+    # else
+      @companies = Company.all.limit(200).order(:name)
+    # end
   end
+  
   
   def create
     @company = Company.new(company_params)
@@ -13,6 +21,13 @@ class CompaniesController < ApplicationController
       redirect_to company_url
     end
   end
+  
+  
+  def show
+    @company = Company.find(params[:id])
+    @job = @company.job_listings.build
+  end
+  
   
   def update
     @company = Company.find(params[:id])
@@ -26,15 +41,7 @@ class CompaniesController < ApplicationController
     @company.find(params[:id]).destroy
   end
 
-  def index
-    @job = Job.new
-    
-    # if current_user && !current_user.job_settings.blank?
-    #   @companies = Company.search(current_user.job_settings)
-    # else
-      @companies = Company.all.limit(200).order(:name)
-    # end
-  end
+
   
   #------------------------------------------------------------------------------
 	private
