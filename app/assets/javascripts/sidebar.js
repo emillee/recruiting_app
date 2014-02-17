@@ -38,7 +38,6 @@ ready = function() {
   });
   
   $('.sidebar-middle').on('click', 'h1.sub_dept', function() {
-    console.log('hello')
     var $ul = $(this).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
     var $checkboxes = $checkbox_lis.find(":checkbox");
@@ -54,6 +53,21 @@ ready = function() {
   });
   
   $('.sidebar-middle').on('click', 'h1.experience', function() {
+    var $ul = $(this).closest('.wrapper').children('ul');
+    var $checkbox_lis = $ul.children('li');
+    var $checkboxes = $checkbox_lis.find(":checkbox");
+    
+    $checkboxes.each(function() {
+      if (this.checked === false) {
+        $(this).parent('li').toggleClass('hidden');
+      }
+    })
+    
+    $('.experience .fa-minus-circle').toggleClass('hidden');
+    $('.experience .fa-plus-square-o').toggleClass('hidden');
+  });
+  
+  $('.sidebar-middle').on('click', 'h1.key-skills', function() {
     var $ul = $(this).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
     var $checkboxes = $checkbox_lis.find(":checkbox");

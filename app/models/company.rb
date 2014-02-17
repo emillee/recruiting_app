@@ -2,6 +2,9 @@ class Company < ActiveRecord::Base
   
   validates :name, presence: true
   
+  scope :career_page_available, lambda { where('companies.career_page_link IS NOT NULL AND 
+    companies.career_page_link != ?', 'NA') }
+  
   has_many(
     :job_listings,
     class_name: 'Job',

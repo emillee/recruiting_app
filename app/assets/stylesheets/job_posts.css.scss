@@ -3,15 +3,15 @@ div.jobs-wrapper {
   padding: 15px;
   top: 100px;
   left: 275px;
-  background-color: rgba(0,0,0,.25);
+  background-color: rgba(255,255,255,.35);
   
   ul.job-posts {
     width: 900px;
 
     li {
       height: 105px;
-      margin-bottom: 15px;  
-      background-color: white;
+      border-bottom: 3px solid rgba(0,0,0,.25);
+      background-color: rgba(255,255,255,.97);
       padding: 5px;
       border-radius: 1px;
       
