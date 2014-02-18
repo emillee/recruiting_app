@@ -7,6 +7,7 @@ ready = function() {
     $(this).parents('form:first').submit();
   });
 
+  // SEARCH FORM
   $('#sidebar-search').keyup(function(event) {
     if (event.keyCode == 13) {
       $(this).parents('form:first').submit();
@@ -22,6 +23,7 @@ ready = function() {
     };
   });
   
+  // DEPARTMENT FILTER
   $('.sidebar-middle').on('click', 'h1.department', function() {
     var $ul = $(this).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
@@ -37,6 +39,7 @@ ready = function() {
     $('.department .fa-plus-square-o').toggleClass('hidden');
   });
   
+  // SUB DEPT FILTER
   $('.sidebar-middle').on('click', 'h1.sub_dept', function() {
     var $ul = $(this).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
@@ -52,10 +55,12 @@ ready = function() {
     $('.sub_dept .fa-plus-square-o').toggleClass('hidden');
   });
   
+  // EXPERIENCE FILTER
   $('.sidebar-middle').on('click', 'h1.experience', function() {
     var $ul = $(this).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
     var $checkboxes = $checkbox_lis.find(":checkbox");
+    console.log('hi')
     
     $checkboxes.each(function() {
       if (this.checked === false) {
@@ -67,21 +72,17 @@ ready = function() {
     $('.experience .fa-plus-square-o').toggleClass('hidden');
   });
   
+  // KEY SKILLS FILTER
   $('.sidebar-middle').on('click', 'h1.key-skills', function() {
     var $ul = $(this).closest('.wrapper').children('ul');
-    var $checkbox_lis = $ul.children('li');
-    var $checkboxes = $checkbox_lis.find(":checkbox");
-    
-    $checkboxes.each(function() {
-      if (this.checked === false) {
-        $(this).parent('li').toggleClass('hidden');
-      }
-    })
+    var $wrapper = $ul.children('div.key-skills-wrapper');
+    $wrapper.toggleClass('hidden')
     
     $('.experience .fa-minus-circle').toggleClass('hidden');
     $('.experience .fa-plus-square-o').toggleClass('hidden');
   });
- 
+  
+  // CLICK CHECKBOX
   $('.sidebar-middle').on('click', 'li.job-sidebar', function(e) {
     var $checkbox = $(this).find(":checkbox")[0];
     if (e.target != $checkbox) $checkbox.checked = !$checkbox.checked
@@ -89,15 +90,27 @@ ready = function() {
     $(this).closest('.fa-check').toggleClass('hidden');
   });
 
+  // CLICK CHECKBOX FOR DEGREES
+  $('.sidebar-middle').on('click', 'li.degree', function(e) {
+   var $checkbox = $(this).find(":checkbox")[0];
+   if (e.target != $checkbox) $checkbox.checked = !$checkbox.checked
+   $(this).toggleClass("selected", $checkbox.checked);
+   $(this).closest('.fa-check').toggleClass('hidden');
+ });
+
+  // SUBMIT FORM ON CLICK
   $('.sidebar-middle').on('click', '.job-filters', function() {
     $(this).parents('form:first').submit();
   });
 
+  // AJAX CALL TO REFRESH SIDEBAR AND JOBS
   $('#job-filter-form').on("ajax:success", function(event, data) {  
     var $jobs = $(data).find('.job-posts');
     var $sidebar = $(data).find('.sidebar-middle');
+    var $kaminari = $(data).find('.pagination');
     $('.job-posts').empty().html($jobs);
     $('.sidebar-middle').empty().html($sidebar);
+    $('.pagination').empty().html($kaminari)
   });
   
   $('#clear-all').click(function() {

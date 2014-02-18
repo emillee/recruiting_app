@@ -1,6 +1,8 @@
 <%= render 'sidebar' %>
 
 <div class="jobs-wrapper">
+	<%= paginate @jobs %>
+	
 	<ul class="job-posts">
 		<% @jobs.each do |job| %>		
 			<li>
@@ -31,9 +33,9 @@
 
 	<div id="file">Click to import file</div>
 
-	<%= form_tag import_jobs_url, multipart: true do %>
+	<%#= form_tag import_jobs_url, multipart: true do %>
 		<%= file_field_tag :file %>
 		<%= submit_tag 'Import' %>
-	<% end %>
+	<%# end %>
 </div> -->
 

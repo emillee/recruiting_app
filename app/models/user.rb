@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   before_save { self.email = self.email.downcase unless self.email.nil? }
   before_create :create_session_token
   
-  # To fix: it doesn't work if this is before_create
   after_create :set_admin_to_false
   
   serialize :job_settings, Hash

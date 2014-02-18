@@ -87,7 +87,7 @@ class UsersController < ApplicationController
     # TODO: is it security risk for is_admin
   	def user_params
   		params.require(:user).permit(:email, :password, :password_digest, 
-  		  {job_settings: { keywords: [], dept: [], sub_dept: [], experience: [] }}, :is_admin, :guest)
+  		  {job_settings: { keywords: [], dept: [], sub_dept: [], experience: [], key_skills: [] }}, :is_admin, :guest)
   	end
 	
 end

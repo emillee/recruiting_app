@@ -17,6 +17,7 @@
  *= require sidebar
  *= require job_posts
  *= require companies
+ *= require kaminari
  *= require jquery.ui.all
  */
  

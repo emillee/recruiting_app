@@ -1,0 +1,66 @@
+/* pagination (base.css) */
+
+nav.pagination {
+  height: 30px;
+  margin-top: -4px;
+  margin-bottom: 10px;
+}
+ 
+.pagination a,span {
+  float: left;
+}
+ 
+.pagination span.current, span.gap {
+  padding: 2px 5px;
+  margin-right: 5px; 
+  border-style: solid;
+  border-width: 1px;  
+}
+.pagination a {
+  text-decoration: none;  
+  padding: 2px 5px;
+  margin-right: 5px; 
+  display: block;
+  border-style: solid;
+  border-width: 1px;
+}
+ 
+/* Pagination 
+ * (themes/default/style.css)
+ */
+ 
+.pagination span.current, span.gap {
+  background: rgba(0,0,0,.5);
+  color: white;
+  border: 1px solid #261f1f;
+  padding: 6px;
+  min-width: 15px;
+  text-align: center;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+.pagination a {
+  border: 1px solid #c3c4ba;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin-right: 5px;
+  padding: 6px;
+  min-width: 15px;
+  text-align: center;
+  background: #dddddd;
+  background-image: url("/assets/web-app-theme/themes/default/images/button-background.png");
+  color: #111111;  
+}
+ 
+.pagination a:hover {
+  border: 1px solid #818171;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+ 
+.pagination a:active {
+  background-image: url("/assets/web-app-theme/themes/default/images/button-background-active.png");
+  outline: none;
+}

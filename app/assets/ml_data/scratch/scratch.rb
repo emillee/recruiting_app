@@ -1,5 +1,11 @@
 File.open("#{Rails.root}/app/assets/ml_data/working_knowledge.yml", 'w') { |f| f.write working.to_yaml }
 
+key_skills_arr = []
+Job.all.each do |job|
+  key_skills_arr << job.key_skills if !job.key_skills.empty?
+end
+key_skills_arr
+
 
 expert = [
   'Understands the application of and demonstrates expert knowledge of',

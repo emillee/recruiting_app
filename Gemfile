@@ -10,6 +10,7 @@ gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'kaminari'
 
 gem 'nokogiri'
 gem "mechanize", "~> 2.7.2"
@@ -24,9 +25,9 @@ gem 'rails_12factor', group: :production
 
 gem "classifier", "~> 1.3.4"
 gem 'gsl'
+gem 'amatch'
 # gem 'treat'
 # gem 'fuzzy_match'
-# gem 'amatch'
 # gem 'madeleine'
 # gem 'tf_idf'
 

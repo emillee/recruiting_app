@@ -26,12 +26,8 @@
 					<p>Dept: <%= best_in_place job, :dept, type: :input, inner_class: 'dept', data: { autocomplete: true } %></p>
 					<p>SubDept: <%= best_in_place job, :sub_dept %></p>
 					<p>YearsExp: <%= best_in_place job, :years_exp %></p>
-					<p>KeyPhraseOne: <%= best_in_place job, :key_phrase_one %></p>
-					<p>KeyPhraseTwo: <%= best_in_place job, :key_phrase_two %></p>
-					<p>KeyPhraseThree: <%= best_in_place job, :key_phrase_three %></p>
-					<p>KeyPhraseFour: <%= best_in_place job, :key_phrase_four %></p>
 					<p>Full Text: <%= best_in_place job, :full_text, type: :textarea %></p>
-					<p>Key Skills: <%= best_in_place job, :key_skills, path: update_key_skills_job_url(job) %></p>
+					<p>Key Phrases: <%= best_in_place job, :key_phrases, path: update_key_skills_job_url(job) %></p>
 					<p><%= link_to 'Import Data', import_data_job_url(job), method: :post %>
 					<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %>
 					<br><br>

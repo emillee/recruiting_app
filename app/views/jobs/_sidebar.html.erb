@@ -30,6 +30,7 @@
 				</ul>
 			</div>
 			
+			
 			<!-- DEPARTMENT -->
 			<div class="wrapper">
 				<h1 class="department">
@@ -68,9 +69,10 @@
 				</ul>
 			</div>	
 			
+			<!-- EXPERIENCE -->	
 			<% if current_user.job_settings[:dept] %>
 				<div class="wrapper">
-					<h1 class="key-skills">
+					<h1 class="experience">
 						Experience (Yrs):
 						<i class="fa fa-minus-circle hidden"></i>
 						<i class="fa fa-plus-square-o"></i>
@@ -94,38 +96,40 @@
 				</div>
 			<% end %>
 			
-			
+			<!-- KEY SKILLS -->				
 			<% if current_user.job_settings[:sub_dept] %>
 				<div class="wrapper">
-					<h1 class="experience">
+					<h1 class="key-skills">
 						Key Skills:
 						<i class="fa fa-minus-circle hidden"></i>
 						<i class="fa fa-plus-square-o"></i>
 					</h1>
-					<ul class="job-filters">
-						<% key_skills_arr = [] %>
-						<% @jobs.each do |job| %>
-							<% if job.key_skills %>
-								<% key_skills_arr += job.key_skills %>
-								<% key_skills_arr.uniq! %>
-							<% end %>
-						<% end %>
-						
-						<% key_skills_arr.each do |skill| %>
-							<% checked = skill_checked?(skill) %>
-							<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
-								<%= label_tag skill %>
-								<%= check_box_tag "user[job_settings][key_skills][]", skill, checked %>
-								<i class="fa fa-check"></i>
-							</li>
+					<ul class="job-filters key-skills">
+						<% Taxonomy.front_end_key_skills.each_with_index do |skill, index| %>
+							<div class="key-skills-wrapper">
+								<li class="job-sidebar key-skills">
+									<%= label_tag skill %>
+								</li>
+							
+								<div class="degree-wrapper">
+									<% Taxonomy.key_skill_degrees[index].each do |degree| %>
+										<% checked = key_skill_checked?(degree) %>
+										<li class="degree <%= 'selected' if checked %>">
+											<%= label_tag degree %>
+											<%= check_box_tag "user[job_settings][key_skills][]", degree, checked %>
+										</li>
+									<% end %>
+								</div>
+							</div>
 						<% end %>
 					</ul>
 				</div>
 			<% end %>
 			
-		<%= f.submit "Submit" %>
-	<% end %>
-
+			
+			<%= f.submit "Submit" %>
+		<% end %>
+			
 	</div>
 	
 	<div class="clear">

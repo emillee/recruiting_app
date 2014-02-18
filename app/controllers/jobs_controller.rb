@@ -6,9 +6,9 @@ class JobsController < ApplicationController
   
   def index
     if current_user && !current_user.job_settings.blank?
-      @jobs = Job.search(current_user.job_settings)
+      @jobs = Job.search(current_user.job_settings).page(params[:page]).per(6)
     else
-      @jobs = Job.all
+      @jobs = Job.all.page(params[:page]).per(6)
       respond_to do |format|
         format.html
         format.csv { render text: @jobs.to_csv }
@@ -78,8 +78,7 @@ class JobsController < ApplicationController
 
   	def job_params
   		params.require(:job).permit(:link, :title, :full_text, :is_draft,
-  		  :company_id, :dept, :sub_dept, :years_exp, :key_skill_one, :key_skill_two,
-  		  :description, :key_phrase_one, :key_phrase_two, :key_phrase_three, :key_phrase_four, :key_skills)
+  		  :company_id, :dept, :sub_dept, :years_exp, :description, :key_phrase_four, :key_skills)
   	end
   
 end
