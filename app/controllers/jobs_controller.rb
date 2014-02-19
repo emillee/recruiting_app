@@ -45,7 +45,7 @@ class JobsController < ApplicationController
     if @job.update_attributes(job_params)
       flash[:success] = "Job updated"
       @company = @job.listing_company
-      respond_with @company
+      redirect_to companies_url
     end
   end
   
@@ -78,7 +78,7 @@ class JobsController < ApplicationController
 
   	def job_params
   		params.require(:job).permit(:link, :title, :full_text, :is_draft,
-  		  :company_id, :dept, :sub_dept, :years_exp, :description, :key_phrase_four, :key_skills)
+  		  :company_id, :dept, :sub_dept, :years_exp, :description, key_phrases: [], req_skills: [])
   	end
   
 end

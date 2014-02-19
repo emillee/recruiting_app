@@ -1,5 +1,10 @@
 module JobsHelper
   
+  def req_skill_checked?(job, skill)
+    return true if job.req_skills.include?(skill)
+    return false
+  end    
+  
   def dept_checked?(dept)
     return false if current_user.job_settings[:dept].nil?
     return true if current_user.job_settings[:dept].include?(dept)
@@ -36,6 +41,10 @@ module JobsHelper
   
   def show_keywords?
     current_user.job_settings[:keywords]
+  end
+  
+  def show_company_keywords?()
+    
   end
   
   def sortable(column, title=nil)

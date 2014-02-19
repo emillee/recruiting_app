@@ -78,8 +78,8 @@ ready = function() {
     var $wrapper = $ul.children('div.key-skills-wrapper');
     $wrapper.toggleClass('hidden')
     
-    $('.experience .fa-minus-circle').toggleClass('hidden');
-    $('.experience .fa-plus-square-o').toggleClass('hidden');
+    $('.key-skills .fa-minus-circle').toggleClass('hidden');
+    $('.key-skills .fa-plus-square-o').toggleClass('hidden');
   });
   
   // CLICK CHECKBOX

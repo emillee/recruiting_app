@@ -1,16 +1,20 @@
-<%= render 'sidebar' %>
+<div class="company-sidebar">
+	<%= render 'sidebar', locals: { keywords: @keywords, scopes: @scopes } %>
+</div>
 
 <div class="companies-wrapper">
+	<%#= paginate @companies %>
+	
 	<ul class="job-posts">
 		<% @companies.each do |company| %>
 			<li>
-				<h1><%= link_to "#{company.name}", company_url(company) %> &nbsp; ID: <%= company.id %></h1>
-				<h3>career page link: <%= best_in_place company, :career_page_link %></h3>
-				<h3>funding: <%= company.total_money_raised || "" %></h3>
-				<h3>employees: <%= company.num_employees || "" %></h3>
-				<h3>twitter: <%= company.twitter_username || "" %></h3>
-				<h3>category: <%= company.category_code || "" %></h3>
-				<h3>city: <%= company.city || "" %></h3>
+				<h1><%= link_to "#{company.name}", company_url(company) %> (ID: <%= company.id %>)</h1>
+				<h3>Careers Link: <%= best_in_place company, :career_page_link %></h3>
+				<h3>Funding: <%= company.total_money_raised || "" %></h3>
+				<h3>Employees: <%= company.num_employees || "" %></h3>
+				<h3>Twitter: <%= company.twitter_username || "" %></h3>
+				<h3>Category: <%= company.category_code || "" %></h3>
+				<h3>City: <%= company.city || "" %></h3>
 			
 				<br>
 				<p>Post a new Job</p>
@@ -21,15 +25,32 @@
 				<br>
 			
 				<% company.job_listings.order("created_at DESC").each do |job| %>
-					<h1><%= best_in_place job, :title %> &nbsp; ID: <%= job.id %></h1>
-					<p>Link: <%= link_to "#{job.link}", "#{job.link}" %></p>
-					<p>Dept: <%= best_in_place job, :dept, type: :input, inner_class: 'dept', data: { autocomplete: true } %></p>
-					<p>SubDept: <%= best_in_place job, :sub_dept %></p>
-					<p>YearsExp: <%= best_in_place job, :years_exp %></p>
-					<p>Full Text: <%= best_in_place job, :full_text, type: :textarea %></p>
-					<p>Key Phrases: <%= best_in_place job, :key_phrases, path: update_key_skills_job_url(job) %></p>
-					<p><%= link_to 'Import Data', import_data_job_url(job), method: :post %>
-					<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %>
+					<p><h1><%= best_in_place job, :title %></h1> (ID: <%= job.id %>)</p>
+					<p><span class="heading">Link: </span><%= link_to "#{job.link}", "#{job.link}" %></p>
+					<p><span class="heading">Dept: </span><%= best_in_place job, :dept, type: :input, inner_class: 'dept', data: { autocomplete: true } %></p>
+					<p><span class="heading">SubDept: </span><%= best_in_place job, :sub_dept %></p>
+					<p><span class="heading">YearsExp: </span><%= best_in_place job, :years_exp %></p>
+					<p><span class="heading">Full Text: </span><%= best_in_place job, :full_text, type: :textarea %></h3></p>
+					<p><span class="heading">Key Phrases: </span><%= best_in_place job, :key_phrases, path: update_key_skills_job_url(job) %></p>
+					<p>
+						<span class="heading">Req Skills: </span>
+							<%= form_for(job) do |f| %>
+								<%= hidden_field_tag "job[req_skills][]", "" %>
+								<% Taxonomy.key_skill_degrees.flatten.each do |skill| %>
+									<p>
+										<label>
+											<%= "#{skill}" %>
+											<%= check_box_tag "job[req_skills][]", skill, req_skill_checked?(job, skill) %>								
+										</label>
+									</p>
+								<% end %>
+								
+								<%= f.submit "Submit" %>
+							<% end %>
+					</p>
+						
+					<p><%= link_to 'Import Data', import_data_job_url(job), method: :post %></p>
+					<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %></p>
 					<br><br>
 				<% end %>
 			</li>

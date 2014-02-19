@@ -1,17 +1,27 @@
 class CompaniesController < ApplicationController
-  
+
   respond_to :html, :json
 
   # RESTful Routes ---------------------------------------------------------------------------
 
   def index
     @job = Job.new
-    
-    # if current_user && !current_user.job_settings.blank?
-    #   @companies = Company.search(current_user.job_settings)
-    # else
-      @companies = Company.all.limit(200).order(:name)
-    # end
+    @companies = Company.joins(:job_listings)
+        
+    if params[:company_search]
+      @keywords = params[:company_search][:keywords] if params[:company_search][:keywords]
+      @scopes = params[:company_search][:scopes] if params[:company_search][:scopes]
+
+      if !@keywords.empty? && !@keywords.nil?
+        @companies = @companies.keyword_search(@keywords)
+      end
+      
+      if !@scopes.nil? && !@scopes.empty?  
+        @scopes.each do |scope|
+          @companies = @companies.send(scope)
+        end
+      end
+    end
   end
   
   
