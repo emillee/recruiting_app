@@ -1,6 +1,6 @@
 class JobMailer < ActionMailer::Base
   
-  include Sendgrid
+  include SendGrid
   
   default from: 'default@default.com'
   
