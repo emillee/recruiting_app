@@ -1,10 +1,71 @@
 /* pagination (base.css) */
 
 nav.pagination {
-  display: none;
   height: 30px;
-  margin-top: -4px;
-  margin-bottom: 10px;
+//  margin-top: 15px;
+  margin-bottom: 0px;
+  background-color: rgba(50,50,50,.5);
+  padding: 6px 0 4px 5px;
+  
+  a {
+    border-radius: 2px;
+  }
+  
+  .first, .last, .gap {
+    display: none;
+  }
+  
+  span.next, span.prev {
+    text-align: left;
+    
+    a {
+      width: 50px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+    }
+    
+  }
+  
+//  visibility: hidden;
+//  height: 30px;
+//  margin-top: -4px;
+//  margin-bottom: 10px;
+//  position: fixed;
+//  
+//  .next, .prev {
+//    visibility: visible;
+//    
+//    a {
+//      height: 50px;
+//      width: 50px;
+//      display: inline-block;    
+//      font-size: 50px;  
+//      background-color: rgba(0,0,0,0);
+//      border: none;
+//      border-radius: 5px;
+//      color: #3498db;
+//      
+//      &:hover {
+//        background-color: #3498db;
+//        color: white;
+//      }
+//    }
+//  }
+//  
+//  .next {
+//    position: absolute;
+//    top: 300px;
+//    left: 870px;
+//    visibility: hidden;
+//  }
+//  
+//  .prev {
+//    position: absolute;
+//    top: 300px;
+//    left: -40px;
+//    visibility: hidden;
+//  }
 }
  
 .pagination a,span.page {
@@ -50,7 +111,7 @@ nav.pagination {
   min-width: 15px;
   text-align: center;
   background: #dddddd;
-  background-image: url("/assets/web-app-theme/themes/default/images/button-background.png");
+//  background-image: url("/assets/web-app-theme/themes/default/images/button-background.png");
   color: #111111;  
 }
  
@@ -62,6 +123,6 @@ nav.pagination {
 }
  
 .pagination a:active {
-  background-image: url("/assets/web-app-theme/themes/default/images/button-background-active.png");
+//  background-image: url("/assets/web-app-theme/themes/default/images/button-background-active.png");
   outline: none;
 }

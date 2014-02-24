@@ -12,7 +12,6 @@
 			<%= link_to 'Jobs', jobs_url %>
 		<% end %>
 		
-		<%= link_to 'Events', '#', class: "coming-soon-icon" %>
 		<%= link_to 'People', '#', class: "coming-soon-icon" %>
 		<%= link_to 'Directory', '#', class: "coming-soon-icon" %>
 		<%= link_to 'Groups', '#', class: "coming-soon-icon" %>
@@ -40,32 +39,38 @@
 	</div>
 </nav>
 
-<nav class="navbar-wrapper-two">
+<% if current_user %>
+	<nav class="navbar-wrapper-two">
 	
-	<h3>[Emil's:]</h3>
-	<h3 class="dashboard">
-		<a href='#'>Activity
-			<i class="fa fa-bar-chart-o"></i>
-		</a>
-	</h3>
-	
-	<h3 class="mail"><a href='#'>
-		Mail
-		<i class="fa fa-envelope-o"></i>
-		</a>
-	</h3>
-	
-	<h3 class="rolodex"><a href='#'>
-		Rolodex
-		<i class="fa fa-barcode"></i>
-		</a>
-	</h3>
-	
-	<h3 class="profile"><a href='#'>
-		Profile
-		<i class="fa fa-fighter-jet"></i>
-		</a>
-	</h3>
-	
-</nav>
+		<% if current_user.fname %>
+			<h3><%= current_user.fname %>'s:</h3>
+		<% else %>
+			<h3>My:</h3>
+		<% end %>
 
+		<h3 class="dashboard">
+			<a href='#'>Activity
+				<i class="fa fa-bar-chart-o"></i>
+			</a>
+		</h3>
+	
+		<h3 class="mail"><a href='#'>
+			Mail
+			<i class="fa fa-envelope-o"></i>
+			</a>
+		</h3>
+	
+		<h3 class="rolodex"><a href='#'>
+			Rolodex
+			<i class="fa fa-barcode"></i>
+			</a>
+		</h3>
+	
+		<h3 class="profile"><a href=<%= user_url(current_user) %>>
+			Profile
+			<i class="fa fa-fighter-jet"></i>
+			</a>
+		</h3>
+	
+	</nav>
+<% end %>

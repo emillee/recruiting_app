@@ -4,6 +4,16 @@ ready = function() {
   
   $('.best_in_place').best_in_place();
 
+  // // Show pagination on hover
+  // $('div.jobs-wrapper').on('mouseenter', function() {
+  //   $('.next > a').addClass('visibility-visible');
+  //   $('.prev > a').addClass('visibility-visible');
+  // })
+  // 
+  // $('div.jobs-wrapper').on('mouseleave', function() {
+  //   $('.next > a').removeClass('visibility-visible');
+  //   $('.prev > a').removeClass('visibility-visible');
+  // })
   
   // FORWARDING
   $('ul.job-posts').on('click', '.forward', function(event) {

@@ -1,7 +1,6 @@
 <%= render 'sidebar' %>
 
 <div class="jobs-wrapper">
-	<%= paginate @jobs %>
 	
 	<ul class="job-posts">
 		<% @jobs.each do |job| %>		
@@ -37,7 +36,7 @@
 		<% end %>
 	</ul>
 	
-	
+	<%= paginate @jobs %>
 </div>
 
 <div class="jobs-background"></div>
