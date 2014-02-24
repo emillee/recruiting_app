@@ -27,7 +27,7 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'rails_12factor', group: :production
 
 gem "classifier", "~> 1.3.4"
-gem 'gsl'
+# gem 'gsl'
 gem 'amatch'
 # gem 'treat'
 # gem 'fuzzy_match'
