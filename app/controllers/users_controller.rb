@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 	def update
     @user = User.find(params[:id])
     
-    keywords_arr = params[:user][:job_settings][:keywords]
+    keywords_arr = params[:user][:job_settings][:keywords] unless params[:user][:job_settings].nil?
     without_blanks = []
     
     if keywords_arr
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     end
     
     if without_blanks.empty?
-      params[:user][:job_settings].delete(:keywords)
+      params[:user][:job_settings].delete(:keywords) unless params[:user][:job_settings].nil? 
     else
       params[:user][:job_settings][:keywords] = without_blanks
     end
@@ -56,17 +56,20 @@ class UsersController < ApplicationController
     # this is if all checkboxes are blank or clear button hit. 
     # The empty search input box submits ""
     # Is there a better way to do this?
-		if params[:user][:job_settings].nil?
+		if params[:user][:job_settings] && params[:user][:job_settings].nil?
 		  @user.update_column('job_settings', {})
 		  @jobs = Job.all
 		  redirect_to jobs_url
-		elsif @user.update_attributes(user_params)
+	  end
+	  
+		if @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
 			sign_in(@user)
 			redirect_to jobs_url
 		else
 			render :edit
 		end
+		
 	end
 
 
@@ -86,7 +89,7 @@ class UsersController < ApplicationController
 
     # TODO: is it security risk for is_admin
   	def user_params
-  		params.require(:user).permit(:email, :password, :password_digest, 
+  		params.require(:user).permit(:email, :password, :password_digest, :avatar, :fname, :lname, :title, :location,
   		  {job_settings: { keywords: [], dept: [], sub_dept: [], experience: [], key_skills: [] }}, :is_admin, :guest)
   	end
 	

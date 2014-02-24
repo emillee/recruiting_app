@@ -1,11 +1,11 @@
 <nav class="navbar-wrapper">
-	<a href='#'><i class="fa fa-bars"></i></a>
+	<a href=<%= user_url(current_user) %>><i class="fa fa-bars"></i></a>
 
 	<%= link_to 'wolfpack', root_url, class: "logo" %>
 	<%= link_to 'beta', root_url, class: "logo" %>
 	
 	<div class="menu">
-		Show me: &nbsp; 
+		<!-- Show me: &nbsp;  -->
 		<% if request.env['PATH_INFO'] == '/jobs' %>
 			<%= link_to 'Jobs', jobs_url, class: "selected" %>
 		<% else %>
@@ -42,9 +42,9 @@
 
 <nav class="navbar-wrapper-two">
 	
-	<!-- <h3>[Emil's:]</h3>
+	<h3>[Emil's:]</h3>
 	<h3 class="dashboard">
-		<a href='#'>Dashboard
+		<a href='#'>Activity
 			<i class="fa fa-bar-chart-o"></i>
 		</a>
 	</h3>
@@ -65,6 +65,7 @@
 		Profile
 		<i class="fa fa-fighter-jet"></i>
 		</a>
-	</h3> -->
+	</h3>
+	
 </nav>
 

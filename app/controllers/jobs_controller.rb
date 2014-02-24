@@ -6,9 +6,9 @@ class JobsController < ApplicationController
   
   def index
     if current_user && !current_user.job_settings.blank?
-      @jobs = Job.search(current_user.job_settings).page(params[:page]).per(6)
+      @jobs = Job.search(current_user.job_settings).page(params[:page]).per(5)
     else
-      @jobs = Job.all.page(params[:page]).per(6)
+      @jobs = Job.all.page(params[:page]).per(5)
       respond_to do |format|
         format.html
         format.csv { render text: @jobs.to_csv }
@@ -70,6 +70,30 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.import_data
     redirect_to companies_url
+  end
+  
+  def forward_form
+    @job = Job.find(params[:id])
+  end
+
+  def forward_job 
+    recipient_email = params[:email_info][:email]
+    email_subject = params[:email_info][:subject]
+    job = Job.find(params[:job_id])
+    email_sender = current_user
+    
+    if JobMailer.forward_job(
+      recipient_email,
+      email_subject,
+      job,
+      email_sender
+      ).deliver
+      flash[:notice] = "Forwarded successfully"
+    else
+      flash[:notice] = "Please try again"
+    end
+    
+    redirect_to jobs_url
   end
   
   

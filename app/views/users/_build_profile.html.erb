@@ -7,6 +7,15 @@
 		<%= render 'shared/flash' %>		
 
 		<%= f.text_field :email, placeholder: 'Enter Email' %>
+
+		<%= f.text_field :fname, placeholder: 'First Name' %>
+		<%= f.text_field :lname, placeholder: 'Last Name' %>
+
+		<%= f.text_field :title, placeholder: 'Title' %>
+		<%= f.text_field :location, placeholder: 'Location' %>
+
+		<%= f.text_field :email, placeholder: 'Enter Email' %>
+
 		
 		<% if !@user.persisted? %>
 			<%= f.password_field :password, placeholder: 'Enter password' %>

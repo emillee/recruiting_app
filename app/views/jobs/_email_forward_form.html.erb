@@ -1,0 +1,9 @@
+<div class="forward-form">
+  <%= form_tag forward_job_url, method: :post do %>
+    <%= text_field_tag "email_info[email]", nil, placeholder: 'Enter email' %>
+    <%= text_field_tag "email_info[subject]", "Thought you might find this listing interesting! - #{current_user}" %>
+    <%= hidden_field_tag "job_id", @job.id %>
+
+    <%= submit_tag "Send" %>
+  <% end %>
+</div>

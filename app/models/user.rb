@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   
   validates :password, length: { minimum: 6, allow_nil: true }, unless: :guest?
   validates :email, presence: true, unless: :guest?
+  # validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   
   before_save { self.email = self.email.downcase unless self.email.nil? }
   before_create :create_session_token
@@ -12,6 +13,36 @@ class User < ActiveRecord::Base
   
   serialize :job_settings, Hash
   after_initialize :initialize_job_settings
+  
+  has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' },
+    default_url: '/images/:style/missing.png'
+  
+  belongs_to(
+    :employer,
+    class_name: 'Company',
+    foreign_key: :company_id,
+    primary_key: :id
+  )
+  
+  has_many(
+    :user_jobs,
+    class_name: 'UserJob',
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+  
+  has_many(
+    :jobs_applied_to,
+    through: :user_jobs,
+    source: :job_applied_to
+  )
+  
+  has_many(
+    :saved_jobs,
+    through: :user_jobs,
+    source: :job_saved
+  )
+
 
   
   # Sessions / Authentication------------------------------------------

@@ -15,6 +15,13 @@ class Company < ActiveRecord::Base
     primary_key: :id
   )
   
+  has_many(
+    :employees,
+    class_name: 'User',
+    foreign_key: :company_id,
+    primary_key: :id
+  )
+  
   include ApiCalls
   
   
@@ -26,7 +33,7 @@ class Company < ActiveRecord::Base
   def self.scopes
     [
       'page_available',
-      'unavailable',
+      'page_unavailable',
       'page_blank'
     ]
   end

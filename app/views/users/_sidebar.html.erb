@@ -1,0 +1,29 @@
+<div class="sidebar-wrapper user">
+	
+	<%= form_tag(companies_url, method: :get) do %>
+	
+		<!-- SEARCH KEYWORDS -->
+		<div class="search">
+			<div class="wrapper">
+				<input type="search" 
+							 name="company_search[keywords]" 
+							 placeholder="Enter keyword" id="sidebar-search">
+				<i class="fa fa-search"></i>
+			</div>
+		</div>
+		
+		<div class="sidebar-middle">
+			
+					
+		</div><!-- sidebar-middle -->
+		
+		<%= submit_tag "Submit" %>
+	<% end %>
+
+		
+	
+	<div class="clear">
+		<button id="clear-all">Clear All</button>
+	</div>
+	
+</div>

@@ -11,6 +11,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'kaminari'
+gem 'paperclip'
+gem 'rmagick'
+gem 'sendgrid'
 
 gem 'nokogiri'
 gem "mechanize", "~> 2.7.2"
@@ -36,8 +39,10 @@ gem 'amatch'
 # gem 'seed_dump'
 
 group :development do
+  gem 'letter_opener'
   gem 'better_errors'
   gem 'hirb'
+  gem 'spring'
 end
 
 group :test, :development do

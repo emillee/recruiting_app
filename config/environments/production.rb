@@ -77,4 +77,28 @@ Nytech::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  # Use sendgrid to send emails
+  config.action_mailer.smtp_settings = {
+    address: "smtp.sendgrid.net",
+    port: 25,
+    domain: 'wolfpackbeta.com',
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD']
+  }
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,6 +9,39 @@ class Job < ActiveRecord::Base
     primary_key: :id
   )
   
+  has_many(
+    :user_job_applicants,
+    class_name: 'UserJob',
+    foreign_key: :applied_job_id,
+    primary_key: :id
+  )
+  
+  has_many(
+    :users_that_saved_job,
+    class_name: 'UserJob',
+    foreign_key: :saved_job_id,
+    primary_key: :id
+  )
+   
+  has_many(
+    :saved_jobs,
+    class_name: 'UserJob',
+    foreign_key: :saved_job_id,
+    primary_key: :id
+  )
+  
+  has_many(
+    :applicants,
+    through: :user_job_applicants,
+    source: :user
+  )
+  
+  has_many(
+    :saved_users,
+    through: :users_that_saved_job,
+    source: :user
+  )
+  
   include Scrape
   include ImportData
   include RegexMethods

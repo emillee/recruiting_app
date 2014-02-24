@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217205732) do
+ActiveRecord::Schema.define(version: 20140222173116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,15 +61,30 @@ ActiveRecord::Schema.define(version: 20140217205732) do
     t.hstore "expert_phrases"
   end
 
+  create_table "user_jobs", force: true do |t|
+    t.integer "user_id"
+    t.integer "saved_job_id"
+    t.integer "applied_job_id"
+  end
+
   create_table "users", force: true do |t|
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
+    t.string   "email",               null: false
+    t.string   "password_digest",     null: false
     t.string   "session_token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "job_settings"
     t.boolean  "is_admin"
     t.boolean  "guest"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "fname"
+    t.string   "lname"
+    t.string   "title"
+    t.string   "location"
+    t.integer  "company_id"
   end
 
 end

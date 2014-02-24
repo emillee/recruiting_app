@@ -26,4 +26,11 @@ Nytech::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  
+  # Specity what domain to use for mailer URLs
+  config.action_mailer.default_url_options = { host: "localhost:3000" }
+
+  # To open emails in gem letter opener
+  config.action_mailer.delivery_method = :letter_opener
+  
 end

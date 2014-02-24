@@ -1,139 +1,143 @@
 <div class="sidebar-wrapper">
 	
-	<%= form_for current_user, remote: true, html: { id: "job-filter-form" } do |f| %>
+	<% if current_user %>
 	
-		<!-- SEARCH KEYWORDS -->
-		<div class="search">
-			<div class="wrapper">
-				<input type="search" 
-							 name="user[job_settings][keywords][]" 
-							 placeholder="Enter keyword" id="sidebar-search">
-				<i class="fa fa-search"></i>
-			</div>
-		</div>
-		
-		<div class="sidebar-middle">
-		
-			<!-- KEYWORDS -->
-			<div class="keywords-wrapper <%= "hidden" unless show_keywords? %>">
-				<h1 class="keywords">Search Words:</h1>
-				<ul class="job-filters keywords-ul">
-					<% if current_user.job_settings[:keywords] %>
-						<% current_user.job_settings[:keywords].each do |keyword| %>
-							<li class="job-sidebar keywords-li selected">
-								<%= keyword %>
-								<%= check_box_tag "user[job_settings][keywords][]", keyword, checked = true %>
-								<i class="fa fa-check"></i>
-							</li>
-						<% end %>
-					<% end %>
-				</ul>
-			</div>
-			
-			
-			<!-- DEPARTMENT -->
-			<div class="wrapper">
-				<h1 class="department">
-					Department:
-					<i class="fa fa-minus-circle hidden"></i>
-					<i class="fa fa-plus-square-o"></i>
-				</h1>
-				<ul class="job-filters">
-					<% Taxonomy.departments.each do |dept| %>
-						<% checked = dept_checked?(dept) %>
-						<li class="job-sidebar department <%= sel_or_hide(dept) %>">
-								<%= label_tag dept %>
-								<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
-							<i class="fa fa-check"></i>
-						</li>
-					<% end %>
-				</ul>
-			</div>
-		
-			<!-- SUB DEPT -->	
-			<div class="wrapper">
-				<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
-					Role:
-					<i class="fa fa-minus-circle department hidden"></i>
-					<i class="fa fa-plus-square-o department"></i>
-				</h1>
-				<ul class="job-filters">
-					<% return_sub_depts.each do |sub| %>
-						<% checked = sub_dept_checked?(sub) %>
-						<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
-							<%= label_tag sub %>
-							<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
-							<i class="fa fa-check sub_dept"></i>
-						</li>
-					<% end %>
-				</ul>
-			</div>	
-			
-			<!-- EXPERIENCE -->	
-			<% if current_user.job_settings[:dept] %>
+		<%= form_for current_user, remote: true, html: { id: "job-filter-form" } do |f| %>
+	
+			<!-- SEARCH KEYWORDS -->
+			<div class="search">
 				<div class="wrapper">
-					<h1 class="experience">
-						Experience (Yrs):
+					<input type="search" 
+								 name="user[job_settings][keywords][]" 
+								 placeholder="Enter keyword" id="sidebar-search">
+					<i class="fa fa-search"></i>
+				</div>
+			</div>
+		
+			<div class="sidebar-middle">
+		
+				<!-- KEYWORDS -->
+				<div class="keywords-wrapper <%= "hidden" unless show_keywords? %>">
+					<h1 class="keywords">Search Words:</h1>
+					<ul class="job-filters keywords-ul">
+						<% if current_user.job_settings[:keywords] %>
+							<% current_user.job_settings[:keywords].each do |keyword| %>
+								<li class="job-sidebar keywords-li selected">
+									<%= keyword %>
+									<%= check_box_tag "user[job_settings][keywords][]", keyword, checked = true %>
+									<i class="fa fa-check"></i>
+								</li>
+							<% end %>
+						<% end %>
+					</ul>
+				</div>
+			
+			
+				<!-- DEPARTMENT -->
+				<div class="wrapper">
+					<h1 class="department">
+						Department:
 						<i class="fa fa-minus-circle hidden"></i>
 						<i class="fa fa-plus-square-o"></i>
 					</h1>
 					<ul class="job-filters">
-						<% [['Internship', 0],
-								['Entry (0-1)', 1], 
-								['Junior (1-2)', 2], 
-								['Mid (2-3)', 3], 
-								['Experienced (3-5+)', 5], 
-								['Veteran (5+)', 8],
-								['Exec (10+)', 10]].each do |label, num_years| %>
-							<% checked = num_years_checked?(num_years) %>
-							<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
-								<%= label_tag "#{label}-#{label}", label %>
-								<%= check_box_tag "user[job_settings][experience][]", num_years, checked %>
+						<% Taxonomy.departments.each do |dept| %>
+							<% checked = dept_checked?(dept) %>
+							<li class="job-sidebar department <%= sel_or_hide(dept) %>">
+									<%= label_tag dept %>
+									<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
 								<i class="fa fa-check"></i>
 							</li>
 						<% end %>
 					</ul>
 				</div>
-			<% end %>
-			
-			<!-- KEY SKILLS -->				
-			<% if current_user.job_settings[:sub_dept] %>
+		
+				<!-- SUB DEPT -->	
 				<div class="wrapper">
-					<h1 class="key-skills">
-						Key Skills:
-						<i class="fa fa-minus-circle"></i>
-						<i class="fa fa-plus-square-o hidden"></i>
+					<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
+						Role:
+						<i class="fa fa-minus-circle department hidden"></i>
+						<i class="fa fa-plus-square-o department"></i>
 					</h1>
-					<ul class="job-filters key-skills">
-						<% Taxonomy.front_end_key_skills.each_with_index do |skill, index| %>
-							<div class="key-skills-wrapper">
-								<li class="job-sidebar key-skills">
-									<%= label_tag skill %>
-								</li>
-							
-								<div class="degree-wrapper">
-									<% Taxonomy.key_skill_degrees[index].each do |degree| %>
-										<% checked = key_skill_checked?(degree) %>
-										<li class="degree <%= 'selected' if checked %>">
-											<%= label_tag degree %>
-											<%= check_box_tag "user[job_settings][key_skills][]", degree, checked %>
-										</li>
-									<% end %>
-								</div>
-							</div>
+					<ul class="job-filters">
+						<% return_sub_depts.each do |sub| %>
+							<% checked = sub_dept_checked?(sub) %>
+							<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
+								<%= label_tag sub %>
+								<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
+								<i class="fa fa-check sub_dept"></i>
+							</li>
 						<% end %>
 					</ul>
-				</div>
+				</div>	
+			
+				<!-- EXPERIENCE -->	
+				<% if current_user.job_settings[:dept] %>
+					<div class="wrapper">
+						<h1 class="experience">
+							Experience (Yrs):
+							<i class="fa fa-minus-circle hidden"></i>
+							<i class="fa fa-plus-square-o"></i>
+						</h1>
+						<ul class="job-filters">
+							<% [['Internship', 0],
+									['Entry (0-1)', 1], 
+									['Junior (1-2)', 2], 
+									['Mid (2-3)', 3], 
+									['Experienced (3-5+)', 5], 
+									['Veteran (5+)', 8],
+									['Exec (10+)', 10]].each do |label, num_years| %>
+								<% checked = num_years_checked?(num_years) %>
+								<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
+									<%= label_tag "#{label}-#{label}", label %>
+									<%= check_box_tag "user[job_settings][experience][]", num_years, checked %>
+									<i class="fa fa-check"></i>
+								</li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+			
+				<!-- KEY SKILLS -->				
+				<% if current_user.job_settings[:sub_dept] %>
+					<div class="wrapper">
+						<h1 class="key-skills">
+							Key Skills:
+							<i class="fa fa-minus-circle"></i>
+							<i class="fa fa-plus-square-o hidden"></i>
+						</h1>
+						<ul class="job-filters key-skills">
+							<% Taxonomy.front_end_key_skills.each_with_index do |skill, index| %>
+								<div class="key-skills-wrapper">
+									<li class="job-sidebar key-skills">
+										<%= label_tag skill %>
+									</li>
+							
+									<div class="degree-wrapper">
+										<% Taxonomy.key_skill_degrees[index].each do |degree| %>
+											<% checked = key_skill_checked?(degree) %>
+											<li class="degree <%= 'selected' if checked %>">
+												<%= label_tag degree %>
+												<%= check_box_tag "user[job_settings][key_skills][]", degree, checked %>
+											</li>
+										<% end %>
+									</div>
+								</div>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+			
+			
+				<%= f.submit "Submit" %>
 			<% end %>
 			
-			
-			<%= f.submit "Submit" %>
-		<% end %>
-			
-	</div>
+		</div>
 	
-	<div class="clear">
-		<button id="clear-all">Clear All</button>
-	</div>
+		<div class="clear">
+			<button id="clear-all">Clear All</button>
+		</div>
+
+	<% end %>
 	
 </div>

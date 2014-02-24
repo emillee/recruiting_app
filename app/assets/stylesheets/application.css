@@ -19,6 +19,9 @@
  *= require companies
  *= require kaminari
  *= require jquery.ui.all
+ *= require paper
+ *= require business_card
+ *= require arrow
  */
  
  
