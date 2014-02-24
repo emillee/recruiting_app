@@ -14,7 +14,9 @@
 					<% if job.description %>
 						<p><%= job.description.split(' ')[0..25].join(' ') unless job.description %>...</p>
 					<% else %>
-						<p><%= job.full_text.split(' ')[0..25].join(' ') unless job.full_text %>...</p>
+						<% if job.full_text %>
+							<p><%= job.full_text.split(' ')[0..25].join(' ') unless job.full_text %>...</p>
+						<% end %>
 					<% end %>
 				</div>
 				<% if job.listing_company %>
