@@ -1,5 +1,7 @@
 class JobMailer < ActionMailer::Base
   
+  include Sendgrid
+  
   default from: 'default@default.com'
   
   def forward_job(recipient_email, email_subject, job, email_sender)
