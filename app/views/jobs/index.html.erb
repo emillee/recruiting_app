@@ -12,9 +12,9 @@
 						<h1><%= job.title %> <%= job.id %></h1>
 					</a>
 					<% if job.description %>
-						<p><%= job.description.split(' ')[0..25].join(' ') %>...</p>
+						<p><%= job.description.split(' ')[0..25].join(' ') unless job.description %>...</p>
 					<% else %>
-						<p><%= job.full_text.split(' ')[0..25].join(' ') %>...</p>
+						<p><%= job.full_text.split(' ')[0..25].join(' ') unless job.full_text %>...</p>
 					<% end %>
 				</div>
 				<% if job.listing_company %>
