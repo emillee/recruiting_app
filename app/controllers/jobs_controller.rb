@@ -6,9 +6,9 @@ class JobsController < ApplicationController
   
   def index
     if current_user && !current_user.job_settings.blank?
-      @jobs = Job.search(current_user.job_settings).page(params[:page]).per(5)
+      @jobs = Job.search(current_user.job_settings).page(params[:page]).per(10)
     else
-      @jobs = Job.all.page(params[:page]).per(5)
+      @jobs = Job.all.page(params[:page]).per(10)
       respond_to do |format|
         format.html
         format.csv { render text: @jobs.to_csv }
@@ -94,6 +94,9 @@ class JobsController < ApplicationController
     end
     
     redirect_to jobs_url
+  end
+  
+  def flipboard
   end
   
   

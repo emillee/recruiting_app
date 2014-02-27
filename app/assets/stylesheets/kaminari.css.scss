@@ -1,5 +1,7 @@
 /* pagination (base.css) */
 
+.kaminari-wrapper {
+
 nav.pagination {
   height: 30px;
 //  margin-top: 15px;
@@ -68,7 +70,7 @@ nav.pagination {
 //  }
 }
  
-.pagination a,span.page {
+.pagination a,span.k-page {
   float: left;
 }
  
@@ -125,4 +127,6 @@ nav.pagination {
 .pagination a:active {
 //  background-image: url("/assets/web-app-theme/themes/default/images/button-background-active.png");
   outline: none;
+}
+
 }

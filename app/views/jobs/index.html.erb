@@ -36,7 +36,9 @@
 		<% end %>
 	</ul>
 	
-	<%= paginate @jobs %>
+	<div class="kaminari-wrapper">
+		<%= paginate @jobs %>
+	</div>
 </div>
 
 <div class="jobs-background"></div>

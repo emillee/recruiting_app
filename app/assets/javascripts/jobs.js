@@ -1,6 +1,6 @@
 var ready;
 
-ready = function() {
+ready = $('.jobs.index').ready(function() {
   
   $('.best_in_place').best_in_place();
 
@@ -48,7 +48,7 @@ ready = function() {
   });
   
 
-};
+});
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

@@ -15,6 +15,9 @@
 //= require jquery.ui.autocomplete
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery-readyselector
+//= require navbar
+//= require sidebar
 //= require jquery.purr
 //= require best_in_place
 //= require_tree .

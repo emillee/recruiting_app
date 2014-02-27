@@ -27,14 +27,16 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'rails_12factor', group: :production
 
 gem "classifier", "~> 1.3.4"
-# gem 'gsl'
 gem 'amatch'
+
+# FLIPBOARD
+# gem "jquery-tmpl-rails"
+
+# gem 'gsl'
 # gem 'treat'
 # gem 'fuzzy_match'
 # gem 'madeleine'
 # gem 'tf_idf'
-
-
 # gem "anemone", "~> 0.7.2"
 # gem 'seed_dump'
 

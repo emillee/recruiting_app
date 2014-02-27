@@ -24,6 +24,8 @@ module Nytech
     
     config.assets.paths << "app/assets/templates"
     
+    config.assets.precompile += [Rails.root.to_s + '/vendor/assets/javascripts/*.js']
+    
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end

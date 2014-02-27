@@ -4,6 +4,7 @@ div.jobs-wrapper {
   top: 100px;
   left: 275px;
   background-color: rgba(255,255,255,.35);
+  overflow: scroll;
   
   ul.job-posts {
     width: 900px;
@@ -55,7 +56,7 @@ div.jobs-wrapper {
     img {
       margin-top: 25px;
       margin-right: 7px;
-      height: 70px;
+      height: 60px;
       float: right;
       display: inline-block;
       border-radius: 1px;
@@ -72,7 +73,7 @@ div.jobs-wrapper {
     .action-items {
       width: 900px;
       float: left;
-      margin-top: 25px;
+      margin-top: 35px;
       
       a {
         float: left;

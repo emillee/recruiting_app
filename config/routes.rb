@@ -15,6 +15,7 @@ Nytech::Application.routes.draw do
     member { post :import_data }
     member { put :update_key_skills }
     member { get :forward_form }
+    collection { get :flipboard }
   end
   
   namespace :admin do 
