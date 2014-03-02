@@ -3,20 +3,249 @@
   height: 2000px;
 //  background-color: blue;
   
-  .sidebar-wrapper {
+  div.sidebar-wrapper {
+    margin-top: 75px;
     margin-left: 0px;
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    font-family: 'Lato', sans-serif;
+    border: 1px solid black;
+    background-color: #333332;
+  
+    // SEARCH FORM
+    .search {
+      background-color: black;
+      height: 50px;
+      display: block;
+        
+      input {
+        top: 11px;
+        left: 16px;
+        border: none;
+        height: 22px;
+        border-radius: 2px;
+        width: 160px;
+        color: black;
+        position: relative;
+        margin-left: 4px;
+        background-color: rgba(255,255,255,.25);
+      
+        &:hover {
+          background-color: white;
+          border: 2px solid rgba(52,152,219,.5);
+        }
+      }
+
+      i.fa-search {
+        position: absolute;
+        top: 12px;
+        right: 22px;
+        color: white;
+        background-color: rgba(0,0,0,.2);
+        line-height: 18px;
+        width: 20px;
+        text-align: center;
+        border-radius: 2px;
+        padding: 1px;
+      }
+    }
+  
+    // MIDDLE PORTION
+    .sidebar-middle {
+      height: 100%;
+      overflow: auto;
+      position: relative;
+      cursor: pointer;
     
-    * {
-    	-webkit-box-sizing: content-box;
-    	-moz-box-sizing: content-box;
-    	box-sizing: content-box;      
+      // CATEGORIES
+      h1 {
+        background-color: rgba(255,255,255,.05);
+        font-size: 16px; 
+        text-indent: 15px;
+        line-height: 30px;
+        color: rgba(255,255,255,.75);
+        text-transform: uppercase; 
+        position: relative;
+      
+        i {
+          font-size: 12px;
+          position: absolute;
+          top: 9px;
+          right: 12px;
+        }
+      }
+    
+      // BULLET POINTS
+      li.job-sidebar {
+        text-indent: 18px;
+        line-height: 30px;
+        color: rgba(230,230,230,.9);
+        text-transform: capitalize;
+
+        i {
+          position: absolute;
+          right: 10px;
+          margin-top: 7px;
+          display: none; 
+        }
+
+        &:hover, &.selected {
+          background-color: rgba(46, 204, 113, .25); 
+          color: white;
+
+          i {
+            display: inline-block;
+            opacity: .75;
+            color: white;
+            font-size: 13px;
+          }
+        }
+      }
+    
+      // KEY SKILLS
+      ul.key-skills {
+        cursor: auto;
+      
+        div.key-skills-wrapper {
+          height: 30px;
+          width: 100%;
+          border-bottom: 1px solid rgba(0,0,0,.15);
+          background-color: rgba(255,255,255,.15);
+        
+          &:hover, &.selected {
+            background-color: rgba(46, 204, 113, 0); 
+            color: rgba(26,26,26,1);
+          }
+        
+          div.degree-wrapper {
+            display: inline;
+            float: right;
+            height: 20px;
+            width: 65px;
+            padding: 5px;
+
+            li.degree {
+              cursor: pointer;
+              float: left;
+              height: 18px;
+              width: 18px;
+              text-indent: 100%;
+              white-space: nowrap;
+              overflow: hidden;
+            }
+
+            li.degree:nth-of-type(1) {
+              background-color: rgba(86,218,113,.35);
+            
+              &:hover {
+                background-color: rgba(86,218,113,.75);              
+              }
+            
+              &.selected {
+                background-color: rgba(86,218,113,1);
+
+                &:hover {
+                  background-color: rgba(86,218,113,.75);              
+                }              
+              }
+            }
+
+            li.degree:nth-of-type(2) {
+              background-color: rgba(26,209,26,.35);
+
+              &:hover {
+                background-color: rgba(26,209,26,.75);              
+              }
+                        
+              &.selected {
+                background-color: rgba(26,209,26,1);         
+              
+                &:hover {
+                  background-color: rgba(26,209,26,.75);              
+                }
+              }            
+            }
+
+            li.degree:nth-of-type(3) {
+              background-color: rgba(25,178,75,.35);
+
+              &:hover {
+                background-color: rgba(25,178,75,.75);        
+              }
+                        
+              &.selected {
+                background-color: rgba(25,178,75,1);
+              
+                &:hover {
+                  background-color: rgba(25,178,75,.75);        
+                }       
+              }
+            }
+          }
+        }
+      
+        li.key-skills {
+          display: inline;
+          width: 125px;
+          float: left;
+          background-color: none;
+
+          &:hover, &.selected {
+            background-color: rgba(0,0,0,0);
+          }
+        }
+
+      }
+
+    }
+  
+    // CLEAR PORTION
+    .clear {
+      background-color: black;
+      height: 65px;
+      position: fixed;
+      left: 0px;
+      bottom: 10px;
+      width: 200px;
+      
+  
+      #clear-all {
+        border: none;
+//        margin-top: 20px;
+//        margin-left: 15px;
+        height: 25px;
+        width: 168px;
+        border: 3px solid #7f8c8d;
+        color: #2c3e50;
+        background-color: #bdc3c7;
+        cursor: pointer;
+    
+        &:hover {
+          border: 3px solid #bdc3c7;
+          color: white;
+          background-color: #7f8c8d;
+        };
+    
+        &:focus {
+          outline: none;
+        };
+      }
+    }
+  
+    input[type='checkbox'], input[type='submit'] {
+      display: none;
     }
   }
+
 }
+
+// DELETE ABOVE AFTER DEMO
 
 .flipboard-wrapper {
   position: absolute;
   top: 75px;
+  left: 200px;
 }
 
 .container {
@@ -127,7 +356,7 @@
 }
 
 .page.cover .front .content {
-	background: #ddd url(../images/cover.jpg) no-repeat center center;
+	background: #ddd url(../app_images/empirestate.jpeg) no-repeat center center;
 	background-size: cover;
 }
 
@@ -306,12 +535,18 @@ a.f-ref{
   	display: block;
   	position: relative;
   	padding-bottom: 30px;
+  	
+    // EDIT
+    margin-top: -20px;
   }
 
   h3 {
   	padding: 10px 0px;
   	margin: 0;
   	font-size: 18px;
+  	
+  	// added
+  	line-height: 25px;
 
     span{
     	display: block;
@@ -382,19 +617,51 @@ a.f-ref{
 }
 
 .img-8 {
-	background-image: url(../images/8.jpg);
+	background-image: url(../flip/8.jpg);
 }
 
 .img-9 {
 	background-image: url(../images/9.jpg);
 }
 
-.w-25{ width: 25%; }
-.w-30{ width: 30%; }
+// edited below
+.w-25 { 
+  width: 25%; 
+
+  img {
+	  width: 99%;	  
+	}
+}
+.w-50{ 
+  width: 50%; 
+
+  img {
+	  width: 99%;	  
+	}
+}
+
+.w-70{ 
+  width: 70%;
+  background-color: rgba(253,253,253,1);
+  
+  img {
+    width: 95%;
+    margin-top: 80px;
+  }
+}
+
+.w-30{ 
+  width: 30%; 
+  
+  img {
+    width: 95%;
+  }
+}
+// edited ^
+
 .w-40{ width: 40%; }
-.w-50{ width: 50%; }
 .w-60{ width: 60%; }
-.w-70{ width: 70%; }
+
 .w-75{ width: 75%; }
 .w-100{ width: 100%; }
 

@@ -26,8 +26,8 @@ gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquer
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'rails_12factor', group: :production
 
-gem "classifier", "~> 1.3.4"
-gem 'amatch'
+# gem "classifier", "~> 1.3.4"
+# gem 'amatch'
 
 # FLIPBOARD
 # gem "jquery-tmpl-rails"
@@ -43,8 +43,8 @@ gem 'amatch'
 group :development do
   gem 'letter_opener'
   gem 'better_errors'
-  gem 'hirb'
   gem 'spring'
+  # gem 'hirb'
 end
 
 group :test, :development do

@@ -67,4 +67,13 @@ module JobsHelper
 	  sub_dept_arr.sort!
 	end
 	
+	def has_saved_job?(job)
+	  return true if current_user.saved_jobs.include?(job)
+	  return false
+  end
+  
+  def has_viewed_job?(job)
+    return true if current_user.jobs_viewed.include?(job)
+  end
+	
 end

@@ -2,32 +2,50 @@
 
 <div class="jobs-wrapper">
 	
+	<div class="top-bar">
+		<%= link_to 'Viewed Jobs', '#' %>	
+		<%= link_to 'Saved Jobs', '#' %>
+	</div>
+
+	
 	<ul class="job-posts">
 		<% @jobs.each do |job| %>		
 			<li>
 				
 				<div class="description">
 					<a href="<%= job.link %>" target="_blank">
-						<h1><%= job.title %> <%= job.id %></h1>
+						<h1><%= job.title %> <span>at</span> <%= job.listing_company.name %> </h1>
 					</a>
 					<% if job.description %>
-						<p><%= job.description.split(' ')[0..25].join(' ') unless job.description.nil? %>...</p>
+						<p>(<%= job.id %>) <%= job.description.split(' ')[0..25].join(' ') unless job.description.nil? %>...</p>
 					<% else %>
 						<% if job.full_text %>
-							<p><%= job.full_text.split(' ')[0..25].join(' ') unless job.full_text.nil? %>...</p>
+							<p>(<%= job.id %>) <%= job.full_text.split(' ')[0..25].join(' ') unless job.full_text.nil? %>...</p>
 						<% end %>
 					<% end %>
+					
+					<div class="action-items">
+						<% viewed_text = has_viewed_job?(job) ? "Viewed already" : "View Listing!" %>
+						<% viewed_class = has_viewed_job?(job) ? "viewed" : "view" %>
+						<% saved_text = has_saved_job?(job) ? "Saved" : "Save for Later" %>						
+						<% saved_class = has_saved_job?(job) ? "saved" : "save" %>
+						<%= link_to viewed_text, job.link, target: "_blank", class: viewed_class,
+						 			data: { user_id: current_user.id, applied_job_id: job.id }%>
+						<%= link_to 'Forward', '#', class: 'forward', data: { id: job.id } %>
+						<%= link_to saved_text, user_jobs_url(user_id: current_user.id, 
+									saved_job_id: job.id), class: saved_class, remote: true, method: :post %>
+					</div>
 				</div>
-				<% if job.listing_company %>
-					<img src='<%= asset_path("/assets/company_icons/#{job.listing_company.name.downcase}" + ".jpeg") %>' />
-				<% end %>
-
-				<div class="action-items">
-					<%= link_to 'View Listing!', job.link, target: "_blank", class: "apply",
-					 			data: { user_id: current_user.id, applied_job_id: job.id }%>
-					<%= link_to 'Forward', '#', class: 'forward', data: { id: job.id } %>
-					<%= link_to 'Save for Later', user_jobs_url(user_id: current_user.id, 
-								saved_job_id: job.id), class: "save", remote: true, method: :post %>
+				
+				<div class="company-section">
+					<% if job.listing_company %>
+						<img src='<%= asset_path("/assets/company_icons/#{job.listing_company.name.downcase}" + ".jpeg") %>' />
+						<div class="overview">
+							<%= job.listing_company.overview %>
+						</div>
+					<% else %>
+						<%= job.listing_company.name %>
+					<% end %>
 				</div>
 				
 			</li>

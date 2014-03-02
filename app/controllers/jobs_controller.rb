@@ -97,6 +97,15 @@ class JobsController < ApplicationController
   end
   
   def flipboard
+    if current_user && !current_user.job_settings.blank?
+      @jobs = Job.search(current_user.job_settings).page(params[:page]).per(11)
+    else
+      @jobs = Job.all.page(params[:page]).per(11)
+      respond_to do |format|
+        format.html
+        format.csv { render text: @jobs.to_csv }
+      end      
+    end
   end
   
   

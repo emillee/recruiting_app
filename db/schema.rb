@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224232946) do
+ActiveRecord::Schema.define(version: 20140302185524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20140224232946) do
     t.string   "city"
     t.integer  "twitter_followers"
     t.string   "career_page_link"
+    t.integer  "year_founded"
+    t.text     "overview"
   end
 
   create_table "jobs", force: true do |t|
@@ -91,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140224232946) do
     t.string   "title"
     t.string   "location"
     t.integer  "company_id"
+    t.hstore   "job_filters"
   end
 
 end

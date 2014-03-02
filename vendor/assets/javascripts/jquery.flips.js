@@ -161,7 +161,7 @@
 						theClass				: 'page',
 						theContentFront			: $page.html(),
 						theContentBack			: ( i !== this.pagesCount ) ? this.$pages.eq( i + 1 ).html() : '',
-						theStyle				: 'z-index: ' + ( this.pagesCount - i ) + ';left: ' + ( this.windowProp.width / 2 + f_sidebar_length ) + 'px;',
+						theStyle				: 'z-index: ' + ( this.pagesCount - i ) + ';left: ' + ( this.windowProp.width / 2 ) + 'px;',
 						theContentStyleFront	: 'width:' + this.windowProp.width + 'px;',
 						theContentStyleBack		: 'width:' + this.windowProp.width + 'px;'
 					};

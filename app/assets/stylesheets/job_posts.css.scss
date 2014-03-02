@@ -6,6 +6,22 @@ div.jobs-wrapper {
   background-color: rgba(255,255,255,.35);
   overflow: scroll;
   
+  .top-bar {
+    text-indent: 10px;
+    line-height: 30px;
+    background-color: rgba(0,0,0,.5);
+    margin-bottom: 10px;
+    margin-top: -5px;
+    color: rgba(230,230,230,1);
+    font-family: 'Lato';
+    
+    a {
+      color: white;
+      background-color: black;
+      padding: 5px;
+    }
+  }
+  
   ul.job-posts {
     width: 900px;
 
@@ -41,7 +57,7 @@ div.jobs-wrapper {
     }
     
     li {
-      height: 130px;
+      height: 165px;
       border-bottom: 4px solid rgba(0,0,0,.25);
       background-color: rgba(255,255,255,.9);
       padding: 5px;
@@ -53,71 +69,124 @@ div.jobs-wrapper {
       }
     }
     
-    img {
-      margin-top: 25px;
-      margin-right: 7px;
-      height: 60px;
+    .company-section {
+      background-color: rgba(250,250,250,1);      
+      height: 155px;
+      width: 300px;
+      margin-right: 3px;
       float: right;
       display: inline-block;
-      border-radius: 1px;
+      text-align: center;
+      margin-top: 5px;    
+      position: relative;
+      
+      img {
+        display: inline-block;
+        max-height: 50%;
+        max-width: 80%;
+        margin-top: 15px; 
+      }
+      
+      .overview {
+        position: absolute;
+        bottom: 0;
+        height: 38px;
+//        background-color: gray;
+        text-align: left;
+        padding: 20px;          
+        font-size: 15px;
+        line-height: 19px;
+        
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
     }
     
     .description {
       line-height: 25px;
       float: left;
-      height: 80px;
       width: 550px;
       margin-left: 5px;
-    }
-    
-    .action-items {
-      width: 900px;
-      float: left;
-      margin-top: 35px;
       
-      a {
-        float: left;
-        display: inline-block;
-        margin-left: 8px;
-        margin-top: -13px;
-//        background-color: rgba(255,255,255,.4);  
-        cursor: pointer;
-        font-size: 12px;
-        padding: 3px 5px;
-        font-weight: 500;
-                        
-        &:nth-of-type(1) {
-          border: 3px solid #34495e;
-          color: #34495e;   
+      h1 {
+        line-height: 30px;
+        font-size: 18px;
+      }
+            
+      p {
+        color: #555555;
+        font-size: 16px;
+        background-color: rgba(255,255,255,1);
+        height: 130px;
+        margin-top: 5px;
+      }
+      
+      .action-items {
+        width: 300px;
+  //      float: left;
+        margin-top: -15px;
+
+        a {
+          float: left;
+          display: inline-block;
+          margin-left: 5px;
+          margin-top: -15px;
+  //        background-color: rgba(255,255,255,.4);  
+          cursor: pointer;
+          font-size: 12px;
+          padding: 3px 5px;
+          font-weight: 500;
+          line-height: 16px;
           
-          &:hover {
+          &.view {
+            border: 3px solid #34495e;
+            color: #34495e;   
+            
+            &:hover {
+              background-color: #34495e;
+              color: white;
+            }
+          }
+          
+          &.viewed {
+            border: 3px solid #34495e;
             background-color: #34495e;
             color: white;
           }
-        };
+          
+          &:nth-of-type(2) {
+            border: 3px solid #8e44ad;
+            color: #8e44ad;   
 
-        &:nth-of-type(2) {
-          border: 3px solid #8e44ad;
-          color: #8e44ad;   
-          
-          &:hover {
-            background-color: #8e44ad;
-            color: white;
+            &:hover {
+              background-color: #8e44ad;
+              color: white;
+            }
+          };
+
+          &.save {
+            border: 3px solid #2980b9;          
+            color: #2980b9;   
+
+            &:hover {
+              background-color: #2980b9;
+              color: white;
+            }
           }
-        };
-        
-        &:nth-of-type(3) {
-          border: 3px solid #2980b9;          
-          color: #2980b9;   
           
-          &:hover {
+          &.saved {
+            border: 3px solid #2980b9;
             background-color: #2980b9;
             color: white;
-          }
+          }          
         }
       }
-    
     }
+    
+
+    
+
 
     h1 {
       font-size: 20px;
@@ -127,11 +196,7 @@ div.jobs-wrapper {
       background-color: rgba(255,255,255,1);
     }
     
-    p {
-      color: #555555;
-      font-size: 16px;
-      background-color: rgba(255,255,255,1);
-    }
+
 
   }
   

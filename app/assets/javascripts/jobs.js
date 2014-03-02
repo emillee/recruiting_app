@@ -32,11 +32,16 @@ ready = $('.jobs.index').ready(function() {
   
   
   // SAVING AND APPLYING TO JOBS
-  $('ul.job-post').on('click', '.save', function(event) {
-    event.preventDefault();
+  $('ul.job-posts').on('click', '.save', function(event) {
+    this.innerHTML = 'Saved';
+    $(this).addClass('saved');
+    $(this).removeClass('save');
   });
 
-  $('ul.job-posts').on('click', '.apply', function(event) {
+  $('ul.job-posts').on('click', '.view', function(event) {
+    this.innerHTML = 'Viewed';
+    $(this).addClass('viewed');
+    $(this).removeClass('view');
     var user_id = $(this).data('user-id')
     var job_id = $(this).data('applied-job-id')
     var this_url = "/user_jobs" + "?" + "applied_job_id=" + job_id + "&" + "user_id=" + user_id

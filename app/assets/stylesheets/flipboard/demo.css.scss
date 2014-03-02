@@ -6,6 +6,7 @@
 
 
 body.jobs.flipboard{
+  left: 200px;
   
   * {
   	-webkit-box-sizing: border-box;
@@ -13,7 +14,7 @@ body.jobs.flipboard{
   	box-sizing: border-box;
   }
 
-  background: #ddd url(../images/fabric_plaid.png) repeat top left;    
+  background: #ddd url(../flip/fabric_plaid.png) repeat top left;    
   font-family: 'Open Sans Condensed','Arial Narrow', serif;
   font-weight: 400;
   font-size: 15px;
@@ -39,8 +40,8 @@ body.jobs.flipboard{
   .main-title {
     
     // EL added
-  	left: 250px;
-  	top: 75px;
+  	left: 25px;
+  	top: 50px;
     
   	position: absolute;
   	z-index: -1;

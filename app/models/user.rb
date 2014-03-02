@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   )
   
   has_many(
-    :jobs_applied_to,
+    :jobs_viewed,
     through: :user_jobs,
     source: :job_applied_to
   )

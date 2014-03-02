@@ -8,6 +8,7 @@ module ApiCalls
     
     begin
       response = HTTParty.get(base_uri + name + request_uri)
+      response = JSON.parse(response.body)
     rescue
       nil
     end
@@ -16,6 +17,8 @@ module ApiCalls
       company = Company.find_by_name(response["name"])
       if company
         company.num_employees = response["number_of_employees"]
+        company.year_founded = response["founded_year"]
+        company.overview = ActionView::Base::full_sanitizer.sanitize(response["overview"])
         company.total_money_raised = response["total_money_raised"]
         company.twitter_username = response["twitter_username"]
         company.category_code = response["category_code"]

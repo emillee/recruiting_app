@@ -57,7 +57,7 @@ class CompaniesController < ApplicationController
 	private
 	
   	def company_params
-  		params.require(:company).permit(:name, :total_money_raised, :num_employees, :career_page_link)
+  		params.require(:company).permit(:name, :total_money_raised, :num_employees, :career_page_link, :overview, :year_founded)
   	end
 	
 end
