@@ -96,7 +96,7 @@ class JobsController < ApplicationController
     redirect_to jobs_url
   end
   
-  def flipboard
+  def flip_view
     if current_user && !current_user.job_settings.blank?
       @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(10).order('years_exp DESC')
     else

@@ -10,6 +10,7 @@ gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
+
 gem 'kaminari'
 gem 'paperclip'
 gem 'rmagick'
@@ -17,27 +18,29 @@ gem 'sendgrid'
 
 gem 'nokogiri'
 gem "mechanize", "~> 2.7.2"
-gem 'omniauth-twitter'
 gem 'httparty'
 gem 'figaro'
-gem 'twitter'
+
 gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'rails_12factor', group: :production
 
+# SOCIAL GEMS
+gem 'twitter'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
+# ML GEMS
 # gem "classifier", "~> 1.3.4"
 # gem 'amatch'
-
-# FLIPBOARD
-# gem "jquery-tmpl-rails"
-
 # gem 'gsl'
 # gem 'treat'
 # gem 'fuzzy_match'
 # gem 'madeleine'
 # gem 'tf_idf'
 # gem "anemone", "~> 0.7.2"
+
 # gem 'seed_dump'
 
 group :development do

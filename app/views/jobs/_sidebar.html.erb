@@ -128,7 +128,10 @@
 					</div>
 				<% end %>
 			
-			
+				<% if request.env['PATH_INFO'] == '/jobs/flip_view' %>
+					<%= hidden_field_tag 'flip-viewer', 'req_from_flip_view' %>
+				<% end %>
+				
 				<%= f.submit "Submit" %>
 			<% end %>
 			

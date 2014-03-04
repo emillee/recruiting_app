@@ -22,7 +22,7 @@
  *= require paper
  *= require business_card
  *= require arrow
- *= require_directory ./flipboard
+ *= require_directory ./flip_view
  */
  
  

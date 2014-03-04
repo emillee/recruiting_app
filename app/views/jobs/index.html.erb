@@ -5,6 +5,8 @@
 	<div class="top-bar">
 		<%= link_to 'Viewed Jobs', '#' %>	
 		<%= link_to 'Saved Jobs', '#' %>
+		
+		<span class="view-options"><%= link_to 'Flip View', flip_view_jobs_url %></span>
 	</div>
 
 	
@@ -25,7 +27,7 @@
 					<% end %>
 					
 					<div class="action-items">
-						<% viewed_text = has_viewed_job?(job) ? "Viewed already" : "View Listing!" %>
+						<% viewed_text = has_viewed_job?(job) ? "Viewed" : "View Listing!" %>
 						<% viewed_class = has_viewed_job?(job) ? "viewed" : "view" %>
 						<% saved_text = has_saved_job?(job) ? "Saved" : "Save for Later" %>						
 						<% saved_class = has_saved_job?(job) ? "saved" : "save" %>

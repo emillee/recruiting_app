@@ -7,7 +7,7 @@
 	  <%= csrf_meta_tags %>
 	
 		<!-- FLIPBOARD -->
-		<% if request.env['PATH_INFO'] == "/jobs/flipboard" %>
+		<% if request.env['PATH_INFO'] == "/jobs/flip_view" %>
 			<script type="text/javascript" src="../assets/modernizr.custom.08464.js"></script>
 			<script id="pageTmpl" type="text/x-jquery-tmpl">
 				<div class="${theClass}" style="${theStyle}">
@@ -26,7 +26,7 @@
 						</div>
 					</div>
 				</div>
-		</script>
+			</script>
 		<% end %>
 		<!-- FLIPBOARD -->
 		

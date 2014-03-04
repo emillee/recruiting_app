@@ -15,7 +15,7 @@ Nytech::Application.routes.draw do
     member { post :import_data }
     member { put :update_key_skills }
     member { get :forward_form }
-    collection { get :flipboard }
+    collection { get :flip_view }
   end
   
   namespace :admin do 
@@ -29,7 +29,7 @@ Nytech::Application.routes.draw do
   match '/filters',     to: 'jobs#filters', via: :get
   match '/forward_job', to: 'jobs#forward_job', via: :post
   
-  match '/auth/:provider/callback', to: 'session#create', via: :get
+  match '/auth/:provider/callback', to: 'sessions#create', via: :get
    
   root to: 'jobs#root_action'
 end
