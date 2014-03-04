@@ -25,11 +25,9 @@
   // EDITED HERE AND SUBTRACTED FROM WIDTH BELOW
   var f_sidebar_length = 200;
   
-	$.Flips 			= function( options, element ) {
-	
+	$.Flips = function( options, element ) {
 		this.$el	= $( element );
 		this._init( options );
-		
 	};
 	
 	$.Flips.defaults 	= {
@@ -38,9 +36,9 @@
 		current				: 0
 	};
 	
-	$.Flips.prototype 	= {
-		_init 				: function( options ) {
-			
+	$.Flips.prototype = {
+	  
+		_init : function( options ) {
 			this.options 		= $.extend( true, {}, $.Flips.defaults, options );
 			this.$pages			= this.$el.children( 'div.f-page' );
 			this.pagesCount		= this.$pages.length;
@@ -53,109 +51,77 @@
 			this._initTouchSwipe();
 			this._loadEvents();
 			this._goto();
-			
 		},
-		_validateOpts		: function() {
-			
-			if( this.currentPage < 0 || this.currentPage > this.pagesCount ) {
-			
-				this.currentPage = 0;
-			
-			}
 		
+		_validateOpts	: function() {
+			if( this.currentPage < 0 || this.currentPage > this.pagesCount ) {
+				this.currentPage = 0;
+			}
 		},
+		
 		_getWinSize			: function() {
-			
 			var $win = $( window );
-			
 			
 			// SUBTRACTED f_sidebar_length here
 			this.windowProp = {
 				width	: $win.width() - f_sidebar_length,
 				height	: $win.height()
 			};
-		
 		},
-		_goto				: function() {
-			
+		
+		_goto				: function() {	
 			var page = ( this.state === undefined ) ? this.currentPage : this.state;
-			
 			if( !this._isNumber( page ) || page < 0 || page > this.flipPagesCount ) {
-			
 				page = 0;
-			
 			}
-			
 			this.currentPage = page;
-			
 		},
+		
 		_getState			: function() {
-		
 			this.state = this.History.getState().url.queryStringToJSON().page;
-			
 		},
+		
 		_isNumber			: function( n ) {
-		
 			return parseFloat( n ) == parseInt( n ) && !isNaN( n ) && isFinite( n );
-		
 		},
-		_adjustLayout		: function( page ) {
 		
+		_adjustLayout		: function( page ) {
 			var _self = this;
-			
 			this.$flipPages.each( function( i ) {
-				
 				var $page	= $(this);
-				
 				if( i === page - 1 ) {
-				
 					$page.css({
 						'-webkit-transform'	: 'rotateY( -180deg )',
 						'-moz-transform'	: 'rotateY( -180deg )',
 						'z-index'			: _self.flipPagesCount - 1 + i
 					});
-				
-				}
-				else if( i < page ) {
-				
+				} else if( i < page ) {
 					$page.css({
 						'-webkit-transform'	: 'rotateY( -181deg )', // todo: fix this (should be -180deg)
 						'-moz-transform'	: 'rotateY( -181deg )', // todo: fix this (should be -180deg)
 						'z-index'			: _self.flipPagesCount - 1 + i
 					});
-				
-				}
-				else {
-				
+				} else {
 					$page.css({
 						'-webkit-transform'	: 'rotateY( 0deg )',
 						'-moz-transform'	: 'rotateY( 0deg )',
 						'z-index'			: _self.flipPagesCount - 1 - i
 					});
-				
 				}
-						
-			} );
-		
+			});
 		},
-		_saveState			: function() {
 		
+		_saveState			: function() {
 			// adds a new state to the history object and triggers the statechange event on the window
 			var page = this.currentPage;
-			
 			if( this.History.getState().url.queryStringToJSON().page !== page ) {
-					
 				this.History.pushState( null, null, '?page=' + page );
-				
 			}
-			
 		},
-		_layout				: function() {
-			
+		
+		_layout				: function() {	
 			this._setLayoutSize();
-			
 			for( var i = 0; i <= this.pagesCount - 2; ++i ) {
-				
 				var	$page 		= this.$pages.eq( i ),
 					pageData	= {
 						theClass				: 'page',
@@ -165,35 +131,22 @@
 						theContentStyleFront	: 'width:' + this.windowProp.width + 'px;',
 						theContentStyleBack		: 'width:' + this.windowProp.width + 'px;'
 					};
-				
 				if( i === 0 ) {
-				
 					pageData.theClass += ' cover';
-				
-				}
-				else {
-					
+				} else {
 					pageData.theContentStyleFront += 'left:-' + ( this.windowProp.width / 2 ) + 'px';
-					
 					if( i === this.pagesCount - 2 ) {
-					
 						pageData.theClass += ' cover-back';
-					
 					}
-				
 				}
-				
-				$( '#pageTmpl' ).tmpl( pageData ).appendTo( this.$el );
-			
+			  $( '#pageTmpl' ).tmpl( pageData ).appendTo( this.$el );
 			}
-			
 			this.$pages.remove();
 			this.$flipPages		= this.$el.children( 'div.page' );
 			this.flipPagesCount	= this.$flipPages.length;
-			
 			this._adjustLayout( ( this.state === undefined ) ? this.currentPage : this.state );
-			
 		},
+		
 		_setLayoutSize		: function() {
 		
 			this.$el.css( {
@@ -202,28 +155,22 @@
 			} );
 		
 		},
-		_initTouchSwipe		: function() {
-			
+		
+		_initTouchSwipe		: function() {	
 			var _self = this;
-			
 			this.$el.swipe( {
 				threshold			: 0,
 				swipeStatus			: function( event, phase, start, end, direction, distance ) {
-					
-					var startX		= start.x,
-						endX		= end.x,
-						sym, angle,
-						oob			= false,
-						noflip		= false;
-					
+					var startX	= start.x,
+						endX	= end.x,
+						sym, angle, oob	= false,
+						noflip	= false;
 					// check the "page direction" to flip:
 					// if the page flips from the right to the left (right side page)
 					// or from the left to the right (left side page).
 					// check only if not animating
 					if( !_self._isAnimating() ) {
-					
 						( startX < _self.windowProp.width / 2 ) ? _self.flipSide = 'l2r' : _self.flipSide = 'r2l';
-					
 					}
 					
 					if( direction === 'up' || direction === 'down' ) {

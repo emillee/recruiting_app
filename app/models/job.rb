@@ -45,7 +45,13 @@ class Job < ActiveRecord::Base
   include Scrape
   include ImportData
   include RegexMethods
-  
+  include Filterable
+
+
+  scope :keywords, ->(keywords_arr) { Job.joins(:listing_company).where('companies.name @@ :q OR jobs.full_text @@ :q', q:  keywords_arr.join(' ')) }
+  scope :dept, ->(dept_arr) { where('jobs.dept IN (?)', dept_arr) }
+  scope :sub_dept, ->(sub_dept_arr) { where('jobs.sub_dept IN (?)', sub_dept_arr) }
+  scope :years_exp, ->(years_exp_arr) { where('jobs.years_exp < (?)', years_exp_arr.max) } 
   
   def import_data
     self.get_text_from_link
@@ -55,38 +61,7 @@ class Job < ActiveRecord::Base
     self.get_sub_dept
     self.get_years_exp
   end
-  
-  # CLASSIFIER -------------------------------------------------------------------------------
-  
-  def self.search(settings_hash)
-    if settings_hash.empty?
-      jobs = self.all
-    else
-      if settings_hash[:dept] 
-        jobs = where("dept IN (?)", settings_hash[:dept])
-      else
-        jobs = self.all
-      end
-
-      if !settings_hash[:sub_dept].nil?
-        jobs = jobs.where("sub_dept IN (?)", settings_hash[:sub_dept])
-      end
-      
-      if !settings_hash[:experience].nil?
-        jobs = jobs.where("years_exp < (?)", settings_hash[:experience].max)
-      end
-      
-      if !settings_hash[:keywords].nil?
-        settings_hash[:keywords].each do |search_query|
-          jobs = jobs.where("name @@ :q OR full_text @@ :q", q: search_query).joins(:listing_company)
-        end      
-      end
-    end
     
-    jobs
-  end
-  
-  
   # UTILITY-------------------------------------------------------------------------------
   
   def first_thirty

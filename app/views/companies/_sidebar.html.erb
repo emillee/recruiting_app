@@ -26,7 +26,6 @@
 					</ul>
 				</div>
 			<% end %>
-			
 					
 			<div class="wrapper">
 				<!-- <h1 class="career-page"> -->
@@ -36,15 +35,15 @@
 					<i class="fa fa-plus-square-o"></i>
 				</h1>
 				<ul class="job-filters">
-					<% Company.scopes.each do |scope| %>
-						<% if !locals[:scopes].nil? %>
-							<% checked = locals[:scopes].include?(scope) %>
+					<% locals[:all_scopes].each do |scope| %>
+						<% if locals[:scopes_checked] %>
+							<% checked = locals[:scopes_checked][scope] ? true : false %>
 						<% else %>
 							<% checked = false %>
 						<% end %>
 						<li class="job-sidebar department <%= 'selected' if checked %>">
 							<%= label_tag scope %>
-							<%= check_box_tag "company_search[scopes][]", scope, checked  %>
+							<%= check_box_tag "company_search[#{scope}][]", scope, checked  %>
 							<i class="fa fa-check"></i>
 						</li>
 					<% end %>

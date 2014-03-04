@@ -6,24 +6,29 @@ class CompaniesController < ApplicationController
 
   def index
     @job = Job.new
-    @companies = Company.joins(:job_listings)
-        
-    if params[:company_search]
-      @keywords = params[:company_search][:keywords] if params[:company_search][:keywords]
-      @scopes = params[:company_search][:scopes] if params[:company_search][:scopes]
-
-      if !@keywords.empty? && !@keywords.nil?
-        @companies = @companies.keyword_search(@keywords)
-      end
+    @keywords = params[:company_search][:keywords] 
+    @all_scopes = %w(page_available page_unavailable page_blank)
+    @scopes_checked = params[:company_search]
       
-      if !@scopes.nil? && !@scopes.empty?  
-        @scopes.each do |scope|
-          @companies = @companies.send(scope)
-        end
-      end
+    if params[:company_search]
+      @companies = Company.filter(params[:company_search].slice(:keywords, :page_available, :page_unavailable, :page_blank)).page(params[:page]).per(10)
+    else
+      # @companies = Company.all.page(params[:page]).per(10)
     end
   end
-  
+
+  # @keywords = params[:company_search][:keywords] if params[:company_search][:keywords]
+  # @scopes = params[:company_search][:scopes] if params[:company_search][:scopes]
+  # 
+  # if !@keywords.empty? && !@keywords.nil?
+  #   @companies = @companies.keyword_search(@keywords)
+  # end
+  # 
+  # if !@scopes.nil? && !@scopes.empty?  
+  #   @scopes.each do |scope|
+  #     @companies = @companies.send(scope)
+  #   end
+  # end
   
   def create
     @company = Company.new(company_params)

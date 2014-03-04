@@ -27,5 +27,7 @@ module Nytech
     config.assets.precompile += [Rails.root.to_s + '/vendor/assets/javascripts/*.js']
     
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    
+    config.active_record.schema_format = :sql
   end
 end

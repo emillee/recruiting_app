@@ -22,8 +22,8 @@ module JobsHelper
   end
     
   def num_years_checked?(num_years)
-    return false if current_user.job_settings[:experience].nil?
-    return true if current_user.job_settings[:experience].include?(num_years.to_s)
+    return false if current_user.job_settings[:years_exp].nil?
+    return true if current_user.job_settings[:years_exp].include?(num_years.to_s)
     return false
   end
   

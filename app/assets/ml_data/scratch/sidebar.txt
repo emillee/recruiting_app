@@ -90,7 +90,7 @@
 								<% checked = num_years_checked?(num_years) %>
 								<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
 									<%= label_tag "#{label}-#{label}", label %>
-									<%= check_box_tag "user[job_settings][years_exp][]", num_years, checked %>
+									<%= check_box_tag "user[job_settings][experience][]", num_years, checked %>
 									<i class="fa fa-check"></i>
 								</li>
 							<% end %>
