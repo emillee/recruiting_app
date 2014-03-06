@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
+gem 'ruby', '2.0.0'
+
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -24,6 +26,8 @@ gem 'figaro'
 gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+
+# To serve static assets
 gem 'rails_12factor', group: :production
 
 # SOCIAL GEMS

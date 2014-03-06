@@ -2,13 +2,11 @@ class Job < ActiveRecord::Base
   
   before_create :set_is_draft
   
-  belongs_to(
-    :listing_company,
-    class_name: 'Company',
-    foreign_key: :company_id,
-    primary_key: :id
-  )
-  
+  belongs_to :listing_company,
+             class_name: 'Company',
+             foreign_key: :company_id,
+             primary_key: :id
+
   has_many(
     :user_job_applicants,
     class_name: 'UserJob',
@@ -60,11 +58,12 @@ class Job < ActiveRecord::Base
   include RegexMethods
   include Filterable
 
-
   scope :keywords, ->(keywords_arr) { Job.joins(:listing_company).where('companies.name @@ :q OR jobs.full_text @@ :q', q:  keywords_arr.join(' ')) }
   scope :dept, ->(dept_arr) { where('jobs.dept IN (?)', dept_arr) }
   scope :sub_dept, ->(sub_dept_arr) { where('jobs.sub_dept IN (?)', sub_dept_arr) }
   scope :years_exp, ->(years_exp_arr) { where('jobs.years_exp < (?)', years_exp_arr.max) } 
+  
+  validates :company_id, presence: true
   
   def import_data
     self.get_text_from_link
