@@ -41,7 +41,7 @@ gem 'omniauth-facebook'
 # gem 'tf_idf'
 # gem "anemone", "~> 0.7.2"
 
-# gem 'seed_dump'
+gem 'seed_dump'
 
 group :development do
   gem 'letter_opener'

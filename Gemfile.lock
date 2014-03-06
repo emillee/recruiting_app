@@ -210,6 +210,9 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    seed_dump (3.1.0)
+      activerecord
+      activesupport
     sendgrid (1.2.0)
       json
       json
@@ -282,6 +285,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
+  seed_dump
   sendgrid
   spring
   turbolinks
