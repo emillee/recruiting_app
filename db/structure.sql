@@ -229,6 +229,36 @@ ALTER SEQUENCE taxonomies_id_seq OWNED BY taxonomies.id;
 
 
 --
+-- Name: user_job_preapprovals; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE user_job_preapprovals (
+    id integer NOT NULL,
+    user_id integer,
+    job_id integer
+);
+
+
+--
+-- Name: user_job_preapprovals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_job_preapprovals_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_job_preapprovals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_job_preapprovals_id_seq OWNED BY user_job_preapprovals.id;
+
+
+--
 -- Name: user_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -282,7 +312,11 @@ CREATE TABLE users (
     title character varying(255),
     location character varying(255),
     company_id integer,
-    job_filters hstore DEFAULT ''::hstore
+    job_filters hstore DEFAULT ''::hstore,
+    provider character varying(255),
+    uid character varying(255),
+    oauth_token character varying(255),
+    oauth_expires_at timestamp without time zone
 );
 
 
@@ -344,6 +378,13 @@ ALTER TABLE ONLY taxonomies ALTER COLUMN id SET DEFAULT nextval('taxonomies_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY user_job_preapprovals ALTER COLUMN id SET DEFAULT nextval('user_job_preapprovals_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY user_jobs ALTER COLUMN id SET DEFAULT nextval('user_jobs_id_seq'::regclass);
 
 
@@ -392,6 +433,14 @@ ALTER TABLE ONLY search_suggestions
 
 ALTER TABLE ONLY taxonomies
     ADD CONSTRAINT taxonomies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_job_preapprovals_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY user_job_preapprovals
+    ADD CONSTRAINT user_job_preapprovals_pkey PRIMARY KEY (id);
 
 
 --
@@ -512,3 +561,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140302185524');
 INSERT INTO schema_migrations (version) VALUES ('20140303162346');
 
 INSERT INTO schema_migrations (version) VALUES ('20140303172140');
+
+INSERT INTO schema_migrations (version) VALUES ('20140304170409');
+
+INSERT INTO schema_migrations (version) VALUES ('20140304170745');
+
+INSERT INTO schema_migrations (version) VALUES ('20140304170953');
+
+INSERT INTO schema_migrations (version) VALUES ('20140305141438');

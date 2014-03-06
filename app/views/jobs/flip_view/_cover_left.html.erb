@@ -1,0 +1,34 @@
+<header class="main-title">
+	<h1>
+		<i class="fa fa-arrow-circle-o-left"></i>
+		1. Set filters
+	</h1>
+	<br>
+	<h1>
+		2. Preview (below)
+
+	</h1>
+	
+	<div class="preview-section">
+		<h1>
+			3. Flip the Switch ! 
+		<i class="fa fa-arrow-circle-o-right"></i> 
+		</h1>
+		
+		<div class="job-match-wrap">
+			<h3>You have <%= @jobs.count %> results based on your filters, from the companies below. 
+				<% if @preapproved_jobs.count == 0 %>
+					Hit the "I'm interested" button in your job matches to increase your chance of being preapproved!
+				<% else %>
+					You have been pre-approved for <%= @preapproved_jobs.count %> interviews. Hit the "Im interested" buttons in your job matches to uncover them!
+				<% end %>		
+			</h3>
+			<br>
+		
+			<% @uniq_names = @jobs.map { |job| job.listing_company.name }.uniq! %>
+			<% @uniq_names.each do |name| %>
+				<img src='<%= asset_path("/assets/company_icons/#{name.downcase}" + ".jpeg") %>' />		
+			<% end %>
+		</div>
+	</div>
+</header>

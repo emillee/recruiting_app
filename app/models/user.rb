@@ -43,9 +43,20 @@ class User < ActiveRecord::Base
     through: :user_jobs,
     source: :job_saved
   )
-
-
   
+  has_many(
+    :user_job_preapprovals,
+    class_name: 'UserJobPreapproval',
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+  
+  has_many(
+    :preapproved_jobs,
+    through: :user_job_preapprovals,
+    source: :job
+  )
+
   # Sessions / Authentication------------------------------------------
   def self.new_guest 
     self.new(
@@ -66,6 +77,19 @@ class User < ActiveRecord::Base
   
   def reset_session_token!
     self.session_token = SecureRandom.urlsafe_base64
+  end
+  
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.fname, user.lname = auth.info.name.split(' ')[0], auth.info.name.split(' ')[1]
+      user.email = auth.info.email
+      user.password = SecureRandom.urlsafe_base64(n=6)
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.save!
+    end
   end
   
   # Private----------------------------------------------------------

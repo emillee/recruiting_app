@@ -6,14 +6,14 @@ class CompaniesController < ApplicationController
 
   def index
     @job = Job.new
-    @keywords = params[:company_search][:keywords] 
+    @keywords = params[:company_search][:keywords] if params[:company_search]
     @all_scopes = %w(page_available page_unavailable page_blank)
     @scopes_checked = params[:company_search]
       
     if params[:company_search]
       @companies = Company.filter(params[:company_search].slice(:keywords, :page_available, :page_unavailable, :page_blank)).page(params[:page]).per(10)
     else
-      # @companies = Company.all.page(params[:page]).per(10)
+      @companies = Company.all.page(params[:page]).per(10)
     end
   end
 

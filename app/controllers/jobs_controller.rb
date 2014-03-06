@@ -98,15 +98,25 @@ class JobsController < ApplicationController
   
   def flip_view
     if current_user && !current_user.job_settings.blank?
-      @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(10).order('years_exp DESC')
+      @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(15).order('years_exp DESC')
+      @preapproved_jobs = @jobs.select { |job| job_preapproved?(job) }
     else
-      @jobs = Job.all.page(params[:page]).per(11)
+      @jobs = Job.all.page(params[:page]).per(15)
+      @preapproved_jobs = @jobs.select { |job| job_preapproved?(job) }
     end
   end
   
   
 	# PRIVATE ---------------------------------------------------------------------------
 	private
+	
+	  def job_preapproved?(job)
+	    if current_user
+	      current_user.preapproved_jobs.include?(job)
+      else
+        return false
+      end
+    end
 
   	def job_params
   		params.require(:job).permit(:link, :title, :full_text, :is_draft,

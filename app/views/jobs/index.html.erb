@@ -27,14 +27,15 @@
 					<% end %>
 					
 					<div class="action-items">
+						<% user_id = current_user ? current_user.id : nil %>
 						<% viewed_text = has_viewed_job?(job) ? "Viewed" : "View Listing!" %>
 						<% viewed_class = has_viewed_job?(job) ? "viewed" : "view" %>
 						<% saved_text = has_saved_job?(job) ? "Saved" : "Save for Later" %>						
 						<% saved_class = has_saved_job?(job) ? "saved" : "save" %>
 						<%= link_to viewed_text, job.link, target: "_blank", class: viewed_class,
-						 			data: { user_id: current_user.id, applied_job_id: job.id }%>
+						 			data: { user_id: user_id, applied_job_id: job.id }%>
 						<%= link_to 'Forward', '#', class: 'forward', data: { id: job.id } %>
-						<%= link_to saved_text, user_jobs_url(user_id: current_user.id, 
+						<%= link_to saved_text, user_jobs_url(user_id: user_id, 
 									saved_job_id: job.id), class: saved_class, remote: true, method: :post %>
 					</div>
 				</div>

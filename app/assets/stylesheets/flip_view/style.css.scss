@@ -297,7 +297,7 @@ a.f-ref{
   }
 
   h3 {
-    padding: 10px 0px;
+    padding: 20px 0px 5px 0px;
     margin: 0;
     font-size: 18px;
     
@@ -311,7 +311,16 @@ a.f-ref{
       text-transform: uppercase;
       letter-spacing: 2px;
       color: #74726f;
+      margin-bottom: 20px;
     }
+  }
+  
+  .overview {
+    color: #333332;
+    font-family: Georgia, serif;
+    text-align: justify;
+    font-size: 13px;
+    line-height: 20px;
   }
   
   &:after{
@@ -340,46 +349,6 @@ a.f-ref{
   background-size: cover;
 }
 
-.img-1 {
-  background-image: url(../images/1.jpg);
-}
-
-.img-2 {
-  background-image: url(../images/2.jpg);
-  height: 60%;
-}
-
-.img-3 {
-  background-image: url(../images/3.jpg);
-  
-  // did this to fix weird spacing issue
-  height: 0;
-}
-
-.img-4 {
-  background-image: url(../images/4.jpg);
-}
-
-.img-5 {
-  background-image: url(../images/5.jpg);
-}
-
-.img-6 {
-  background-image: url(../images/6.jpg);
-}
-
-.img-7 {
-  background-image: url(../images/7.jpg);
-}
-
-.img-8 {
-  background-image: url(../flip/8.jpg);
-}
-
-.img-9 {
-  background-image: url(../images/9.jpg);
-}
-
 // edited below
 .w-25 { 
   width: 25%; 
@@ -392,19 +361,57 @@ a.f-ref{
   width: 50%; 
 
   img {
-    width: 99%;   
+    width: 99%;
   }
 }
 
 .w-70{ 
   width: 70%;
   background-color: rgba(253,253,253,1);
+  position: relative;
   
   img {
-    width: 95%;
-    margin-top: 80px;
+    position: absolute;
+    max-width: 35%;
+    max-height: 35%; 
+    top: 15%;
+    left: 3%;
+  }
+  
+  h3.box-70 {
+    position: absolute;
+    display: inline-block;
+    left: 42%;
+    top: 5%;
+    height: 10%;
+  }
+    
+  p.box-70 {
+    position: absolute;
+    display: inline-block;
+    color: green;
+    left: 0%;
+    margin-top: 50px;
+    max-width: 55%;
+    height: 30%;
+  }
+  
+  .overview.box-70 {
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    left: 5%;
+    text-align: justify;
   }
 }
+
+//<% job = @jobs[8] %>
+//<img src='<%= asset_path("/assets/company_icons/#{job.listing_company.name.downcase}" + ".jpeg") %>' />       
+//<h3 class="box-70"><%= job.title %> <span>Published at <%= job.created_at.strftime('%B %d, %y') %></span></h3>
+//<p class="box-70"><%= description_snippet(job) %></p>
+//<div class="overview box-70">
+//  <%= job.listing_company.overview %>
+//</div>
 
 .w-30{ 
   width: 30%; 

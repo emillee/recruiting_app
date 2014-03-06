@@ -43,10 +43,6 @@ module JobsHelper
     current_user.job_settings[:keywords]
   end
   
-  def show_company_keywords?()
-    
-  end
-  
   def sortable(column, title=nil)
     title ||= column.titleize
     css_class = (column == sort_column) ? "current #{sort_direction}" : nil
@@ -68,12 +64,22 @@ module JobsHelper
 	end
 	
 	def has_saved_job?(job)
-	  return true if current_user.saved_jobs.include?(job)
+	  return true if current_user && current_user.saved_jobs.include?(job)
 	  return false
   end
   
   def has_viewed_job?(job)
-    return true if current_user.jobs_viewed.include?(job)
+    return true if current_user && current_user.jobs_viewed.include?(job)
   end
+  
+  def description_snippet(job)
+    if job.description
+			job.description.split(' ')[0..200].join(' ') unless job.description.nil?
+		else
+		  if job.full_text
+				job.full_text.split(' ')[0..200].join(' ') unless job.full_text.nil?
+			end
+		end
+	end
 	
 end

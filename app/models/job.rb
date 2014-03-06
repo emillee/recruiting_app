@@ -42,6 +42,19 @@ class Job < ActiveRecord::Base
     source: :user
   )
   
+  has_many(
+    :user_job_preapprovals,
+    class_name: 'UserJobPreapproval',
+    foreign_key: :job_id,
+    primary_key: :id
+  )
+  
+  has_many(
+    :preapproved_applicants,
+    through: :user_job_preapprovals,
+    source: :user
+  )
+  
   include Scrape
   include ImportData
   include RegexMethods
