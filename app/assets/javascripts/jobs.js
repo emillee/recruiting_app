@@ -2,8 +2,6 @@ var ready;
 
 ready = $('.jobs.index').ready(function() {
   
-  $('.best_in_place').best_in_place();
-
   // // Show pagination on hover
   // $('div.jobs-wrapper').on('mouseenter', function() {
   //   $('.next > a').addClass('visibility-visible');
@@ -17,6 +15,8 @@ ready = $('.jobs.index').ready(function() {
   
   // FORWARDING
   $('ul.job-posts').on('click', '.forward', function(event) {
+    console.log('hello')
+    
     event.preventDefault();
     $.ajaxSetup({ cache: false });
     
@@ -24,6 +24,7 @@ ready = $('.jobs.index').ready(function() {
     var job_id = $(this).data('id');
     var form_url = '/jobs/' + job_id + '/forward_form';
     var div_append_id = '#div-append-' + job_id;
+
     
     $(div_append_id).load(form_url + ' .forward-form', function() {
       $('#email_info_email').focus();
@@ -52,25 +53,37 @@ ready = $('.jobs.index').ready(function() {
     });
   });
   
+});
+
+ready = $('.companies.index').ready(function() {
+    
+  $('.best_in_place').best_in_place();
 
 });
 
+ready = $('.companies.show').ready(function() {
+    
+  $('.best_in_place').best_in_place();
+
+});
+
+ready = $('.users.show').ready(function() {
+    
+  $('.is-draggable').draggable({
+    'containment' : '.skills',
+    'cursor'      : 'move'
+  });
+  
+  $('.is-droppable').droppable({
+    drop: handleDropEvent
+  });
+  
+  function handleDropEvent(event, ui) {
+    alert('dropped')
+  };
+
+});
+
+
 $(document).ready(ready);
 $(document).on('page:load', ready);
-
-
-// Comment: this was for CSV file upload, not currently being used
-// var wrapper = $('<div/>').css( 
-//   { height: 0, width: 0, 'overflow': 'hidden' }
-// );
-// 
-// var fileInput = $(':file').wrap(wrapper);
-// 
-// fileInput.change(function(){
-//   $this = $(this);
-//   $('#file').text($this.val());
-// });
-// 
-// $('#file').click(function(){
-//   fileInput.click();
-// }).show();

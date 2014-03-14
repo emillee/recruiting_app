@@ -22,7 +22,9 @@
  *= require paper
  *= require business_card
  *= require arrow
+ *= require profile
  *= require_directory ./flip_view
+ *= require_directory ./modules
  */
  
  

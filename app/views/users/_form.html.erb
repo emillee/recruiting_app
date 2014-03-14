@@ -5,16 +5,32 @@
 
 		<%= render 'shared/errors', object: f.object %>
 		<%= render 'shared/flash' %>		
-
-		<%= f.text_field :email, placeholder: 'Enter Email' %>
 		
-		<% if !@user.persisted? %>
-			<%= f.password_field :password, placeholder: 'Enter password' %>
-		<% end %>
+		<span class="social"> 1. Sign up via social: 
+				<%= link_to "", "/auth/facebook", class: "fa fa-facebook-square" %>
+				<%= link_to "", "/auth/twitter", class: "fa fa-twitter-square" %>
+				<%= link_to "", "/auth/google_oauth2", class: "fa fa-google-plus-square" %>
+				<%= link_to "", "#", class: "fa fa-github-square" %>
+				<%= link_to "", "#k", class: "fa fa-linkedin-square" %>
+				<!-- <i class="fa fa-facebook-square"></i> -->																
+				<!-- <i class="fa fa-twitter-square"></i>
+				<i class="fa fa-google-plus-square"></i>
+				<i class="fa fa-github-square"></i>				
+				<i class="fa fa-linkedin-square"></i>						 -->
+		</span>
 		
-		<%= f.file_field :avatar %>
-
-		<%= f.submit "Submit" %>
+		<div class="login-wrap">
+			<h1>2. Or sign up as new user below</h1>
+			<%= f.text_field :email, placeholder: 'Enter Email' %>
+		
+			<% if !@user.persisted? %>
+				<%= f.password_field :password, placeholder: 'Enter password' %>
+			<% end %>
+			
+			<%= f.submit "Submit" %>
+		</div>
+		
+		<%#= f.file_field :avatar %>
 
 	<% end %>
 </div>

@@ -342,8 +342,8 @@ a.f-ref{
 }
 
 .img-cont {
-  height: 40%;
-  width: 100%;
+  max-height: 40%;
+  max-width: 50%;
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -354,14 +354,15 @@ a.f-ref{
   width: 25%; 
 
   img {
-    width: 99%;   
+    max-width: 75%;   
   }
 }
 .w-50{ 
   width: 50%; 
 
   img {
-    width: 99%;
+    max-width: 75%;
+    max-height: 40%;
   }
 }
 
@@ -389,7 +390,7 @@ a.f-ref{
   p.box-70 {
     position: absolute;
     display: inline-block;
-    color: green;
+    color: black;
     left: 0%;
     margin-top: 50px;
     max-width: 55%;
@@ -455,8 +456,8 @@ a.f-ref{
 
 .box-img-right .img-cont {
   float: right;
-  width: 40%;
-  height: 100%;
+  max-width: 30%;
+  max-height: 30%;
   margin-left: 2%;
 }
 
@@ -483,12 +484,13 @@ a.f-ref{
 .box-expanded {
   border: none;
   padding: 50px;
+  z-index: 9999;
 
   .img-cont {
     box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     float: left;
-    width: 50%;
-    height: 50%;
+    max-width: 50%;
+    max-height: 05%;
     margin-right: 20px;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
   }

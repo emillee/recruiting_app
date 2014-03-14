@@ -31,7 +31,7 @@
 					<p><span class="heading">SubDept: </span><%= best_in_place job, :sub_dept %></p>
 					<p><span class="heading">YearsExp: </span><%= best_in_place job, :years_exp %></p>
 					<p><span class="heading">Full Text: </span><%= best_in_place job, :full_text, type: :textarea %></h3></p>
-					<p><span class="heading">Key Phrases: </span><%= best_in_place job, :key_phrases, path: update_key_skills_job_url(job) %></p>
+					<p><span class="heading">Key Phrases: </span><%= best_in_place job, :key_phrases, path: update_req_skills_job_url(job) %></p>
 					<p>
 						<span class="heading">Req Skills: </span>
 							<%= form_for(job) do |f| %>

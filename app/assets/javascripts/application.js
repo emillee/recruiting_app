@@ -20,5 +20,8 @@
 //= require sidebar
 //= require jquery.purr
 //= require best_in_place
+//= require company
+//= require flip_view
+//= require jobs
 //= require_tree .
 

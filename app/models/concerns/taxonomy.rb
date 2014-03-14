@@ -1,6 +1,36 @@
 module Taxonomy
+  extend ActiveSupport::Concern
   
 	# SIDEBAR ---------------------------------------------------------------------------
+	
+	module ClassMethods
+    def back_end_skills
+      [
+        'Rails',
+        'Python',
+        'PHP',
+        'Node',
+        'Java',
+        'C++',
+        'C-Sharp',
+        'Perl',
+        'Scala',
+        'Haskell',
+        'Lisp',
+        'Clojure',
+        'Microsoft.net'
+      ]
+    end
+  end
+  
+  def self.front_end_key_skills
+    [
+      'Javascript',
+      'HTML / CSS',
+      'Design'
+    ]
+  end
+  
   def self.departments
     [
       'Administrative',
@@ -18,14 +48,6 @@ module Taxonomy
     ]
   end
   
-  def self.front_end_key_skills
-    [
-      'Javascript',
-      'HTML / CSS',
-      'Design'
-    ]
-  end
-  
   def self.key_skill_degrees
     [
       ['JS: Expert',
@@ -39,8 +61,6 @@ module Taxonomy
       'Design: Entry']      
     ]
   end  
-  
-  
   
   # For identifying key phrases  
   def self.expert_js_keyphrases

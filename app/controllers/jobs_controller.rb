@@ -27,7 +27,7 @@ class JobsController < ApplicationController
     @job = @company.job_listings.new(job_params)
     
     if @job.save
-      redirect_to companies_url
+      redirect_to company_url(@company)
     else
       flash[:error] = "Please try again"
       render :new
@@ -69,7 +69,7 @@ class JobsController < ApplicationController
   def import_data
     @job = Job.find(params[:id])
     @job.import_data
-    redirect_to companies_url
+    redirect_to company_url(@job.listing_company)
   end
   
   def forward_form

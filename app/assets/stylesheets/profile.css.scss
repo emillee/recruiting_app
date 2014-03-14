@@ -1,0 +1,225 @@
+/*
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.8.0r4
+*/
+
+.profile-wrapper {
+  position: absolute;
+  top: 125px;
+  left: 275px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #F3F9F5;
+  width: 900px;
+  border: 1px solid rgba(0,0,0,.05);
+  
+  // GENERAL
+  h3 {
+  	margin: 25px 0 15px 0;
+  	padding: 0 0 8px 0;
+  	font-size: 10px;
+  	text-transform: uppercase;
+  	border-bottom: solid 2px #d7d8d8;
+  	letter-spacing: 1px;
+  	font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  p {
+  	font-size: 12px;
+  	margin: 0 0 15px 0;
+  	line-height: 18px;
+    font-family: 'Lora', serif;      	
+//    font-family: 'Lato', serif;
+  }
+  
+  // TOP SECTION ------------------
+  
+  .bcard-wrapper {
+    width: 100%;
+    height: 280px;
+    background-color: rgba(0,0,0,.03);
+    padding-top: 5px;
+//    position: absolute;
+    
+    .business-card {
+      margin-top: 20px;
+      margin-left: 30px;
+      box-shadow: none;
+    }
+    
+    .action-items {
+      margin-left: 30px;
+      margin-top: 20px;
+      width: 170px;
+      
+      li {
+        font-family: 'Open Sans';
+        font-size: 12px;
+        padding: 6px;
+        padding-left: 10px;
+//        background-color: rgba(46,204,113,.2);
+        color: white;
+        font-weight: 300;
+        border-radius: 1px;
+        
+        &:nth-of-type(1) {
+          background-color: rgba(46,204,113,1);
+        };
+                
+        &:nth-of-type(2) {
+          background-color: rgba(46,204,113,.85);
+        };
+        
+        &:nth-of-type(3) {
+          background-color: rgba(46,204,113,.75);
+        };
+
+        &:nth-of-type(4) {
+          background-color: rgba(46,204,113,.65);
+        };
+
+        &:nth-of-type(5) {
+          background-color: rgba(46,204,113,.55);
+        };        
+      }      
+    }    
+    
+    #about {
+    	position: absolute;
+    	top: 10px;
+    	left: 235px;
+    	width: 625px;
+        
+      h3, p {
+        padding-left: 10px;
+        text-transform: none;
+      }  
+        
+    	h3 {
+//        font-family: 'Lora', serif;       
+    	  font-size: 22px; 
+    	}
+
+    	p {
+    	  font-size: 18px;
+    	  line-height: 24px;	  
+//        font-family: 'Lato', serif;
+    	}        
+    }
+  } // bcard-wrapper
+
+  // ------------------------------------------------------------------------------------------------------------------
+    
+  // MAIN CONTENT SECTION
+  
+	.section-wrap > div > h3:first-of-type {
+	  margin-top: 10px;
+	}
+  	
+  .section-wrap {
+    padding: 15px 20px;
+  	width: 100%;
+//    min-height: 150px;
+  	display: block;
+  //  background: url(bg_images/bg-middle.jpg);
+  	
+  	// MENU BAR
+  	.post-menu {
+      margin-left: 10px;
+      margin-top: 15px;
+      width: 170px;
+      position: relative;
+      height: 100%;
+      background-color: rgba(0,0,0,.5);
+      float: left;
+      margin-bottom: 25px;
+        
+      li {
+        float: left;
+        display: block;
+        font-family: 'Open Sans';
+        font-size: 12px;
+        padding: 6px;
+//        background-color: rgba(46,204,113,.2);
+        color: white;
+        font-weight: 300;
+        border-radius: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 1px;
+        background-color: black;
+      }
+
+  	}
+  	
+  	.main-content {
+  	  width: 98%;
+  	  
+  	  div:first-of-type > h3:first-of-type {
+  	    margin-top: 15px; 
+  	  }
+  	  
+      .article {	
+    	  margin-left: 210px; 
+    	  margin-top: 0px;
+    	  padding-top: 0px;
+    	  
+        h1 {
+    	    text-transform: none;
+        	letter-spacing: 1px;
+        	font-family: 'Source Sans Pro', sans-serif;
+    	    margin: 0;
+    	    width: 90%;
+    	    margin-left: 15px;    
+    	    font-size: 18px;
+    	    line-height: 25px;
+    	    margin-top: 35px;
+    	    margin-bottom: 10px;    
+    	    background-color: rgba(0,0,0,.25);	        	
+        }
+  	   
+    	  h3, p {
+    	    width: 92%;
+    	    margin-left: 15px;
+    	  }
+  	  
+    	  h3 {
+    	    font-size: 18px;
+    	    text-transform: none;
+    	    margin-top: 35px;
+    	    margin-bottom: 10px;
+    	    
+    	    span {
+    	      float: right;
+    	      font-size: 13px;
+    	      line-height: 18px;
+    	      border-radius: 4px;
+    	      padding: 2px 8px;
+    	      background-color: #9b59b6;
+    	    }
+    	  }	  
+  	  
+    	  p {
+    	    font-size: 16px;
+    	  }
+    	}
+	  } // article
+	  
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

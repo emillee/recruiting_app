@@ -1,9 +1,11 @@
 <div class="f-page">
+	
 	<div class="f-title">
 		<a href="http://tympanus.net/Tutorials/CSS3FluidParallaxSlideshow/">Previous Demo</a>
 		<h2>Jobs Picked for You</h2>
 		<a href="http://tympanus.net/codrops/2012/05/07/experimental-page-layout-inspired-by-flipboard/">Back to the Codrops Article</a>
-	</div>
+	</div><!-- f-title -->
+	
 	<div class="box w-25 h-70">
 		<% job = @jobs[0] %>
 		<img src='<%= asset_path("/assets/company_icons/#{job.listing_company.name.downcase}" + ".jpeg") %>' />				
@@ -51,14 +53,16 @@
 			<%= job.listing_company.overview %>
 		</div>
 	</div>
+	
 </div><!-- f-page -->
 
 <div class="f-page">
+	
 	<div class="f-title">
 		<a href="http://tympanus.net/Tutorials/CSS3FluidParallaxSlideshow/">Previous Demo</a>
 		<h2>Jobs Picked For You</h2>
 		<a href="http://tympanus.net/codrops/2012/05/07/experimental-page-layout-inspired-by-flipboard/">Back to the Codrops Article</a>
-	</div>
+	</div><!-- f-title -->
 	
 	<div class="box w-70 h-50 box-b-r title-top box-img-left">
 		<% job = @jobs[5] %>
@@ -98,13 +102,15 @@
 			<%= job.listing_company.overview %>
 		</div>
 	</div>
-</div>
+	
+</div><!-- f-page -->
 
 <div class="f-page">
+	
 	<div class="f-title">
 		<a href="http://tympanus.net/Tutorials/CSS3FluidParallaxSlideshow/">Previous Demo</a>
 		<h2>Jobs Picked For You</h2>
-		<a href="http://tympanus.net/codrops/2012/05/07/experimental-page-layout-inspired-by-flipboard/">< Previous Page</a>
+		<a href="http://tympanus.net/codrops/2012/05/07/experimental-page-layout-inspired-by-flipboard/">Previous Page</a>
 	</div>
 
 	<div class="box w-30 h-60 box-b-r title-top">
@@ -151,6 +157,7 @@
 		<p><%= description_snippet(job) %></p>
 		<div class="overview">
 			<%= job.listing_company.overview %>
-		</div>
-	</div>
-</div>
+		</div><!-- overview -->
+	</div><!-- box w-30 -->
+
+</div><!-- f-page -->

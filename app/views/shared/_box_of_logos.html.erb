@@ -1,0 +1,7 @@
+<div class="box-of-logos">
+	<ul>
+		<% Job.back_end_skills.sort.each do |skill| %>
+			<li><%= insert_image_or_text(skill) %></li>
+		<% end %>
+	</ul>
+</div>

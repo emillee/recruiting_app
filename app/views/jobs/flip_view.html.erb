@@ -13,30 +13,30 @@
 		<%= render 'jobs/flip_view/pages' %>
 	
 		<div class="f-page f-cover-back">
-			<div id="codrops-ad-wrapper">
-			</div>
-		</div>
+			<div id="codrops-ad-wrapper"></div>
+		</div><!-- f-page f-cover-back -->
 
-	</div>
+	</div><!-- flip / container -->
 	
 	<!-- FLIPBOARD -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript">
-		var $container = $( '#flip' ), $pages	= $container.children().hide();
-	
-		Modernizr.load({
-			test: Modernizr.csstransforms3d && Modernizr.csstransitions,
-			yep: ['../assets/jquery.tmpl.min.js', '../assets/jquery.history.js', '../assets/core.string.js', '../assets/jquery.touchSwipe-1.2.5.js', '../assets/jquery.flips.js'],
-			nope: 'assets/fallback.css',
-			callback: function( url, result, key ) {
-				if( url === '../assets/fallback.css' ) {
-					$pages.show();
-				} else if ( url === '../assets/jquery.flips.js' ) {
-					$container.flips();
-				}
+	var $container = $( '#flip' ), $pages	= $container.children().hide();
+
+	Modernizr.load({
+		test: Modernizr.csstransforms3d && Modernizr.csstransitions,
+		yep: ['../assets/jquery.tmpl.min.js', '../assets/jquery.history.js', '../assets/core.string.js', '../assets/jquery.touchSwipe-1.2.5.js', '../assets/jquery.flips.js'],
+		nope: 'assets/fallback.css',
+		callback: function( url, result, key ) {
+			if( url === '../assets/fallback.css' ) {
+				$pages.show();
+			} else if ( url === '../assets/jquery.flips.js' ) {		
+				$container.flips();
 			}
-		});
+		}
+	});
+
 	</script>
 	<!-- FLIPBOARD -->
 
-</div>
+</div><!-- f-wrapper -->

@@ -1,12 +1,12 @@
 div.sidebar-wrapper {
-  margin-top: 100px;
-  margin-left: 25px;
+  margin-top: 75px;
+  margin-left: 0px;
   width: 200px;
-  height: 675px;
+  height: 100%;
   position: fixed;
   font-family: 'Lato', sans-serif;
-  border: 1px solid rgba(255,255,255,1);
-  background-color: rgba(255,255,255,.25);
+  border: 1px solid white;
+  background-color: rgba(255,255,255,.5);
   
   // SEARCH FORM
   .search {
@@ -63,11 +63,24 @@ div.sidebar-wrapper {
       text-transform: uppercase; 
       position: relative;
       
+      &:hover {
+        color: rgb(2,119,158);
+        
+        i {
+          color: rgb(2,119,158);
+        }
+      }
+      
       i {
         font-size: 12px;
         position: absolute;
         top: 9px;
         right: 12px;
+        color: rgb(205,210,216);
+        
+        &:hover {
+          color: #BE2121;
+        }
       }
     }
     
@@ -77,12 +90,12 @@ div.sidebar-wrapper {
       line-height: 30px;
       color: rgba(121,121,121,1);
       text-transform: capitalize;
-
+      
       i {
         position: absolute;
         right: 10px;
         margin-top: 7px;
-        display: none; 
+        display: none;
       }
 
       &:hover, &.selected {
@@ -199,24 +212,29 @@ div.sidebar-wrapper {
   .clear {
     background-color: white;
     height: 65px;
-  
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 200px;
+
+
     #clear-all {
       border: none;
-      margin-top: 20px;
-      margin-left: 15px;
+        margin-top: 20px;
+        margin-left: 15px;
       height: 25px;
       width: 168px;
       border: 3px solid #7f8c8d;
       color: #2c3e50;
       background-color: #bdc3c7;
       cursor: pointer;
-    
+
       &:hover {
         border: 3px solid #bdc3c7;
         color: white;
         background-color: #7f8c8d;
       };
-    
+
       &:focus {
         outline: none;
       };
@@ -439,7 +457,7 @@ div.sidebar-wrapper {
       height: 65px;
       position: fixed;
       left: 0px;
-      bottom: 10px;
+      bottom: 0px;
       width: 200px;
       
   

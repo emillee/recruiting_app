@@ -1,48 +1,99 @@
 div.session-form {
   position: relative;
   margin: auto;
-  top: 150px;
+  top: 175px;
   height: 300px;
   width: 500px;
   border: 10px solid rgba(240,240,240,1);
   background-color: #3498db;
   border-radius: 3px;
   z-index: 2;
+  padding: 5px;
   
-//  session is for login, user for new users
-  #session_email, #session_password, 
-  #user_email, #user_password, input[type="submit"] {
-    border: none;
+  a.fa-times-circle {
+    font-size: 15px;
+    color: white;
+    float: right;
+  }
+  
+  .social {
     margin: auto;
     position: relative;
     display: inline-block;
-    top: 75px;
-    left: 120px;
-    width: 250px;
-    height: 25px;
+    top: 40px;
+    left: 100px;
+    width: 300px;
+    line-height: 35px;
     border-radius: 3px;
-    margin-top: 10px;
-  }
-  
-  #session_email, #session_password, 
-  #user_email, #user_password {
-    text-indent: 3px;
-    background-color: rgba(255,255,255,.7);
+    margin-top: 10px;   
+    background-color: rgba(0,0,0,.3);
+    color: white; 
+    font-size: 14px;
+    text-align: center;
     
-    &:hover, &:focus {
-    background-color: rgba(255,255,255,1);      
+    a {
+      padding: 1px;
+      font-size: 18px;
+      line-height: 35px;
+      cursor: pointer;
+      color: white;
+      
+      &:first-of-type{
+        margin-left: 5px;
+      }
     }
   }
   
-  input[type="submit"] {
-    border: 3px solid white;
-    color: white;
-    background-color: rgba(255,255,255,.4);  
-    cursor: pointer;
+  .login-wrap {
+    background-color: rgba(0,0,0,.3);
+    width: 270px;
+    margin-left: 100px;
+    margin-top: 60px;
+    padding: 15px;
+    text-align: center;
     
-    &:hover, &:focus {
-      background-color: #2c3e50;        
-    };
+    h1 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    
+    //  session is for login, user for new users
+    #session_email, #session_password, 
+    #user_email, #user_password, input[type="submit"] {
+      border: none;
+      margin: auto;
+      position: relative;
+      display: inline-block;
+//      top: 65px;
+//      left: 30px;
+      width: 210px;
+      height: 25px;
+      border-radius: 3px;
+      margin-top: 5px;
+    }
+  
+    #session_email, #session_password, 
+    #user_email, #user_password {
+      text-indent: 3px;
+      background-color: rgba(255,255,255,.7);
+    
+      &:hover, &:focus {
+      background-color: rgba(255,255,255,1);      
+      }
+    }
+  
+    input[type="submit"] {
+      border: 3px solid white;
+      color: white;
+      background-color: rgba(255,255,255,.4);  
+      cursor: pointer;
+      margin-bottom: 5px;
+    
+      &:hover, &:focus {
+        background-color: #2c3e50;        
+      };
+    }
   }
 }
 

@@ -1,54 +1,99 @@
-<%#= render 'sidebar' %>
+<div class="f-sidebar-buffer">
+	<%= render 'sidebar' %>
+</div>
 
-<div class="companies-wrapper">
+<div class="profile-wrapper">
 	
-	<%#= paginate @companies %>
-	<div class="paper">
-		
-		<div class="top-wrapper">
-			<!-- BUSINESS CARD -->
-			<div class="business-card">
-			  <div class="info">
-			    <a href="/users/<%= @user.id %>">
-			      <h1 class="name">
-							<% if @user.fname && @user.lname %>
-			        	<%= @user.fname.humanize %>&nbsp;<%= @user.lname.humanize %>
-							<% end %>
-			      </h1>
-			    </a>
-			    <h3 id="title"><%= @user.title %> @ <%#= @user.employer.name %></h3>
-			    <h3 id="location"><%= @user.location %></h3>
-			    <%= link_to "Build Profile", edit_user_url(current_user), class: 'edit' %>
-			  </div>
-			  <%= image_tag(@user.avatar.url) %>
-			</div>
-	
-			<div class="paper-wrapper">
-				<div class="arrow-left"></div>
-				<div class="top-right"></div>
-				<div class="middle-right"></div>
-				<div class="bottom-right"></div>
-			</div>
-
-			<div class="bottom-left">
-				
-				<ul>
-					<li>Overview</li>
-					<li>About Me</li>
-					<li>Past Work</li>
-					<li>Current Work</li>
-					<li>References</li>
-					<li>My Rolodex</li>
-					<li>Contact Me!</li>
-				</ul>
-				
-			</div>
-
+	<!-- BUSINESS CARD -->
+	<div class="bcard-wrapper">
+		<div class="business-card">
+		  <div class="info">
+		    <a href="/users/<%= @user.id %>">
+		      <h1 class="name">
+						<% if @user.fname && @user.lname %>
+		        	<%= @user.fname.humanize %>&nbsp;<%= @user.lname.humanize %>
+						<% end %>
+		      </h1>
+		    </a>
+		    <h3 id="title"><%= @user.title %> @ <%#= @user.employer.name %></h3>
+		    <h3 id="location"><%= @user.location %></h3>
+		    <%= link_to "Build Profile", edit_user_url(current_user), class: 'edit' %>
+		  </div>
+		  <%= image_tag(@user.avatar.url) %>
 		</div>
+		
+		<div class="action-items">
+			<ul>
+				<li>I'd be interested in:</li>
+				<li>Contacting <%= @user.fname %></li>
+				<li>Meeting <%= @user.fname %></li>
+				<li>Hiring <%= @user.fname %></li>
+				<li>Being hired by <%= @user.fname %></li>												
+			</ul>
+		</div>
+		
+		<% editable = (@user == current_user) ? "true" : "" %>
+		<div id="about" contenteditable="<%= editable %>">
+			<span>
+		    <h3>About Me</h3>
+		    <p>I am the Co-Founder of Wolfpack, a user-centric professional networking platform</p>
+				<p>I was a VC for five years, then quit to learn to code and do startups</p>
+				<p>I'm happy to meet anyone! Just ping me.</p>
+				<p>I'm really good at foosball.</p>
+			</span>
+	  </div><!-- menu -->
 		
 	</div>
 
-</div>
+	<div class="section-wrap">
+		
+		<div class="post-menu">
+			<ul>
+				<li class="clear">Recent Articles</li>
+				<li class="clear">A Day in the Life</li>
+				<li class="clear">Ask Me Anything!</li>
+				<li class="clear">I'm looking for..</li>
+				<li class="clear">Milestones</li>
+				<li class="clear">My Skills</li>
+				<li class="clear">My Work</li>
+				<li class="clear">Random Thoughts</li>
+				<li class="clear">References</li>
+				<li class="clear">Resume</li>
+			</ul>
+		</div>
+		
+    
+		<div class="main-content">
+			
+		  <div class="article skills">
+		    <h3>My Skills</h3>
+				<%= render 'shared/drop_zone' %>
+		    <%= render 'shared/box_of_logos' %>
+		  </div><!-- skills -->			
+			
+		  <div class="article biography" contenteditable="<%= editable %>">
+		    <h3>Biography</h3>
+		    <p>Blah</p>
+		  </div><!-- biography -->
+		
+		  <div class="article regular" contenteditable="<%= editable %>">
+				<h3>Hacking and Hustling<span>A Day in the Life</span></h3>
+		    <p>What I do on a daily basis? Well, let's see</p>
+				<p>First off, there's the hacking. I'm writing a codebase</p>
+				<p>for Wolfpack, so on any given day I might be doing Rails,</p>
+				<p>Javascript, CSS or HTML. Some days I push pixels, other days</p>
+				<p>I rake db migrations, kna whaddamean?</p>
+		  </div><!-- biography -->
+		
+		</div><!-- main-content -->
+	</div><!-- section -->
+</div><!-- wrapper -->
 
-<div class="users-background"></div>
-<div class="users-background-overlay"></div>
+
+
+
+
+
+
+
+

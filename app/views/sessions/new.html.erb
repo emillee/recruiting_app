@@ -1,15 +1,29 @@
 <div class="modal-background"></div>
 
 <div class="session-form">
+	<%= link_to '', :back, class: 'fa fa-times-circle' %>
 	
 	<%= form_for(:session, url: session_url) do |f| %>
 
-		<%= f.text_field :email, placeholder: "Enter email", autofocus: true %>
+		<%#= render 'shared/errors', object: f.object %>
+		<%= render 'shared/flash' %>		
+	
+		<span class="social"> 1. Sign in via social: 
+				<%= link_to "", "/auth/facebook", class: "fa fa-facebook-square" %>
+				<%= link_to "", "/auth/twitter", class: "fa fa-twitter-square" %>
+				<%= link_to "", "/auth/google_oauth2/", class: "fa fa-google-plus-square" %>
+				<%= link_to "", "#", class: "fa fa-github-square" %>
+				<%= link_to "", "#", class: "fa fa-linkedin-square" %>
+		</span>
+	
+		<div class="login-wrap">
+			<h1>2. Or sign in below</h1>
+			<%= f.text_field :email, placeholder: 'Enter Email' %>
+			<%= f.password_field :password, placeholder: 'Enter password' %>
 		
-		<%= f.password_field :password, placeholder: "Enter password" %>
-	
-		<%= f.submit "Submit" %>
-	
+			<%= f.submit "Submit" %>
+		</div>
+
 	<% end %>
 
 </div>

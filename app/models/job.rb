@@ -57,6 +57,7 @@ class Job < ActiveRecord::Base
   include ImportData
   include RegexMethods
   include Filterable
+  include Taxonomy
 
   scope :keywords, ->(keywords_arr) { Job.joins(:listing_company).where('companies.name @@ :q OR jobs.full_text @@ :q', q:  keywords_arr.join(' ')) }
   scope :dept, ->(dept_arr) { where('jobs.dept IN (?)', dept_arr) }

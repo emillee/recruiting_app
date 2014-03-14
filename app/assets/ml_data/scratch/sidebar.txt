@@ -1,3 +1,5 @@
+OG sidebar file
+
 <div class="sidebar-wrapper">
 	
 	<% if current_user %>

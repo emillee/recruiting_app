@@ -6,7 +6,7 @@
 		<%= link_to 'Viewed Jobs', '#' %>	
 		<%= link_to 'Saved Jobs', '#' %>
 		
-		<span class="view-options"><%= link_to 'Flip View', flip_view_jobs_url %></span>
+		<span class="view-options"><%= link_to 'Flip View', flip_view_jobs_url, data: { no_turbolink: true } %></span>
 	</div>
 
 	
@@ -64,7 +64,6 @@
 
 <div class="jobs-background"></div>
 <div class="jobs-background-overlay"></div>
-
 
 <!-- <div class='new-job-wrapper'>
 	<%= link_to "Post a job", '#', class: 'new-job-post' %>

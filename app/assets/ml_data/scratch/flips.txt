@@ -1,3 +1,5 @@
+Comment: this was the raw flips.js file before reformatting
+
 /**
  * jquery.flips.js
  * 

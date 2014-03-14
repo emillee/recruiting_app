@@ -56,6 +56,13 @@ class User < ActiveRecord::Base
     through: :user_job_preapprovals,
     source: :job
   )
+  
+  has_many(
+    :identities,
+    class_name: 'Identity',
+    foreign_key: :user_id,
+    primary_key: :id
+  )
 
   # Sessions / Authentication------------------------------------------
   def self.new_guest 
@@ -79,20 +86,44 @@ class User < ActiveRecord::Base
     self.session_token = SecureRandom.urlsafe_base64
   end
   
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.fname, user.lname = auth.info.name.split(' ')[0], auth.info.name.split(' ')[1]
-      user.email = auth.info.email
-      user.password = SecureRandom.urlsafe_base64(n=6)
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!
-    end
+  def inputs_from_omniauth(auth)
+    self.fname, self.lname = auth.info.name.split(' ')[0], auth.info.name.split(' ')[1] if auth.info.name
+    self.email = auth.info.email if auth.info.email
+    self.save!
+    self
+  end
+
+  # Social-------------------------------------------------------------------------
+  
+  def get_facebook_graph
+    base_uri = "https://graph.facebook.com/me?access_token=" + "#{self.get_oauth_token}"
+    HTTParty.get(base_uri)
   end
   
-  # Private----------------------------------------------------------
+  def get_oauth_token
+    self.identities.where(provider: 'facebook').first.oauth_token
+  end
+  
+  def get_mutual_connections(other_user)
+    base_uri = "https://graph.facebook.com/me" 
+    other_person = "/mutualfriends/#{other_user.get_fb_uid}"
+    oauth = "?access_token=#{self.get_oauth_token}"
+    HTTParty.get(base_uri + other_person + oauth)
+  end
+  
+  def get_fb_friends
+    base_uri = "https://graph.facebook.com/me/friends" 
+    oauth = "?access_token=#{self.get_oauth_token}"
+    HTTParty.get(base_uri + oauth)    
+  end
+  
+  def get_fb_uid
+    self.identities.where(provider: 'facebook').first.uid
+  end
+  
+  # https://graph.facebook.com/me/friends?fields=id,name,work&access_token=CAACEdEose0cBANqx5nava53w4kC1z8yRYEMFPSgUhUcisbCAuBEo8D0NZC0WAr2NKsFIf5lDzLMrW9Ag0ObXIpGTbOP5Mt1GQIgftXsgzLLPuIVyfPJnJ9tkp6zgooEIKN66os5FwZCcgfuviZAqfmeNTo9BiKe5xZCC0UJRGX1qlZBDpYm1GAxOy4h2hpcsZD
+  
+  # Private------------------------------------------------------------------------
   private
   
     def create_session_token

@@ -31,10 +31,14 @@ gem 'rails_12factor', group: :production
 
 # SOCIAL GEMS
 gem 'twitter'
-gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem 'fql'
 
 # ML GEMS
+gem 'hpricot' # DELETE THIS
+gem 'stemmer'
 # gem "classifier", "~> 1.3.4"
 # gem 'amatch'
 # gem 'gsl'

@@ -5,6 +5,7 @@ ready = function() {
   // SEARCH FORM
   $('#sidebar-search-button').click(function() {
     $(this).parents('form:first').submit();
+    $('#sidebar-search').val('');
   });
 
   // SEARCH FORM
@@ -15,10 +16,12 @@ ready = function() {
       if ($('.keywords-li').length > 0) {
         $('.keywords-ul').prepend('<li class="selected keywords-li job-sidebar"><i class="fa fa-check-circle"></i>' + 
           $('#sidebar-search')[0].value + "</li>")
+          $('#sidebar-search').val('');
       } else {
         $('.keywords-wrapper').removeClass('hidden');
         $('.keywords-ul').append('<li class="selected keywords-li job-sidebar"><i class="fa fa-check-circle"></i>' + 
           $('#sidebar-search')[0].value + "</li>")
+          $('#sidebar-search').val('');
       };
     };
   });
@@ -35,8 +38,8 @@ ready = function() {
       }
     })
     
-    $('.department .fa-minus-circle').toggleClass('hidden');
-    $('.department .fa-plus-square-o').toggleClass('hidden');
+    $('.department .fa-minus').toggleClass('hidden');
+    $('.department .fa-plus').toggleClass('hidden');
   });
   
   // SUB DEPT FILTER
@@ -51,8 +54,8 @@ ready = function() {
       }
     })
     
-    $('.sub_dept .fa-minus-circle').toggleClass('hidden');
-    $('.sub_dept .fa-plus-square-o').toggleClass('hidden');
+    $('.sub_dept .fa-minus').toggleClass('hidden');
+    $('.sub_dept .fa-plus').toggleClass('hidden');
   });
   
   // EXPERIENCE FILTER
@@ -68,8 +71,8 @@ ready = function() {
       }
     })
     
-    $('.experience .fa-minus-circle').toggleClass('hidden');
-    $('.experience .fa-plus-square-o').toggleClass('hidden');
+    $('.experience .fa-minus').toggleClass('hidden');
+    $('.experience .fa-plus').toggleClass('hidden');
   });
   
   // KEY SKILLS FILTER
@@ -78,8 +81,8 @@ ready = function() {
     var $wrapper = $ul.children('div.key-skills-wrapper');
     $wrapper.toggleClass('hidden')
     
-    $('.key-skills .fa-minus-circle').toggleClass('hidden');
-    $('.key-skills .fa-plus-square-o').toggleClass('hidden');
+    $('.key-skills .fa-minus').toggleClass('hidden');
+    $('.key-skills .fa-plus').toggleClass('hidden');
   });
   
   // CLICK CHECKBOX
@@ -99,8 +102,9 @@ ready = function() {
  });
 
   // SUBMIT FORM ON CLICK
-  $('.sidebar-middle').on('click', '.job-filters', function() {
+  $('.sidebar-middle').on('click', '.job-sidebar', function() {
     $(this).parents('form:first').submit();
+    $('#sidebar-search').val('');
   });
 
   // AJAX CALL TO REFRESH SIDEBAR AND JOBS
@@ -110,7 +114,7 @@ ready = function() {
     var $kaminari = $(data).find('.pagination');
     $('.job-posts').empty().html($jobs);
     $('.sidebar-middle').empty().html($sidebar);
-    $('.pagination').empty().html($kaminari)
+    $('.pagination').empty().html($kaminari);
   });
   
   $('#clear-all').click(function() {
@@ -121,7 +125,7 @@ ready = function() {
   });
   
   $('.keywords-ul').on('click', 'li', function() {
-    $(this).remove();
+    // $(this).remove();
     
     if ($('.keywords-li').length === 0) {
       $('.keywords-wrapper').addClass('hidden');

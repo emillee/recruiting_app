@@ -26,6 +26,8 @@
   var f_sidebar_length = 200;
   
   // set this.$el to #flip, call _init function
+  // $.function is just a way of something call this when the DOM is loaded
+  // this gets called on every DOM element in $container
 	$.Flips = function( options, element ) {
 		this.$el = $( element );
 		this._init( options );
@@ -42,24 +44,25 @@
 	  
 	  // initialize the other functions
 		_init : function( options ) {
+		  // true as first arguments makes extend a recursive call
+		  // merges an empty hash, $.Flips.defaults and any passed in options
 			this.options = $.extend( true, {}, $.Flips.defaults, options );
+			// sets the children of the DOM element to the children with div.f-page, which separates each page (but is hidden?)
 			this.$pages = this.$el.children( 'div.f-page' );
 			this.pagesCount	= this.$pages.length;
 			this.History = window.History;
+			// starts at 0 in $.Flips.defaults
 			this.currentPage	= this.options.current;
+			// sets this.currentPage back to 0 if current_page is less than 0 or greater than pages.length
 			this._validateOpts();
+			// returns window size less sidebar size
 			this._getWinSize();
+			// returns the page from the URL query string
 			this._getState();
 			this._layout();
 			this._initTouchSwipe();
 			this._loadEvents();
 			this._goto();
-			
-			console.log('CURRENTPAGE')
-			console.log(this.currentPage)
-			
-			console.log('getState')
-			console.log(this._getState())
 		},
 		
 		// go back to 0 if currentPage is less than 0 or more than the total # of pages
@@ -86,10 +89,13 @@
 			if( !this._isNumber( page ) || page < 0 || page > this.flipPagesCount ) {
 				page = 0;
 			}
+			
+			// page is 0 if not valid, otherwise its the result of this.state, which is from _getState
 			this.currentPage = page;
 		},
 		
-		// queryStringToJSON turns URL into key value pairs, then looks for the page
+		// queryStringToJSON turns URL into key value pairs, then looks for the value from the page key
+		// so this.state should return the page number from the query string
 		_getState	: function() {
 			this.state = this.History.getState().url.queryStringToJSON().page;
 		},
@@ -102,15 +108,19 @@
 		// flip each of the pages 
 		_adjustLayout	: function( page ) {
 			var _self = this;
+			// iterate through the pages
 			this.$flipPages.each( function( i ) {
 				var $page	= $(this);
+				// if the page is on the left side
 				if( i === page - 1 ) {
+				  // flip the page left to right, set z-index
 					$page.css({
 						'-webkit-transform'	: 'rotateY( -180deg )',
 						'-moz-transform'	: 'rotateY( -180deg )',
 						'z-index'	: _self.flipPagesCount - 1 + i
 					});
 				} else if ( i < page ) {
+				  // flip the page, set z-index
 					$page.css({
 						'-webkit-transform'	: 'rotateY( -181deg )', // todo: fix this (should be -180deg)
 						'-moz-transform' : 'rotateY( -181deg )', // todo: fix this (should be -180deg)
@@ -137,42 +147,51 @@
 		
 		// set the layout according to the template
 		_layout	: function() {	
+		  // sets layout according to window size
 			this._setLayoutSize();
+			// iterate through pages, other than cover?
 			for( var i = 0; i <= this.pagesCount - 2; ++i ) {
 				var	$page = this.$pages.eq( i ),
 					pageData = {
 						theClass : 'page',
 						theContentFront	: $page.html(),
+						// if it's the last page, it's just an empty string, otherwise .eq is similar to calling this.$pages[i + 1]
 						theContentBack : ( i !== this.pagesCount ) ? this.$pages.eq( i + 1 ).html() : '',
 						theStyle : 'z-index: ' + ( this.pagesCount - i ) + '; left: ' + ( this.windowProp.width / 2 ) + 'px;',
 						theContentStyleFront : 'width:' + this.windowProp.width + 'px;',
 						theContentStyleBack	: 'width:' + this.windowProp.width + 'px;'
 					};
+				// if it's the front page add cover class
 				if( i === 0 ) {
 					pageData.theClass += ' cover';
 				} else {
+				  // add left sidebar margin for the front right page
 					pageData.theContentStyleFront += 'left:-' + ( this.windowProp.width / 2 ) + 'px';
+					// if it's the back page
 					if( i === this.pagesCount - 2 ) {
 						pageData.theClass += ' cover-back';
 					}
 				}
 			  $( '#pageTmpl' ).tmpl( pageData ).appendTo( this.$el );
 			}
+			// remove where it says div.f-page
 			this.$pages.remove();
+			// replace with div.page
 			this.$flipPages	= this.$el.children( 'div.page' );
 			this.flipPagesCount	= this.$flipPages.length;
+		  // flip pages to current page
 			this._adjustLayout( ( this.state === undefined ) ? this.currentPage : this.state );
 		},
 		
 		// adjust layout size to window width
-		_setLayoutSize		: function() {
+		_setLayoutSize : function() {
 			this.$el.css({
 				width	: this.windowProp.width,
 				height	: this.windowProp.height
 			});
 		},
 		
-		_initTouchSwipe		: function() {	
+		_initTouchSwipe	: function() {	
 			var _self = this;
 			this.$el.swipe( {
 				threshold	: 0,
@@ -419,6 +438,8 @@
 					_self._adjustLayout( _self.currentPage );
 				}
 			});
+			// when you click on an item, it expands to fill the screen by adding overlay
+			// closes when you click close
 			this.$flipPages.find( '.box' ).on( 'click.flips', function( event ) {
 				var $box = $(this),
 					$boxClose = $( '<span class="box-close">close</span>' ),
@@ -681,9 +702,14 @@
 		}
 	};
 	
+	// $.fn is the same as saying jQuery.prototype
+	// so this is adding the flips function to all jQuery object
+	// ie. you can call flips() on any jquery object in the DOM from the console, for example $('.page').flips()
 	$.fn.flips = function( options ) {
 		if ( typeof options === 'string' ) {
+		  
 			var args = Array.prototype.slice.call( arguments, 1 );
+			
 			this.each(function() {
 				var instance = $.data( this, 'flips' );
 				if ( !instance ) {
@@ -698,13 +724,25 @@
 				instance[ options ].apply( instance, args );
 			});
 		} else {
+		  // this gets called on $container (which is the div wrapper with id=flips, class="container")
+		  // $container 'houses' the flip structure, which is container > page cover > page
+		  // this.each loops through every DOM element in $container
 			this.each(function() {
+			  // $.data stores or retrieves data in the DOM element in a key/value format
+			  // the first arg when called as $.data method is a DOM element
+			  // in this case, it is retrieving whatever is stored in the 'flips' key of that DOM element
 				var instance = $.data( this, 'flips' );
+				// if var instance doesn't exist, then it stores the result of calling new $.Flips
+				// into the DOM element of this, with the key of 'flips'
 				if ( !instance ) {
+				  // new $.Flips is called with options - if any - and this, which is the DOM element looped through from #flips
 					$.data( this, 'flips', new $.Flips( options, this ) );
 				}
 			});
 		}
+		
+		// I think this returns "this", which is #flip, but with the data attachments from the each loops 
+		// on each DOM element
 		return this;
 	};
 	

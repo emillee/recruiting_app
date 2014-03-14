@@ -24,8 +24,9 @@
 							<% current_user.job_settings[:keywords].each do |keyword| %>
 								<li class="job-sidebar keywords-li selected">
 									<%= keyword %>
-									<%= check_box_tag "user[job_settings][keywords][]", keyword, checked = true %>
+									<%= check_box_tag "user[job_settings][keywords][]", keyword, checked = true if current_user.job_settings[:keywords] && current_user.job_settings[:keywords].include?(keyword) %>
 									<i class="fa fa-check"></i>
+									<!-- <i class="fa fa-times-circle"></i> -->
 								</li>
 							<% end %>
 						<% end %>
@@ -37,8 +38,8 @@
 				<div class="wrapper">
 					<h1 class="department">
 						Department:
-						<i class="fa fa-minus-circle hidden"></i>
-						<i class="fa fa-plus-square-o"></i>
+						<i class="fa fa-minus hidden"></i>
+						<i class="fa fa-plus"></i>
 					</h1>
 					<ul class="job-filters">
 						<% Taxonomy.departments.each do |dept| %>
@@ -47,6 +48,7 @@
 									<%= label_tag dept %>
 									<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
 								<i class="fa fa-check"></i>
+								<!-- <i class="fa fa-times-circle"></i>	 -->							
 							</li>
 						<% end %>
 					</ul>
@@ -56,13 +58,15 @@
 				<div class="wrapper">
 					<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
 						Role:
-						<i class="fa fa-minus-circle department hidden"></i>
-						<i class="fa fa-plus-square-o department"></i>
+						<i class="fa fa-minus department"></i>
+						<i class="fa fa-plus department hidden"></i>
 					</h1>
 					<ul class="job-filters">
 						<% return_sub_depts.each do |sub| %>
 							<% checked = sub_dept_checked?(sub) %>
-							<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
+							<% is_hidden = (current_user.job_settings[:dept] &&
+							 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
+							<li class="job-sidebar <%= checked ? 'selected' : is_hidden %>">
 								<%= label_tag sub %>
 								<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
 								<i class="fa fa-check sub_dept"></i>
@@ -76,8 +80,8 @@
 					<div class="wrapper">
 						<h1 class="experience">
 							Experience (Yrs):
-							<i class="fa fa-minus-circle hidden"></i>
-							<i class="fa fa-plus-square-o"></i>
+							<i class="fa fa-minus"></i>
+							<i class="fa fa-plus hidden"></i>
 						</h1>
 						<ul class="job-filters">
 							<% [['Internship', 0],
@@ -88,7 +92,9 @@
 									['Veteran (5+)', 8],
 									['Exec (10+)', 10]].each do |label, num_years| %>
 								<% checked = num_years_checked?(num_years) %>
-								<li class="job-sidebar <%= checked ? 'selected' : 'hidden' %>">
+								<% is_hidden = (current_user.job_settings[:dept] &&
+								 		current_user.job_settings[:years_exp]) ? 'hidden' : '' %>								
+								<li class="job-sidebar <%= checked ? 'selected' : is_hidden %>">
 									<%= label_tag "#{label}-#{label}", label %>
 									<%= check_box_tag "user[job_settings][years_exp][]", num_years, checked %>
 									<i class="fa fa-check"></i>
@@ -103,8 +109,8 @@
 					<div class="wrapper">
 						<h1 class="key-skills">
 							Key Skills:
-							<i class="fa fa-minus-circle"></i>
-							<i class="fa fa-plus-square-o hidden"></i>
+							<i class="fa fa-minus"></i>
+							<i class="fa fa-plus hidden"></i>
 						</h1>
 						<ul class="job-filters key-skills">
 							<% Taxonomy.front_end_key_skills.each_with_index do |skill, index| %>

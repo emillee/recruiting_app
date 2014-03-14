@@ -1,0 +1,34 @@
+CSV File Upload
+// var wrapper = $('<div/>').css( 
+//   { height: 0, width: 0, 'overflow': 'hidden' }
+// );
+// 
+// var fileInput = $(':file').wrap(wrapper);
+// 
+// fileInput.change(function(){
+//   $this = $(this);
+//   $('#file').text($this.val());
+// });
+// 
+// $('#file').click(function(){
+//   fileInput.click();
+// }).show();
+
+
+jobs.js
+// INFINITE SCROLL
+// if ($('.pagination').length) {
+//   $(window).scroll(function() {
+//     var url = ($('.next a').attr('href'))
+//     if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 0) {
+//       $('.pagination').text('Fetching more jobs...');
+//       $.getScript(url);
+//     }
+//   })
+// }
+
+
+index.js.erb
+// For infinite scroll
+$('.job-posts').append('<%= j render(@jobs) %>');
+$('.pagination').replaceWith('<%= j paginate(@jobs) %>');

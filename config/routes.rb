@@ -13,7 +13,7 @@ Nytech::Application.routes.draw do
 
   resources :jobs, only: [:show, :index, :new, :update, :destroy] do 
     member { post :import_data }
-    member { put :update_key_skills }
+    member { put :update_req_skills }
     member { get :forward_form }
     collection { get :flip_view }
   end
@@ -29,7 +29,7 @@ Nytech::Application.routes.draw do
   match '/filters',     to: 'jobs#filters', via: :get
   match '/forward_job', to: 'jobs#forward_job', via: :post
   
-  match '/auth/:provider/callback', to: 'sessions#create', via: :get
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
    
   root to: 'jobs#root_action'
 end
