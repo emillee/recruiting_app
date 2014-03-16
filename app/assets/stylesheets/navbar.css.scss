@@ -20,7 +20,7 @@ nav.navbar-wrapper {
   }
   
   a.logo {
-    color: #00080E;
+    color: black;
     font-weight: 900;
     margin-left: 15px;
     
@@ -31,16 +31,17 @@ nav.navbar-wrapper {
   
   a.logo:nth-of-type(3) {
     top: 0px;
+//    font-style: italic;
     position: relative;
-    color: rgba(0,8,14,.5);
-    background-color: rgba(0,8,14,.05);
-    border: 1px solid rgba(0,8,14,.3);
-    border-radius: 1px;
-    padding-left: 6px;
-    padding-right: 5px;
-    font-size: 17px;
-    font-weight: 700;
-    margin-left: -1px;
+    color: black;
+    background-color: none;
+    border: 3px solid black;
+    border-radius: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: -2px;
     text-align: center;
   }
   

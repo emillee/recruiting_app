@@ -5,12 +5,14 @@ Nytech::Application.routes.draw do
   resources :searches, only: [:new, :show, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
   resources :taxonomies, only: [:index]
+  resources :user_skills, only: [:create, :update, :destroy]
+  resource :user_jobs, only: [:create, :destroy]
+    
   resources :companies do
     collection { get :autocomplete_fields }
     resources :jobs, only: [:create]
   end
-  resource :user_jobs, only: [:create, :destroy]
-
+  
   resources :jobs, only: [:show, :index, :new, :update, :destroy] do 
     member { post :import_data }
     member { put :update_req_skills }

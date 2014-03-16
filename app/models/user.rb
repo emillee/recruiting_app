@@ -63,6 +63,13 @@ class User < ActiveRecord::Base
     foreign_key: :user_id,
     primary_key: :id
   )
+  
+  has_many(
+    :user_skills,
+    class_name: 'UserSkill',
+    foreign_key: :user_id,
+    primary_key: :id
+  )
 
   # Sessions / Authentication------------------------------------------
   def self.new_guest 

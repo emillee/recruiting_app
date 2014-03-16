@@ -1,0 +1,110 @@
+.droppable-wrapper {
+  margin-left: 20px;
+  height: 100%;
+  width: 100%;
+  display: block;
+  
+  .is-droppable {
+    width: 600px;
+    background-color: #EBEBEB;
+    border: 3px dashed #AAAAAA;
+    border-radius: 3px;
+  }  
+  
+  .skills-ul {
+    
+    li.user-skills {
+      margin: 5px;
+      text-decoration: none;
+      background-color: rgba(255,255,255,.8);
+      height: 60px;
+      line-height: 60px;
+      border: 2px solid white;
+      
+      // this is the "Add a Skill" section
+      &:last-of-type {
+        font-size: 23px;
+        font-style: italic;
+        padding-left: 10px;
+        color: lightgray;
+      }
+      
+      img {
+        height: 100%;
+        background-color: white;
+        cursor: pointer;
+      }
+      
+      div.level-wrap {
+        float: right;
+        
+        form {
+          display: inline-block;
+          
+          label {
+            padding: 20px 25px;
+
+            &:nth-of-type(1) { 
+              background-color: rgba(25,221,137,.35); 
+              &:hover { background-color: rgba(25,221,137,.75) }
+              &.selected { background-color: rgba(25,221,137,1) } 
+            }
+                        
+            &:nth-of-type(2) { 
+              background-color: rgba(86,218,113,.35); 
+              &:hover { background-color: rgba(86,218,113,.75) }
+              &.selected { background-color: rgba(86,218,113,1) } 
+            }         
+            
+            &:nth-of-type(3) { 
+              background-color: rgba(26,209,26,.35); 
+              &:hover { background-color: rgba(26,209,26,.75) }
+              &.selected { background-color: rgba(26,209,26,1) } 
+            }                  
+
+            &:nth-of-type(4) { 
+              background-color: rgba(25,178,75,.35); 
+              &:hover { background-color: rgba(25,178,75,.75) }
+              &.selected { background-color: rgba(25,178,75,1) } 
+            }
+
+             &:nth-of-type(5) { 
+               background-color: rgba(0,100,0,.35); 
+               &:hover { background-color: rgba(0,100,0,.75) }
+               &.selected { background-color: rgba(0,100,0,1) } 
+             }            
+          }
+          
+          input[type='radio'], input[type='submit'] {
+            display: none;
+          }       
+        }
+      }
+    }
+  } 
+}
+
+
+.box-of-logos {
+  margin-left: 20px;
+  margin-top: 15px;
+  height: 300px;
+  width: 600px;
+  display: block;
+  background-color: lightgray;
+
+  img {
+    float: left;
+    height: 60px;
+    margin: 10px;   
+    background-color: white; 
+    cursor: pointer;
+  }
+}
+
+
+
+
+
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302185524) do
+ActiveRecord::Schema.define(version: 20140314203540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 20140302185524) do
     t.string   "career_page_link"
     t.integer  "year_founded"
     t.text     "overview"
+  end
+
+  create_table "identities", force: true do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
   create_table "jobs", force: true do |t|
@@ -69,15 +77,26 @@ ActiveRecord::Schema.define(version: 20140302185524) do
     t.hstore "expert_phrases"
   end
 
+  create_table "user_job_preapprovals", force: true do |t|
+    t.integer "user_id"
+    t.integer "job_id"
+  end
+
   create_table "user_jobs", force: true do |t|
     t.integer "user_id"
     t.integer "saved_job_id"
     t.integer "applied_job_id"
   end
 
+  create_table "user_skills", force: true do |t|
+    t.integer "user_id"
+    t.string  "skill"
+    t.integer "level"
+  end
+
   create_table "users", force: true do |t|
-    t.string   "email",               null: false
-    t.string   "password_digest",     null: false
+    t.string   "email",                            null: false
+    t.string   "password_digest",                  null: false
     t.string   "session_token"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -93,7 +112,7 @@ ActiveRecord::Schema.define(version: 20140302185524) do
     t.string   "title"
     t.string   "location"
     t.integer  "company_id"
-    t.hstore   "job_filters"
+    t.hstore   "job_filters",         default: {}
   end
 
 end

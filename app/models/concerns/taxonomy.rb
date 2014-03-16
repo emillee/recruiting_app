@@ -11,7 +11,7 @@ module Taxonomy
         'PHP',
         'Node',
         'Java',
-        'C++',
+        'C-Plus-Plus',
         'C-Sharp',
         'Perl',
         'Scala',

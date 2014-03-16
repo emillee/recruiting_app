@@ -48,7 +48,7 @@ ready = $('.jobs.index').ready(function() {
     var this_url = "/user_jobs" + "?" + "applied_job_id=" + job_id + "&" + "user_id=" + user_id
     
     $.ajax({
-      type: "POST",
+      type: 'POST',
       url: this_url
     });
   });
@@ -69,21 +69,81 @@ ready = $('.companies.show').ready(function() {
 
 ready = $('.users.show').ready(function() {
     
-  $('.is-draggable').draggable({
-    'containment' : '.skills',
-    'cursor'      : 'move'
-  });
+  addDraggableEvents();
+  addDroppableEvents();
   
-  $('.is-droppable').droppable({
-    drop: handleDropEvent
-  });
-  
-  function handleDropEvent(event, ui) {
-    alert('dropped')
-  };
+  $('.skills-ul').on('click', 'input[type="radio"]', function() {
+    $(this).parents('form:first').submit();
+  })
 
+  $('.skills-ul').on('ajax:success', '.edit_user_skill', function(event, data) {
+    var $skills = $(data).find(' .skills-ul');
+    $('.skills-ul').empty().html($skills);
+  })
+  
+  function addDraggableEvents() {
+    $('.is-draggable').draggable({
+      'containment' : '.skills',
+      'cursor'      : 'move'
+    }); 
+  };
+  
+  function addDroppableEvents() {
+    $('.skill-dropzone.is-droppable').droppable({
+      drop: createUserSkill
+    });
+
+    $('.box-of-logos.is-droppable').droppable({
+      drop: destroyUserSkill
+    });    
+  }
+  
+  function createUserSkill(event, ui) {
+    var draggable = ui.draggable;
+    var user_id = draggable.closest('li').data('user');
+    var skill = draggable.closest('li').data('skill');
+    var post_to_url = '/user_skills/?user_id=' + user_id + '&' + 'skill=' + skill
+    
+    $.ajax({
+      type: 'POST',
+      url: post_to_url,
+      success: function(data) {
+        draggable.remove();
+        var $skills = $(data).find(' .skills-ul');
+        $('ul.skills-ul').empty().html($skills);
+        addDraggableEvents();
+      }
+    })
+  };
+  
+  function destroyUserSkill(event, ui) {
+    var draggable = ui.draggable;
+    var userskill_id = draggable.closest('li').data('userskill');
+    var this_url = '/user_skills/' + userskill_id
+        
+    $.ajax({
+      type: 'POST',
+      data: {"_method":"delete"},
+      url: this_url,
+      success: function(data) {
+        draggable.parent('li').remove();
+        var $box_of_logos = $(data).find(' .box-of-logos-ul')
+        $('ul.box-of-logos-ul').empty().html($box_of_logos);
+        addDroppableEvents();
+        addDraggableEvents();
+      }
+    })
+  };      
+  
 });
 
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+
+
+
+
+
+
