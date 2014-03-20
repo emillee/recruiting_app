@@ -1,5 +1,5 @@
 <nav class="navbar-wrapper">
-	<a href=<%= user_url(current_user) %>><i class="fa fa-bars"></i></a>
+	<a href=<%= user_url(current_user) %> data-no-turbolink='true'><i class="fa fa-bars"></i></a>
 
 	<%= link_to 'wolfpack', root_url, class: "logo" %>
 	<%= link_to 'beta', root_url, class: "logo" %>
@@ -7,23 +7,23 @@
 	<div class="menu">
 		<!-- Show me: &nbsp;  -->
 		<% if request.env['PATH_INFO'] == '/jobs' %>
-			<%= link_to 'Jobs', jobs_url, class: "selected" %>
+			<%= link_to 'Jobs', jobs_url, class: "selected", data: { no_turbolink: true } %>
 		<% else %>
-			<%= link_to 'Jobs', jobs_url %>
+			<%= link_to 'Jobs', jobs_url, data: { no_turbolink: true } %>
 		<% end %>
 		
-		<%= link_to 'People', '#', class: "coming-soon-icon" %>
-		<%= link_to 'Directory', '#', class: "coming-soon-icon" %>
+		<%= link_to 'People', user_url(current_user), class: "coming-soon-icon" %>
+		<%= link_to 'Startups', companies_url, class: "coming-soon-icon" %>
 		<%= link_to 'Groups', '#', class: "coming-soon-icon" %>
 		<%= link_to 'More +', '#', class: "coming-soon-icon" %>
 	</div>
 	
-	<!-- <% if flash[:welcome] %>
+	<% if flash[:welcome] %>
 		<span class="coming-soon">
 			<span class="wrapper"></span>
 			<h1><- Coming Soon!</h1>
 		</span>
-	<% end %> -->
+	<% end %>
 
 	<div class="session">
 		<% if signed_in? %>
@@ -35,15 +35,15 @@
 			<%= link_to "Guest", users_url, method: :post %>			
 			&nbsp; | &nbsp;
 			<%= link_to "Log In", login_url %>
-		<% end %>
+		<%end %>
 	</div>
 </nav>
 
 
 <nav class="navbar-wrapper-two">
-	<% if current_user %>
-		<!-- <p>Signed in as: <%= current_user.id %></p> -->
-	<% end %>
+	<%# if current_user %>
+		<!-- <p>Signed in as: <%#= current_user.id %></p> -->
+	<%# end %>
 	<!-- <% if current_user %>
 		<% if current_user.fname %>
 			<h3><%= current_user.fname %>'s:</h3>

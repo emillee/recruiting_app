@@ -1,5 +1,20 @@
 module JobsHelper
   
+  def icon_dept_match(dept)
+    case dept
+    when 'Bus. Development'
+      return 'fa fa-briefcase'
+    when 'Engineering'
+      return 'fa fa-code'
+    when 'Design'
+      return 'fa fa-desktop'
+    when 'Sales'
+      return 'fa fa-bar-chart-o'
+    when 'Product Management'
+      return 'fa fa-lightbulb-o'
+    end      
+  end
+  
   def req_skill_checked?(job, skill)
     return true if job.req_skills.include?(skill)
     return false

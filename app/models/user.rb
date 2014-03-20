@@ -45,6 +45,12 @@ class User < ActiveRecord::Base
   )
   
   has_many(
+    :removed_jobs,
+    through: :user_jobs,
+    source: :removed_job
+  )
+  
+  has_many(
     :user_job_preapprovals,
     class_name: 'UserJobPreapproval',
     foreign_key: :user_id,

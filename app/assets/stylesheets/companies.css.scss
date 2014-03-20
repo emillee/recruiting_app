@@ -4,16 +4,6 @@ div.company-sidebar {
   }
 }
 
-div.company {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  background: lightgray;
-  padding: 10px;
-  height: 100%;
-  width: 1000px;
-}
-
 div.companies-wrapper {
   position: absolute;
   top: 110px;
@@ -21,65 +11,173 @@ div.companies-wrapper {
   background-color: white;
   overflow: scroll;
   
-  nav.pagination {
-    background-color: gray;
-    height: 30px;
-    padding: 15px;
-  }
+//  nav.pagination {
+//    background-color: gray;
+//    height: 30px;
+//    padding: 15px;
+//  }
   
-  ul.job-posts {
+  ul.companies-posts {
     width: 1000px;
 
     li {
-      padding: 15px;
+      padding: 10px;
       height: 100%;
 //      margin-top: 10px;
 //      margin-bottom: 15px;  
       background-color: white;
       border-radius: 1px;
       border-bottom: 5px solid rgba(0,0,0,.5);
-    }
-    
-    img {
-      margin-top: 2px;
-      margin-right: 3px;
-      height: 100px;
-      float: right;
-      display: inline-block;
-      border-radius: 1px;
-    }
-    
-    .description {
-      line-height: 25px;
-      float: left;
-      height: 75px;
-      width: 555px;
-      margin-left: 5px;
-    }
+      
+      .company-top-wrapper {
+        display: block;
+        height: 150px;
+        border: 1px solid rgba(0,0,0,.05);        
+        
+        div.logo {
+          position: absolute;
+          display: inline-block;
+          width: 260px;
+          height: 150px;
+          background-color: #F6ECFD;
+          text-align: center;
 
-    h1 {
-      font-size: 20px;
-      font-weight: 900;
-      color: black;
-      margin-bottom: 2px;
+          img {
+            max-width: 200px;
+            max-height: 110px;
+            margin-top: 20px;
+            display: inline-block;
+            border-radius: 1px;
+          }        
+        }
       
-      a {
-        color: black;
-        font-weight: 900;
+        .company-intro {
+          position: absolute;
+          left: 250px;
+          display: inline-block;
+          margin-left: 20px;
+          background-color: #232323;
+          height: 120px;
+          padding: 15px;
+          width: 390px;
+          
+          h1, h3, p {
+            color: white;            
+          }
+        
+          h1 {
+            font-weight: 900;
+
+            a {
+              color: white;              
+              line-height: 30px;
+              font-size: 22px;            
+            }
+          }
+
+          p {
+            font-weight: 600px;
+            font-size: 16px;
+            line-height: 24px;
+            color: #b3b3b1;
+          }        
+        }
+        
+        .company-stats {
+          background-color: #333332;
+          padding: 10px 15px;
+          float: right;
+          height: 130px;
+          width: 270px;
+          color: #b3b3b1;
+          position: relative;
+          
+          h3 {
+            font-size: 14px;
+            line-height: 19px;
+            
+            span {
+              color: white;
+            }
+          }
+          
+          a {
+            text-align: center;
+            line-height: 18px;
+            bottom: 10px;
+            padding: 4px 5px;
+            width: 260px;
+            background-color: black;
+            position: absolute;
+            color:  #5cb86e;
+            font-family: 'Lato';
+          }
+        }
       }
-    }
-    
-    h3 {
-      color: black;
-      font-weight: 600px;
-    }
-    
-    p {
-      color: gray;
-      font-size: 16px;
       
-      span.heading {
-        color: black;
+      .company-mid-wrapper {
+        display: block;
+        height: 2000px;
+        
+        .company-navbar {
+          position: relative;
+          top: 0px;
+          height: 35px;
+          line-height: 35px;
+          width: 979px;
+          background-color: #778899;
+          
+          a {
+            float: left;
+            border-left: 1px solid rgba(0,0,0,.2);
+            padding-left: 10px;
+            padding-right: 10px;
+            color: white;
+            font-size: 14px;
+            font-family: 'Clear Sans';
+            
+            &:first-of-type {
+              margin-left: 175px;
+            }
+            
+            &:last-of-type {
+              border-right: 1px solid rgba(0,0,0,.2);
+            }
+          }
+        }
+        
+        div.content {
+          width: 919px;
+          height: 300px;
+          padding: 30px;
+                    
+          h1 {
+            font-size: 28px;
+            line-height: 40px;
+            color: white;            
+          }
+          
+          p {
+            font-size: 20px;
+            color: white;            
+          }
+        }
+        
+        .the-office {
+          background-color: #3498db;
+        }
+        
+        .recent-work {
+          background-color: #2ecc71;          
+        }
+        
+        .day-in-life {
+          background-color: #e74c3c;
+        }
+        
+        .career-openings {
+          background-color: #f39c12;
+        }
       }
     }
     

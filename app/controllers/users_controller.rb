@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  
+  respond_to :js
     
   # RESTful Routes ---------------------------------------------------------------------------
   
@@ -39,29 +41,32 @@ class UsersController < ApplicationController
 	def update
     @user = User.find(params[:id])
     
-    keywords_arr = params[:user][:job_settings][:keywords] unless params[:user][:job_settings].nil?
-    without_blanks = []
+    if params[:user]
+      keywords_arr = params[:user][:job_settings][:keywords] unless params[:user][:job_settings].nil?
+
+      without_blanks = []
     
-    if keywords_arr
-      keywords_arr.each do |keyword|
-        without_blanks << keyword unless keyword == ""
+      if keywords_arr
+        keywords_arr.each do |keyword|
+          without_blanks << keyword unless keyword == ""
+        end
       end
-    end
     
-    if without_blanks.empty?
-      params[:user][:job_settings].delete(:keywords) unless params[:user][:job_settings].nil? 
-    else
-      params[:user][:job_settings][:keywords] = without_blanks
-    end
+      if without_blanks.empty?
+        params[:user][:job_settings].delete(:keywords) unless params[:user][:job_settings].nil? 
+      else
+        params[:user][:job_settings][:keywords] = without_blanks
+      end
     
-    # this is if all checkboxes are blank or clear button hit. 
-    # The empty search input box submits ""
-    # Is there a better way to do this?
-		if params[:user][:job_settings] && params[:user][:job_settings].nil?
-		  @user.update_column('job_settings', {})
-		  @jobs = Job.all
-		  redirect_to jobs_url
-	  end
+      # this is if all checkboxes are blank or clear button hit. 
+      # The empty search input box submits ""
+      # Is there a better way to do this?
+  		if params[:user][:job_settings] && params[:user][:job_settings].nil?
+  		  @user.update_column('job_settings', {})
+  		  @jobs = Job.all
+  		  redirect_to jobs_url
+  	  end
+  	end
 	  
 		if @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
@@ -91,7 +96,8 @@ class UsersController < ApplicationController
     # TODO: is it security risk for is_admin
   	def user_params
   		params.require(:user).permit(:email, :password, :password_digest, :avatar, :fname, :lname, :title, :location,
-  		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }}, :is_admin, :guest)
+  		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }}, :is_admin, :guest,
+  		  :biography, :intro)
   	end
 	
 end

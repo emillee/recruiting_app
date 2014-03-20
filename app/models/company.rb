@@ -7,6 +7,7 @@ class Company < ActiveRecord::Base
     companies.career_page_link != ?', 'NA') }
   scope :page_unavailable, ->(arg) { where('companies.career_page_link = ?', 'NA') }
   scope :page_blank, ->(arg) { where('companies.career_page_link IS NULL') }
+  scope :is_hiring, ->(arg){ Company.joins(:job_listings) }
   
   has_many(
     :job_listings,

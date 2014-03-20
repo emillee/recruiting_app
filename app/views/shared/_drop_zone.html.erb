@@ -1,5 +1,5 @@
 <div class='droppable-wrapper'>
-	<div class="skill-dropzone is-droppable">
+	<div class="skill-dropzone">
 		<ul class="skills-ul">
 			<% @user.user_skills.sort.each do |user_skill| %>
 				<li class="user-skills" data-userskill="<%= user_skill.id %>">
@@ -7,12 +7,17 @@
 					
 					<div class="level-wrap">
 						<%= form_for user_skill, remote: true, method: :put do |f| %>
-							<% 5.times do |idx| %>
-								<% idx_plus_one = idx + 1 %>
-								<% selected = (user_skill.level == idx_plus_one) ? 'selected' : '' %>
-								<% this_label = "#{user_skill.skill}_" + "#{idx_plus_one}" %>
-								<label for="<%= this_label %>" class="skill-radio <%= selected %>"><%= idx_plus_one %></label>
-								<input id="<%= this_label %>" name="user_skill[level]" type="radio" value="<%= idx_plus_one %>">
+							<% [
+								['Entry', 1],
+								['Junior', 2],
+								['Mid', 3],
+								['Lead', 4],
+								['Guru', 5]
+								].each do |label, year| %>
+								<% selected = (user_skill.level == year) ? 'selected' : '' %>
+								<% this_label = "#{user_skill.skill}_" + "#{year}" %>
+								<label for="<%= this_label %>" class="skill-radio <%= selected %>"><%= label %></label>
+								<input id="<%= this_label %>" name="user_skill[level]" type="radio" value="<%= year %>">
 							<% end %>
 							
 							<%= f.submit 'Submit' %>
@@ -21,7 +26,7 @@
 					
 				</li>
 			<% end %>
-			<li class="user-skills">+ Drag a new skill anywhere up here!</li>
+			<li id="add-skill" class="user-skills hidden">+ Drag a new skill from below anywhere up here!</li>
 		<ul>
 	</div>
 </div>

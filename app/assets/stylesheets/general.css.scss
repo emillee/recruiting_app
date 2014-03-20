@@ -14,6 +14,15 @@
 @import url(http://fonts.googleapis.com/css?family=Old+Standard+TT);
 @import url(http://fonts.googleapis.com/css?family=PT+Mono);
 
+@font-face{ 
+	font-family: 'Clear Sans';
+	src: asset-url('ClearSans-Regular-webfont.woff') format('woff');
+//  src: url('WebFont.eot?iefix') format('eot'),
+//       url('WebFont.woff') format('woff'),
+//       url('WebFont.ttf') format('truetype'),
+//       url('WebFont.svg#webfont') format('svg');
+}
+
 //font-family: 'Old Standard TT', serif;
 //font-family: 'PT Mono', sans-serif;
 //font-family: 'Lora', serif;
@@ -42,6 +51,10 @@ body {
   display: none;
 }
 
+.show {
+  display: block;
+}
+
 .visibility-hidden {
   visibility: hidden;
 }
@@ -52,10 +65,6 @@ body {
 
 .hide {
   opacity: 0;
-}
-
-.show {
-  display: block;
 }
 
 .clear {

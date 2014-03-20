@@ -2,17 +2,6 @@ var ready;
 
 ready = $('.jobs.index').ready(function() {
   
-  // // Show pagination on hover
-  // $('div.jobs-wrapper').on('mouseenter', function() {
-  //   $('.next > a').addClass('visibility-visible');
-  //   $('.prev > a').addClass('visibility-visible');
-  // })
-  // 
-  // $('div.jobs-wrapper').on('mouseleave', function() {
-  //   $('.next > a').removeClass('visibility-visible');
-  //   $('.prev > a').removeClass('visibility-visible');
-  // })
-  
   // FORWARDING
   $('ul.job-posts').on('click', '.forward', function(event) {
     console.log('hello')
@@ -30,7 +19,6 @@ ready = $('.jobs.index').ready(function() {
       $('#email_info_email').focus();
     })
   });
-  
   
   // SAVING AND APPLYING TO JOBS
   $('ul.job-posts').on('click', '.save', function(event) {
@@ -51,6 +39,10 @@ ready = $('.jobs.index').ready(function() {
       type: 'POST',
       url: this_url
     });
+  });
+  
+  $('ul.job-posts').on('click', '.remove', function(event) {
+    $(this).parents('li').remove();
   });
   
 });
@@ -79,6 +71,45 @@ ready = $('.users.show').ready(function() {
   $('.skills-ul').on('ajax:success', '.edit_user_skill', function(event, data) {
     var $skills = $(data).find(' .skills-ul');
     $('.skills-ul').empty().html($skills);
+  })
+  
+  $('.article.skills').on('click', '#edit-skills', function() {
+    event.preventDefault();
+    $(this).addClass('hidden');
+    $('#save-skills').removeClass('hidden');
+    $('.box-of-logos').removeClass('hidden');
+    $('.skill-dropzone').addClass('is-droppable');
+    $('#add-skill').removeClass('hidden');
+    addDroppableEvents();
+  })
+  
+  $('.article.skills').on('click', '#save-skills', function() {
+    event.preventDefault();
+    $(this).addClass('hidden')
+    $('#edit-skills').removeClass('hidden');
+    $('.box-of-logos').addClass('hidden');
+    $('.skill-dropzone').removeClass('is-droppable');
+    $('#add-skill').addClass('hidden');
+  })
+  
+  $('[contenteditable=true]').blur(function() {
+    event.preventDefault()
+    var $id = $(this).data('id');
+    var $table = $(this).data('model');
+    var $model = $table.slice(0, -1);
+    var $attribute = $(this).data('attribute');
+    var $newContent = $(this).html();
+    var $url = '/' + $table + '/' + $id
+    var dataObject = {}
+
+    dataObject[$model] = {}
+    dataObject[$model][$attribute] = $newContent
+    
+    $.ajax({
+      type: 'PUT',
+      url: $url,
+      data: dataObject
+    })
   })
   
   function addDraggableEvents() {
@@ -141,7 +172,16 @@ ready = $('.users.show').ready(function() {
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
-
+// // Show pagination on hover
+// $('div.jobs-wrapper').on('mouseenter', function() {
+//   $('.next > a').addClass('visibility-visible');
+//   $('.prev > a').addClass('visibility-visible');
+// })
+// 
+// $('div.jobs-wrapper').on('mouseleave', function() {
+//   $('.next > a').removeClass('visibility-visible');
+//   $('.prev > a').removeClass('visibility-visible');
+// })
 
 
 

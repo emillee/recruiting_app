@@ -45,10 +45,11 @@
 						<% Taxonomy.departments.each do |dept| %>
 							<% checked = dept_checked?(dept) %>
 							<li class="job-sidebar department <%= sel_or_hide(dept) %>">
-									<%= label_tag dept %>
-									<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
+								<i class="<%= icon_dept_match(dept) %> left"></i>
+								<%= label_tag dept %>
+								<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
 								<i class="fa fa-check"></i>
-								<!-- <i class="fa fa-times-circle"></i>	 -->							
+							<!-- <i class="fa fa-times-circle"></i>	 -->							
 							</li>
 						<% end %>
 					</ul>

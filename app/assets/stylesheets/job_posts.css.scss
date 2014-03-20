@@ -7,18 +7,41 @@ div.jobs-wrapper {
 //  overflow: scroll;
   
   .top-bar {
-    text-indent: 10px;
     line-height: 30px;
+    padding: 0px;
     background-color: rgba(0,0,0,.5);
-    margin-bottom: 10px;
     margin-top: -5px;
     color: rgba(230,230,230,1);
     font-family: 'Lato';
     
     a {
-      color: white;
-      background-color: black;
-      padding: 5px;
+      color: #ecf0f1;
+      font-size: 13px;
+      border: 1px solid #ecf0f1;
+      display: inline-block;
+      padding: 4px;
+      line-height: 13px;
+      font-size: 13px;
+      
+      &:first-of-type {
+        margin-left: 4px;
+      }
+    }
+    
+    .view-options {
+      float: right;
+      line-height: 13px;
+      margin-top: 3px;
+      border: 1px solid white;
+      margin-right: 4px;
+
+      a {
+        border: none;
+      }
+      
+      i {
+        padding-right: 3px;
+      }
     }
   }
   
@@ -64,7 +87,6 @@ div.jobs-wrapper {
       border-radius: 1px;
       
       &:last-of-type {
-        margin-bottom: 13px; 
         border-bottom: none;  
       }
     }
@@ -109,13 +131,38 @@ div.jobs-wrapper {
       width: 550px;
       margin-left: 5px;
       
-      h1 {
-        line-height: 30px;
-        font-size: 18px;
-        font-weight: 900;
-        font-style: bold;
-        color: black;
+      .job-title-and-link {
+
+        h1 {
+          line-height: 30px;
+          font-size: 16px;
+          font-weight: 900;
+          font-style: bold;
+          color: black;
+          display: inline-block;
+        }
+        
+        a.view, a.forward {
+          position: absolute;
+          color: #95a5a6;
+          font-size: 13px;  
+          text-decoration: underline;
+          padding: 10px 2px;
+        
+          &:hover {
+            color: #2c3e50;
+          }         
+        }  
+        
+        a.viewed {
+          color: #bdc3c7;    
+          font-size: 13px;  
+          text-decoration: underline;               
+          padding: 5px;
+        }
+                     
       }
+
             
       p {
         color: #555555;
@@ -141,32 +188,16 @@ div.jobs-wrapper {
           padding: 3px 5px;
           font-weight: 500;
           line-height: 16px;
-          
-          &.view {
-            border: 3px solid #34495e;
-            color: #34495e;   
+
+          &.remove {
+            border: 3px solid #7f8c8d;
+            color: #7f8c8d;   
             
             &:hover {
-              background-color: #34495e;
+              background-color: #7f8c8d;
               color: white;
             }
           }
-          
-          &.viewed {
-            border: 3px solid #34495e;
-            background-color: #34495e;
-            color: white;
-          }
-          
-          &:nth-of-type(2) {
-            border: 3px solid #8e44ad;
-            color: #8e44ad;   
-
-            &:hover {
-              background-color: #8e44ad;
-              color: white;
-            }
-          };
 
           &.save {
             border: 3px solid #2980b9;          

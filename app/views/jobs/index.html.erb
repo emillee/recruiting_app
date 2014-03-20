@@ -3,21 +3,40 @@
 <div class="jobs-wrapper">
 	
 	<div class="top-bar">
-		<%= link_to 'Viewed Jobs', '#' %>	
-		<%= link_to 'Saved Jobs', '#' %>
+		<%= link_to 'Viewed', jobs_url(filter: 'viewed') %>	
+		<%= link_to 'Saved', jobs_url(filter: 'saved') %>
+		<%= link_to 'Removed', jobs_url(filter: 'removed') %>
 		
-		<span class="view-options"><%= link_to 'Flip View', flip_view_jobs_url, data: { no_turbolink: true } %></span>
+		<span class="view-options">
+			<%= link_to 'Flip View', flip_view_jobs_url, data: { no_turbolink: true } %>
+			<i class="fa fa-barcode"></i>
+		</span>
 	</div>
 
 	
 	<ul class="job-posts">
 		<% @jobs.each do |job| %>		
-			<li>
-				
+
+			<% if current_user %>
+				<% next if current_user.removed_jobs.include?(job) %>
+			<% end %>	
+
+			<li>				
 				<div class="description">
-					<a href="<%= job.link %>" target="_blank">
-						<h1><%= job.title %> <span>at</span> <%= job.listing_company.name %> </h1>
-					</a>
+					<% user_id = current_user ? current_user.id : nil %>
+					<% viewed_text = has_viewed_job?(job) ? "Viewed" : "View Listing" %>
+					<% viewed_class = has_viewed_job?(job) ? "viewed" : "view" %>
+					
+					<div class="job-title-and-link">
+						<a href="<%= job.link %>" target="_blank">
+							<h1>
+								<%= job.title %> <span>at</span> <%= job.listing_company.name %> 
+							</h1>
+						</a>
+						<%= link_to viewed_text, job.link, target: "_blank", class: viewed_class,
+						 			data: { user_id: user_id, applied_job_id: job.id } %>
+						<%= link_to 'Forward', '#', class: 'forward', data: { id: job.id } %>
+					</div>
 					<% if job.description %>
 						<p>(<%= job.id %>) <%= job.description.split(' ')[0..25].join(' ') unless job.description.nil? %>...</p>
 					<% else %>
@@ -27,16 +46,13 @@
 					<% end %>
 					
 					<div class="action-items">
-						<% user_id = current_user ? current_user.id : nil %>
-						<% viewed_text = has_viewed_job?(job) ? "Viewed" : "View Listing!" %>
-						<% viewed_class = has_viewed_job?(job) ? "viewed" : "view" %>
-						<% saved_text = has_saved_job?(job) ? "Saved" : "Save for Later" %>						
+						<% saved_text = has_saved_job?(job) ? "Saved" : "Save for Later" %>											
 						<% saved_class = has_saved_job?(job) ? "saved" : "save" %>
-						<%= link_to viewed_text, job.link, target: "_blank", class: viewed_class,
-						 			data: { user_id: user_id, applied_job_id: job.id }%>
-						<%= link_to 'Forward', '#', class: 'forward', data: { id: job.id } %>
+						
 						<%= link_to saved_text, user_jobs_url(user_id: user_id, 
 									saved_job_id: job.id), class: saved_class, remote: true, method: :post %>
+						<%= link_to 'Remove', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
+								class: 'remove', remote: true, method: :post %>
 					</div>
 				</div>
 				

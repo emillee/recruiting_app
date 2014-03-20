@@ -21,4 +21,11 @@ class UserJob < ActiveRecord::Base
     primary_key: :id
   )
   
+  belongs_to(
+    :removed_job,
+    class_name: 'Job',
+    foreign_key: :removed_job_id,
+    primary_key: :id
+  )
+  
 end

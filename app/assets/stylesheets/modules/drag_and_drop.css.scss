@@ -1,14 +1,14 @@
 .droppable-wrapper {
-  margin-left: 20px;
+  margin-left: 10px;
   height: 100%;
   width: 100%;
   display: block;
+  width: 620px;
   
   .is-droppable {
-    width: 600px;
     background-color: #EBEBEB;
     border: 3px dashed #AAAAAA;
-    border-radius: 3px;
+    border-radius: 5px;
   }  
   
   .skills-ul {
@@ -42,36 +42,51 @@
           display: inline-block;
           
           label {
-            padding: 20px 25px;
+            text-align: center;
+    //        padding: 0px 15px;
+            display: inline-block;
+            height: 60px;
+            width: 70px;
+            margin-left: -5px;
+            color: white;
+            font-family: 'Source Sans Pro';
+            letter-spacing: 1px;
 
             &:nth-of-type(1) { 
-              background-color: rgba(25,221,137,.35); 
-              &:hover { background-color: rgba(25,221,137,.75) }
-              &.selected { background-color: rgba(25,221,137,1) } 
+              background-color: rgba(0,255,0,.5); 
+              color: rgba(0,255,0,.2);
+              &:hover { background-color: rgba(0,255,0,.75); color: rgba(255,255,255,.75); }
+              &.selected { background-color: rgba(0,255,0,1); color: white; } 
             }
                         
             &:nth-of-type(2) { 
-              background-color: rgba(86,218,113,.35); 
-              &:hover { background-color: rgba(86,218,113,.75) }
-              &.selected { background-color: rgba(86,218,113,1) } 
+              background-color: rgba(0,204,0,.5); 
+              color: rgba(0,204,0,.2); 
+              &:hover { background-color: rgba(0,204,0,.75); color: rgba(255,255,255,.75); }
+              &.selected { background-color: rgba(0,204,0,1); color: white;  } 
             }         
             
             &:nth-of-type(3) { 
-              background-color: rgba(26,209,26,.35); 
-              &:hover { background-color: rgba(26,209,26,.75) }
-              &.selected { background-color: rgba(26,209,26,1) } 
+              background-color: rgba(0,153,0,.5); 
+              color: rgba(0,153,0,.2);               
+              &:hover { background-color: rgba(0,153,0,.75); color: rgba(255,255,255,.75); }
+              &.selected { background-color: rgba(0,153,0,1); color: white;  } 
+              margin-left: -4px;
             }                  
 
             &:nth-of-type(4) { 
-              background-color: rgba(25,178,75,.35); 
-              &:hover { background-color: rgba(25,178,75,.75) }
-              &.selected { background-color: rgba(25,178,75,1) } 
+              background-color: rgba(0,102,0,.5); 
+              color: rgba(0,102,0,.2);              
+              &:hover { background-color: rgba(0,102,0,.75); color: rgba(255,255,255,.75); }
+              &.selected { background-color: rgba(0,102,0,1); color: white;  } 
             }
 
              &:nth-of-type(5) { 
-               background-color: rgba(0,100,0,.35); 
-               &:hover { background-color: rgba(0,100,0,.75) }
-               &.selected { background-color: rgba(0,100,0,1) } 
+               background-color: rgba(0,51,0,.5);
+               color: rgba(0,51,0,.2);                
+               &:hover { background-color: rgba(0,51,0,.75); color: rgba(255,255,255,.75); }
+               &.selected { background-color: rgba(0,51,0,1); color: white;  } 
+               margin-left: -4px;
              }            
           }
           
@@ -90,7 +105,6 @@
   margin-top: 15px;
   height: 300px;
   width: 600px;
-  display: block;
   background-color: lightgray;
 
   img {

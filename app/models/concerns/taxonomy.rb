@@ -33,17 +33,17 @@ module Taxonomy
   
   def self.departments
     [
-      'Administrative',
+      # 'Administrative',
       'Bus. Development',
       'Design',
       'Engineering',
-      'Finance, Accting',
-      'Human Resources',
-      'Legal',
-      'Marketing',
-      'Operations',
+      # 'Finance, Accting',
+      # 'Human Resources',
+      # 'Legal',
+      # 'Marketing',
+      # 'Operations',
       'Product Management',
-      'Project Management',
+      # 'Project Management',
       'Sales'
     ]
   end

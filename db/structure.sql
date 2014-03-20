@@ -90,7 +90,8 @@ CREATE TABLE companies (
     twitter_followers integer,
     career_page_link character varying(255),
     year_founded integer,
-    overview text
+    overview text,
+    neighborhood character varying(255)
 );
 
 
@@ -299,7 +300,8 @@ CREATE TABLE user_jobs (
     id integer NOT NULL,
     user_id integer,
     saved_job_id integer,
-    applied_job_id integer
+    applied_job_id integer,
+    removed_job_id integer
 );
 
 
@@ -376,7 +378,9 @@ CREATE TABLE users (
     title character varying(255),
     location character varying(255),
     company_id integer,
-    job_filters hstore DEFAULT ''::hstore
+    job_filters hstore DEFAULT ''::hstore,
+    biography text,
+    intro text
 );
 
 
@@ -675,3 +679,13 @@ INSERT INTO schema_migrations (version) VALUES ('20140314004644');
 INSERT INTO schema_migrations (version) VALUES ('20140314203540');
 
 INSERT INTO schema_migrations (version) VALUES ('20140314204447');
+
+INSERT INTO schema_migrations (version) VALUES ('20140316210502');
+
+INSERT INTO schema_migrations (version) VALUES ('20140318144838');
+
+INSERT INTO schema_migrations (version) VALUES ('20140318215126');
+
+INSERT INTO schema_migrations (version) VALUES ('20140318222856');
+
+INSERT INTO schema_migrations (version) VALUES ('20140319184747');

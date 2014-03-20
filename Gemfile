@@ -54,6 +54,7 @@ group :development do
   gem 'letter_opener'
   gem 'better_errors'
   gem 'spring'
+  gem 'railroady'
   # gem 'hirb'
 end
 

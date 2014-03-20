@@ -22,11 +22,11 @@ module Nytech
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :default_locale
     
-    config.assets.paths << "app/assets/templates"
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts', 'templates')
     
     config.assets.precompile += [Rails.root.to_s + '/vendor/assets/javascripts/*.js']
     
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.woff *.eot *.ttf)
     
     config.active_record.schema_format = :sql
   end

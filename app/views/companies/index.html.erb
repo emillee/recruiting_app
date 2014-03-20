@@ -5,17 +5,76 @@
 <div class="companies-wrapper">
 	<%#= paginate @companies %>
 	
-	<ul class="job-posts">
+	<ul class="companies-posts">
 		<% @companies.each do |company| %>
 			<li>
-				<h1><%= link_to "#{company.name}", company_url(company) %> (ID: <%= company.id %>)</h1>
-				<h3>Careers Link: <%= best_in_place company, :career_page_link %></h3>
-				<h3>Funding: <%= company.total_money_raised || "" %></h3>
-				<h3>Employees: <%= company.num_employees || "" %></h3>
-				<h3>Twitter: <%= company.twitter_username || "" %></h3>
-				<h3>Category: <%= company.category_code || "" %></h3>
-				<h3>City: <%= company.city || "" %></h3>
-			
+				<div class="company-top-wrapper">
+					<div class="logo">
+						<img src='<%= asset_path("/assets/company_icons/#{company.name.downcase}" + ".jpeg") %>' />
+					</div>
+				
+					<div class="company-intro">
+						<h1><%= link_to "#{company.name}", company_url(company) %></h1>
+ 						<!-- (ID: <%= company.id %>) -->
+						<p><%= company.overview %></p>
+					</div>
+					
+					<div class="company-stats">
+						<h3><span>Funding:</span> <%= company.total_money_raised || "" %></h3>
+						<h3><span>Employees:</span> <%= company.num_employees || "" %></h3>
+						<!-- <h3>Twitter: <%#= company.twitter_username || "" %></h3> -->
+						<h3><span>Category:</span> <%= company.category_code || "" %></h3>
+						<h3><span>City:</span> <%= company.city || "" %></h3>						
+						<h3><span>Neighborhood:</span> <%= company.neighborhood || "" %></h3>						
+
+						<!-- <h3><%#= best_in_place company, :career_page_link %></h3> -->
+						<%= link_to "Go to #{company.name}'s career page", company.career_page_link %>
+					</div><!-- company-stats -->
+				</div>
+				
+				<div class="company-mid-wrapper">
+					<div class="company-navbar">
+						<%= link_to 'Our Office', '#' %>
+						<%= link_to 'Recent Work', '#' %>
+						<%= link_to 'A Day in the Life..', '#' %>
+						<%= link_to 'Job Openings', '#' %>
+						<%= link_to 'For Investors', '#' %>
+						<%= link_to 'Reviews', '#' %>
+					</div>
+					<div class="the-office content">
+						<h1>Welcome to <%= company.name %>'s office in <%= company.neighborhood %>!</h1>
+						<br>
+						<p>More info, pictures of the space</p>
+					</div>
+					<div class="recent-work content">
+						<h1>Recent Work</h1>
+						<br>
+						<p>Pushing code for to get the Python binaries working</p>	
+						<br>					
+						<p>We've gotten a TON of emails from Python devs asking when MongoDB is going to</p>						
+						<br>
+						<p>release a patch for them. Thanks to our lead dev, Tom Skorsky, and his team of hard-working</p>						
+					</div>
+					<div class="day-in-life content">
+						<h1>A Day in the Life...</h1>
+						<br>
+						<p>Morning: roll into the office around 9:30-10:00AM.</p>	
+						<br>					
+						<p>The first thing I do is scan the daily news headlines and internal message boards</p>						
+						<br>
+						<p>to see if anything really important happened that was of interest. I then scan my email for...</p>												
+					</div>
+					<div class="career-openings content">
+						<h1>Placeholder</h1>
+						<br>
+						<p>Job placeholder</p>	
+						<br>					
+						<p>Job placeholder</p>	
+						<br>
+						<p>Job placeholder</p>	
+					</div>
+				</div>
+				
 				<br>
 				<p>Post a new Job</p>
 				<%= form_for([company, @job]) do |f| %>

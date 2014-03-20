@@ -32,15 +32,27 @@
 			</ul>
 		</div>
 		
+    <!-- var $newContent = $(this).html();
+    var $id = $(this).data('id');
+    var $model = $(this).data('model');
+    var $attribute = $(this).data('attribute');
+    var urlPath = '/' + $model + '/' + $id + '/?' + $attribute + '=' + $newContent	 -->	
+		
 		<% editable = (@user == current_user) ? "true" : "" %>
-		<div id="about" contenteditable="<%= editable %>">
-			<span>
-		    <h3>About Me</h3>
+		<div id="about" contenteditable="<%= editable %>"
+			data-model='users'
+			data-id=<%= current_user.id if current_user %>
+			data-attribute='intro'><!-- end of contenteditable div -->
+			<% intro = add_placeholder_if_nil('intro') %>
+			<%= raw(intro) %>
+
+			<!-- <span> -->			
+		    <!-- <h3>Intro</h3>
 		    <p>I am the Co-Founder of Wolfpack, a user-centric professional networking platform</p>
 				<p>I was a VC for five years, then quit to learn to code and do startups</p>
 				<p>I'm happy to meet anyone! Just ping me.</p>
-				<p>I'm really good at foosball.</p>
-			</span>
+				<p>I'm really good at foosball.</p> -->
+			<!-- </span> -->
 	  </div><!-- menu -->
 		
 	</div>
@@ -65,25 +77,35 @@
     
 		<div class="main-content">
 			
+		  <div class="article biography" contenteditable="<%= editable %>"
+				data-model='users' 
+				data-id=<%= current_user.id if current_user %> 
+				data-attribute='biography'><!-- end of contenteditable div -->
+				<% biography = add_placeholder_if_nil('biography') %>
+		    <%= raw(biography) %>
+		  </div><!-- biography -->					
+			
 		  <div class="article skills">
-		    <h3>My Skills</h3>
+		    <h3>
+					My Skills
+					<% if current_user %>
+						<%= link_to 'Add Skills', '#', id: 'edit-skills' %>
+						<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden' %>
+					<% end %>
+				</h3>
 				<%= render 'shared/drop_zone' %>
 		    <%= render 'shared/box_of_logos' %>
 		  </div><!-- skills -->			
 			
-		  <div class="article biography" contenteditable="<%= editable %>">
-		    <h3>Biography</h3>
-		    <p>Blah</p>
-		  </div><!-- biography -->
-		
-		  <div class="article regular" contenteditable="<%= editable %>">
+		  <!-- <div class="article regular" contenteditable="<%= editable %>">
 				<h3>Hacking and Hustling<span>A Day in the Life</span></h3>
 		    <p>What I do on a daily basis? Well, let's see</p>
 				<p>First off, there's the hacking. I'm writing a codebase</p>
 				<p>for Wolfpack, so on any given day I might be doing Rails,</p>
 				<p>Javascript, CSS or HTML. Some days I push pixels, other days</p>
 				<p>I rake db migrations, kna whaddamean?</p>
-		  </div><!-- biography -->
+		  </div>
+			<! biography -->			
 		
 		</div><!-- main-content -->
 	</div><!-- section -->

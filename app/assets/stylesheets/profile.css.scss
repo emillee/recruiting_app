@@ -13,6 +13,8 @@ version: 2.8.0r4
   background-color: #F3F9F5;
   width: 900px;
   border: 1px solid rgba(0,0,0,.05);
+  margin-bottom: 100px;
+  padding-bottom: 20px;
   
   // GENERAL
   h3 {
@@ -114,11 +116,11 @@ version: 2.8.0r4
   // MAIN CONTENT SECTION
   
 	.section-wrap > div > h3:first-of-type {
-	  margin-top: 10px;
+	  margin-top: 5px;
 	}
   	
   .section-wrap {
-    padding: 15px 20px;
+    padding: 5px 20px;
   	width: 100%;
 //    min-height: 150px;
   	display: block;
@@ -190,13 +192,28 @@ version: 2.8.0r4
     	    margin-top: 35px;
     	    margin-bottom: 10px;
     	    
-    	    span {
-    	      float: right;
+//          span {
+//            float: right;
+//            font-size: 13px;
+//            line-height: 18px;
+//            border-radius: 4px;
+//            padding: 2px 8px;
+//            background-color: #9b59b6;
+//          }
+    	    
+    	    a {
+            float: right;
+    	      margin-right: 10px;
     	      font-size: 13px;
-    	      line-height: 18px;
-    	      border-radius: 4px;
-    	      padding: 2px 8px;
-    	      background-color: #9b59b6;
+    	      padding: 2px 7px;
+    	      color: #3498db;
+    	      border: 2px solid #3498db;
+    	      
+    	      &:hover {
+    	        border: 2px solid #3498db;
+    	        background-color: #3498db;
+    	        color: white;
+    	      }    	      
     	    }
     	  }	  
   	  

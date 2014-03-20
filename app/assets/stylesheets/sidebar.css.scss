@@ -63,23 +63,20 @@ div.sidebar-wrapper {
       text-transform: uppercase; 
       position: relative;
       
+      i {
+        position: absolute;
+        right: 12px;
+        top: 8px; 
+        color: rgba(0,0,0,.5);
+        font-weight: 100;
+        font-size: 14px;       
+      }
+      
       &:hover {
         color: rgb(2,119,158);
         
         i {
           color: rgb(2,119,158);
-        }
-      }
-      
-      i {
-        font-size: 12px;
-        position: absolute;
-        top: 9px;
-        right: 12px;
-        color: rgb(205,210,216);
-        
-        &:hover {
-          color: #BE2121;
         }
       }
     }
@@ -97,7 +94,7 @@ div.sidebar-wrapper {
         margin-top: 7px;
         display: none;
       }
-
+      
       &:hover, &.selected {
         background-color: rgba(46, 204, 113, .25); 
         color: rgba(26,26,26,1);
@@ -106,10 +103,22 @@ div.sidebar-wrapper {
           display: inline-block;
           opacity: .75;
           color: rgba(46, 204, 113, 1); 
-          font-size: 13px;
+          font-size: 13px;           
         }
       }
     }
+
+    li.department {
+      padding-left: 15px;
+      
+      i.left {
+        display: inline-block;
+        left: -4px;
+        margin-top: 11px;
+        color: #1D1D1D;
+        font-size: 12px;
+      }
+    }    
     
     // KEY SKILLS
     ul.key-skills {
@@ -251,7 +260,7 @@ div.sidebar-wrapper {
 
 .f-sidebar-buffer {
   width: 202px;
-  height: 2000px;
+  height: 100%;
 //  background-color: blue;
   
   div.sidebar-wrapper {
@@ -349,10 +358,22 @@ div.sidebar-wrapper {
             display: inline-block;
             opacity: .75;
             color: white;
-            font-size: 13px;
+            font-size: 13px;                      
           }
         }
       }
+      
+      li.department {
+        padding-left: 15px;
+
+        i.left {
+          display: inline-block;
+          left: -3px;
+          margin-top: 12px;
+          color: #1D1D1D;
+          font-size: 13px;
+        }
+      }      
     
       // KEY SKILLS
       ul.key-skills {
