@@ -1,26 +1,27 @@
 div.sidebar-wrapper {
-  margin-top: 75px;
+  margin-top: 45px;
   margin-left: 0px;
-  width: 200px;
+  width: 215px;
   height: 100%;
   position: fixed;
   font-family: 'Lato', sans-serif;
-  border: 1px solid white;
+//  border: 1px solid white;
   background-color: rgba(255,255,255,.5);
   
   // SEARCH FORM
   .search {
-    background-color: white;
-    height: 50px;
+    position: relative;
+    background-color: #bdc3c7;
+    height: 45px;
     display: block;
         
     input {
       top: 11px;
-      left: 16px;
+      left: 18px;
       border: none;
       height: 22px;
       border-radius: 2px;
-      width: 160px;
+      width: 175px;
       color: black;
       position: relative;
       margin-left: 4px;
@@ -57,8 +58,8 @@ div.sidebar-wrapper {
     h1 {
       background-color: rgba(255,255,255,.7);
       font-size: 16px; 
-      text-indent: 15px;
-      line-height: 30px;
+      text-indent: 20px;
+      line-height: 35px;
       color: black;
       text-transform: uppercase; 
       position: relative;
@@ -83,7 +84,7 @@ div.sidebar-wrapper {
     
     // BULLET POINTS
     li.job-sidebar {
-      text-indent: 18px;
+      text-indent: 23px;
       line-height: 30px;
       color: rgba(121,121,121,1);
       text-transform: capitalize;
@@ -224,13 +225,13 @@ div.sidebar-wrapper {
     position: fixed;
     left: 0px;
     bottom: 0px;
-    width: 200px;
+    width: 215px;
 
 
     #clear-all {
       border: none;
-        margin-top: 20px;
-        margin-left: 15px;
+      margin-top: 20px;
+      margin-left: 23px;
       height: 25px;
       width: 168px;
       border: 3px solid #7f8c8d;
@@ -259,24 +260,24 @@ div.sidebar-wrapper {
 
 
 .f-sidebar-buffer {
-  width: 202px;
+  width: 215px;
   height: 100%;
 //  background-color: blue;
   
   div.sidebar-wrapper {
-    margin-top: 75px;
+    margin-top: 45px;
     margin-left: 0px;
-    width: 200px;
+    width: 215px;
     height: 100%;
     position: fixed;
     font-family: 'Lato', sans-serif;
-    border: 1px solid black;
+//    border: 1px solid black;
     background-color: #333332;
   
     // SEARCH FORM
     .search {
-      background-color: black;
-      height: 50px;
+      background-color: rgba(0,0,0,.25);
+      height: 45px;
       display: block;
         
       input {
@@ -285,7 +286,7 @@ div.sidebar-wrapper {
         border: none;
         height: 22px;
         border-radius: 2px;
-        width: 160px;
+        width: 175px;
         color: black;
         position: relative;
         margin-left: 4px;
@@ -479,7 +480,7 @@ div.sidebar-wrapper {
       position: fixed;
       left: 0px;
       bottom: 0px;
-      width: 200px;
+      width: 215px;
       
   
       #clear-all {

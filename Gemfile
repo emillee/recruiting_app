@@ -34,6 +34,8 @@ gem 'twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-linkedin-oauth2'
+gem 'omniauth-github'
 gem 'fql'
 
 # ML GEMS
@@ -53,7 +55,7 @@ gem 'seed_dump'
 group :development do
   gem 'letter_opener'
   gem 'better_errors'
-  gem 'spring'
+  # gem 'spring'
   gem 'railroady'
   # gem 'hirb'
 end

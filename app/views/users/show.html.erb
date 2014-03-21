@@ -1,3 +1,6 @@
+<% this_table = "users" %>
+<% this_model = this_table.singularize %>
+
 <div class="f-sidebar-buffer">
 	<%= render 'sidebar' %>
 </div>
@@ -39,8 +42,10 @@
     var urlPath = '/' + $model + '/' + $id + '/?' + $attribute + '=' + $newContent	 -->	
 		
 		<% editable = (@user == current_user) ? "true" : "" %>
-		<div id="about" contenteditable="<%= editable %>"
-			data-model='users'
+		<div id="about" 
+			contenteditable="<%= editable %>"
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
 			data-id=<%= current_user.id if current_user %>
 			data-attribute='intro'><!-- end of contenteditable div -->
 			<% intro = add_placeholder_if_nil('intro') %>
@@ -77,8 +82,10 @@
     
 		<div class="main-content">
 			
-		  <div class="article biography" contenteditable="<%= editable %>"
-				data-model='users' 
+		  <div class="article biography" 
+				contenteditable="<%= editable %>"
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
 				data-id=<%= current_user.id if current_user %> 
 				data-attribute='biography'><!-- end of contenteditable div -->
 				<% biography = add_placeholder_if_nil('biography') %>
@@ -111,7 +118,8 @@
 	</div><!-- section -->
 </div><!-- wrapper -->
 
-
+<div class="jobs-background"></div>
+<div class="jobs-background-overlay"></div>
 
 
 

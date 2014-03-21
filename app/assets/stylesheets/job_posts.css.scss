@@ -1,8 +1,8 @@
 div.jobs-wrapper {
   position: absolute;
   padding: 15px;
-  top: 100px;
-  left: 275px;
+  top: 75px;
+  left: 300px;
 //  background-color: rgba(255,255,255,.35);
 //  overflow: scroll;
   
@@ -46,7 +46,7 @@ div.jobs-wrapper {
   }
   
   ul.job-posts {
-    width: 900px;
+    width: 950px;
 
     div.forward-form {
       background-color: rgba(0,0,0,.25);
@@ -94,13 +94,14 @@ div.jobs-wrapper {
     .company-section {
       background-color: rgba(250,250,250,1);      
       height: 155px;
-      width: 300px;
+      width: 350px;
       margin-right: 3px;
       float: right;
       display: inline-block;
       text-align: center;
       margin-top: 5px;    
       position: relative;
+      overflow: none;
       
       img {
         display: inline-block;
@@ -272,7 +273,8 @@ div.jobs-background {
   opacity: .9;
   z-index: -9999;
   position: fixed;
-  top: 75px;
+  top: 2px;
+  left: 215px;
   background-image: url('app_images/empirestate.jpeg');
   height: 100%;
   width: 100%;
@@ -282,7 +284,8 @@ div.jobs-background {
 div.jobs-background-overlay {
   z-index: -9998;
   position: absolute;
-  top: 75px;
+  top: 2px;
+  left: 215px;
 //  left: 250px;
   background: url('app_images/pattern.png') repeat;   
   height: 100%;

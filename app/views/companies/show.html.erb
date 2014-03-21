@@ -1,39 +1,19 @@
-<div class="company">
-	<h1><%= link_to "#{@company.name}", company_url(@company) %></h1>
-	<h3>career page link: <%= best_in_place @company, :career_page_link %></h3>
-	<h3>funding: <%= @company.total_money_raised || "" %></h3>
-	<h3>employees: <%= @company.num_employees || "" %></h3>
-	<h3>twitter: <%= @company.twitter_username || "" %></h3>
-	<h3>category: <%= @company.category_code || "" %></h3>
-	<h3>city: <%= @company.city || "" %></h3>
-	
-	<br>
-	
-	<Post a new Job>
-	<%= form_for([@company, @job]) do |f| %>
-		<%= f.text_field :link, class: "hello" %>
-		<%= f.submit "Create New Job" %>
-	<% end %>
-	
-	<br><br>
-	
-	<% @company.job_listings.order("created_at DESC").each do |job| %>
-		<td><%= job.id %></td>
-		<p>Link: <%= link_to "#{job.link}", "#{job.link}" %></p>
-		<p>Title: <%= best_in_place job, :title %></p>
-		<p>Dept: <%= best_in_place job, :dept, type: :input, inner_class: 'dept', data: { autocomplete: true } %></p>
-		<p>SubDept: <%= best_in_place job, :sub_dept %></p>
-		<p>YearsExp: <%= best_in_place job, :years_exp %></p>
-		<p>Full Text: <%= best_in_place job, :full_text, type: :textarea %></p>
-		<p>Key Skills: <%= best_in_place job, :req_skills, path: update_req_skills_job_url(job) %></p>
-		<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %>
-		<p><%= link_to 'Import Data', import_data_job_url(job), method: :post %></p>
-		<br><br>
-	<% end %>
-	
-	
-	<br>
+<div class="company-sidebar">
+	<%#= render 'sidebar', locals: { keywords: @keywords, all_scopes: @all_scopes, scopes_checked: @scopes_checked } %>
 </div>
+
+<div class="companies-wrapper">
+	<%#= paginate @companies %>
+	
+	<ul class="companies-posts">
+		<li>
+			<%= render 'company', locals: { company: @company } %>
+		</li>
+	</ul>
+</div>
+
+<div class="jobs-background"></div>
+<div class="jobs-background-overlay"></div>
 
 <script type="text/javascript">
 	$(document).ready(function() {

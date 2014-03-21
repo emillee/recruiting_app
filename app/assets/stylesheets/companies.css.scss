@@ -6,8 +6,8 @@ div.company-sidebar {
 
 div.companies-wrapper {
   position: absolute;
-  top: 110px;
-  left: 265px;
+  top: 75px;
+  left: 300px;
   background-color: white;
   overflow: scroll;
   
@@ -25,27 +25,32 @@ div.companies-wrapper {
       height: 100%;
 //      margin-top: 10px;
 //      margin-bottom: 15px;  
-      background-color: white;
+      background-color: #F6ECFD;
       border-radius: 1px;
       border-bottom: 5px solid rgba(0,0,0,.5);
       
       .company-top-wrapper {
         display: block;
         height: 150px;
-        border: 1px solid rgba(0,0,0,.05);        
+//        border: 1px solid rgba(0,0,0,.05);        
         
         div.logo {
-          position: absolute;
+          position: relative;
           display: inline-block;
           width: 260px;
           height: 150px;
-          background-color: #F6ECFD;
-          text-align: center;
+          background-color: white;
 
           img {
-            max-width: 200px;
-            max-height: 110px;
-            margin-top: 20px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            vertical-align: middle;
+            max-width: 85%;
+            max-height: 85%;
             display: inline-block;
             border-radius: 1px;
           }        
@@ -93,11 +98,16 @@ div.companies-wrapper {
           position: relative;
           
           h3 {
-            font-size: 14px;
+            font-size: 13px;
             line-height: 19px;
             
-            span {
+            span:first-of-type {
               color: white;
+            }
+            
+            span:nth-of-type(2) {
+              position: absolute;
+              left: 135px;
             }
           }
           
@@ -124,7 +134,7 @@ div.companies-wrapper {
           top: 0px;
           height: 35px;
           line-height: 35px;
-          width: 979px;
+          width: 980px;
           background-color: #778899;
           
           a {
@@ -147,7 +157,7 @@ div.companies-wrapper {
         }
         
         div.content {
-          width: 919px;
+          width: 920px;
           height: 300px;
           padding: 30px;
                     
@@ -161,23 +171,27 @@ div.companies-wrapper {
             font-size: 20px;
             color: white;            
           }
-        }
-        
-        .the-office {
-          background-color: #3498db;
-        }
-        
-        .recent-work {
-          background-color: #2ecc71;          
-        }
-        
-        .day-in-life {
-          background-color: #e74c3c;
-        }
-        
-        .career-openings {
-          background-color: #f39c12;
-        }
+          
+          &:nth-of-type(1) {
+            background-color: #3498db;
+          }
+
+          &:nth-of-type(2) {
+            background-color: #2ecc71;          
+          }
+
+          &:nth-of-type(3) {
+            background-color: #e74c3c;
+          }
+
+          &:nth-of-type(4){
+            background-color: #f39c12;
+          }
+
+          &:nth-of-type(5) {
+            background-color: #9b59b6;
+          }          
+        }        
       }
     }
     

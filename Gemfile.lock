@@ -152,7 +152,13 @@ GEM
       rack (~> 1.0)
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
+    omniauth-github (1.1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-google-oauth2 (0.2.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2
+    omniauth-linkedin-oauth2 (0.1.5)
       omniauth (~> 1.0)
       omniauth-oauth2
     omniauth-oauth (1.0.1)
@@ -224,7 +230,6 @@ GEM
       json
       json
     simple_oauth (0.2.0)
-    spring (1.1.1)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -285,7 +290,9 @@ DEPENDENCIES
   mechanize (~> 2.7.2)
   nokogiri
   omniauth-facebook
+  omniauth-github
   omniauth-google-oauth2
+  omniauth-linkedin-oauth2
   omniauth-twitter
   paperclip
   pg
@@ -299,7 +306,6 @@ DEPENDENCIES
   sdoc
   seed_dump
   sendgrid
-  spring
   stemmer
   turbolinks
   twitter

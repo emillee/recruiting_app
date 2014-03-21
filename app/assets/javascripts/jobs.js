@@ -14,7 +14,6 @@ ready = $('.jobs.index').ready(function() {
     var form_url = '/jobs/' + job_id + '/forward_form';
     var div_append_id = '#div-append-' + job_id;
 
-    
     $(div_append_id).load(form_url + ' .forward-form', function() {
       $('#email_info_email').focus();
     })
@@ -47,16 +46,57 @@ ready = $('.jobs.index').ready(function() {
   
 });
 
+// --------------------------------------------------------------------------------------------------------------
+// COMPANIES INDEX
+// --------------------------------------------------------------------------------------------------------------
 ready = $('.companies.index').ready(function() {
     
   $('.best_in_place').best_in_place();
+  
+  $('.company-navbar').on('click', 'a', function() {
+    event.preventDefault();
+    var $company = $(this).data('company');
+    var $section = $(this).data('section');
+    $('.' + $section + '.' + $company).insertAfter('div#' + $company + '-top-id');
+  });  
 
 });
 
+// --------------------------------------------------------------------------------------------------------------
+// COMPANIES SHOW
+// --------------------------------------------------------------------------------------------------------------
 ready = $('.companies.show').ready(function() {
     
   $('.best_in_place').best_in_place();
-
+  
+  $('.company-navbar').on('click', 'a', function() {
+    event.preventDefault();
+    var $company = $(this).data('company');
+    var $section = $(this).data('section');
+    $('.' + $section + '.' + $company).insertAfter('div#' + $company + '-top-id');
+  }); 
+  
+  $('[contenteditable=true]').blur(function() {
+    event.preventDefault();
+    var $id = $(this).data('id');
+    var $table = $(this).data('table');
+    var $model = $(this).data('model');
+    var $attribute = $(this).data('attribute');
+    var $newContent = $(this).html();
+    var $url = '/' + $table + '/' + $id;
+    var dataObject = {};
+    console.log('yo')
+    
+    dataObject[$model] = {};
+    dataObject[$model][$attribute] = $newContent;
+    
+    $.ajax({
+      type: 'PUT',
+      url: $url,
+      data: dataObject
+    });
+  }); 
+   
 });
 
 ready = $('.users.show').ready(function() {
@@ -95,22 +135,22 @@ ready = $('.users.show').ready(function() {
   $('[contenteditable=true]').blur(function() {
     event.preventDefault()
     var $id = $(this).data('id');
-    var $table = $(this).data('model');
-    var $model = $table.slice(0, -1);
+    var $table = $(this).data('table');
+    var $model = $(this).data('model');
     var $attribute = $(this).data('attribute');
     var $newContent = $(this).html();
     var $url = '/' + $table + '/' + $id
-    var dataObject = {}
+    var dataObject = {};
 
-    dataObject[$model] = {}
-    dataObject[$model][$attribute] = $newContent
+    dataObject[$model] = {};
+    dataObject[$model][$attribute] = $newContent;
     
     $.ajax({
       type: 'PUT',
       url: $url,
       data: dataObject
-    })
-  })
+    });
+  });
   
   function addDraggableEvents() {
     $('.is-draggable').draggable({
@@ -168,20 +208,10 @@ ready = $('.users.show').ready(function() {
   
 });
 
-
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
-// // Show pagination on hover
-// $('div.jobs-wrapper').on('mouseenter', function() {
-//   $('.next > a').addClass('visibility-visible');
-//   $('.prev > a').addClass('visibility-visible');
-// })
-// 
-// $('div.jobs-wrapper').on('mouseleave', function() {
-//   $('.next > a').removeClass('visibility-visible');
-//   $('.prev > a').removeClass('visibility-visible');
-// })
+
 
 
 
