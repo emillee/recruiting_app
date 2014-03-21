@@ -23,10 +23,12 @@
 	
 	<% sections.each do |section| %>
 		<% section_class = section.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
-		<div class="<%= section_class %> <%= company.name %> content">
-			<%= add_placeholder_if_nil('biography') %>
-			<h1><%= counter %></h1>
-			<p><%= counter %></p>
+		<div class="<%= section_class %> <%= company.name %> content"
+			contenteditable="true"
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-id=<%= company.id %>>
+			<%= add_placeholder_if_nil(company, section) %>
 		</div>
 	<% end %>
 	
