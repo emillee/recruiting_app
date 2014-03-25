@@ -8,36 +8,26 @@ div.companies-wrapper {
   position: absolute;
   top: 75px;
   left: 300px;
-  background-color: white;
-  overflow: scroll;
-  
-//  nav.pagination {
-//    background-color: gray;
-//    height: 30px;
-//    padding: 15px;
-//  }
+  background-color: rgba(0,0,0,.5);
+  margin-bottom: 30px;
   
   ul.companies-posts {
-    width: 1000px;
+    width: 990px;
 
     li {
-      padding: 10px;
+      padding: 5px;
       height: 100%;
-//      margin-top: 10px;
-//      margin-bottom: 15px;  
-      background-color: #F6ECFD;
       border-radius: 1px;
-      border-bottom: 5px solid rgba(0,0,0,.5);
+//      border-bottom: 5px solid rgba(0,0,0,.5);
       
       .company-top-wrapper {
         display: block;
-        height: 150px;
-//        border: 1px solid rgba(0,0,0,.05);        
+        height: 150px;      
         
         div.logo {
           position: relative;
           display: inline-block;
-          width: 260px;
+          width: 265px;
           height: 150px;
           background-color: white;
 
@@ -127,7 +117,6 @@ div.companies-wrapper {
       
       .company-mid-wrapper {
         display: block;
-        height: 2000px;
         
         .company-navbar {
           position: relative;
@@ -154,43 +143,83 @@ div.companies-wrapper {
               border-right: 1px solid rgba(0,0,0,.2);
             }
           }
+          
+          form.edit_company {
+            float: right;
+            display: inline-block;
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            
+            input[type='submit'] {
+              border: none;
+              float: right;
+              position: absolute;
+              display: inline-block;
+              top: -5px;
+              right: 5px;
+              height: 15px;
+              line-height: 15px;
+              width: 50px;
+            }
+          }
         }
         
         div.content {
-          width: 920px;
-          height: 300px;
-          padding: 30px;
-                    
+          width: 840px;
+          padding-top: 20px;
+          padding-bottom: 30px;
+          padding-left: 70px;
+          padding-right: 70px;
+          text-align: justify;
+          border-bottom: 2px solid rgba(0,0,0,.1);  
+                              
           h1 {
             font-size: 28px;
-            line-height: 40px;
-            color: white;            
+            line-height: 50px;
+            color: black;   
+            margin-bottom: 10px;         
           }
           
           p {
             font-size: 20px;
-            color: white;            
+            line-height: 30px;
+            color: black;
+            margin-bottom: 15px;            
           }
           
           &:nth-of-type(1) {
-            background-color: #3498db;
+            background-color: rgb(246,236,253);
           }
 
           &:nth-of-type(2) {
-            background-color: #2ecc71;          
+            background-color: rgb(242,243,239);          
           }
 
           &:nth-of-type(3) {
-            background-color: #e74c3c;
+            background-color: rgb(243,249,245);
           }
 
           &:nth-of-type(4){
-            background-color: #f39c12;
+            background-color: rgb(246,236,253);
           }
 
           &:nth-of-type(5) {
-            background-color: #9b59b6;
-          }          
+            background-color: rgb(243,249,245);
+          } 
+          
+          &:nth-of-type(6) {
+            background-color: rgb(246,236,253);
+          }
+          
+          &:nth-of-type(7) {
+            background-color: rgb(243,249,245);
+          }                 
+                      
+          &:nth-of-type(8) {
+            background-color: rgb(246,236,253);
+          }                             
+
         }        
       }
     }
@@ -198,48 +227,7 @@ div.companies-wrapper {
     input {
       display: block;
     }
-
   }
-  
-  //  this isn't in use right now, was for importing via CSV
-  //  .new-job-wrapper {
-  //    border: 3px solid #ecf0f1;
-  //    line-height: 35px;
-  //    height: 30px;
-  //    width: 900px;
-  //    margin-top: 20px;
-  //    margin-bottom: 20px;
-  //    margin-left: 3px;
-  //    padding-right: 1px;
-  //    
-  //    a.new-job-post {
-  //      float: right;
-  //      line-height: 30px;
-  //      margin-right: 10px;
-  //    }
-  //    
-  //    div#file {
-  //      float: right;
-  //      color: gray;
-  //      margin-right: 100px;
-  //    }
-  //
-  //    form {
-  //      display: inline-block;
-  //      float: right;
-  //      width: 20px;
-  //      margin-right: -170px;
-  //      margin-top: -3px;
-  //      
-  //      #file {
-  //        display: none;
-  //      }
-  //      
-  //      input {
-  //        border: none;
-  //      }
-  //    }
-  //  }
 }
 
 

@@ -7,10 +7,13 @@ Nytech::Application.routes.draw do
   resources :taxonomies, only: [:index]
   resources :user_skills, only: [:create, :update, :destroy]
   resource :user_jobs, only: [:create, :destroy]
+  resources :groups
     
   resources :companies do
+    member { put :add_section }
     collection { get :autocomplete_fields }
     resources :jobs, only: [:create]
+    resources :articles, only: [:create, :update]
   end
   
   resources :jobs, only: [:show, :index, :new, :update, :destroy] do 

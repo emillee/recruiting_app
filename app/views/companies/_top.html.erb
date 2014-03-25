@@ -14,7 +14,8 @@
 			data-id="<%= company.id %>" 
 			data-table="<%= this_table %>"
 			data-model="<%= this_model %>"
-			data-attribute="overview">
+			data-attribute="overview"
+			class="regular-type">
 			<%= company.overview %>
 		</p>
 	</div>
@@ -26,7 +27,8 @@
 				data-id="<%= company.id %>" 
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-attribute="total_money_raised">
+				data-attribute="total_money_raised"
+				class="regular-type">				
 				<%= (company.total_money_raised.nil? || company.total_money_raised.empty?) ? "-" : company.total_money_raised %>
 			</span>
 		</h3>
@@ -36,7 +38,8 @@
 				data-id="<%= company.id %>" 
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-attribute="num_employees">
+				data-attribute="num_employees"
+				class="regular-type">				
 				<%= company.num_employees.nil? ? "-" : company.num_employees %>
 			</span>			
 		</h3>
@@ -46,7 +49,8 @@
 				data-id="<%= company.id %>" 
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-attribute="category_code">
+				data-attribute="category_code"
+				class="regular-type">				
 				<%= (company.category_code.nil? || company.category_code.empty?) ? "-" : company.category_code %>
 			</span>			
 		</h3>
@@ -56,7 +60,8 @@
 				data-id="<%= company.id %>" 
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-attribute="city">
+				data-attribute="city"
+				class="regular-type">				
 				<%= (company.city.nil? || company.city.empty?) ? "-" : company.city %>
 			</span>			
 		</h3>						
@@ -66,7 +71,8 @@
 				data-id="<%= company.id %>" 
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-attribute="neighborhood">
+				data-attribute="neighborhood"
+				class="regular-type">				
 				<%= (company.neighborhood.nil? || company.neighborhood.empty?) ? "-" : company.neighborhood %>
 			</span>			
 		</h3>						

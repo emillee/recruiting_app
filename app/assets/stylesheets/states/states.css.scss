@@ -1,0 +1,37 @@
+
+.modal-background {
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,.6);
+  position: fixed;
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.visibility-visible {
+  visibility: visible;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.clear {
+  clear: both;
+}
+
+
+
+
+

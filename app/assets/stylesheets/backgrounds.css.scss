@@ -1,0 +1,23 @@
+div.jobs-background {
+  opacity: .9;
+  z-index: -9999;
+  position: fixed;
+  top: 2px;
+  left: 215px;
+  background-image: url('app_images/empirestate.jpeg');
+  height: 100%;
+  width: 100%;
+  -webkit-filter: blur(0px) sepia(30%) grayscale(40%) brightness(100%);
+}
+
+div.jobs-background-overlay {
+  z-index: -9998;
+  position: absolute;
+  top: 45px;
+  left: 215px;
+//  left: 250px;
+  background: url('app_images/pattern.png') repeat;   
+  height: 100%;
+  width: 100%;
+  opacity: .4;    
+}

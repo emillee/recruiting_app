@@ -23,6 +23,13 @@ class Company < ActiveRecord::Base
     primary_key: :id
   )
   
+  has_many(
+    :articles,
+    class_name: 'Article',
+    foreign_key: :company_id,
+    primary_key: :id
+  )
+  
   include ApiCalls
   include Filterable
   

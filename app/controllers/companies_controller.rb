@@ -52,16 +52,27 @@ class CompaniesController < ApplicationController
     @company.find(params[:id]).destroy
   end
   
+  # Non-RESTful Routes ---------------------------------------------------------------------------
+  def add_section
+    @company = Company.find(params[:id])
+    new_section = params['company']['career_sections']
+    @company.career_sections = @company.career_sections.merge({ new_section => '' })
+    @company.save
+    redirect_to company_url(@company)
+  end
+  
   #------------------------------------------------------------------------------
 	private
 	
   	def company_params
-  		params.require(:company).permit(:name, :total_money_raised, :num_employees, :career_page_link, :overview, :year_founded,
-  		  :neighborhood, :category_code, :city)
+      params.require(:company).permit(:name, :total_money_raised, :num_employees, :career_page_link, :overview, :year_founded,
+        :neighborhood, :category_code, :city, { career_sections: ['Keys Here'] })
   	end
 	
 end
 
+# .tap do |whitelisted|
+#   whitelisted[:career_sections] = params[:company][:career_sections]
 
 
 

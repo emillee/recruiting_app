@@ -1,8 +1,11 @@
 var ready;
 
+// --------------------------------------------------------------------------------------------------------------
+// JOBS INDEX
+// --------------------------------------------------------------------------------------------------------------
 ready = $('.jobs.index').ready(function() {
   
-  // FORWARDING
+  // EMAIL / FORWARD A JOB POST
   $('ul.job-posts').on('click', '.forward', function(event) {
     console.log('hello')
     
@@ -40,11 +43,13 @@ ready = $('.jobs.index').ready(function() {
     });
   });
   
+  // REMOVE A FILTER WHEN CLICKED
   $('ul.job-posts').on('click', '.remove', function(event) {
     $(this).parents('li').remove();
   });
   
 });
+
 
 // --------------------------------------------------------------------------------------------------------------
 // COMPANIES INDEX
@@ -62,11 +67,12 @@ ready = $('.companies.index').ready(function() {
 
 });
 
+
 // --------------------------------------------------------------------------------------------------------------
 // COMPANIES SHOW
 // --------------------------------------------------------------------------------------------------------------
-ready = $('.companies.show').ready(function() {
-    
+ready = $('.companies.show').ready(function() {  
+  
   $('.best_in_place').best_in_place();
   
   $('.company-navbar').on('click', 'a', function() {
@@ -74,9 +80,32 @@ ready = $('.companies.show').ready(function() {
     var $company = $(this).data('company');
     var $section = $(this).data('section');
     $('.' + $section + '.' + $company).insertAfter('div#' + $company + '-top-id');
-  }); 
+  });
+ 
+ // EDIT ARTIClES IN PLACE 
+  $('[contenteditable=true].article').blur(function() {
+    event.preventDefault();
+    
+    var $title = $(this).children('span.title').html();
+    var $body = $(this).children('span.body').html();
+    var $company_id = $(this).data('id');
+    var $article_id = $(this).data('articleid');
+    var this_url = '/companies/' + $company_id + '/articles/' + $article_id
+    var dataObject = {}
+    
+    dataObject['article'] = {};
+    dataObject['article']['title'] = $title;
+    dataObject['article']['body'] = $body;
+    
+    $.ajax({
+      type: 'PUT',
+      url: this_url,
+      data: dataObject
+    });
+  });    
   
-  $('[contenteditable=true]').blur(function() {
+  // MAY DELETE THIS -- NOT IN USE? 
+  $('[contenteditable=true].regular-type').blur(function() {
     event.preventDefault();
     var $id = $(this).data('id');
     var $table = $(this).data('table');
@@ -85,7 +114,6 @@ ready = $('.companies.show').ready(function() {
     var $newContent = $(this).html();
     var $url = '/' + $table + '/' + $id;
     var dataObject = {};
-    console.log('yo')
     
     dataObject[$model] = {};
     dataObject[$model][$attribute] = $newContent;
@@ -94,25 +122,37 @@ ready = $('.companies.show').ready(function() {
       type: 'PUT',
       url: $url,
       data: dataObject
-    });
+    });  
   }); 
    
 });
 
+
+// --------------------------------------------------------------------------------------------------------------
+// USERS SHOW
+// --------------------------------------------------------------------------------------------------------------
 ready = $('.users.show').ready(function() {
     
   addDraggableEvents();
   addDroppableEvents();
+  initializeEditor();
   
+  function initializeEditor() {
+    var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'cancel']});
+  };  
+  
+  // SUBMIT FORM FOR USER SKILL DEGREES ON CLICK
   $('.skills-ul').on('click', 'input[type="radio"]', function() {
     $(this).parents('form:first').submit();
   })
-
+  
+  // AFTER FORM SUBMISSION AJAX CALL
   $('.skills-ul').on('ajax:success', '.edit_user_skill', function(event, data) {
     var $skills = $(data).find(' .skills-ul');
     $('.skills-ul').empty().html($skills);
   })
   
+  // ADD BOX OUTILNE WHEN IN EDIT MODE
   $('.article.skills').on('click', '#edit-skills', function() {
     event.preventDefault();
     $(this).addClass('hidden');
@@ -123,6 +163,7 @@ ready = $('.users.show').ready(function() {
     addDroppableEvents();
   })
   
+  // REMOVE OUTLINE BOX AFTER DONE WITH EDIT MODE
   $('.article.skills').on('click', '#save-skills', function() {
     event.preventDefault();
     $(this).addClass('hidden')
@@ -132,6 +173,7 @@ ready = $('.users.show').ready(function() {
     $('#add-skill').addClass('hidden');
   })
   
+  // SAVE CONTENT FOR EDIT IN PLACE
   $('[contenteditable=true]').blur(function() {
     event.preventDefault()
     var $id = $(this).data('id');
@@ -152,6 +194,7 @@ ready = $('.users.show').ready(function() {
     });
   });
   
+  // ADD DRAGABLE HANDLER
   function addDraggableEvents() {
     $('.is-draggable').draggable({
       'containment' : '.skills',
@@ -159,6 +202,7 @@ ready = $('.users.show').ready(function() {
     }); 
   };
   
+  // ADD DROPPABLE HANDLER
   function addDroppableEvents() {
     $('.skill-dropzone.is-droppable').droppable({
       drop: createUserSkill
@@ -169,6 +213,7 @@ ready = $('.users.show').ready(function() {
     });    
   }
   
+  // POST TO USER_SKILL TABLE 
   function createUserSkill(event, ui) {
     var draggable = ui.draggable;
     var user_id = draggable.closest('li').data('user');
@@ -187,6 +232,7 @@ ready = $('.users.show').ready(function() {
     })
   };
   
+  // REMOVE USER_SKILL
   function destroyUserSkill(event, ui) {
     var draggable = ui.draggable;
     var userskill_id = draggable.closest('li').data('userskill');

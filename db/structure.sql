@@ -50,7 +50,9 @@ CREATE TABLE articles (
     id integer NOT NULL,
     title character varying(255),
     body text,
-    author_id integer
+    author_id integer,
+    tag_id integer,
+    company_id integer
 );
 
 
@@ -91,7 +93,8 @@ CREATE TABLE companies (
     career_page_link character varying(255),
     year_founded integer,
     overview text,
-    neighborhood character varying(255)
+    neighborhood character varying(255),
+    career_sections hstore DEFAULT ''::hstore
 );
 
 
@@ -227,6 +230,70 @@ CREATE SEQUENCE search_suggestions_id_seq
 --
 
 ALTER SEQUENCE search_suggestions_id_seq OWNED BY search_suggestions.id;
+
+
+--
+-- Name: taggings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE taggings (
+    id integer NOT NULL,
+    company_id integer,
+    tag_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    article_id integer
+);
+
+
+--
+-- Name: taggings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE taggings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE taggings_id_seq OWNED BY taggings.id;
+
+
+--
+-- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tags (
+    id integer NOT NULL,
+    tag_name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 
 --
@@ -442,6 +509,20 @@ ALTER TABLE ONLY search_suggestions ALTER COLUMN id SET DEFAULT nextval('search_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY taxonomies ALTER COLUMN id SET DEFAULT nextval('taxonomies_id_seq'::regclass);
 
 
@@ -511,6 +592,22 @@ ALTER TABLE ONLY jobs
 
 ALTER TABLE ONLY search_suggestions
     ADD CONSTRAINT search_suggestions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY taggings
+    ADD CONSTRAINT taggings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tags
+    ADD CONSTRAINT tags_pkey PRIMARY KEY (id);
 
 
 --
@@ -689,3 +786,13 @@ INSERT INTO schema_migrations (version) VALUES ('20140318215126');
 INSERT INTO schema_migrations (version) VALUES ('20140318222856');
 
 INSERT INTO schema_migrations (version) VALUES ('20140319184747');
+
+INSERT INTO schema_migrations (version) VALUES ('20140321213213');
+
+INSERT INTO schema_migrations (version) VALUES ('20140323235631');
+
+INSERT INTO schema_migrations (version) VALUES ('20140323235822');
+
+INSERT INTO schema_migrations (version) VALUES ('20140324003024');
+
+INSERT INTO schema_migrations (version) VALUES ('20140324003112');

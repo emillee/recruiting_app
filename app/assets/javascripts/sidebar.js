@@ -2,13 +2,13 @@ var ready;
 
 ready = function() {
   
-  // SEARCH FORM
+  // SEARCH FORM - SUBMIT ON CLICK
   $('#sidebar-search-button').click(function() {
     $(this).parents('form:first').submit();
     $('#sidebar-search').val('');
   });
 
-  // SEARCH FORM
+  // SEARCH FORM - SUBMIT ON ENTER
   $('#sidebar-search').keyup(function(event) {
     if (event.keyCode == 13) {
       $(this).parents('form:first').submit();
@@ -26,7 +26,7 @@ ready = function() {
     };
   });
   
-  // DEPARTMENT FILTER
+  // DEPARTMENT FILTER - EXPAND / COLLAPSE
   $('.sidebar-middle').on('click', 'h1.department', function() {
     var $ul = $(this).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
@@ -42,7 +42,7 @@ ready = function() {
     $('.department .fa-plus').toggleClass('hidden');
   });
   
-  // SUB DEPT FILTER
+  // SUB DEPT FILTER - EXPAND / COLLAPSE
   $('.sidebar-middle').on('click', 'h1.sub_dept', function() {
     var $ul = $(this).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
@@ -58,7 +58,7 @@ ready = function() {
     $('.sub_dept .fa-plus').toggleClass('hidden');
   });
   
-  // EXPERIENCE FILTER
+  // EXPERIENCE FILTER - EXPAND / COLLAPSE
   $('.sidebar-middle').on('click', 'h1.experience', function() {
     var $ul = $(this).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
@@ -75,7 +75,7 @@ ready = function() {
     $('.experience .fa-plus').toggleClass('hidden');
   });
   
-  // KEY SKILLS FILTER
+  // KEY SKILLS FILTER - EXPAND / COLLAPSE
   $('.sidebar-middle').on('click', 'h1.key-skills', function() {
     var $ul = $(this).closest('.wrapper').children('ul');
     var $wrapper = $ul.children('div.key-skills-wrapper');
@@ -85,7 +85,7 @@ ready = function() {
     $('.key-skills .fa-plus').toggleClass('hidden');
   });
   
-  // CLICK CHECKBOX
+  // CLICK CHECKBOX - CLICK CHECKBOX, SHOW ICON
   $('.sidebar-middle').on('click', 'li.job-sidebar', function(e) {
     var $checkbox = $(this).find(":checkbox")[0];
     if (e.target != $checkbox) $checkbox.checked = !$checkbox.checked
@@ -107,7 +107,7 @@ ready = function() {
     $('#sidebar-search').val('');
   });
 
-  // AJAX CALL TO REFRESH SIDEBAR AND JOBS
+  // AJAX CALL TO REFRESH SIDEBAR AND JOBS ON SUCCESS
   $('#job-filter-form').on("ajax:success", function(event, data) {  
     var $jobs = $(data).find('.job-posts');
     var $sidebar = $(data).find('.sidebar-middle');
@@ -117,6 +117,7 @@ ready = function() {
     $('.pagination').empty().html($kaminari);
   });
   
+  // REMOVE ALL FILTERS
   $('#clear-all').click(function() {
     $('.keywords-li').click();
     $('.job-sidebar').find(':checkbox').prop('checked', false);
@@ -124,9 +125,8 @@ ready = function() {
     $('.job-filters').parents('form:first').submit();
   });
   
+  // GET RID OF KEYWORD BANNER IF NO KEYWORDS
   $('.keywords-ul').on('click', 'li', function() {
-    // $(this).remove();
-    
     if ($('.keywords-li').length === 0) {
       $('.keywords-wrapper').addClass('hidden');
     };

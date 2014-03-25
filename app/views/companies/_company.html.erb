@@ -3,17 +3,17 @@
 <% this_model = this_table.singularize %>
 
 <%= render 'top', locals: { company: company, this_table: this_table } %>
-<%= render 'main', locals: { company: company, this_table: this_table } %>
+<%= render 'nav_and_sections', locals: { company: company, this_table: this_table } %>
 
-<br>
+<!-- <br> -->
 
 <% if company.persisted? %>
-	<p>Post a new Job</p>
-	<%= form_for([company, @job]) do |f| %>
-		<%= f.text_field :link, class: "hello" %>
-		<%= f.submit "Create New Job" %>
-	<% end %>
-	<br>
+	<!-- <p>Post a new Job</p> -->
+	<%#= form_for([company, @job]) do |f| %>
+		<%#= f.text_field :link, class: "hello" %>
+		<%#= f.submit "Create New Job" %>
+	<%# end %>
+	<!-- <br> -->
 
 	<% company.job_listings.order("created_at DESC").each do |job| %>
 		<p><h1><%= best_in_place job, :title %></h1> (ID: <%= job.id %>)</p>
@@ -42,6 +42,6 @@
 		
 		<p><%= link_to 'Import Data', import_data_job_url(job), method: :post %></p>
 		<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %></p>
-		<br><br>
+		<!-- <br><br> -->
 	<% end %>
 <% end %>

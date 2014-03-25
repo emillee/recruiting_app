@@ -1,0 +1,83 @@
+<% company = locals[:company] %>
+<% this_table = locals[:this_table] %>
+<% this_model = this_table.singularize %>
+
+<div class="company-mid-wrapper">
+	
+	<div class="company-navbar">
+		<% get_unique_tags(company).each do |tag_name| %>
+			<% data_section = tag_name.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
+			<%= link_to "#{tag_name}", '#', data: { company: "#{company.name}", section: "#{data_section}" }%>
+		<% end %>
+		
+		<!-- <%= form_for company, url: add_section_company_url(company), method: :put do |f| %>
+			<%= f.text_field :career_sections %>
+			<%= f.submit 'Add' %>
+		<% end %> -->
+	</div>
+	
+	<div id="<%= company.name %>-top-id"></div>
+	
+	<% company.articles.each do |article| %>
+		<% section_class = article.tags[0].tag_name.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
+		<div class="<%= section_class %> <%= company.name %> content article editable"
+			contenteditable="true"
+			data-articleid="<%= article.id %>"
+			data-id=<%= company.id %>>
+								
+			<% section_title = add_placeholders_if_nil('title', article.title) %>
+			<span class='title'><%= raw(section_title) %></span>
+			
+			<% section_body = add_placeholders_if_nil('body', article.body) %>
+			<span class='body editable'><%= raw(section_body) %></span>
+		</div>
+		
+		
+	<% end %>
+		
+	<!-- <% default_sections = { 'Join Us!' => '', 'Why Us?' => '', 'Your Role' => '', 'Day in the Life' => '', 
+			'More Info' => '', "Apply Now (it's easy)!" => '' } %>
+	<% sections = company.career_sections.any? ? company.career_sections : default_sections %>
+	
+	<div class="company-navbar">
+		<% sections.each do |section_key, text_val| %>
+			<% data_section = section_key.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
+			<%= link_to "#{section_key}", '#', data: { company: "#{company.name}", section: "#{data_section}" }%>
+		<% end %>
+		
+		<%= form_for company, url: add_section_company_url(company), method: :put do |f| %>
+			<%= f.text_field :career_sections %>
+			<%= f.submit 'Add' %>
+		<% end %>
+	</div>
+	
+	<div id="<%= company.name %>-top-id"></div>
+	
+	<% sections.each do |section, text_val| %>
+		<% section_class = section.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
+		<div class="<%= section_class %> <%= company.name %> content hstore-type"
+			contenteditable="true"
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute='career_sections'
+			data-key="<%= section %>"
+			data-id=<%= company.id %>>			
+			<% section_text = add_placeholders_if_nil(section, text_val) %>
+			<%= raw(section_text) %>
+		</div>
+	<% end %> -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
