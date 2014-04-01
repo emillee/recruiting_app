@@ -1,0 +1,65 @@
+<% company = locals[:company] %>
+<% this_table = locals[:this_table] %>
+<% this_model = this_table.singularize %>
+
+<div class="company-stats">
+	<h3>
+		<span>Funding:</span>
+		<span contenteditable="true"
+			data-id="<%= company.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="total_money_raised"
+			class="regular-type">				
+			<%= (company.total_money_raised.nil? || company.total_money_raised.empty?) ? "-" : company.total_money_raised %>
+		</span>
+	</h3>
+	<h3>
+		<span>Employees:</span>
+		<span contenteditable="true"
+			data-id="<%= company.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="num_employees"
+			class="regular-type">				
+			<%= company.num_employees.nil? ? "-" : company.num_employees %>
+		</span>			
+	</h3>
+	<h3>
+		<span>Category:</span>
+		<span contenteditable="true"
+			data-id="<%= company.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="category_code"
+			class="regular-type">				
+			<%= (company.category_code.nil? || company.category_code.empty?) ? "-" : company.category_code %>
+		</span>			
+	</h3>
+	<h3>
+		<span>City:</span>
+		<span contenteditable="true"
+			data-id="<%= company.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="city"
+			class="regular-type">				
+			<%= (company.city.nil? || company.city.empty?) ? "-" : company.city %>
+		</span>			
+	</h3>						
+	<h3>
+		<span>Neighborhood:</span>
+		<span contenteditable="true"
+			data-id="<%= company.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="neighborhood"
+			class="regular-type">				
+			<%= (company.neighborhood.nil? || company.neighborhood.empty?) ? "-" : company.neighborhood %>
+		</span>			
+	</h3>						
+
+	<!-- <h3>Twitter: <%#= company.twitter_username || "" %></h3> -->
+	<!-- <h3><%#= best_in_place company, :career_page_link %></h3> -->
+	<%= link_to "Go to #{company.name}'s career page", company.career_page_link, target: '_blank' %>
+</div><!-- company-stats -->

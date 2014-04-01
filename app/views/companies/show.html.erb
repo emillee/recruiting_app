@@ -1,19 +1,14 @@
-<div class="f-sidebar-buffer">
-	<%#= render 'sidebar', locals: { company: @company } %>
-</div>
+<%= render './shared/sidebar_buffer' %>
 
 <div class="companies-wrapper">
-	<%#= paginate @companies %>
+	<div id="add_image_button"></div>
 	
 	<ul class="companies-posts">
-		<li>
-			<%= render 'company', locals: { company: @company } %>
-		</li>
+		<li><%= render 'company', locals: { company: @company } %></li>
 	</ul>
 </div>
 
-<div class="jobs-background"></div>
-<div class="jobs-background-overlay"></div>
+<%= render './layouts/background' %>
 
 <script type="text/javascript">
 	$(document).ready(function() {

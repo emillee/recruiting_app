@@ -1,0 +1,10 @@
+<div class="top-bar">
+	<%= link_to 'Viewed', jobs_url(filter: 'viewed') %>	
+	<%= link_to 'Saved', jobs_url(filter: 'saved') %>
+	<%= link_to 'Removed', jobs_url(filter: 'removed') %>
+	
+	<!-- <span class="view-options">
+		<%= link_to 'Flip View', flip_view_jobs_url, data: { no_turbolink: true } %>
+		<i class="fa fa-barcode"></i>
+	</span> -->
+</div>

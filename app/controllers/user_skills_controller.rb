@@ -21,7 +21,7 @@ class UserSkillsController < ApplicationController
     redirect_to user_url(current_user)
   end
   
-	# PRIVATE ---------------------------------------------------------------------------
+	# PRIVATE -----------------------------------------------------------------------------------
   private
   
     def user_skill_params 

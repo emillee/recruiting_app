@@ -1,0 +1,10 @@
+<% user_id = current_user ? current_user.id : nil %>
+<% job = locals[:job] %>
+
+<div class="c-company-overview left">
+	<% if job.description %>
+		<h1>About <%= job.listing_company.name %></h1>
+		<%= job.listing_company.overview %>
+	<% end %>
+</div>				
+

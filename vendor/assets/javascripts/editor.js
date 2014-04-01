@@ -1,54 +1,29 @@
-/*global window, document, console, navigator */
-/*!
- *  @name       editor
- *  @date       Oct 2013
- *  @by         mjbp
- *  @roadmap    - paste without styles
-                - trim leading and trailing whitespace when applying inline styles
-                - IE9
-                - JSONify content for further integration
-                - leverage localStorage to save as going
- */
- 
+// COMMENT: HAD TO GET COMMENT OUT ALL REMOVE INCOMPATIBLE FUNCTIONS
+
 function log(w) {
   'use strict';
   console.log(w);
 }
 
-// selector is '.editable', opts are the buttons object array
-// var editor = new Editor('.editable', 
-// {buttons:['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'cancel']});
 function Editor(selector, opts) {
   'use strict';
-  
   return this.init(selector, opts);
 };
 
-
-// w is window, d is document
 (function (w, d) {
   'use strict';
   
   var toolkit = {
-    // in init, calls extend with args of b = this.defaults, a = opts;
-    // this.defaults defined in prototype, opts passed in from index.html;
+
     extend: function(b, a) {
       var p;
       
-      // if this.defaults is undefined, return the opts that are pased in from index.html
       if (b === undefined) {
         return a;
       };
       
-      // otherwise, loop through each property in options
       for (p in a) {
-        
-        // if the object (buttons:['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'cancel']})
-        // hasOwnProperty makes sure that the object -- a, or buttons, doesn't loop over every inherited property in the prototype
-        // chain, which can include functions
         if (a.hasOwnProperty(p)) {
-          
-          // overwrites defaults, if necessary;
           b[p] = a[p];
         };
       };
@@ -56,24 +31,14 @@ function Editor(selector, opts) {
       return b;
     },
 
-    // toolkit.forEach(buttons, function(key) {
-    //   if (self.defaults.buttons.indexOf(key.id.replace(/editor-/, '')) === -1) {
-    //     key.style.display = 'none';
-    //   };
-    // }, self);
-    
-    // a is buttons, fn changes display to none if not in the DOM, scope is self or this
     forEach: function(a, fn, scope) {
       var i, l = a.length;
       
-      // this checks if broswer supports forEach
       if ([].forEach) {
         return a.forEach(fn);
       };
-      // if browser doesn't support. then do this
       for (i = 0; i < l; i += 1) {
         if (a.hasOwnProperty(i)) {
-          // unclear why you have to pass in i and a?
           fn.call(scope, a[i], i, a);
         };
       };
@@ -120,7 +85,6 @@ function Editor(selector, opts) {
         while (!stop) {
           node = nodeStack.pop();
           
-          // nodeType === 3 means its a TextNode
           if (node !== undefined && node.nodeType === 3) {
             nextCharIndex = charIndex + node.length;
             if (!foundStart && savedSel.start >= charIndex && savedSel.start <= nextCharIndex) {
@@ -168,7 +132,7 @@ function Editor(selector, opts) {
     
     defaults: {
       delay: 0,
-      buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'cancel']
+      buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']
     },
     
     placeUI: function() {
@@ -229,14 +193,14 @@ function Editor(selector, opts) {
         i,
         self = this,
         buttonTrigger = function(e) {
-          var command = this.getAttribute('data-command');
-          e.preventDefault();
-          e.stopPropagation();
-          if (this.id === 'editor-cancel') {
-            self.cancelLink();
-          } else {
-            self.executeStyle(command);
-          }
+        var command = this.getAttribute('data-command');
+        e.preventDefault();
+        e.stopPropagation();
+        if (this.id === 'editor-cancel') {
+          self.cancelLink();
+        } else {
+          self.executeStyle(command);
+        }
       };
         
       for (i = 0; i < buttons.length; i += 1) {
@@ -336,7 +300,7 @@ function Editor(selector, opts) {
           'quote': function() {
             var parentNodes = self.findParentNodes(self.selection.anchorNode),
               text, incompatibles = incompatibleElements.heading;
-            removeIncompatibles(parentNodes, incompatibles);
+            // removeIncompatibles(parentNodes, incompatibles);
             
             if (!!parentNodes.BLOCKQUOTE) {
               d.execCommand('formatBlock', false, 'p');
@@ -355,7 +319,7 @@ function Editor(selector, opts) {
             var parentNodes = self.findParentNodes(self.selection.anchorNode),
               incompatibles = incompatibleElements.heading;
             
-            removeIncompatibles(parentNodes, incompatibles);
+            // removeIncompatibles(parentNodes, incompatibles);
             
             if (!!parentNodes[h]) {
               d.execCommand('formatBlock', false, 'p');
@@ -414,7 +378,7 @@ function Editor(selector, opts) {
                 d.execCommand('outdent');
               } else {
                 if (toolkit.isChrome()) {
-                  removeIncompatibles(parentNodes, incompatibles);
+                  // removeIncompatibles(parentNodes, incompatibles);
                 };
                 if (listType === 'UL') {
                   execList('insertunorderedlist');
@@ -538,7 +502,7 @@ function Editor(selector, opts) {
     },
     
     isHeading: function() {
-      var headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+      var headings = ['h1', 'h2', 'h3'];
       return headings.indexOf(el.toLowerCase()) !== -1 ? true : false;
     },
     

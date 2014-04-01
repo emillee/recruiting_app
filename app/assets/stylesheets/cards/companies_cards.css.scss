@@ -1,0 +1,58 @@
+// COMPANIES#INDEX and COMPANIES#SHOW
+.company-overview {
+  position: absolute;
+  left: 245px;
+  display: inline-block;
+  margin-left: 20px;
+  background-color: #232323;
+  height: 120px;
+  padding: 15px;
+  width: 395px;
+  
+  h1, h3, p {
+    color: green;            
+  }
+
+  h1 {
+    font-weight: 900;
+
+    a {
+      color: white;              
+      line-height: 30px;
+      font-size: 22px;            
+    }
+  }
+
+  p {
+    font-weight: 600px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #b3b3b1;
+  }        
+}
+
+// COMPANY BUSINESS CARD (JUST LOGO)
+div.company-business-card {
+  position: relative;
+  display: inline-block;
+  width: 265px;
+  height: 150px;
+  background-color: white;
+
+  img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    vertical-align: middle;
+    max-width: 85%;
+    max-height: 85%;
+    display: inline-block;
+    border-radius: 1px;
+  }        
+}
+
+
+

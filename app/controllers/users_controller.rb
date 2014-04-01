@@ -5,19 +5,19 @@ class UsersController < ApplicationController
   # RESTful Routes ---------------------------------------------------------------------------
   
 	def index
+    set_tab('users')  	  
 		@users = User.all
 	end
 	
-	
 	def new
+    set_tab('users')  	  	  
 		@user = User.new
 	end
 
-
   def edit
+    set_tab('users')  	      
     @user = User.find(params[:id])
   end
-
 
 	def create
 		@user = params[:user] ? User.new(user_params) : User.new_guest
@@ -31,12 +31,11 @@ class UsersController < ApplicationController
 		end
 	end
 
-
 	def show
+    set_tab('users')  	  	  
 		@user = User.find(params[:id])
 		@tab ||= "Recent"
 	end
-
 
 	def update
     @user = User.find(params[:id])
@@ -58,9 +57,6 @@ class UsersController < ApplicationController
         params[:user][:job_settings][:keywords] = without_blanks
       end
     
-      # this is if all checkboxes are blank or clear button hit. 
-      # The empty search input box submits ""
-      # Is there a better way to do this?
   		if params[:user][:job_settings] && params[:user][:job_settings].nil?
   		  @user.update_column('job_settings', {})
   		  @jobs = Job.all
@@ -75,7 +71,6 @@ class UsersController < ApplicationController
 		else
 			render :edit
 		end
-		
 	end
 
 

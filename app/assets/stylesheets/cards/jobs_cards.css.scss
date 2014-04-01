@@ -1,0 +1,89 @@
+// JOB DESCRIPTION (TITLE, SUMMARY)
+.job-description-wrapper {
+  width: 500px;
+  display: inline-block;
+  height: 100%;
+  padding-left: 20px;  
+  padding-right: 20px;
+  background-color: #F2F4F6; 
+
+  h1 {
+    margin-top: 7px;
+    font-size: 20px;      
+    line-height: 30px;
+    font-weight: 900;
+    font-style: bold;
+    color: #050002;
+    display: inline-block;
+    
+    &:hover {
+      color: rgb(2,91,121);
+    } 
+  }
+  
+  a.view {
+    display: none;
+  }
+
+  a.viewed {
+    margin-left: 3px;    
+    font-size: 13px ;
+    color: #bdc3c7;    
+    text-decoration: underline;              
+  }  
+            
+  p {
+    color: #464646;
+    font-size: 16px;
+    line-height: 25px;  
+    text-align: justify;  
+  }
+
+  div.action-items {
+    background-color: rgba(255,255,255,.9);
+    height: 25px;
+    line-height: 25px;
+    margin-top: 5px;
+    
+    span {
+      margin-left: 5px;
+    }
+    
+    a.applied, a.view, a.forward, a.remove, a.save, a.viewed, a.saved {
+      color: rgb(141,141,141);
+      font-size: 13px;  
+      display: inline-block;
+      padding-left: 5px;
+
+      &:hover {
+        color: #2c3e50;
+      }         
+    }  
+
+    a.viewed, a.saved, a.applied_already {
+      color: #2ecc71;    
+      font-size: 13px;
+//      text-decoration: underline;              
+    }
+  }
+}
+
+// JOB ACTION ITEMS
+.c-company-overview {
+  background-color: #D1D0D7;
+  height: 136px;
+  width: 215px;
+  display: inline-block;
+  padding: 6px 15px;
+  font-size: 14px;
+  line-height: 24px;
+  overflow: hidden;
+  color: #7E7E7E;
+  
+  h1 {
+    font-weight: 700;
+    font-size: 16px;
+    color: #443B34;
+  }
+}
+

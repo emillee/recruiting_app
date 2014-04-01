@@ -3,7 +3,7 @@ var ready;
 ready = function() {
   
   // SEARCH FORM - SUBMIT ON CLICK
-  $('#sidebar-search-button').click(function() {
+  $('i.fa-search').click(function() {
     $(this).parents('form:first').submit();
     $('#sidebar-search').val('');
   });
@@ -38,8 +38,8 @@ ready = function() {
       }
     })
     
-    $('.department .fa-minus').toggleClass('hidden');
-    $('.department .fa-plus').toggleClass('hidden');
+    $('.department .fa-caret-down').toggleClass('hidden');
+    $('.department .fa-caret-right').toggleClass('hidden');
   });
   
   // SUB DEPT FILTER - EXPAND / COLLAPSE
@@ -54,8 +54,8 @@ ready = function() {
       }
     })
     
-    $('.sub_dept .fa-minus').toggleClass('hidden');
-    $('.sub_dept .fa-plus').toggleClass('hidden');
+    $('.sub_dept .fa-caret-down').toggleClass('hidden');
+    $('.sub_dept .fa-caret-right').toggleClass('hidden');
   });
   
   // EXPERIENCE FILTER - EXPAND / COLLAPSE
@@ -63,7 +63,6 @@ ready = function() {
     var $ul = $(this).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
     var $checkboxes = $checkbox_lis.find(":checkbox");
-    console.log('hi')
     
     $checkboxes.each(function() {
       if (this.checked === false) {
@@ -71,8 +70,8 @@ ready = function() {
       }
     })
     
-    $('.experience .fa-minus').toggleClass('hidden');
-    $('.experience .fa-plus').toggleClass('hidden');
+    $('.experience .fa-caret-down').toggleClass('hidden');
+    $('.experience .fa-caret-right').toggleClass('hidden');
   });
   
   // KEY SKILLS FILTER - EXPAND / COLLAPSE
@@ -81,8 +80,8 @@ ready = function() {
     var $wrapper = $ul.children('div.key-skills-wrapper');
     $wrapper.toggleClass('hidden')
     
-    $('.key-skills .fa-minus').toggleClass('hidden');
-    $('.key-skills .fa-plus').toggleClass('hidden');
+    $('.key-skills .fa-caret-down').toggleClass('hidden');
+    $('.key-skills .fa-caret-right').toggleClass('hidden');
   });
   
   // CLICK CHECKBOX - CLICK CHECKBOX, SHOW ICON
@@ -90,7 +89,6 @@ ready = function() {
     var $checkbox = $(this).find(":checkbox")[0];
     if (e.target != $checkbox) $checkbox.checked = !$checkbox.checked
     $(this).toggleClass("selected", $checkbox.checked);
-    $(this).closest('.fa-check').toggleClass('hidden');
   });
 
   // CLICK CHECKBOX FOR DEGREES

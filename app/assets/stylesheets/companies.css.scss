@@ -8,76 +8,20 @@ div.companies-wrapper {
   position: absolute;
   top: 75px;
   left: 300px;
-  background-color: rgba(0,0,0,.5);
   margin-bottom: 30px;
   
   ul.companies-posts {
     width: 990px;
 
     li {
-      padding: 5px;
       height: 100%;
       border-radius: 1px;
-//      border-bottom: 5px solid rgba(0,0,0,.5);
+      border: 5px solid rgba(0,0,0,.5);
       
       .company-top-wrapper {
         display: block;
         height: 150px;      
-        
-        div.logo {
-          position: relative;
-          display: inline-block;
-          width: 265px;
-          height: 150px;
-          background-color: white;
-
-          img {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-            vertical-align: middle;
-            max-width: 85%;
-            max-height: 85%;
-            display: inline-block;
-            border-radius: 1px;
-          }        
-        }
       
-        .company-intro {
-          position: absolute;
-          left: 250px;
-          display: inline-block;
-          margin-left: 20px;
-          background-color: #232323;
-          height: 120px;
-          padding: 15px;
-          width: 390px;
-          
-          h1, h3, p {
-            color: white;            
-          }
-        
-          h1 {
-            font-weight: 900;
-
-            a {
-              color: white;              
-              line-height: 30px;
-              font-size: 22px;            
-            }
-          }
-
-          p {
-            font-weight: 600px;
-            font-size: 16px;
-            line-height: 24px;
-            color: #b3b3b1;
-          }        
-        }
-        
         .company-stats {
           background-color: #333332;
           padding: 10px 15px;
@@ -123,7 +67,7 @@ div.companies-wrapper {
           top: 0px;
           height: 35px;
           line-height: 35px;
-          width: 980px;
+          width: 981px;
           background-color: #778899;
           
           a {
@@ -166,7 +110,7 @@ div.companies-wrapper {
         }
         
         div.content {
-          width: 840px;
+          width: 841px;
           padding-top: 20px;
           padding-bottom: 30px;
           padding-left: 70px;
@@ -181,6 +125,10 @@ div.companies-wrapper {
             margin-bottom: 10px;         
           }
           
+          h3 {
+            font-size: 24px;
+          }
+          
           p {
             font-size: 20px;
             line-height: 30px;
@@ -188,12 +136,16 @@ div.companies-wrapper {
             margin-bottom: 15px;            
           }
           
+          article {
+            padding-bottom: 0;
+          }
+          
           &:nth-of-type(1) {
-            background-color: rgb(246,236,253);
+            background-color: rgb(243,249,245);
           }
 
           &:nth-of-type(2) {
-            background-color: rgb(242,243,239);          
+            background-color: rgb(243,249,245);         
           }
 
           &:nth-of-type(3) {
@@ -201,7 +153,7 @@ div.companies-wrapper {
           }
 
           &:nth-of-type(4){
-            background-color: rgb(246,236,253);
+            background-color: rgb(243,249,245);
           }
 
           &:nth-of-type(5) {
@@ -209,7 +161,7 @@ div.companies-wrapper {
           } 
           
           &:nth-of-type(6) {
-            background-color: rgb(246,236,253);
+            background-color: rgb(243,249,245);
           }
           
           &:nth-of-type(7) {
@@ -217,7 +169,7 @@ div.companies-wrapper {
           }                 
                       
           &:nth-of-type(8) {
-            background-color: rgb(246,236,253);
+            background-color: rgb(243,249,245);
           }                             
 
         }        

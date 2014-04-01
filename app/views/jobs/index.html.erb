@@ -2,17 +2,7 @@
 
 <div class="jobs-wrapper">
 	
-	<div class="top-bar">
-		<%= link_to 'Viewed', jobs_url(filter: 'viewed') %>	
-		<%= link_to 'Saved', jobs_url(filter: 'saved') %>
-		<%= link_to 'Removed', jobs_url(filter: 'removed') %>
-		
-		<span class="view-options">
-			<%= link_to 'Flip View', flip_view_jobs_url, data: { no_turbolink: true } %>
-			<i class="fa fa-barcode"></i>
-		</span>
-	</div>
-
+	<%= render 'job_navbar' %>
 	
 	<ul class="job-posts">
 		<% @jobs.each do |job| %>		
@@ -21,52 +11,10 @@
 				<% next if current_user.removed_jobs.include?(job) %>
 			<% end %>	
 
-			<li>				
-				<div class="description">
-					<% user_id = current_user ? current_user.id : nil %>
-					<% viewed_text = has_viewed_job?(job) ? "Viewed" : "View Listing" %>
-					<% viewed_class = has_viewed_job?(job) ? "viewed" : "view" %>
-					
-					<div class="job-title-and-link">
-						<a href="<%= job.link %>" target="_blank">
-							<h1>
-								<%= job.title %> <span>at</span> <%= job.listing_company.name %> 
-							</h1>
-						</a>
-						<%= link_to viewed_text, job.link, target: "_blank", class: viewed_class,
-						 			data: { user_id: user_id, applied_job_id: job.id } %>
-						<%= link_to 'Forward', '#', class: 'forward', data: { id: job.id } %>
-					</div>
-					<% if job.description %>
-						<p>(<%= job.id %>) <%= job.description.split(' ')[0..25].join(' ') unless job.description.nil? %>...</p>
-					<% else %>
-						<% if job.full_text %>
-							<p>(<%= job.id %>) <%= job.full_text.split(' ')[0..25].join(' ') unless job.full_text.nil? %>...</p>
-						<% end %>
-					<% end %>
-					
-					<div class="action-items">
-						<% saved_text = has_saved_job?(job) ? "Saved" : "Save for Later" %>											
-						<% saved_class = has_saved_job?(job) ? "saved" : "save" %>
-						
-						<%= link_to saved_text, user_jobs_url(user_id: user_id, 
-									saved_job_id: job.id), class: saved_class, remote: true, method: :post %>
-						<%= link_to 'Remove', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
-								class: 'remove', remote: true, method: :post %>
-					</div>
-				</div>
-				
-				<div class="company-section">
-					<% if job.listing_company %>
-						<img src='<%= asset_path("/assets/company_icons/#{job.listing_company.name.downcase}" + ".jpeg") %>' />
-						<div class="overview">
-							<%= job.listing_company.overview %>
-						</div>
-					<% else %>
-						<%= job.listing_company.name %>
-					<% end %>
-				</div>
-				
+			<li>			
+				<%= render './cards/companies/logo', locals: { company: job.listing_company } %>	
+				<%= render './cards/jobs/listing_summary', locals: { job: job } %>
+				<%= render './cards/jobs/company_overview', locals: { job: job } %>
 			</li>
       
 			<div id="div-append-<%= job.id %>"></div>
@@ -78,17 +26,7 @@
 	</div>
 </div>
 
-<div class="jobs-background"></div>
-<div class="jobs-background-overlay"></div>
+<%= render './layouts/background' %>
 
-<!-- <div class='new-job-wrapper'>
-	<%= link_to "Post a job", '#', class: 'new-job-post' %>
 
-	<div id="file">Click to import file</div>
-
-	<%#= form_tag import_jobs_url, multipart: true do %>
-		<%= file_field_tag :file %>
-		<%= submit_tag 'Import' %>
-	<%# end %>
-</div> -->
 

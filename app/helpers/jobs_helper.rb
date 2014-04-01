@@ -10,7 +10,7 @@ module JobsHelper
       return 'fa fa-desktop'
     when 'Sales'
       return 'fa fa-bar-chart-o'
-    when 'Product Management'
+    when 'Prod. Management'
       return 'fa fa-lightbulb-o'
     end      
   end
@@ -83,8 +83,8 @@ module JobsHelper
 	  return false
   end
   
-  def has_viewed_job?(job)
-    return true if current_user && current_user.jobs_viewed.include?(job)
+  def already_applied?(job)
+    return true if current_user && current_user.jobs_applied.include?(job)
   end
   
   def description_snippet(job)

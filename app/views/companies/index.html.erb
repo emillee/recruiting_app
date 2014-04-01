@@ -1,20 +1,23 @@
 <div class="company-sidebar">
-	<%= render 'sidebar', locals: { keywords: @keywords, all_scopes: @all_scopes, scopes_checked: @scopes_checked } %>
+	<%= render 'sidebar', locals: { 
+		keywords: @keywords, 
+		all_scopes: @all_scopes, 
+		scopes_checked: @scopes_checked 
+	} %>
 </div>
 
 <div class="companies-wrapper">
 	<%#= paginate @companies %>
+	
 	<ul class="companies-posts">
 		<% @companies.each do |company| %>
-			<li>
-				<%= render 'company', locals: { company: company } %>
-			</li>
+			<li><%= render 'company', locals: { company: company } %></li>
 		<% end %>
 	</ul>
-</div>
+	
+</div><!-- companies-wrapper -->
 
-<div class="jobs-background"></div>
-<div class="jobs-background-overlay"></div>
+<%= render './layouts/background' %>
 
 <script type="text/javascript">
 	$(document).ready(function() {

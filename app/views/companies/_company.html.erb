@@ -1,47 +1,14 @@
 <% company = locals[:company] %>
 <% this_table = "companies" %>
-<% this_model = this_table.singularize %>
 
-<%= render 'top', locals: { company: company, this_table: this_table } %>
+<div class="company-top-wrapper">
+	<%= render './cards/companies/logo', locals: { company: company } %>
+	<%= render './cards/companies/overview', locals: { company: company, this_table: this_table } %>
+	<%= render './cards/companies/stats', locals: { company: company, this_table: this_table } %>
+</div>
+
 <%= render 'nav_and_sections', locals: { company: company, this_table: this_table } %>
 
-<!-- <br> -->
-
 <% if company.persisted? %>
-	<!-- <p>Post a new Job</p> -->
-	<%#= form_for([company, @job]) do |f| %>
-		<%#= f.text_field :link, class: "hello" %>
-		<%#= f.submit "Create New Job" %>
-	<%# end %>
-	<!-- <br> -->
-
-	<% company.job_listings.order("created_at DESC").each do |job| %>
-		<p><h1><%= best_in_place job, :title %></h1> (ID: <%= job.id %>)</p>
-		<p><span class="heading">Link: </span><%= link_to "#{job.link}", "#{job.link}" %></p>
-		<p><span class="heading">Dept: </span><%= best_in_place job, :dept, type: :input, inner_class: 'dept', data: { autocomplete: true } %></p>
-		<p><span class="heading">SubDept: </span><%= best_in_place job, :sub_dept %></p>
-		<p><span class="heading">YearsExp: </span><%= best_in_place job, :years_exp %></p>
-		<p><span class="heading">Full Text: </span><%= best_in_place job, :full_text, type: :textarea %></h3></p>
-		<p><span class="heading">Key Phrases: </span><%= best_in_place job, :key_phrases, path: update_req_skills_job_url(job) %></p>
-		<p>
-			<span class="heading">Req Skills: </span>
-				<%= form_for(job) do |f| %>
-					<%= hidden_field_tag "job[req_skills][]", "" %>
-					<% Taxonomy.key_skill_degrees.flatten.each do |skill| %>
-						<p>
-							<label>
-								<%= "#{skill}" %>
-								<%= check_box_tag "job[req_skills][]", skill, req_skill_checked?(job, skill) %>			
-							</label>
-						</p>
-					<% end %>
-				
-					<%= f.submit "Submit" %>
-				<% end %>
-		</p>
-		
-		<p><%= link_to 'Import Data', import_data_job_url(job), method: :post %></p>
-		<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %></p>
-		<!-- <br><br> -->
-	<% end %>
+	<%= render 'company_jobs', locals: { company: company } %>
 <% end %>

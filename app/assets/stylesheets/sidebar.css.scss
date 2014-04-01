@@ -5,7 +5,6 @@ div.sidebar-wrapper {
   height: 100%;
   position: fixed;
   font-family: 'Lato', sans-serif;
-//  border: 1px solid white;
   background-color: rgba(255,255,255,.5);
   
   // SEARCH FORM
@@ -13,11 +12,22 @@ div.sidebar-wrapper {
     position: relative;
     background-color: #bdc3c7;
     height: 45px;
-    display: block;
+    display: block;  
+    
+    &:hover {
+      i.fa-search {
+        color: #7f8c8d;
         
+        &:hover {
+         background-color: #3498db;
+         color: white;
+        }
+      }
+    }    
+
     input {
-      top: 11px;
-      left: 18px;
+      top: 12px;
+      left: 16px;
       border: none;
       height: 22px;
       border-radius: 2px;
@@ -27,7 +37,7 @@ div.sidebar-wrapper {
       margin-left: 4px;
       background-color: rgba(0,0,0,.1);
       
-      &:hover {
+      &:hover, &:focus {
         background-color: white;
         border: 2px solid rgba(52,152,219,.5);
       }
@@ -35,12 +45,12 @@ div.sidebar-wrapper {
 
     i.fa-search {
       position: absolute;
-      top: 12px;
+      top: 13px;
       right: 22px;
       color: white;
-      background-color: rgba(0,0,0,.2);
-      line-height: 18px;
-      width: 20px;
+      background-color: rgba(126,126,126,.01);
+      line-height: 19px;
+      width: 21px;
       text-align: center;
       border-radius: 2px;
       padding: 1px;
@@ -49,14 +59,22 @@ div.sidebar-wrapper {
   
   // MIDDLE PORTION
   .sidebar-middle {
-    height: 560px;
+    height: 100%;
     overflow: auto;
     position: relative;
     cursor: pointer;
     
+    .wrapper {
+      border-bottom: 1px solid rgba(126,126,126,.1);
+      
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+    
     // CATEGORIES
     h1 {
-      background-color: rgba(255,255,255,.7);
+      background-color: #FAFAFA;
       font-size: 16px; 
       text-indent: 20px;
       line-height: 35px;
@@ -66,18 +84,22 @@ div.sidebar-wrapper {
       
       i {
         position: absolute;
-        right: 12px;
-        top: 8px; 
+        right: 14px;
+        top: 11px; 
         color: rgba(0,0,0,.5);
         font-weight: 100;
-        font-size: 14px;       
+        font-size: 16px;       
+      }
+      
+      i.fa-caret-down {
+        color: rgba(2,119,158,1);
       }
       
       &:hover {
-        color: rgb(2,119,158);
+        color: rgba(2,119,158,.5);
         
         i {
-          color: rgb(2,119,158);
+          color: rgba(2,119,158,.5);
         }
       }
     }
@@ -88,23 +110,53 @@ div.sidebar-wrapper {
       line-height: 30px;
       color: rgba(121,121,121,1);
       text-transform: capitalize;
+
+      &:last-of-type {
+        margin-bottom: 3px;
+      }
       
       i {
         position: absolute;
-        right: 10px;
+        right: 13px;
         margin-top: 7px;
         display: none;
+        font-size: 15px;
+        font-weight: 900;
+      }     
+      
+      &:hover {
+        i.fa-angle-right {
+          display: inline-block;
+          color: rgba(46, 204, 113, 1); 
+          font-size: 15px;
+        }        
       }
       
-      &:hover, &.selected {
-        background-color: rgba(46, 204, 113, .25); 
+      &.selected {
+//        background-color: rgba(46, 204, 113, .1); 
         color: rgba(26,26,26,1);
+        
+        i.fa-times-circle {
+          display: none;
+        }
 
-        i {
+        i.fa-angle-right {
           display: inline-block;
-          opacity: .75;
           color: rgba(46, 204, 113, 1); 
-          font-size: 13px;           
+          font-size: 15px;           
+        }
+        
+        &:hover {
+          i.fa-angle-right {
+            display: none;
+          }
+          
+          i.fa-times-circle {
+            display: inline-block;
+            color: #CCCCCC; 
+            font-size: 15px;
+            right: 10px;
+          }          
         }
       }
     }
@@ -126,9 +178,9 @@ div.sidebar-wrapper {
       cursor: auto;
       
       div.key-skills-wrapper {
-        height: 30px;
+        height: 33px;
         width: 100%;
-        border-bottom: 1px solid rgba(0,0,0,.15);
+        border-bottom: 1px solid rgba(0,0,0,.05);
         background-color: rgba(255,255,255,.15);
         
         &:hover, &.selected {
@@ -142,6 +194,7 @@ div.sidebar-wrapper {
           height: 20px;
           width: 65px;
           padding: 5px;
+          margin-top: 1px;
 
           li.degree {
             cursor: pointer;
@@ -381,7 +434,7 @@ div.sidebar-wrapper {
         cursor: auto;
       
         div.key-skills-wrapper {
-          height: 30px;
+          height: 33px;
           width: 100%;
           border-bottom: 1px solid rgba(0,0,0,.15);
           background-color: rgba(255,255,255,.15);

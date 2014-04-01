@@ -26,7 +26,7 @@ class Job < ActiveRecord::Base
     class_name: 'UserJob',
     foreign_key: :saved_job_id,
     primary_key: :id
-  )
+  ) 
   
   has_many(
     :applicants,

@@ -5,6 +5,7 @@ class CompaniesController < ApplicationController
   # RESTful Routes ---------------------------------------------------------------------------
 
   def index
+    set_tab('companies')
     @job = Job.new
     @keywords = params[:company_search][:keywords] if params[:company_search]
     @all_scopes = %w(is_hiring page_available page_unavailable page_blank)
@@ -25,6 +26,7 @@ class CompaniesController < ApplicationController
   end
   
   def new
+    set_tab('companies')    
     @company = Company.new
     @job = Job.new
   end
@@ -37,12 +39,16 @@ class CompaniesController < ApplicationController
   end 
   
   def show
+    set_tab('companies') 
     @company = Company.find(params[:id])
     @job = @company.job_listings.build
   end
   
   def update
     @company = Company.find(params[:id])
+    article_id = params[:company][:article_id]
+    @company.store_article_id_temporarily(article_id)
+    
     if @company.update_attributes(company_params)
       respond_with @company
     end
@@ -61,18 +67,22 @@ class CompaniesController < ApplicationController
     redirect_to company_url(@company)
   end
   
+  def delete_snapshot
+    @company = Company.find(params[:id])
+    @company.snapshots.destroy
+    @company.save
+    redirect_to company_url(@company)
+  end
+  
   #------------------------------------------------------------------------------
 	private
 	
   	def company_params
       params.require(:company).permit(:name, :total_money_raised, :num_employees, :career_page_link, :overview, :year_founded,
-        :neighborhood, :category_code, :city, { career_sections: ['Keys Here'] })
+        :neighborhood, :category_code, :city, :snapshots, { career_sections: ['Keys Here'] })
   	end
-	
+  		
 end
-
-# .tap do |whitelisted|
-#   whitelisted[:career_sections] = params[:company][:career_sections]
 
 
 

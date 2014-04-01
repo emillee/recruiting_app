@@ -1,0 +1,13 @@
+<% object = locals[:obj] %>
+<% article = locals[:article]%>
+
+<%# url_path = object.class.to_s.singularize.downcase %>
+
+<%= form_for object, url: company_url(object), html: { multipart: true } do |form| %>
+
+	<%= form.file_field :snapshots %>
+
+	<input type="hidden" name="company[article_id]" value=<%= article.id %>>
+	
+	<%= form.submit 'Upload Image' %>
+<% end %>

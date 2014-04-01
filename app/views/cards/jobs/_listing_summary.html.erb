@@ -1,0 +1,32 @@
+<% user_id = current_user ? current_user.id : nil %>
+<% job = locals[:job] %>
+<div class="job-description-wrapper left">	
+
+	<a href="<%= job.link %>" target="_blank">
+		<h1><%= job.title %></h1>
+	</a>
+	<%#= link_to viewed_text, job.link, target: "_blank", class: viewed_class,
+	 			data: { user_id: user_id, applied_job_id: job.id } %>			
+
+	<% if job.description %>
+		<p><%= job.description.split(' ')[0..25].join(' ') unless job.description.nil? %>...</p>
+	<% else %>
+		<% if job.full_text %>
+			<p>	<%= job.full_text.split(' ')[0..25].join(' ') unless job.full_text.nil? %>...</p>
+		<% end %>
+	<% end %>
+										
+	<% saved_class = has_saved_job?(job) ? "saved" : "save" %>
+	<% applied_class = already_applied?(job) ? "applied_already" : "applied" %>											
+	
+	<div class="action-items">	
+		<span>Status:</span>
+		<%= link_to 'I Applied Already', user_jobs_url(user_id: user_id, 
+					applied_job_id: job.id), class: applied_class, remote: true, method: :post %>		
+		<%= link_to 'Interested', user_jobs_url(user_id: user_id, 
+					saved_job_id: job.id), class: saved_class, remote: true, method: :post %>
+		<%= link_to 'Not Interested', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
+				class: 'remove', remote: true, method: :post %>
+		<%= link_to 'Forward', '#', class: 'forward', data: { id: job.id } %>	
+	</div>
+</div>

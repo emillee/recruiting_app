@@ -42,7 +42,7 @@ module Taxonomy
       # 'Legal',
       # 'Marketing',
       # 'Operations',
-      'Product Management',
+      'Prod. Management',
       # 'Project Management',
       'Sales'
     ]

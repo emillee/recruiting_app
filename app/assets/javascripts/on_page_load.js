@@ -1,13 +1,33 @@
 var ready;
 
 // --------------------------------------------------------------------------------------------------------------
+// GROUPS SHOW
+// --------------------------------------------------------------------------------------------------------------
+
+ready = $('.groups.show').ready(function() {
+
+  initializeEditor();
+  
+  $(document).on('mousemove', function(e) {
+    $('#add_image_button').css({
+      top: e.pageY
+    })
+  })
+
+  function initializeEditor() {
+    var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']});
+  };
+  
+});
+
+
+// --------------------------------------------------------------------------------------------------------------
 // JOBS INDEX
 // --------------------------------------------------------------------------------------------------------------
 ready = $('.jobs.index').ready(function() {
   
   // EMAIL / FORWARD A JOB POST
   $('ul.job-posts').on('click', '.forward', function(event) {
-    console.log('hello')
     
     event.preventDefault();
     $.ajaxSetup({ cache: false });
@@ -24,15 +44,14 @@ ready = $('.jobs.index').ready(function() {
   
   // SAVING AND APPLYING TO JOBS
   $('ul.job-posts').on('click', '.save', function(event) {
-    this.innerHTML = 'Saved';
+    this.innerHTML = 'Interested';
     $(this).addClass('saved');
     $(this).removeClass('save');
   });
-
-  $('ul.job-posts').on('click', '.view', function(event) {
-    this.innerHTML = 'Viewed';
-    $(this).addClass('viewed');
-    $(this).removeClass('view');
+  
+  $('ul.job-posts').on('click', '.applied', function(event) {
+    $(this).addClass('applied_already');
+    $(this).removeClass('applied');
     var user_id = $(this).data('user-id')
     var job_id = $(this).data('applied-job-id')
     var this_url = "/user_jobs" + "?" + "applied_job_id=" + job_id + "&" + "user_id=" + user_id
@@ -72,6 +91,76 @@ ready = $('.companies.index').ready(function() {
 // COMPANIES SHOW
 // --------------------------------------------------------------------------------------------------------------
 ready = $('.companies.show').ready(function() {  
+
+  initializeEditor();
+  
+  $('#add_image_button').mouseover(function(e) {
+    window.document.execCommand('insertImage', false, 'lksadjf');
+  })
+  
+  function initializeEditor() {
+    var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']});
+  };
+  
+  $('[contenteditable=true].title').blur(function() {
+    event.preventDefault();
+
+    var $title = $(this).html();
+    var $company_id = $(this).parent('.content').data('id');
+    var $article_id = $(this).parent('.content').data('articleid');
+    var this_url = '/companies/' + $company_id + '/articles/' + $article_id;
+    var dataObject = {};
+
+    dataObject['article'] = {};
+    dataObject['article']['title'] = $title;
+    
+    
+    $.ajax({
+      type: 'PUT',
+      url: this_url,
+      data: dataObject
+    });  
+  });
+
+  $('[contenteditable=true].body').blur(function() {
+    event.preventDefault();
+
+    var $body = $(this).html();
+    var $company_id = $(this).parent('.content').data('id');
+    var $article_id = $(this).parent('.content').data('articleid');
+    var this_url = '/companies/' + $company_id + '/articles/' + $article_id
+    var dataObject = {}
+
+    dataObject['article'] = {};
+    dataObject['article']['body'] = $body;
+
+    $.ajax({
+      type: 'PUT',
+      url: this_url,
+      data: dataObject
+    });
+  });  
+
+  // NOT IN USE
+  $('[contenteditable=true].editable').blur(function() {
+    event.preventDefault();
+    var $id = $(this).data('id');
+    var $table = $(this).data('table');
+    var $model = $(this).data('model');
+    var $attribute = $(this).data('attribute');
+    var $newContent = $(this).html();
+    var $url = '/' + $table + '/' + $id;
+    var dataObject = {};
+
+    dataObject[$model] = {};
+    dataObject[$model][$attribute] = $newContent;
+
+    $.ajax({
+      type: 'PUT',
+      url: $url,
+      data: dataObject
+    });  
+  });
   
   $('.best_in_place').best_in_place();
   
@@ -81,49 +170,6 @@ ready = $('.companies.show').ready(function() {
     var $section = $(this).data('section');
     $('.' + $section + '.' + $company).insertAfter('div#' + $company + '-top-id');
   });
- 
- // EDIT ARTIClES IN PLACE 
-  $('[contenteditable=true].article').blur(function() {
-    event.preventDefault();
-    
-    var $title = $(this).children('span.title').html();
-    var $body = $(this).children('span.body').html();
-    var $company_id = $(this).data('id');
-    var $article_id = $(this).data('articleid');
-    var this_url = '/companies/' + $company_id + '/articles/' + $article_id
-    var dataObject = {}
-    
-    dataObject['article'] = {};
-    dataObject['article']['title'] = $title;
-    dataObject['article']['body'] = $body;
-    
-    $.ajax({
-      type: 'PUT',
-      url: this_url,
-      data: dataObject
-    });
-  });    
-  
-  // MAY DELETE THIS -- NOT IN USE? 
-  $('[contenteditable=true].regular-type').blur(function() {
-    event.preventDefault();
-    var $id = $(this).data('id');
-    var $table = $(this).data('table');
-    var $model = $(this).data('model');
-    var $attribute = $(this).data('attribute');
-    var $newContent = $(this).html();
-    var $url = '/' + $table + '/' + $id;
-    var dataObject = {};
-    
-    dataObject[$model] = {};
-    dataObject[$model][$attribute] = $newContent;
-    
-    $.ajax({
-      type: 'PUT',
-      url: $url,
-      data: dataObject
-    });  
-  }); 
    
 });
 
@@ -132,14 +178,8 @@ ready = $('.companies.show').ready(function() {
 // USERS SHOW
 // --------------------------------------------------------------------------------------------------------------
 ready = $('.users.show').ready(function() {
-    
   addDraggableEvents();
   addDroppableEvents();
-  initializeEditor();
-  
-  function initializeEditor() {
-    var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'cancel']});
-  };  
   
   // SUBMIT FORM FOR USER SKILL DEGREES ON CLICK
   $('.skills-ul').on('click', 'input[type="radio"]', function() {

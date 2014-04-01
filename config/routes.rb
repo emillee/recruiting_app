@@ -9,8 +9,9 @@ Nytech::Application.routes.draw do
   resource :user_jobs, only: [:create, :destroy]
   resources :groups
     
-  resources :companies do
+  resources :companies, only: [:index, :new, :update, :show, :destroy] do
     member { put :add_section }
+    member { post :delete_snapshot }
     collection { get :autocomplete_fields }
     resources :jobs, only: [:create]
     resources :articles, only: [:create, :update]
@@ -27,12 +28,12 @@ Nytech::Application.routes.draw do
     resources :jobs, :companies, only: [:index, :new]
   end
     
-  match '/home',        to: 'static_pages#home', via: :get
-  match '/signup',      to: 'users#new', via: :get
-  match '/logout',      to: 'sessions#destroy', via: :delete
-  match '/login',       to: 'sessions#new', via: :get
-  match '/filters',     to: 'jobs#filters', via: :get
-  match '/forward_job', to: 'jobs#forward_job', via: :post
+  match '/home',                     to: 'static_pages#home', via: :get
+  match '/signup',                   to: 'users#new', via: :get
+  match '/logout',                   to: 'sessions#destroy', via: :delete
+  match '/login',                    to: 'sessions#new', via: :get
+  match '/filters',                  to: 'jobs#filters', via: :get
+  match '/forward_job',              to: 'jobs#forward_job', via: :post
   
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
    

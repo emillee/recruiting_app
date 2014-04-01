@@ -5,6 +5,7 @@ class JobsController < ApplicationController
   # RESTful Routes ---------------------------------------------------------------------------
   
   def index
+    set_tab('jobs')        
     if current_user && !current_user.job_settings.blank?
       @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(10).order('years_exp DESC')
       @filter = params[:filter]
@@ -17,11 +18,9 @@ class JobsController < ApplicationController
     end
   end
   
-  
   def new
     @job = Job.new
   end
-  
   
   def create
     @company = Company.find(params[:company_id])
@@ -35,12 +34,11 @@ class JobsController < ApplicationController
     end
   end
   
-  
   def show 
+    set_tab('jobs')      
     @job = Job.find(params[:id])
   end
    
-  
   def update
     @job = Job.find(params[:id])
     if @job.update_attributes(job_params)
@@ -50,14 +48,12 @@ class JobsController < ApplicationController
     end
   end
   
-  
   def destroy
     @job = Job.find(params[:id])
     @company = @job.listing_company
     @job.destroy
     redirect_to company_url(@company)
   end
-  
   
   # NON RESTFUL ---------------------------------------------------------------------------
   
@@ -97,6 +93,7 @@ class JobsController < ApplicationController
   end
   
   def flip_view
+    set_tab('jobs')      
     if current_user && !current_user.job_settings.blank?
       @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(15).order('years_exp DESC')
       @preapproved_jobs = @jobs.select { |job| job_preapproved?(job) }
@@ -105,7 +102,6 @@ class JobsController < ApplicationController
       @preapproved_jobs = @jobs.select { |job| job_preapproved?(job) }
     end
   end
-  
   
 	# PRIVATE ---------------------------------------------------------------------------
 	private
@@ -124,23 +120,4 @@ class JobsController < ApplicationController
   	end
   
 end
-
-  # ARCHIVE ---------------------------------------------------------------------------
-  # 
-  # def update_key_skills
-  #   @job = Job.find(params[:id])
-  #   @company = @job.listing_company
-  # 
-  #   params[:job][:key_skills].split(';').each do |key_skill|
-  #     @job.key_skills += [key_skill]
-  #   end
-  # 
-  #   @job.save    
-  #   render company_url(@company)
-  # end
-  # 
-  # def import
-  #   Job.import(params[:file])
-  #   redirect_to jobs_url, notice: "Jobs imported"
-  # end
 

@@ -1,0 +1,59 @@
+div.jobs-wrapper {
+  position: absolute;
+  top: 75px;
+  left: 275px;
+  background-color: blac;
+  
+  ul.job-posts {
+    width: 1050px;
+    
+    li {
+      height: 150px;
+      margin-bottom: 3px;
+
+      &:hover {
+        a.view {
+          margin-left: 3px;
+          color: blue;
+          font-size: 13px;  
+          display: inline-block;
+          padding-left: 5px;
+
+          &:hover {
+            color: #2c3e50;
+          } 
+        }   
+      }
+      
+      &:last-of-type {
+        border-bottom: none;  
+      }
+    }    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

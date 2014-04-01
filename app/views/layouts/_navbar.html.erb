@@ -5,25 +5,12 @@
 	<%= link_to 'beta', root_url, class: "logo" %>
 	
 	<div class="menu">
-		<!-- Show me: &nbsp;  -->
-		<% if request.env['PATH_INFO'] == '/jobs' %>
-			<%= link_to 'Jobs', jobs_url, class: "selected", data: { no_turbolink: true } %>
-		<% else %>
-			<%= link_to 'Jobs', jobs_url, data: { no_turbolink: true } %>
-		<% end %>
-		
-		<%= link_to 'People', user_url(current_user), class: "coming-soon-icon" %>
-		<%= link_to 'Startups', companies_url, class: "coming-soon-icon" %>
-		<%= link_to 'Groups', '#', class: "coming-soon-icon" %>
-		<%= link_to 'More +', '#', class: "coming-soon-icon" %>
+		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
+		<%= link_to 'People', user_url(current_user), class: "#{'selected' if @tab == 'users'}", data: { no_turbolink: true }  %>
+		<%= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
+		<%= link_to 'Groups', '#',  class: "#{'selected' if @tab == 'groups'}", data: { no_turbolink: true } %>
+		<%= link_to 'More +', '#', data: { no_turbolink: true } %>
 	</div>
-	
-	<% if flash[:welcome] %>
-		<span class="coming-soon">
-			<span class="wrapper"></span>
-			<h1><- Coming Soon!</h1>
-		</span>
-	<% end %>
 
 	<div class="session">
 		<% if signed_in? %>
@@ -40,40 +27,5 @@
 </nav>
 
 
-<!-- <nav class="navbar-wrapper-two"> -->
-	<%# if current_user %>
-		<!-- <p>Signed in as: <%#= current_user.id %></p> -->
-	<%# end %>
-	<!-- <% if current_user %>
-		<% if current_user.fname %>
-			<h3><%= current_user.fname %>'s:</h3>
-		<% else %>
-			<h3>My:</h3>
-		<% end %>
 
-		<h3 class="dashboard">
-			<a href='#'>Activity
-				<i class="fa fa-bar-chart-o"></i>
-			</a>
-		</h3>
-	
-		<h3 class="mail"><a href='#'>
-			Mail
-			<i class="fa fa-envelope-o"></i>
-			</a>
-		</h3>
-	
-		<h3 class="rolodex"><a href='#'>
-			Rolodex
-			<i class="fa fa-barcode"></i>
-			</a>
-		</h3>
-	
-		<h3 class="profile"><a href=<%= user_url(current_user) %>>
-			Profile
-			<i class="fa fa-fighter-jet"></i>
-			</a>
-		</h3>
-	<% end %>	 -->
-<!-- </nav> -->
 

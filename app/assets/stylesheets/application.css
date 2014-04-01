@@ -12,14 +12,14 @@
  *= require ./layouts/reset
  *= require general
  *= require backgrounds
- *= require filter_form
  *= require session
  *= require sidebar
- *= require job_posts
+ *= require jobs
  *= require companies
  *= require jquery.ui.all
  *= require profile
  *= require_directory ./flip_view
+ *= require_directory ./cards
  *= require_directory ./modules
  *= require_directory ./layouts
  *= require_directory ./states  

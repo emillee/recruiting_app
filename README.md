@@ -8,6 +8,285 @@ NYTech
 CODE NO LONGER IN USE:
 // -----------------------------------------------------------------------------------------------
 
+// jobs -- filters.html.erb --------------------------------------------------------------------------
+
+<div class="modal-background"></div>
+
+<div class="filter">
+		<div class="sidebar-wrapper">
+		<% if current_user %>
+			<%= form_for current_user, remote: true, html: { id: "job-filter-form" } do |f| %>
+
+			
+				<h1 class="department">
+					My skills:
+				</h1>
+				<ul class="job-filters">
+					<% ['Coding', 'Business', 'Marketing', 'Stragegy'].each do |dept| %>
+						<% checked = dept_checked?(dept) %>
+						<li class="job-sidebar department <%= 'selected' if checked %>">
+								<%= label_tag dept %>
+								<%= check_box_tag "user[job_settings][dept][]", dept, checked %>
+							<i class="fa fa-check-circle"></i>
+						</li>
+					<% end %>
+				</ul>
+			
+				<%= f.submit "Submit" %>
+			<% end %>
+		<% end %>
+	
+		<button id="clear-all">Clear All</button>
+	</div>
+	
+</div>
+
+div.filter {
+  position: absolute;
+  z-index: 9999;
+  background-color: green;
+  
+  div.sidebar-wrapper {
+    margin-top: 100px;
+    margin-left: 25px;
+    height: 85%;
+    width: 200px;
+    position: fixed;
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+
+    form {
+      border-bottom: 2px solid rgba(0,0,0,.1);
+      padding-bottom: 15px;
+    }
+
+    .search {
+      padding: 14px 13px;
+      border-bottom: 2px solid rgba(0,0,0,.1);
+      background-color: rgba(255,255,255,.5);
+
+      .wrapper {
+        width: 170px;
+        background-color: rgba(49,69,89,.1);     
+        line-height: 26px;
+
+        input {
+          border: none;
+          height: 20px;
+          border-radius: 2px;
+          width: 140px;
+          color: lightgray;
+          position: relative;
+          top: -2px;
+          margin-left: 4px;
+        }
+
+        i.fa-search {
+          color: white;
+          background-color: rgba(0,0,0,.35);
+          line-height: 20px;
+          width: 20px;
+          text-align: center;
+          border-radius: 2px;
+          padding: 1px;
+        }
+      }
+    }
+
+    h1, li {
+      font-size: 16px;    
+    }
+
+    h1 {
+      text-indent: 15px;
+      line-height: 30px;
+      margin-bottom: 0px;
+      color: #2c3e50;
+      text-transform: uppercase; 
+      background-color: #EBEBEB;
+
+      &.department {
+        cursor: pointer;
+      }
+
+      &.department i {
+        font-size: 12px;
+        position: relative;
+        top: -2px;
+        left: 32px;
+      }
+    }
+
+    li {
+      text-indent: 20px;
+      line-height: 30px;
+      color: #2c3e50;
+
+      label {
+        text-transform: capitalize;
+      }
+
+      i {
+        position: absolute;
+        right: 10px;
+        margin-top: 7px;
+        display: none;
+
+      }
+
+      &:hover, &.selected {
+        color: rgba(255,255,255,1);
+        cursor: pointer;
+
+        i {
+          display: inline-block;
+          opacity: .75;
+        }
+      }
+
+      &:hover {
+        background-color: rgba(46, 204, 113, .5); 
+      }
+
+      &.selected {
+        background-color: rgba(46, 204, 113, 1); 
+        border-left: 3px solid black;
+        &:hover {
+          background-color: rgba(46, 204, 113, .75);         
+        };
+      }
+    }
+
+    #clear-all {
+      border: none;
+      margin-top: 20px;
+      margin-left: 15px;
+      height: 25px;
+      width: 168px;
+      border: 3px solid #7f8c8d;
+      color: #2c3e50;
+      background-color: #bdc3c7;
+      cursor: pointer;
+
+      &:hover {
+        border: 3px solid #bdc3c7;
+        color: white;
+        background-color: #7f8c8d;
+      };
+
+      &:focus {
+        outline: none;
+      };
+    }
+
+    input[type='checkbox'], input[type='submit'] {
+      display: none;
+    }
+  }
+
+}
+
+// jobs -- index.html.erb --------------------------------------------------------------------------
+<!-- <div class='new-job-wrapper'>
+	<%= link_to "Post a job", '#', class: 'new-job-post' %>
+
+	<div id="file">Click to import file</div>
+
+	<%#= form_tag import_jobs_url, multipart: true do %>
+		<%= file_field_tag :file %>
+		<%= submit_tag 'Import' %>
+	<%# end %>
+</div> -->
+
+
+// _navbar.html.erb --------------------------------------------------------------------------
+	
+<% if flash[:welcome] %>
+	<span class="coming-soon">
+		<span class="wrapper"></span>
+		<h1><- Coming Soon!</h1>
+	</span>
+<% end %>
+
+<!-- <nav class="navbar-wrapper-two"> -->
+	<%# if current_user %>
+		<!-- <p>Signed in as: <%#= current_user.id %></p> -->
+	<%# end %>
+	<!-- <% if current_user %>
+		<% if current_user.fname %>
+			<h3><%= current_user.fname %>'s:</h3>
+		<% else %>
+			<h3>My:</h3>
+		<% end %>
+
+		<h3 class="dashboard">
+			<a href='#'>Activity
+				<i class="fa fa-bar-chart-o"></i>
+			</a>
+		</h3>
+	
+		<h3 class="mail"><a href='#'>
+			Mail
+			<i class="fa fa-envelope-o"></i>
+			</a>
+		</h3>
+	
+		<h3 class="rolodex"><a href='#'>
+			Rolodex
+			<i class="fa fa-barcode"></i>
+			</a>
+		</h3>
+	
+		<h3 class="profile"><a href=<%= user_url(current_user) %>>
+			Profile
+			<i class="fa fa-fighter-jet"></i>
+			</a>
+		</h3>
+	<% end %>	 -->
+<!-- </nav> -->
+
+// _nav_and_section.html.erb --------------------------------------------------------------------------
+
+<!-- THIS HARDCODED SECTIONS AND ITERATED THROUGH THEM -->
+<!-- <% default_sections = { 'Join Us!' => '', 'Why Us?' => '', 'Your Role' => '', 'Day in the Life' => '', 
+		'More Info' => '', "Apply Now (it's easy)!" => '' } %>
+<% sections = company.career_sections.any? ? company.career_sections : default_sections %>
+
+<div class="company-navbar">
+	<% sections.each do |section_key, text_val| %>
+		<% data_section = section_key.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
+		<%= link_to "#{section_key}", '#', data: { company: "#{company.name}", section: "#{data_section}" }%>
+	<% end %>
+	
+	<%= form_for company, url: add_section_company_url(company), method: :put do |f| %>
+		<%= f.text_field :career_sections %>
+		<%= f.submit 'Add' %>
+	<% end %>
+</div>
+
+<div id="<%= company.name %>-top-id"></div>
+
+<% sections.each do |section, text_val| %>
+	<% section_class = section.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
+	<div class="<%= section_class %> <%= company.name %> content hstore-type"
+		contenteditable="true"
+		data-table="<%= this_table %>"
+		data-model="<%= this_model %>"
+		data-attribute='career_sections'
+		data-key="<%= section %>"
+		data-id=<%= company.id %>>			
+		<% section_text = add_placeholders_if_nil(section, text_val) %>
+		<%= raw(section_text) %>
+	</div>
+<% end %> -->
+
+<!-- THIS WAS TO ADD A NEW SECTION -->
+<!-- <%= form_for company, url: add_section_company_url(company), method: :put do |f| %>
+	<%= f.text_field :career_sections %>
+	<%= f.submit 'Add' %>
+<% end %> -->
+// -----------------------------------------------------------------------------------------------
+
 
 // ADMIN_JOBS.CSS>SCSS --------------------------------------------------------------------------
 .pretty {

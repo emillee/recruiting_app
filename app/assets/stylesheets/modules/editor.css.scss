@@ -1,4 +1,6 @@
-#editor-companies {
+.editor-class-wrapper {
+  padding: 10%;
+
   .icon-bold, .icon-italic, .icon-link, .icon-list-ul, .icon-list-ol, .icon-quotes-left, .icon-remove {
     font-family: 'fontawesome';
     speak: none;
@@ -18,25 +20,19 @@
      box-sizing: border-box;
      padding: 0;
      margin: 0;
+     &:focus {
+        outline: none;
+      }     
    }
-
-   *:focus {
-     outline: none;
-   }
-
-   html, body, input {
+   
+   input {
      font-family: 'PT Serif', serif;
      font-size: 100%;
      line-height: 140%;
      padding: 0px;
      margin: 0px;
      color: #333332;
-   }
-
-   body {
-     padding: 2% 13%;
-     width: 100%;
-   }
+   }   
 
    section {
      margin: auto;
@@ -45,76 +41,48 @@
    header {
      margin-bottom: 1.5em;
      display: block;
-   }
 
-   header h1 {
-     font: 700 2.5em 'Open Sans', sans-serif;
-     margin-bottom: .25em;
-     display: block;
-     min-height: 1.5em;
-   }
-
-   header h2 {
-     font: 1.5em 'PT Serif', serif;
-     font-style: italic;
-     margin-bottom: .5em;
-     display: block;
-     min-height: 1.5em;
+     h1 {
+        font: 700 2.5em 'Open Sans', sans-serif;
+        margin-bottom: .25em;
+        display: block;
+        min-height: 1.5em;
+      }
+      
+      h2 {
+         font: 1.5em 'PT Serif', serif;
+         font-style: italic;
+         margin-bottom: .5em;
+         display: block;
+         min-height: 1.5em;
+      }           
    }
 
   article {
     padding-bottom: 5em; 
     font-size: 1.2em;
     display: block;
-  }
 
-  article blockquote {
-    border-left: 6px solid #57ad68;
-    padding-left: 20px;
-    margin-left: -26px;
-    margin-top: -1px;
-    margin-right: 0px;
-  }
+    blockquote {
+      border-left: 6px solid #57ad68;
+      padding-left: 20px;
+      margin-left: -26px;
+      margin-top: -1px;
+      margin-right: 0px;
+    }  
+    
+    h1, h2, h3 {
+      font: 700 1em/1.5 'Open Sans', sans-serif; 
+      margin-bottom: 1em;
+    }    
 
-  article h1,
-  article h2,
-  article h3,
-  article h4,
-  article h5,
-  article h6 {
-    font: 700 1em/1.5 'Open Sans', sans-serif; 
-    margin-bottom: 1em;
-  }
+    h1 { font-size: 2em; }    
+    h2 { font-size: 1.5em; }  
+    h3 { font-size: 1.35em; }     
 
-  article h1 {
-    font-size: 2em;
-  }
-
-  article h2 {
-    font-size: 1.5em;
-  }
-
-  article h3 {
-    font-size: 1.35em;
-  }
-
-  article h4 {
-    font-size: 1.3em;
-  }
-
-  article h5 {
-    font-size: 1.25em;
-  }
-
-  article h6 {
-    font-size: 1.1em;
-  }
-
-  article ol, 
-  article ul,
-  article p,
-  article blockquote {
-    margin-bottom: 1.5em;
+    ol, ul, p, blockquote {
+      margin-bottom: 1.5em;
+    }       
   }
 
   hr {
@@ -134,10 +102,10 @@
   a {
     text-decoration: underline;
     color: #57ad68;
-  }
-
-  a:hover {
-    text-decoration: underline;
+    
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   /* editor UI */
@@ -164,6 +132,27 @@
     padding: 5px 4px 5px 5px;
     z-index: 1000;
     border-radius: 5px;
+
+    &.active {
+      opacity: 1;
+      margin-top: 0px;
+    }    
+
+    button {
+      vertical-align: top;
+      display: inline-block;
+      opacity: 0.7;
+      border-radius: 3px;
+      padding: 5px;
+      height: 30px;
+      background: transparent;
+      border: 0 none;
+      color: #fff;
+      margin-right: 1px;
+      cursor: pointer;
+      font-family: 'Lora', serif;
+      font-size: 16px;
+    }    
   }
 
   #editor-mask {
@@ -171,26 +160,6 @@
     position: relative;
   }
 
-  #editor.active {
-    opacity: 1;
-    margin-top: 0px;
-  }
-
-  #editor button {
-    vertical-align: top;
-    display: inline-block;
-    opacity: 0.7;
-    border-radius: 3px;
-    padding: 5px;
-    height: 30px;
-    background: transparent;
-    border: 0 none;
-    color: #fff;
-    margin-right: 1px;
-    cursor: pointer;
-    font-family: 'Lora', serif;
-    font-size: 16px;
-  }
 
   #editor button.icon {
     overflow: hidden;

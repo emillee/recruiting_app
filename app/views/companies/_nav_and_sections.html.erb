@@ -9,63 +9,37 @@
 			<% data_section = tag_name.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
 			<%= link_to "#{tag_name}", '#', data: { company: "#{company.name}", section: "#{data_section}" }%>
 		<% end %>
-		
-		<!-- <%= form_for company, url: add_section_company_url(company), method: :put do |f| %>
-			<%= f.text_field :career_sections %>
-			<%= f.submit 'Add' %>
-		<% end %> -->
 	</div>
 	
 	<div id="<%= company.name %>-top-id"></div>
 	
 	<% company.articles.each do |article| %>
 		<% section_class = article.tags[0].tag_name.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
-		<div class="<%= section_class %> <%= company.name %> content article editable"
-			contenteditable="true"
-			data-articleid="<%= article.id %>"
-			data-id=<%= company.id %>>
-								
-			<% section_title = add_placeholders_if_nil('title', article.title) %>
-			<span class='title'><%= raw(section_title) %></span>
-			
-			<% section_body = add_placeholders_if_nil('body', article.body) %>
-			<span class='body editable'><%= raw(section_body) %></span>
-		</div>
 		
+		<div class="editor-class-wrapper content <%= section_class %> <%= company.name %>" data-id=<%= company.id %> data-articleid=<%= article.id %>>
+			<%= render './shared/editor' %>
+			<% section_title = add_placeholders_if_nil('title', article.title) %>			
+			<div class="title" contenteditable="true" data-placeholder="Enter Title">
+				<%= raw(section_title) %>
+			</div>
+			
+			<article class="editable body" data-placeholder="Type your post">
+				<% section_body = add_placeholders_if_nil('body', article.body) %>	
+				<%= raw(section_body) %>
+				<%= render './shared/upload_image_form', locals: { obj: company, article: article } %>
+			</article>
+			
+			<% this_image_url = "#{company.snapshots.url}".split('.')[0] + "#{article.id}" + "." + "#{company.snapshots.url}".split('.')[1]%>
+			<% full_path = "#{Rails.root}" + "/public" + this_image_url %>
+			<% full_path = full_path.split('?')[0] %>
+			
+			<% if image_exists?(full_path) %>
+				<%= image_tag this_image_url %>
+				<%= link_to 'Delete Image', delete_snapshot_company_url(company), method: :post %>
+			<% end %>
+		</div>
 		
 	<% end %>
-		
-	<!-- <% default_sections = { 'Join Us!' => '', 'Why Us?' => '', 'Your Role' => '', 'Day in the Life' => '', 
-			'More Info' => '', "Apply Now (it's easy)!" => '' } %>
-	<% sections = company.career_sections.any? ? company.career_sections : default_sections %>
-	
-	<div class="company-navbar">
-		<% sections.each do |section_key, text_val| %>
-			<% data_section = section_key.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
-			<%= link_to "#{section_key}", '#', data: { company: "#{company.name}", section: "#{data_section}" }%>
-		<% end %>
-		
-		<%= form_for company, url: add_section_company_url(company), method: :put do |f| %>
-			<%= f.text_field :career_sections %>
-			<%= f.submit 'Add' %>
-		<% end %>
-	</div>
-	
-	<div id="<%= company.name %>-top-id"></div>
-	
-	<% sections.each do |section, text_val| %>
-		<% section_class = section.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
-		<div class="<%= section_class %> <%= company.name %> content hstore-type"
-			contenteditable="true"
-			data-table="<%= this_table %>"
-			data-model="<%= this_model %>"
-			data-attribute='career_sections'
-			data-key="<%= section %>"
-			data-id=<%= company.id %>>			
-			<% section_text = add_placeholders_if_nil(section, text_val) %>
-			<%= raw(section_text) %>
-		</div>
-	<% end %> -->
 
 </div>
 

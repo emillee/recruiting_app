@@ -1,7 +1,7 @@
 nav.navbar-wrapper {
   border-top: 3px solid #00080E;
 //  padding-bottom: 3px;
-  line-height: 43px;
+  line-height: 42px;
   width: 100%;
   position: fixed;
   font-family: 'PT Serif', serif;
@@ -164,6 +164,46 @@ nav.navbar-wrapper-two {
   
   h3.profile {
     background-color: rgba(142, 68, 173, .5);
+  }
+}
+
+// JOBS NAVBAR
+.top-bar {
+  line-height: 30px;
+  background-color: rgba(0,0,0,.5);
+  color: rgba(230,230,230,1);
+  font-family: 'Lato';
+  
+  a {
+    color: #ecf0f1;
+    font-size: 13px;
+    border: 1px solid #ecf0f1;
+    display: inline-block;
+    padding: 4px;
+    line-height: 13px;
+    font-size: 13px;
+    
+    &:first-of-type {
+      margin-left: 4px;
+    }
+  }
+  
+  span.view-options {
+    float: right;
+    line-height: 5px;
+    border: 1px solid white;
+    margin-right: 4px;
+    padding: 0;
+    margin: 0;
+    padding: 0;
+
+    a {
+      border: none;
+    }
+    
+    i {
+      padding-right: 3px;
+    }
   }
 }
 
