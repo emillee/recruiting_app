@@ -69,8 +69,30 @@ class CompaniesController < ApplicationController
   
   def delete_snapshot
     @company = Company.find(params[:id])
-    @company.snapshots.destroy
-    @company.save
+    article = Article.find(params[:article_id])
+    article_id = article.id
+    
+    size_arr = %w(large medium original)
+    full_path = "#{Rails.root}/" + "public" + params[:path]
+    
+    if article.body.include?(params[:path])
+      p "---------IN HERE------------"
+      remove_img_section = article.body.scan(/<div class="article-#{article_id}.*end-of-image-div -->/m)[0]
+      body = article.body
+      body.slice!(remove_img_section)
+      article.update_columns(body: body)
+    end
+
+    current_size = nil    
+    size_arr.each do |size|
+      current_size = size if full_path.include?(size)
+    end
+    
+    size_arr.each do |size|
+      this_path = full_path.gsub(current_size, size)
+      File.delete(this_path) 
+    end
+    
     redirect_to company_url(@company)
   end
   

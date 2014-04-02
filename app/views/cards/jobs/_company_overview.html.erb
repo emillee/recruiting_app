@@ -4,7 +4,8 @@
 <div class="c-company-overview left">
 	<% if job.description %>
 		<h1>About <%= job.listing_company.name %></h1>
-		<%= job.listing_company.overview %>
+		<p><%= job.listing_company.overview %></p>
+		<%= link_to 'More', company_url(job.listing_company) %>
 	<% end %>
 </div>				
 

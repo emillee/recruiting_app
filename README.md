@@ -8,6 +8,9 @@ NYTech
 CODE NO LONGER IN USE:
 // -----------------------------------------------------------------------------------------------
 
+REGEX to Grab data from SRC
+a.body.scan(/img.*?src="(.*?)"/i)[0][0]
+
 // jobs -- filters.html.erb --------------------------------------------------------------------------
 
 <div class="modal-background"></div>

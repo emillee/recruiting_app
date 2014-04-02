@@ -62,6 +62,12 @@ div.companies-wrapper {
       .company-mid-wrapper {
         display: block;
         
+        .uploader {
+          form {
+            visibility: hidden;
+          }          
+        }
+        
         .company-navbar {
           position: relative;
           top: 0px;
@@ -117,6 +123,32 @@ div.companies-wrapper {
           padding-right: 70px;
           text-align: justify;
           border-bottom: 2px solid rgba(0,0,0,.1);  
+          
+          .c-image-wrapper {
+            position: relative;
+            
+            &:hover {
+              .delete-image {
+                display: block;
+              }
+            }
+            
+            img {
+              margin-bottom: 10px;
+            }
+            
+            .delete-image {
+              position: absolute;
+              left: 5%;
+              bottom: 20px;
+              text-decoration: none;
+              background-color: black;
+              color: white;
+              cursor: pointer; 
+              padding: 5px; 
+              display: none;         
+            }
+          }
                               
           h1 {
             font-size: 28px;
@@ -171,7 +203,6 @@ div.companies-wrapper {
           &:nth-of-type(8) {
             background-color: rgb(243,249,245);
           }                             
-
         }        
       }
     }

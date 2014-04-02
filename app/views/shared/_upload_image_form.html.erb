@@ -3,11 +3,15 @@
 
 <%# url_path = object.class.to_s.singularize.downcase %>
 
-<%= form_for object, url: company_url(object), html: { multipart: true } do |form| %>
+<div class="uploader">
+	<i class="fa fa-picture-o"></i>
 
-	<%= form.file_field :snapshots %>
+	<%= form_for object, url: company_url(object), html: { multipart: true } do |form| %>
 
-	<input type="hidden" name="company[article_id]" value=<%= article.id %>>
+		<%= form.file_field :snapshots, id: "#{object.id}" %>
+
+		<input type="hidden" name="company[article_id]" value=<%= article.id %>>
 	
-	<%= form.submit 'Upload Image' %>
-<% end %>
+		<%= form.submit 'Upload Image' %>
+	<% end %>
+</div>

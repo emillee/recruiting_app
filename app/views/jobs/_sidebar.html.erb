@@ -1,15 +1,12 @@
 <div class="sidebar-wrapper">
 	
 	<% if current_user %>
-	
 		<%= form_for current_user, remote: true, html: { id: "job-filter-form" } do |f| %>
 	
 			<!-- SEARCH KEYWORDS -->
 			<div class="search">
 				<div class="wrapper">
-					<input type="search" 
-								 name="user[job_settings][keywords][]" 
-								 placeholder="Enter keyword" id="sidebar-search">
+					<input type="search" name="user[job_settings][keywords][]" placeholder="Enter keyword" id="sidebar-search">
 					<i class="fa fa-search"></i>
 				</div>
 			</div>
@@ -38,8 +35,8 @@
 				<div class="wrapper">
 					<h1 class="department">
 						Department:
-						<i class="fa fa-caret-down"></i>
-						<i class="fa fa-caret-right hidden"></i>
+						<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:dept] %>"></i>
+						<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:dept] %>"></i>
 					</h1>
 					<ul class="job-filters">
 						<% Taxonomy.departments.each do |dept| %>
@@ -49,7 +46,7 @@
 								<%= label_tag dept %>
 								<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
 								<i class="fa fa-angle-right"></i>
-							<i class="fa fa-times-circle"></i>								
+								<i class="fa fa-times-circle"></i>								
 							</li>
 						<% end %>
 					</ul>
@@ -59,8 +56,8 @@
 				<div class="wrapper">
 					<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
 						Role:
-						<i class="fa fa-caret-down hidden"></i>
-						<i class="fa fa-caret-right"></i>
+						<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:sub_dept] %>"></i>
+						<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:sub_dept] %>"></i>
 					</h1>
 					<ul class="job-filters">
 						<% return_sub_depts.each do |sub| %>
@@ -82,8 +79,8 @@
 					<div class="wrapper">
 						<h1 class="experience">
 							Experience (Yrs):
-							<i class="fa fa-caret-down hidden"></i>
-							<i class="fa fa-caret-right"></i>
+							<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:years_exp] %>"></i>
+							<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:years_exp] %>"></i>
 						</h1>
 						<ul class="job-filters">
 							<% [['Internship', 0],
@@ -112,8 +109,8 @@
 					<div class="wrapper">
 						<h1 class="key-skills">
 							Key Skills:
-							<i class="fa fa-caret-down hidden"></i>
-							<i class="fa fa-caret-right"></i>
+							<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:key_skills] %>"></i>
+							<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:key_skills] %>"></i>
 						</h1>
 						<ul class="job-filters key-skills">
 							<% Taxonomy.front_end_key_skills.each_with_index do |skill, index| %>

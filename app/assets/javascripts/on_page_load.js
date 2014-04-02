@@ -10,13 +10,64 @@ ready = $('.groups.show').ready(function() {
   
   $(document).on('mousemove', function(e) {
     $('#add_image_button').css({
-      top: e.pageY
-    })
-  })
+      top: e.pageY - 10
+    });
+  });
+  
+  $('#add_image_button').on('click', function() {
+    var testDiv = document.getElementById('test');
+    execCommandOnElement(testDiv, 'insertImage', 'red');
+  });
 
   function initializeEditor() {
     var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']});
   };
+  
+  function execCommandOnElement(el, commandName, value) {
+    if (typeof value == 'undefined') {
+      value = null;
+    }
+
+    if (typeof window.getSelection != 'undefined') {
+      // Non IE
+      var sel = window.getSelection();
+      
+      // Save the current selection
+      var savedRanges = [];
+      for (var i=0, len = sel.rangeCount; i < len; i++) {
+        savedRanges[i] = sel.getRangeAt(i).cloneRange();
+      }
+      
+      // Temporarily enable designMode so that 
+      // document.execCommand will work
+      document.designMode = 'on';
+      
+      // Select the element's content
+      sel = window.getSelection();
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      
+      // Execute the command
+      document.execCommand(commandName, false, value);
+      
+      // Disable designMode
+      document.designMode = 'off';
+      
+      // Restore the previous selection
+      sel = window.getSelection();
+      sel.removeAllRanges();
+      for (var i=0, len=savedRanges.length; i < len; i++) {
+        sel.addRange(savedRanges[i]);
+      } 
+    } else if (typeof document.body.createTextRange != 'undefined' ){
+      // IE Case
+      var textRange = document.body.createTextRange();
+      textRange.moveToElementText(el);
+      textRange.execCOmmand(commandName, false, value);
+    }
+  }
   
 });
 
@@ -86,17 +137,19 @@ ready = $('.companies.index').ready(function() {
 
 });
 
-
 // --------------------------------------------------------------------------------------------------------------
 // COMPANIES SHOW
 // --------------------------------------------------------------------------------------------------------------
 ready = $('.companies.show').ready(function() {  
-
-  initializeEditor();
   
-  $('#add_image_button').mouseover(function(e) {
-    window.document.execCommand('insertImage', false, 'lksadjf');
-  })
+  $('i.fa-picture-o').on('click', function() {
+    $(this).parents('.uploader').find("input[type='file']").click();
+    $(this).parents('.uploader').find("input[type='file']").change(function() {
+      $(this).parents('form:first').submit();
+    });    
+  });
+  
+  initializeEditor();
   
   function initializeEditor() {
     var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']});
@@ -124,43 +177,22 @@ ready = $('.companies.show').ready(function() {
 
   $('[contenteditable=true].body').blur(function() {
     event.preventDefault();
-
+  
     var $body = $(this).html();
     var $company_id = $(this).parent('.content').data('id');
     var $article_id = $(this).parent('.content').data('articleid');
     var this_url = '/companies/' + $company_id + '/articles/' + $article_id
     var dataObject = {}
-
+  
     dataObject['article'] = {};
     dataObject['article']['body'] = $body;
-
+  
     $.ajax({
       type: 'PUT',
       url: this_url,
       data: dataObject
     });
   });  
-
-  // NOT IN USE
-  $('[contenteditable=true].editable').blur(function() {
-    event.preventDefault();
-    var $id = $(this).data('id');
-    var $table = $(this).data('table');
-    var $model = $(this).data('model');
-    var $attribute = $(this).data('attribute');
-    var $newContent = $(this).html();
-    var $url = '/' + $table + '/' + $id;
-    var dataObject = {};
-
-    dataObject[$model] = {};
-    dataObject[$model][$attribute] = $newContent;
-
-    $.ajax({
-      type: 'PUT',
-      url: $url,
-      data: dataObject
-    });  
-  });
   
   $('.best_in_place').best_in_place();
   

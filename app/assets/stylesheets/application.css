@@ -15,6 +15,7 @@
  *= require session
  *= require sidebar
  *= require jobs
+ *= require groups
  *= require companies
  *= require jquery.ui.all
  *= require profile

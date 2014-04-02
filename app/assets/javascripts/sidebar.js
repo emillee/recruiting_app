@@ -2,6 +2,25 @@ var ready;
 
 ready = function() {
   
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 25) {
+      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,1)')
+    } 
+  }) 
+
+  $(window).scroll(function() {
+    if ($(window).scrollTop() < 25) {
+      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,.2)')
+    } 
+  })
+  
+  // SEARCH: GET RID OF KEYWORD BANNER IF NO KEYWORDS
+  $('.keywords-ul').on('click', 'li', function() {
+    if ($('.keywords-li').length === 0) {
+      $('.keywords-wrapper').addClass('hidden');
+    };
+  });  
+  
   // SEARCH FORM - SUBMIT ON CLICK
   $('i.fa-search').click(function() {
     $(this).parents('form:first').submit();
@@ -70,8 +89,8 @@ ready = function() {
       }
     })
     
-    $('.experience .fa-caret-down').toggleClass('hidden');
-    $('.experience .fa-caret-right').toggleClass('hidden');
+    $(this).find('.fa-caret-down').toggleClass('hidden');
+    $(this).find('.fa-caret-right').toggleClass('hidden');
   });
   
   // KEY SKILLS FILTER - EXPAND / COLLAPSE
@@ -121,13 +140,6 @@ ready = function() {
     $('.job-sidebar').find(':checkbox').prop('checked', false);
     $('.job-sidebar').removeClass('selected');
     $('.job-filters').parents('form:first').submit();
-  });
-  
-  // GET RID OF KEYWORD BANNER IF NO KEYWORDS
-  $('.keywords-ul').on('click', 'li', function() {
-    if ($('.keywords-li').length === 0) {
-      $('.keywords-wrapper').addClass('hidden');
-    };
   });
   
 };

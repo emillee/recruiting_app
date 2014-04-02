@@ -11,6 +11,9 @@ function Editor(selector, opts) {
 };
 
 (function (w, d) {
+  // DELETE THIS LATER
+  var number_for_debug = 1;
+  
   'use strict';
   
   var toolkit = {
@@ -54,6 +57,9 @@ function Editor(selector, opts) {
     
     selection: {
       saveSelection: function(containerEl) {
+        number_for_debug++;
+        console.log(number_for_debug);
+        
         var start,
         range = window.getSelection().getRangeAt(0),
         preSelectionRange = range.cloneRange();
@@ -69,6 +75,8 @@ function Editor(selector, opts) {
       },
       
       restoreSelection: function(containerEl, savedSel) {
+        number_for_debug++;
+        console.log(number_for_debug);        
         var i,
           sel,
           charIndex = 0,
@@ -113,10 +121,13 @@ function Editor(selector, opts) {
       },
       
       atEndOfNode: function(range) {
+        number_for_debug++;
+        console.log(number_for_debug);
+                
         var restOfNode, pastRange = d.createRange();
         postRange.selectNodeContents(range.endContainer);
         postRange.setStart(range.endContainer, range.endOffset);
-        restOfNode = postRange.cloneContents().textContent.length;
+        restOfNode = postRange.cloneContents().textContent.length;       
         return restOfNode === 0 ? true : false;
       }
     },
@@ -135,16 +146,19 @@ function Editor(selector, opts) {
       buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']
     },
     
+    // HAD TO ADD 75 AND 300 TO MAKE THE UI MATCH UP
     placeUI: function() {
+      number_for_debug++;
+      console.log(number_for_debug);      
       this.range = this.selection.getRangeAt(0);
       var limit = 5,
         limitR = (w.innerWidth - this.gui.clientWidth) - 5,
         boundary = this.range.getBoundingClientRect(),
-        guiLeft = (((boundary.right - boundary.left) / 2) + boundary.left) - (this.gui.clientWidth / 2);
+        guiLeft = (((boundary.right - boundary.left) / 2) + boundary.left) - (this.gui.clientWidth / 2) - 300;
       
       guiLeft = guiLeft < limit ? limit : guiLeft > limitR ? limitR : guiLeft;
       
-      this.gui.style.top = boundary.top - (this.gui.clientHeight + 8) + window.pageYOffset + "px";
+      this.gui.style.top = boundary.top - (this.gui.clientHeight + 8) + window.pageYOffset - 75 + "px";
       this.gui.style.left = guiLeft + "px";
       return this;
     },
@@ -211,6 +225,8 @@ function Editor(selector, opts) {
     },
     
     cleanUp : function (styleType) {
+      number_for_debug++;
+      console.log(number_for_debug);      
       var i, l, j, k,
         self = this,
         child,
@@ -250,17 +266,18 @@ function Editor(selector, opts) {
             }
           }
         }
+        // HERE EMIL LEE
         //remove unwanted
-        if (elsToFix.remove.length) {
-          for (i = 0; i < elsToFix.remove.length; i += 1) {
-            self.removeNode(elsToFix.remove[i]);
-          }
-        }
-        if (elsToFix.swap.length) {
-          for (i = 0; i < elsToFix.swap.length; i += 1) {
-            self.swapNode(elsToFix.swap[i]);
-          }
-        }
+        // if (elsToFix.remove.length) {
+        //   for (i = 0; i < elsToFix.remove.length; i += 1) {
+        //     self.removeNode(elsToFix.remove[i]);
+        //   }
+        // }
+        // if (elsToFix.swap.length) {
+        //   for (i = 0; i < elsToFix.swap.length; i += 1) {
+        //     self.swapNode(elsToFix.swap[i]);
+        //   }
+        // }
       }
       return self;
     },
@@ -607,9 +624,10 @@ function Editor(selector, opts) {
           }
         },
         
+        // COMMENTED OUT CLEANUP
         blur = function(e) {
           var el = e.target || e;
-          self.cleanUp();
+          // self.cleanUp();
           placeHolder(el);
         },
         
@@ -702,7 +720,6 @@ function Editor(selector, opts) {
     },
     
     initButtons: function() {
-      
       // this.gui.getElementsByTagName gets all elements with button class in the editor div class wrapper
       // [].slice.call converts the DOM NodeList into an array with the button elements in it
       // for more info: http://stackoverflow.com/questions/2125714/explanation-of-slice-call-in-javascript

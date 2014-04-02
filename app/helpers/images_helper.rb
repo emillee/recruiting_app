@@ -15,5 +15,22 @@ module ImagesHelper
       end
     end
   end
-
+  
+  # assumes the path is a full file_path with an extension
+  def get_paperclip_ext(path)
+    return File.extname(path)
+  end
+  
+  def check_all_extensions(path)
+    correct_ext = nil
+    ext_arr = %w(.jpeg .png .jpg .gif)
+    this_ext = get_paperclip_ext(path)
+    ext_arr.each_with_index do |ext, idx|
+      new_filepath = path.gsub(this_ext, ext)
+      correct_ext = ext if image_exists?(new_filepath)
+    end
+    
+    return correct_ext
+  end
+  
 end

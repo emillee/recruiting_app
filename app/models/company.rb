@@ -11,7 +11,6 @@ class Company < ActiveRecord::Base
   scope :is_hiring, ->(arg){ Company.joins(:job_listings) }
   
   has_attached_file :snapshots, styles: { original: '200x400', medium: '300x300', large: '300x500' }, 
-    default_url: '/images/:style/missing.png',
     path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension",
     url: "/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension" 
 
