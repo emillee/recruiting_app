@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include FacebookHelper
   
   def insert_br(string, index)
     words_arr = string.split(' ')

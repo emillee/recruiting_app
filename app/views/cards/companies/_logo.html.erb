@@ -1,5 +1,9 @@
 <% company = locals[:company] %>
 
 <div class="company-business-card left">
-	<img src='<%= asset_path("/assets/company_icons/#{company.name.try(:downcase)}" + ".jpeg") %>' />
+	<% if company %>
+		<img src='<%= asset_path("/assets/company_icons/#{company.name.try(:downcase)}" + ".jpeg") %>' />
+	<% else %>
+		<p>Placeholder</p>
+	<% end %>
 </div>

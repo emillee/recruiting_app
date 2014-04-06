@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
+# Rails Assets
 gem 'rails', '4.0.0'
 
 gem 'pg'
@@ -30,6 +32,7 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'rails_12factor', group: :production
 
 # SOCIAL GEMS
+gem 'oauth2'
 gem 'twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -37,6 +40,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-github'
 gem 'fql'
+gem 'linkedin'
 
 # ML GEMS
 gem 'hpricot' # DELETE THIS

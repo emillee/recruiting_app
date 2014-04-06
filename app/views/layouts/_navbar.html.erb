@@ -6,7 +6,7 @@
 	
 	<div class="menu">
 		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
-		<%= link_to 'People', user_url(current_user), class: "#{'selected' if @tab == 'users'}", data: { no_turbolink: true }  %>
+		<%= link_to 'People', users_url, class: "#{'selected' if @tab == 'users'}", data: { no_turbolink: true }  %>
 		<%= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
 		<%= link_to 'Groups', '#',  class: "#{'selected' if @tab == 'groups'}", data: { no_turbolink: true } %>
 		<%= link_to 'More +', '#', data: { no_turbolink: true } %>

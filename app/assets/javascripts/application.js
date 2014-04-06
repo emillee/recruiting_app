@@ -10,4 +10,3 @@
 //= require on_page_load
 //= require editor
 //= require_tree .
-

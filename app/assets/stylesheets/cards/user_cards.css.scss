@@ -1,14 +1,11 @@
 // USER BUSINESS CARD
 .business-card {
   box-shadow: 0px 1px 2px #888888;
-  height: 91px;
-  width: 160px;
+  height: 140px;
+  width: 255px;
   background-color: white;
   text-indent: 0px;
   font-family: 'Neuton';
-  margin-left: 1px;
-  margin-top: 1px;
-  margin-bottom: 7px;
   padding: 5px;
   position: relative;
 
@@ -61,8 +58,8 @@
     right: 6px;
     opacity: .5;
 	  -webkit-filter: grayscale(90%);
-    height: 90px;
-    width: 90px;
+    height: 140px;
+    width: 140px;
   }
 }
 

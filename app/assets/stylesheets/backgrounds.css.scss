@@ -21,3 +21,34 @@ div.jobs-background-overlay {
   width: 100%;
   opacity: .4;    
 }
+
+div.starry-background-overlay {
+  z-index: -9998;
+  position: absolute;
+  top: 45px;
+  left: 215px;
+//  left: 250px;
+  background: url('app_images/starry.png') repeat;   
+  height: 100%;
+  width: 100%;
+  opacity: .8;    
+}
+
+div.darkfabric-background-overlay {
+  z-index: -9998;
+  position: absolute;
+  top: 45px;
+  left: 215px;
+//  left: 250px;
+  background: url('app_images/binding_dark.png') repeat;   
+  height: 100%;
+  width: 100%;
+  opacity: .9;    
+}
+
+.diagonal-pattern {
+  z-index: 9999;
+  background: url(
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAI0lEQVQIW2NkQAP/gYARWQwsAAIwQZgAiA8WRBYAC6ILgAQBGkYUAlJke18AAAAASUVORK5CYII='
+  ) repeat;
+}

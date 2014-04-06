@@ -23,6 +23,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.0.0)
       actionpack (= 4.0.0)
@@ -113,6 +114,10 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.1.2)
       launchy (~> 2.2)
+    linkedin (0.4.6)
+      hashie (>= 1.2, < 2.1)
+      multi_json (~> 1.0)
+      oauth (~> 0.4)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -287,8 +292,10 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   letter_opener
+  linkedin
   mechanize (~> 2.7.2)
   nokogiri
+  oauth2
   omniauth-facebook
   omniauth-github
   omniauth-google-oauth2

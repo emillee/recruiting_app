@@ -140,14 +140,7 @@ ready = $('.companies.index').ready(function() {
 // --------------------------------------------------------------------------------------------------------------
 // COMPANIES SHOW
 // --------------------------------------------------------------------------------------------------------------
-ready = $('.companies.show').ready(function() {  
-  
-  $('i.fa-picture-o').on('click', function() {
-    $(this).parents('.uploader').find("input[type='file']").click();
-    $(this).parents('.uploader').find("input[type='file']").change(function() {
-      $(this).parents('form:first').submit();
-    });    
-  });
+ready = $('.companies.show').ready(function() { 
   
   initializeEditor();
   
@@ -155,6 +148,57 @@ ready = $('.companies.show').ready(function() {
     var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']});
   };
   
+  $('.fa-linkedin-square').on('click', function() {
+    var $widget = $(this).closest('.content').children('.IN-widget');
+    $widget.children('span').children('span').click();
+  })
+  
+  $('.fa-facebook-square').on('click', function() {
+    var fb_link = $(this).find('a');
+    var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = this.href,
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+                 	  
+
+		window.open(fb_link.attr('href'), null, opts);
+		
+		return false;
+  })
+  
+  // TWEET
+  $('.popup').click(function(event) {
+    var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = this.href,
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+    
+    window.open(url, 'twitter', opts);
+ 
+    return false;
+  });  
+   
+  // INPUT A PICTURE
+  $('i.fa-picture-o').on('click', function() {
+    $(this).parents('.uploader').find("input[type='file']").click();
+    $(this).parents('.uploader').find("input[type='file']").change(function() {
+      $(this).parents('form:first').submit();
+    });    
+  });
+  
+  // CONTENTEDITABLE FOR TITLE
   $('[contenteditable=true].title').blur(function() {
     event.preventDefault();
 
@@ -175,6 +219,7 @@ ready = $('.companies.show').ready(function() {
     });  
   });
 
+  // CONTENTEDITABLE FOR BODY
   $('[contenteditable=true].body').blur(function() {
     event.preventDefault();
   

@@ -160,7 +160,8 @@ CREATE TABLE identities (
     provider character varying(255),
     user_id integer,
     oauth_token character varying(255),
-    oauth_expires_at timestamp without time zone
+    oauth_expires_at timestamp without time zone,
+    oauth_secret character varying(255)
 );
 
 
@@ -848,3 +849,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140324003112');
 INSERT INTO schema_migrations (version) VALUES ('20140325211357');
 
 INSERT INTO schema_migrations (version) VALUES ('20140326143856');
+
+INSERT INTO schema_migrations (version) VALUES ('20140403031405');

@@ -14,6 +14,7 @@
  *= require backgrounds
  *= require session
  *= require sidebar
+ *= require navbar
  *= require jobs
  *= require groups
  *= require companies

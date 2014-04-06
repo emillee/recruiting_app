@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
     foreign_key: :user_id,
     primary_key: :id
   )
-
+      
   # Sessions / Authentication------------------------------------------
   def self.new_guest 
     self.new(
@@ -135,6 +135,32 @@ class User < ActiveRecord::Base
   end
   
   # https://graph.facebook.com/me/friends?fields=id,name,work&access_token=CAACEdEose0cBANqx5nava53w4kC1z8yRYEMFPSgUhUcisbCAuBEo8D0NZC0WAr2NKsFIf5lDzLMrW9Ag0ObXIpGTbOP5Mt1GQIgftXsgzLLPuIVyfPJnJ9tkp6zgooEIKN66os5FwZCcgfuviZAqfmeNTo9BiKe5xZCC0UJRGX1qlZBDpYm1GAxOy4h2hpcsZD
+  
+  # Twitter ----------------------------------------------------------------------
+  def tweet(tweet)
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key     = ENV['TWITTER_KEY']
+      config.consumer_secret  = ENV['TWITTER_SECRET']
+      config.access_token     = self.identities.where(provider: 'twitter').first.oauth_token
+      config.access_token_secret    = self.identities.where(provider: 'twitter').first.oauth_secret
+    end
+    
+    client.update(tweet)
+  end  
+
+  # LinkedIn ----------------------------------------------------------------------  
+
+  def linkedin_client
+    client = OAuth2::Client.new(
+      ENV['LINKEDIN_KEY'],
+      ENV['LINKEDIN_SECRET'],
+      :authorize_url => "/uas/oauth2/authorization?response_type=code", #LinkedIn's authorization path
+      :token_url => "/uas/oauth2/accessToken", #LinkedIn's access token path
+      :site => "https://www.linkedin.com"
+    )
+  end
+    
+  
   
   # Private------------------------------------------------------------------------
   private
