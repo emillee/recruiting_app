@@ -4,6 +4,10 @@
 	<% if company %>
 		<img src='<%= asset_path("/assets/company_icons/#{company.name.try(:downcase)}" + ".jpeg") %>' />
 	<% else %>
-		<p>Placeholder</p>
+		<% if current_user.employer == company %>
+			<%#= form_for company, url: company_url(company), html: { multipart: true } do |f| %>
+				<%#= f.file_field :logo %>
+			<%# end %>
+		<% end %>
 	<% end %>
 </div>

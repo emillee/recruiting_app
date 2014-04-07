@@ -1,4 +1,4 @@
-div.jobs-background {
+.jobs-background {
   opacity: .9;
   z-index: -9999;
   position: fixed;
@@ -10,9 +10,9 @@ div.jobs-background {
   -webkit-filter: blur(0px) sepia(30%) grayscale(40%) brightness(100%);
 }
 
-div.jobs-background-overlay {
+.jobs-background-overlay {
   z-index: -9998;
-  position: absolute;
+  position: fixed;
   top: 45px;
   left: 215px;
 //  left: 250px;
@@ -22,9 +22,9 @@ div.jobs-background-overlay {
   opacity: .4;    
 }
 
-div.starry-background-overlay {
+.starry-background-overlay {
   z-index: -9998;
-  position: absolute;
+  position: fixed;
   top: 45px;
   left: 215px;
 //  left: 250px;
@@ -34,9 +34,9 @@ div.starry-background-overlay {
   opacity: .8;    
 }
 
-div.darkfabric-background-overlay {
+.darkfabric-background-overlay {
   z-index: -9998;
-  position: absolute;
+  position: fixed;
   top: 45px;
   left: 215px;
 //  left: 250px;

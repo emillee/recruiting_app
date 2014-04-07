@@ -1,8 +1,8 @@
 module UsersHelper
   
-  def add_placeholder_if_nil(attr)
-    if current_user && current_user.public_send(attr)
-      return current_user.public_send(attr)
+  def add_placeholder_if_nil(attr, user)
+    if user && user.public_send(attr)
+      return user.public_send(attr)
     end
     
     case attr
@@ -15,7 +15,13 @@ module UsersHelper
               <p>Example: I'm an [title] at [company]</p>
               <p>Example: I'm working on [brief description]</p>
               <p>For fun I... (Or insert a random fact about yourself)</p>"
+    when 'interested_in_meeting'
+      return "<h3>I'm Interested in Meeting...</h3>
+              <p>Give me a shout if...</p>"
     end
   end
   
+  def editable?(user)
+    (user == current_user) ? "true" : ""
+  end
 end

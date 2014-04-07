@@ -98,7 +98,11 @@ CREATE TABLE companies (
     snapshots_file_name character varying(255),
     snapshots_content_type character varying(255),
     snapshots_file_size integer,
-    snapshots_updated_at timestamp without time zone
+    snapshots_updated_at timestamp without time zone,
+    logo_file_name character varying(255),
+    logo_content_type character varying(255),
+    logo_file_size integer,
+    logo_updated_at timestamp without time zone
 );
 
 
@@ -481,7 +485,8 @@ CREATE TABLE users (
     company_id integer,
     job_filters hstore DEFAULT ''::hstore,
     biography text,
-    intro text
+    intro text,
+    interested_in_meeting text
 );
 
 
@@ -851,3 +856,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140325211357');
 INSERT INTO schema_migrations (version) VALUES ('20140326143856');
 
 INSERT INTO schema_migrations (version) VALUES ('20140403031405');
+
+INSERT INTO schema_migrations (version) VALUES ('20140406212211');
+
+INSERT INTO schema_migrations (version) VALUES ('20140407192953');

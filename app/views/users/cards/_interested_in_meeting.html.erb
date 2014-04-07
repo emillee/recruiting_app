@@ -1,0 +1,13 @@
+<% user = locals[:user] %>
+<% this_table = 'users' %>
+<% this_model = this_table.singularize %>
+
+<div class="article interested_in_meeting" 
+	contenteditable="<%= editable?(@user) %>"
+	data-table="<%= this_table %>"
+	data-model="<%= this_model %>"
+	data-id=<%= current_user.id if current_user %> 
+	data-attribute='interested_in_meeting'><!-- end of contenteditable div -->
+	<% text = add_placeholder_if_nil('interested_in_meeting', user) %>
+  <%= raw(text) %>
+</div><!-- biography -->

@@ -9,9 +9,12 @@
 				<% end %>
       </h1>
     </a>
+
     <h3 id="title"><%= user.title %> @ <%#= @user.employer.name %></h3>
     <h3 id="location"><%= user.location %></h3>
-    <%= link_to "Build Profile", edit_user_url(current_user), class: 'edit' %>
+
+    <%= link_to "Build Profile", edit_user_url(current_user), class: 'edit', data: { id: current_user.id } %>
   </div>
+
   <%= image_tag(user.avatar.url) %>
 </div>

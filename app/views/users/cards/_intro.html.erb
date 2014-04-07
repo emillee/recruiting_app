@@ -1,0 +1,17 @@
+<% user = locals[:user] %>
+<% this_table = 'users' %>
+<% this_model = this_table.singularize %>
+
+<% p '----------------USER IN INTRO ----------------' %>
+<% p user.email %>
+
+
+<div id="intro" 
+	contenteditable="<%= editable?(user) %>"
+	data-table="<%= this_table %>"
+	data-model="<%= this_model %>"
+	data-id=<%= current_user.id if current_user %>
+	data-attribute='intro'><!-- end of contenteditable div -->
+	<% intro = add_placeholder_if_nil('intro', user) %>
+	<%= raw(intro) %>
+</div><!-- menu -->

@@ -1,19 +1,93 @@
+<!-- USERS SIDEBAR -->
 <div class="sidebar-wrapper user">
 	
-	<%= form_tag(companies_url, method: :get) do %>
+	<%= form_tag(users_url, method: :get) do %>
 	
 		<!-- SEARCH KEYWORDS -->
 		<div class="search">
 			<div class="wrapper">
 				<input type="search" 
-							 name="company_search[keywords]" 
+							 name="user_search[keywords]" 
 							 placeholder="Enter keyword" id="sidebar-search">
 				<i class="fa fa-search"></i>
 			</div>
 		</div>
 		
+		
+		
 		<div class="sidebar-middle">
+			<!-- KEYWORDS -->
+			<% if !locals[:keywords].nil? && !locals[:keywords].empty? %>
+				<div class="keywords-wrapper">
+					<h1 class="keywords">Search Words:</h1>
+					<ul class="job-filters keywords-ul">					
+						<li class="job-sidebar keywords-li selected">
+							<i class="fa fa-check"></i>
+						</li>
+					</ul>
+				</div>
+			<% end %>
 			
+			<div class="wrapper">
+				<h1>I'm looking for:</h1>
+				<ul class="job-filters">
+					<% Taxonomy.departments.each do |dept| %>
+						<% checked = dept_checked?(dept) %>
+						<!-- add code if selected -->
+						<li class="job-sidebar department">
+							<i class="<%= icon_dept_match(dept) %> left"></i>
+							<%= label_tag dept %>
+							<%= check_box_tag "user_search[dept][]", dept, checked  %>
+							<i class="fa fa-angle-right"></i>
+							<i class="fa fa-times-circle"></i>								
+						</li>						
+					<% end %>
+				</ul>
+			</div>
+
+			<!-- SUB DEPT -->	
+			<div class="wrapper">
+				<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
+					Who do:
+					<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:sub_dept] %>"></i>
+					<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:sub_dept] %>"></i>
+				</h1>
+				<ul class="job-filters">
+					<% return_sub_depts.each do |sub| %>
+						<% checked = sub_dept_checked?(sub) %>
+						<% is_hidden = (current_user.job_settings[:dept] &&
+						 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
+						<li class="job-sidebar <%= checked ? 'selected' : is_hidden %>">
+							<%= label_tag sub %>
+							<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
+							<i class="fa fa-angle-right"></i>
+							<i class="fa fa-times-circle"></i>								
+						</li>
+					<% end %>
+				</ul>
+			</div>
+			
+			<!-- THIS SHOULD MATCH PEOPLE BASED ON INTENT -->
+			<div class="wrapper">
+				<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
+					That:
+					<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:sub_dept] %>"></i>
+					<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:sub_dept] %>"></i>
+				</h1>
+				<ul class="job-filters">
+					<% return_sub_depts.each do |sub| %>
+						<% checked = sub_dept_checked?(sub) %>
+						<% is_hidden = (current_user.job_settings[:dept] &&
+						 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
+						<li class="job-sidebar <%= checked ? 'selected' : is_hidden %>">
+							<%= label_tag sub %>
+							<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
+							<i class="fa fa-angle-right"></i>
+							<i class="fa fa-times-circle"></i>								
+						</li>
+					<% end %>
+				</ul>
+			</div>			
 					
 		</div><!-- sidebar-middle -->
 		

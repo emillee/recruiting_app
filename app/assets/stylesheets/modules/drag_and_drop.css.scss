@@ -3,7 +3,7 @@
   height: 100%;
   width: 100%;
   display: block;
-  width: 620px;
+  width: 640px;
   
   .is-droppable {
     background-color: #EBEBEB;
@@ -14,7 +14,7 @@
   .skills-ul {
     
     li.user-skills {
-      margin: 5px;
+//      margin: 5px;
       text-decoration: none;
       background-color: rgba(255,255,255,.8);
       height: 60px;
@@ -42,12 +42,13 @@
           display: inline-block;
           
           label {
+            margin-left: -5px;
             text-align: center;
     //        padding: 0px 15px;
             display: inline-block;
             height: 60px;
             width: 70px;
-            margin-left: -5px;
+//            margin-left: -5px;
             color: white;
             font-family: 'Source Sans Pro';
             letter-spacing: 1px;
@@ -71,7 +72,6 @@
               color: rgba(0,153,0,.2);               
               &:hover { background-color: rgba(0,153,0,.75); color: rgba(255,255,255,.75); }
               &.selected { background-color: rgba(0,153,0,1); color: white;  } 
-              margin-left: -4px;
             }                  
 
             &:nth-of-type(4) { 
@@ -86,7 +86,6 @@
                color: rgba(0,51,0,.2);                
                &:hover { background-color: rgba(0,51,0,.75); color: rgba(255,255,255,.75); }
                &.selected { background-color: rgba(0,51,0,1); color: white;  } 
-               margin-left: -4px;
              }            
           }
           
@@ -104,7 +103,7 @@
   margin-left: 20px;
   margin-top: 15px;
   height: 300px;
-  width: 600px;
+  width: 620px;
   background-color: lightgray;
 
   img {

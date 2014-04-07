@@ -14,6 +14,10 @@ class Company < ActiveRecord::Base
     path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension",
     url: "/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension" 
 
+  has_attached_file :logo, styles: { medium: '300x300>', thumb: '100x100>' },
+    default_url: '/images/:style/missing.png'
+    
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   
   Paperclip.interpolates :normalized_companypic_file_name do |attachment, style|
     attachment.instance.normalized_companypic_file_name

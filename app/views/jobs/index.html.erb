@@ -12,9 +12,9 @@
 			<% end %>	
 
 			<li>			
-				<%= render './cards/companies/logo', locals: { company: job.listing_company } %>	
-				<%= render './cards/jobs/listing_summary', locals: { job: job } %>
-				<%= render './cards/jobs/company_overview', locals: { job: job } %>
+				<%= render './companies/cards/logo', locals: { company: job.listing_company } %>	
+				<%= render './jobs/cards/listing_summary', locals: { job: job } %>
+				<%= render './jobs/cards/company_overview', locals: { job: job } %>
 			</li>
       
 			<div id="div-append-<%= job.id %>"></div>

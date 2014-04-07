@@ -2,7 +2,9 @@
 
 <div class="companies-wrapper">
 	<ul class="companies-posts">
-		<li><%= render 'company', locals: { company: @company } %></li>
+		<li class="company-wrapper">
+			<%= render 'company', locals: { company: @company } %>
+		</li>
 	</ul>
 </div>
 

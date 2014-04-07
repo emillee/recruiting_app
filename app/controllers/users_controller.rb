@@ -91,7 +91,7 @@ class UsersController < ApplicationController
   	def user_params
   		params.require(:user).permit(:email, :password, :password_digest, :avatar, :fname, :lname, :title, :location,
   		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }}, :is_admin, :guest,
-  		  :biography, :intro)
+  		  :biography, :intro, :interested_in_meeting)
   	end
 	
 end

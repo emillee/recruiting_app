@@ -3,7 +3,6 @@ class CompaniesController < ApplicationController
   respond_to :html, :json, :js
 
   # RESTful Routes ---------------------------------------------------------------------------
-
   def index
     set_tab('companies')
     @job = Job.new
@@ -76,7 +75,6 @@ class CompaniesController < ApplicationController
     full_path = "#{Rails.root}/" + "public" + params[:path]
     
     if article.body.include?(params[:path])
-      p "---------IN HERE------------"
       remove_img_section = article.body.scan(/<div class="article-#{article_id}.*end-of-image-div -->/m)[0]
       body = article.body
       body.slice!(remove_img_section)
@@ -101,7 +99,7 @@ class CompaniesController < ApplicationController
 	
   	def company_params
       params.require(:company).permit(:name, :total_money_raised, :num_employees, :career_page_link, :overview, :year_founded,
-        :neighborhood, :category_code, :city, :snapshots, { career_sections: ['Keys Here'] })
+        :neighborhood, :category_code, :city, :snapshots, :logo, { career_sections: ['Keys Here'] })
   	end
   		
 end

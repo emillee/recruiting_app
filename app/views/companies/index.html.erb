@@ -11,7 +11,9 @@
 	
 	<ul class="companies-posts">
 		<% @companies.each do |company| %>
-			<li><%= render 'company', locals: { company: company } %></li>
+			<li class="company-wrapper">
+				<%= render 'company', locals: { company: company } %>
+			</li>
 		<% end %>
 	</ul>
 	
@@ -19,7 +21,7 @@
 
 <%= render './layouts/background' %>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function() {
 		$("span[data-autocomplete='true']").on('click', function() {
 		  $('.dept').autocomplete({
@@ -27,7 +29,7 @@
 		  })
 		})
 	})
-</script>
+</script> -->
 
 
 

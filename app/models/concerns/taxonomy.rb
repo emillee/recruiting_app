@@ -33,18 +33,18 @@ module Taxonomy
   
   def self.departments
     [
-      # 'Administrative',
       'Bus. Development',
       'Design',
       'Engineering',
+      'Prod. Management',
+      'Sales'
+      # 'Administrative',
       # 'Finance, Accting',
       # 'Human Resources',
       # 'Legal',
       # 'Marketing',
-      # 'Operations',
-      'Prod. Management',
+      # 'Operations',\      
       # 'Project Management',
-      'Sales'
     ]
   end
   
@@ -61,10 +61,6 @@ module Taxonomy
       'Design: Entry']      
     ]
   end  
-  
-  # For identifying key phrases  
-  def self.expert_js_keyphrases
-  end
 
   # ["In the process of receiving a BS or MS in Computer Science", 
   #   "Experience with front-end web development", 
@@ -102,7 +98,6 @@ module Taxonomy
       self.save
     end
   end
-  
 
   def self.set_dept
     Taxonomy.all.each do |taxonomy|

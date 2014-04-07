@@ -1,0 +1,60 @@
+// USER ACTION ITEMS
+.user-action-items {
+  margin-top: 13px;
+  height: 275px;
+  width: 265px;
+  background-color: #E5ECF9;
+  
+  &:hover {
+   background-color: #b3b3b1;
+   li {
+     color: #464646;
+   }
+  }  
+  
+  h3 {
+    font-size: 17px;
+    padding: 10px;
+    margin: 5px 0 0 0;
+    text-align: center;
+  	border-bottom: none;    
+  }
+  
+  h5 {
+    padding-bottom: 5px;
+    text-align: center;
+  	border-bottom: solid 2px rgba(0,0,0,.25);
+  }
+  
+  ul {
+    margin-left: 10px;
+    margin-right: 10px;
+    
+    span {
+      padding-left: 10px;       
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 18px;
+      line-height: 25px;
+    }
+        
+    li {
+      font-family: 'Karla';
+      font-size: 17px;
+      line-height: 26px;
+      padding-left: 10px; 
+      cursor: pointer;
+      font-weight: 300;
+
+      &:first-of-type {
+        margin-top: 2px;
+      }
+      
+      &:hover {
+        background-color: #333332;
+        color: white;
+      }
+    }
+    
+  }
+}

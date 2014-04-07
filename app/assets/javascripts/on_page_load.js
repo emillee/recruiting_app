@@ -3,7 +3,6 @@ var ready;
 // --------------------------------------------------------------------------------------------------------------
 // GROUPS SHOW
 // --------------------------------------------------------------------------------------------------------------
-
 ready = $('.groups.show').ready(function() {
 
   initializeEditor();
@@ -71,7 +70,6 @@ ready = $('.groups.show').ready(function() {
   
 });
 
-
 // --------------------------------------------------------------------------------------------------------------
 // JOBS INDEX
 // --------------------------------------------------------------------------------------------------------------
@@ -119,7 +117,6 @@ ready = $('.jobs.index').ready(function() {
   });
   
 });
-
 
 // --------------------------------------------------------------------------------------------------------------
 // COMPANIES INDEX
@@ -250,7 +247,6 @@ ready = $('.companies.show').ready(function() {
    
 });
 
-
 // --------------------------------------------------------------------------------------------------------------
 // USERS SHOW
 // --------------------------------------------------------------------------------------------------------------
@@ -310,6 +306,26 @@ ready = $('.users.show').ready(function() {
       data: dataObject
     });
   });
+  
+  // var $kaminari = $(data).find('.pagination');
+  // $('.job-posts').empty().html($jobs);  
+  
+  $('.edit').on('click', function(e) {
+    e.preventDefault();
+    var $user_id = $(this).data('id');
+    var $url = "/users/" + $user_id + "/edit"
+    
+    $.ajax({
+      type: 'GET',
+      url: $url,
+      success: function(data) {
+        var $edit_data = $(data).filter(' .edit-business-card');
+        console.log($edit_data)
+        $('.business-card').html($edit_data);
+      }
+    })
+    
+  })
   
   // ADD DRAGABLE HANDLER
   function addDraggableEvents() {

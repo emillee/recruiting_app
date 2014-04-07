@@ -34,8 +34,10 @@ body {
   font-size: 16px;
 }
 
-#widget {
-  color: green;
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 
