@@ -12,4 +12,5 @@
 //= require users
 //= require groups
 //= require companies
-//= require article_editor
+//= require_tree ./shared
+

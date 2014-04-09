@@ -6,7 +6,17 @@ ready_users = function() {
     // --------------------------------------------------------------------------------------------------------------
     addDraggableEvents();
     addDroppableEvents();
-
+    
+    // REMOVE OUTLINE BOX AFTER DONE WITH EDIT MODE
+    $('.article.skills').on('click', '#save-skills', function() {
+      event.preventDefault();
+      $(this).addClass('hidden')
+      $('#edit-skills').removeClass('hidden');
+      $('.box-of-logos').addClass('hidden');
+      $('.skill-dropzone').removeClass('is-droppable');
+      $('#add-skill').addClass('hidden');
+    })
+    
     // SUBMIT FORM FOR USER SKILL DEGREES ON CLICK
     $('.skills-ul').on('click', 'input[type="radio"]', function() {
       $(this).parents('form:first').submit();
@@ -29,36 +39,20 @@ ready_users = function() {
       addDroppableEvents();
     })
 
-    // REMOVE OUTLINE BOX AFTER DONE WITH EDIT MODE
-    $('.article.skills').on('click', '#save-skills', function() {
-      event.preventDefault();
-      $(this).addClass('hidden')
-      $('#edit-skills').removeClass('hidden');
-      $('.box-of-logos').addClass('hidden');
-      $('.skill-dropzone').removeClass('is-droppable');
-      $('#add-skill').addClass('hidden');
-    })
+    $('#employer').on('click', function() {
+      var $user_id = $(this).data('id');
+      var $url = "/users/" + $user_id + "/edit"
 
-    // SAVE CONTENT FOR EDIT IN PLACE
-    $('[contenteditable=true]').blur(function() {
-      event.preventDefault()
-      var $id = $(this).data('id');
-      var $table = $(this).data('table');
-      var $model = $(this).data('model');
-      var $attribute = $(this).data('attribute');
-      var $newContent = $(this).html();
-      var $url = '/' + $table + '/' + $id
-      var dataObject = {};
-  
-      dataObject[$model] = {};
-      dataObject[$model][$attribute] = $newContent;
-  
       $.ajax({
-        type: 'PUT',
+        type: 'GET',
         url: $url,
-        data: dataObject
-      });
-    });
+        success: function(data) {
+          var $edit_data = $(data).filter(' .edit-business-card');
+          $('#employer').replaceWith($edit_data);
+          addAutocompleteFields();
+        }
+      })
+    })
 
     // var $kaminari = $(data).find('.pagination');
     // $('.job-posts').empty().html($jobs);  
@@ -79,22 +73,6 @@ ready_users = function() {
     //     }
     //   })
     // })
-
-    $('#employer').on('click', function() {
-      var $user_id = $(this).data('id');
-      var $url = "/users/" + $user_id + "/edit"
-
-      $.ajax({
-        type: 'GET',
-        url: $url,
-        success: function(data) {
-          var $edit_data = $(data).filter(' .edit-business-card');
-          $('#employer').replaceWith($edit_data);
-          addAutocompleteFields();
-        }
-      })
-    })
-
 
     function addAutocompleteFields() {
       $('#user_company_id').tokenInput('/companies.json', { crossDomain: false, allowFreeTagging: true });
