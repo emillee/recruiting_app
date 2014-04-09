@@ -1,0 +1,57 @@
+<% investor = locals[:investor] %>
+<% this_table = locals[:this_table] %>
+<% this_model = this_table.singularize %>
+<% is_editable = 'true' %>
+
+<div class="business-card">
+  <div class="info">	
+		<div class="investor-stat-summary">
+		
+			<h2>
+				<span>Inv. Stage:</span>			
+			  <span contenteditable="<%= is_editable %>"
+					data-table="<%= this_table %>"
+					data-model="<%= this_model %>"
+					data-id=<%= current_user.id if current_user %> 
+					data-attribute='fname'>
+					<%= investor.stage.empty? ? "-" : investor.stage[0] %>
+					<%= investor.stage.empty? ? "-" : investor.stage[1] %>
+			  </span>
+			</h2>
+		
+			<h2>
+				<span>Inv. Size:</span>
+			  <span contenteditable="<%= is_editable %>"
+					data-table="<%= this_table %>"
+					data-model="<%= this_model %>"
+					data-id=<%= current_user.id if current_user %> 
+					data-attribute='lname'>
+					<%= investor.check_size.empty? ? "-" : investor.check_size[0] %>
+					<%= investor.check_size.empty? ? "-" : investor.check_size[1] %>
+			  </span>
+			</h2>
+	
+			<h2>
+				<span>Neighborhood:</span>
+			  <span contenteditable="<%= is_editable %>"
+					data-table="<%= this_table %>"
+					data-model="<%= this_model %>"
+					data-id=<%= current_user.id if current_user %> 
+					data-attribute='lname'>
+					<%= (investor.neighborhood.nil? || investor.neighborhood.empty?) ? "-" : investor.neighborhood %>
+			  </span>	
+			</h2>
+		
+		</div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+

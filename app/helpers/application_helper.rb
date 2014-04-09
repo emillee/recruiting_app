@@ -10,4 +10,8 @@ module ApplicationHelper
     new_str
   end
   
+  def show_keywords?
+    current_user.job_settings[:keywords]
+  end  
+  
 end

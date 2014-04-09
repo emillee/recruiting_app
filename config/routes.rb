@@ -8,6 +8,10 @@ Nytech::Application.routes.draw do
   resources :user_skills, only: [:create, :update, :destroy]
   resource :user_jobs, only: [:create, :destroy]
   resources :groups
+
+  resources :investors do
+    resources :articles, only: [:create, :update]
+  end    
     
   resources :companies, only: [:index, :new, :update, :show, :destroy] do
     member { put :add_section }

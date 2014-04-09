@@ -22,6 +22,16 @@ class CompaniesController < ApplicationController
     else
       @companies = Company.all.page(params[:page]).per(10)
     end
+    
+    # For autocomplete
+    if params[:q]
+      @companies = Company.where("name ilike ?", "%#{params[:q]}%")
+    end
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @companies.map(&:attributes) }
+    end
   end
   
   def new
@@ -45,7 +55,7 @@ class CompaniesController < ApplicationController
   
   def update
     @company = Company.find(params[:id])
-    article_id = params[:company][:article_id]
+    article_id = params[:company][:article_id] if params[:company]
     @company.store_article_id_temporarily(article_id)
     
     if @company.update_attributes(company_params)

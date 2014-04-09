@@ -12,7 +12,6 @@ function Editor(selector, opts) {
 
 (function (w, d) {
   // DELETE THIS LATER
-  var number_for_debug = 1;
   
   'use strict';
   
@@ -57,8 +56,6 @@ function Editor(selector, opts) {
     
     selection: {
       saveSelection: function(containerEl) {
-        number_for_debug++;
-        console.log(number_for_debug);
         
         var start,
         range = window.getSelection().getRangeAt(0),
@@ -75,8 +72,6 @@ function Editor(selector, opts) {
       },
       
       restoreSelection: function(containerEl, savedSel) {
-        number_for_debug++;
-        console.log(number_for_debug);        
         var i,
           sel,
           charIndex = 0,
@@ -121,8 +116,6 @@ function Editor(selector, opts) {
       },
       
       atEndOfNode: function(range) {
-        number_for_debug++;
-        console.log(number_for_debug);
                 
         var restOfNode, pastRange = d.createRange();
         postRange.selectNodeContents(range.endContainer);
@@ -148,8 +141,6 @@ function Editor(selector, opts) {
     
     // HAD TO ADD 75 AND 300 TO MAKE THE UI MATCH UP
     placeUI: function() {
-      number_for_debug++;
-      console.log(number_for_debug);      
       this.range = this.selection.getRangeAt(0);
       var limit = 5,
         limitR = (w.innerWidth - this.gui.clientWidth) - 5,
@@ -225,8 +216,6 @@ function Editor(selector, opts) {
     },
     
     cleanUp : function (styleType) {
-      number_for_debug++;
-      console.log(number_for_debug);      
       var i, l, j, k,
         self = this,
         child,

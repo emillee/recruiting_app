@@ -3,7 +3,7 @@
   top: 75px;
   left: 300px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #E7E7E7;
+  background-color: rgba(0,0,0,.1);
   width: 1000px;
   height: 100%;
 //  border: 1px solid rgba(0,0,0,.05);
@@ -82,17 +82,19 @@
     display: inline-block;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.04);
     padding-bottom: 20px;    
     border-left: 1px solid rgba(255,255,255,.25);
+    
 
     .company-business-card {
-      margin-top: 17px;
+      margin-top: 60px;
+//      margin-top: 17px;
       border: 1px solid rgba(0,0,0,.1);
     }
 
     .business-card {
-      margin-top: 180px;
+      margin-top: 225px;
       border: none;
       box-shadow: none;
     }

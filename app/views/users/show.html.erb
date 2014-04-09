@@ -7,7 +7,8 @@
 
 <div class="profile-wrapper left group">
 	<!-- BUSINESS CARD -->
-	<div class="bcard-wrapper left">		
+	<div class="bcard-wrapper left">	
+		<%= render './layouts/in_page_nav'%>	
 		<%= render 'users/cards/intro', locals: { user: @user } %>
 	</div>
 
@@ -46,8 +47,7 @@
 
 </div><!-- wrapper -->
 
-<div class="jobs-background"></div>
-<div class="jobs-background-overlay"></div>
+<%= render './layouts/background' %>
 
 
 

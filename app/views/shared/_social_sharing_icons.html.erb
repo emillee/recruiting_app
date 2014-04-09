@@ -1,11 +1,11 @@
-<% object = locals[:obj] %>
 <% article = locals[:article]%>
 
-<span class="social-sharing">
-	<i class="fa fa-envelope"></i>			
+<div class="social-sharing">
+	<span class="left">Share this!</span>
+	<i class="fa fa-envelope left"></i>			
 	
 	<div id="fb-root">
-		<i class="fa fa-facebook-square">
+		<i class="fa fa-facebook-square left">
 			<% request_uri = 'http://localhost:3000/' %>
 			<%= fb_share(ENV['FACEBOOK_APP_ID'], request_uri, 
 				{
@@ -16,21 +16,24 @@
 		</i>		
 	</div>
 	
-	<i class="fa fa-linkedin-square"></i>		
-	<i class="fa fa-tumblr-square"></i>
+	<i class="fa fa-linkedin-square left"></i>		
+	<i class="fa fa-tumblr-square left"></i>
 		
-	<% tweet_default_text = "Just spreading the word! Check out: #{strip_tags(article.title.squish)} #{request.original_url.gsub('localhost:3000', 'wolfpackbeta.com')}" %>
+	<% tweet_default_text = article.title.nil? ? '' : "Just spreading the word! Check out: #{strip_tags(article.title.squish)} #{request.original_url.gsub('localhost:3000', 'wolfpackbeta.com')}" %>
 	<a href="https://twitter.com/share?text=<%= tweet_default_text %>" 
 		class="popup"
-		data-text='Just spreading the word! Check out: <%= strip_tags(article.title.squish) %>'
 		target="_blank">
-		<i class="fa fa-twitter-square"></i>
+		<!-- data-text='Just spreading the word! Check out: <%#= strip_tags(article.title.squish) %>' -->
+		<i class="fa fa-twitter-square left"></i>
 	</a>				
 
-</span>		
-
+</div>		
 
 <script src="//platform.linkedin.com/in.js" type="text/javascript" data-url="www.google.com">
   lang: en_US
 </script>
 <script type="IN/Share"></script>
+
+
+
+

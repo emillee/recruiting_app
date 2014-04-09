@@ -1,20 +1,97 @@
 <% user = locals[:user] %>
+<% this_table = 'users' %>
+<% this_model = this_table.singularize %>
+<% is_editable = editable?(user) %>
 
 <div class="business-card">
   <div class="info">
-    <a href="/users/<%= user.id %>">
-      <h1 class="name">
-				<% if user.fname && user.lname %>
-        	<%= user.fname.humanize %>&nbsp;<%= user.lname.humanize %>
-				<% end %>
-      </h1>
-    </a>
+		
+		<div class="full-name">	
+		  <h1 class="h1-fname"
+				contenteditable="<%= is_editable %>"
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-id=<%= current_user.id if current_user %> 
+				data-attribute='fname'>
+				<%= (user.fname.nil? || user.fname.empty?) ? 'First Name' : user.fname %>
+		  </h1>
+		
+		  <h1 class="h1-lname" 
+				contenteditable="<%= is_editable %>"
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-id=<%= current_user.id if current_user %> 
+				data-attribute='lname'>
+				<%= (user.lname.nil? || user.lname.empty?) ? 'Last Name' : user.lname %>
+		  </h1>
+		</div>
+		
+		<div class="bcard-title">
+			<h2>I'm a</h2>
+		  <h2 id="title"
+				contenteditable="<%= is_editable %>"
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-id=<%= current_user.id if current_user %> 
+				data-attribute='title'>
+		
+				<%= (user.title.nil? || user.title.empty?) ? 'Title' : user.title %>
+		  </h2>
+		</div>
+	
+		<div class="bcard-employer">
+			<h2>at </h2>
+			<h2 id="employer" data-id="<%= current_user.id if current_user %>">
+				<%= (user.employer.nil? || user.employer.name.empty?) ? 'Placeholder' : user.employer.name %>
+			</h2>
+		</div>
+		
+		<div class="bcard-location">
+			<h2>I work in </h2>
+		  <h2 id="location" 
+				contenteditable="<%= is_editable %>"
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-id=<%= current_user.id if current_user %> 
+				data-attribute='location'>
+				<%= (user.location.nil? || user.location.empty?) ? 'Location' : user.location %>
+		  </h2>
+		</div>
+		
 
-    <h3 id="title"><%= user.title %> @ <%#= @user.employer.name %></h3>
-    <h3 id="location"><%= user.location %></h3>
+		<div class="bcard-location-two">
+			<h2>I live near </h2>
+		  <h2 id="location-two" 
+				contenteditable="<%= is_editable %>"
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-id=<%= current_user.id if current_user %> 
+				data-attribute='location'>
+				Columbus Circle
+		  </h2>
+		</div>	
 
-    <%= link_to "Build Profile", edit_user_url(current_user), class: 'edit', data: { id: current_user.id } %>
+    <%#= link_to "Build Profile", edit_user_url(current_user), class: 'edit', data: { id: current_user.id } %>
   </div>
-
-  <%= image_tag(user.avatar.url) %>
+	
+	<% if user.avatar.exists? %>
+		<%= image_tag user.avatar.url %>
+	<% else %>
+		<% if current_user %>
+			<%= form_for user, url: user_url(user), html: { multipart: true} do |f| %>
+				<%= f.file_field :avatar %>
+				<%= f.submit %>
+			<% end %>
+		<% end %>
+	<% end %>
 </div>
+
+
+
+
+
+
+
+
+
+

@@ -54,10 +54,6 @@ module JobsHelper
     return false
   end
   
-  def show_keywords?
-    current_user.job_settings[:keywords]
-  end
-  
   def sortable(column, title=nil)
     title ||= column.titleize
     css_class = (column == sort_column) ? "current #{sort_direction}" : nil

@@ -10,7 +10,7 @@ ready = function() {
 
   $(window).scroll(function() {
     if ($(window).scrollTop() < 25) {
-      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,.2)')
+      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,.5)')
     } 
   })
   

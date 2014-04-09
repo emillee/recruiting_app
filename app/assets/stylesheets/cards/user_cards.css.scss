@@ -10,44 +10,84 @@
   position: relative;
 
   .info {
-    background: #bdc3c7;
+    background: #999999;
     height: 100%;
     position: relative;
 
     h1 {
+      font-size: 19px;
+      font-weight: 700;
+//      letter-spacing: 1px;
+      color: #333332;
+    }
+    
+    h2 {
+      font-size: 14px;
+      font-weight: 400;
+//      letter-spacing: 1px;
+      color: #333332;
+    }    
+
+    .full-name {
       position: absolute;
-      top: 3px;
+      top: 8px;
       left: 5px;
-      font-size: 16px;
-      font-weight: 900;
-      color: #e67e22;
-      background-color: rgba(255,255,255,.5);
-      padding: 0 2px 0 2px;
-      z-index: 9999;
+//      background-color: rgba(0,0,0,.3); 
+      z-index: 2;
+      padding: 3px;
+      padding-left: 5px;
+      
+      h1, h2 {
+        font-weight: 400;
+        display: inline-block;
+      }
+    }
+    
+    .bcard-title, .bcard-employer {
+//      background-color: rgba(0,0,0,.15);        
+      padding: 3px 5px;      
+      left: 5px;
+      top: 40px;
+      position: absolute;
+      z-index: 10;    
+        
+      h2 {
+        display: inline-block;
+      }
+    }
+    
+    .bcard-employer {
+      left: 5px;
+      top: 61px;      
     }
 
-    h3#title {
+    .bcard-location, .bcard-location-two {
+//      background-color: rgba(0,0,0,.25);
+      padding: 3px 5px;
       position: absolute;
+      z-index: 10;
+    
+      h2 {
+        display: inline-block;
+      }    
+    }
+    
+    .bcard-location {
       left: 5px;
-      bottom: 14px;
-      font-size: 13px;
-      background-color: rgba(255,255,255,.35);
-      z-index: 9999;
+      bottom: 27px;      
     }
 
-    h3#location {
-      position: absolute;
+    .bcard-location-two {
       left: 5px;
-      bottom: 3px;
-      font-size: 12px;
-      background-color: rgba(255,255,255,.35);
+      bottom: 5px;      
     }
-
+    
+        
     a.edit {
       text-decoration: none;
       position: absolute;
       top: 25px;
-      left: 7px;
+      left: 2px;
       color: black;
     }
   }
@@ -59,7 +99,6 @@
     opacity: .5;
 	  -webkit-filter: grayscale(90%);
     height: 140px;
-    width: 140px;
   }
 }
 

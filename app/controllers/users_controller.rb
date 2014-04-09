@@ -63,12 +63,24 @@ class UsersController < ApplicationController
   		  redirect_to jobs_url
   	  end
   	end
+  	
+  	# if autcomplete sends back a company name (new company)
+  	if params[:user] && params[:user][:company_id] && params[:user][:company_id].to_i == 0
+  	  company = Company.create(name: params[:user][:company_id])
+  	  params[:user][:company_id] = company.id
+  	  @user.update_column('company_id', company.id)
+	  end
 	  
 		if @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
 			sign_in(@user)
-			redirect_to jobs_url
-		else
+		end
+		
+		if params[:user] && params[:user][:job_settings]
+		  redirect_to jobs_url
+	  elsif params[:user] && params[:user][:company_settings]
+	    redirect_to companies_url
+    else
 			render :edit
 		end
 	end
@@ -89,9 +101,9 @@ class UsersController < ApplicationController
 
     # TODO: is it security risk for is_admin
   	def user_params
-  		params.require(:user).permit(:email, :password, :password_digest, :avatar, :fname, :lname, :title, :location,
+  		params.require(:user).permit(:email, :password, :password_digest, :avatar, :fname, :lname, :title, :location, :company_id,
   		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }}, :is_admin, :guest,
-  		  :biography, :intro, :interested_in_meeting)
+  		  :biography, :intro, :interested_in_meeting, :investor_company_id)
   	end
 	
 end

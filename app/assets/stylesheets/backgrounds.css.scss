@@ -1,13 +1,14 @@
 .jobs-background {
-  opacity: .9;
+  opacity: 1;
   z-index: -9999;
   position: fixed;
   top: 2px;
   left: 215px;
-  background-image: url('app_images/empirestate.jpeg');
+//  background-image: url('app_images/empirestate.jpeg');
+  background-image: url('flip/fabric_plaid.png');
   height: 100%;
   width: 100%;
-  -webkit-filter: blur(0px) sepia(30%) grayscale(40%) brightness(100%);
+//  -webkit-filter: blur(0px) sepia(30%) grayscale(40%) brightness(100%);
 }
 
 .jobs-background-overlay {

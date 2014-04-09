@@ -1,13 +1,14 @@
 <nav class="navbar-wrapper">
 	<a href=<%= user_url(current_user) %> data-no-turbolink='true'><i class="fa fa-bars"></i></a>
 
-	<%= link_to 'wolfpack', root_url, class: "logo" %>
-	<%= link_to 'beta', root_url, class: "logo" %>
+	<%= link_to 'wolfpack.NYC', root_url, class: "logo" %>
+	<%#= link_to 'NYC', root_url, class: "logo" %>
 	
 	<div class="menu">
 		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
 		<%= link_to 'People', users_url, class: "#{'selected' if @tab == 'users'}", data: { no_turbolink: true }  %>
 		<%= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
+		<%= link_to 'Angels & VCs', investors_url,  class: "#{'selected' if @tab == 'investors'}", data: { no_turbolink: true } %>
 		<%= link_to 'Groups', '#',  class: "#{'selected' if @tab == 'groups'}", data: { no_turbolink: true } %>
 		<%= link_to 'More +', '#', data: { no_turbolink: true } %>
 	</div>

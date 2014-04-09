@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   
   attr_reader :password # for password length validation
+  attr_reader :user_company # for autocomplete
   
   validates :password, length: { minimum: 6, allow_nil: true }, unless: :guest?
   validates :email, presence: true, unless: :guest?
@@ -12,16 +13,25 @@ class User < ActiveRecord::Base
   after_create :set_admin_to_false
   
   serialize :job_settings, Hash
-  after_initialize :initialize_job_settings
+  serialize :company_settings, Hash
+    
+  after_initialize :initialize_job_and_company_settings
   store_accessor :job_filters, :keywords, :dept, :sub_dept, :experience
   
-  has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' },
+  has_attached_file :avatar, styles: { medium: '300x200>', thumb: '100x100>' },
     default_url: '/images/:style/missing.png'
   
   belongs_to(
     :employer,
     class_name: 'Company',
     foreign_key: :company_id,
+    primary_key: :id
+  )
+  
+  belongs_to(
+    :vc_employer,
+    class_name: 'Investor', 
+    foreign_key: :investor_company_id,
     primary_key: :id
   )
   
@@ -106,8 +116,12 @@ class User < ActiveRecord::Base
     self
   end
 
+  # Autocomplete ------------------------------------------------------------------
+  def user_company=(id)
+    self.company_id = id
+  end
+
   # Social-------------------------------------------------------------------------
-  
   def get_facebook_graph
     base_uri = "https://graph.facebook.com/me?access_token=" + "#{self.get_oauth_token}"
     HTTParty.get(base_uri)
@@ -160,8 +174,6 @@ class User < ActiveRecord::Base
     )
   end
     
-  
-  
   # Private------------------------------------------------------------------------
   private
   
@@ -169,8 +181,9 @@ class User < ActiveRecord::Base
       self.session_token = SecureRandom.urlsafe_base64
     end
   
-     def initialize_job_settings
+     def initialize_job_and_company_settings
        self.job_settings ||= '{}'
+       self.company_settings ||= '{}'
     end
     
     def set_admin_to_false

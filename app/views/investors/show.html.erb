@@ -1,0 +1,63 @@
+<% this_table = "investors" %>
+<% this_model = this_table.singularize %>
+	
+<%= render 'sidebar', locals: {
+	investor: @investor
+} %>
+
+<div class="profile-wrapper left group">
+	<!-- BUSINESS CARD -->
+	<div class="bcard-wrapper left">		
+		<%#= render 'users/cards/intro', locals: { user: @investor } %>
+	</div>
+
+	<div class="profile-card-positions right group">		
+		<%= render 'investors/cards/logo', locals: { investor: @investor }%>
+		<%= render 'investors/cards/investor_stats', locals: { investor: @investor, this_table: this_table } %>
+		<%#= render 'users/cards/action_items', locals: { user: @investor } %>
+	</div>	
+
+	<div class="section-wrap left">		
+		<div class="bcard-wrapper">
+		<%= render './layouts/in_page_nav'%>	
+		</div>
+		<%= render '/users/cards/interested_in_meeting', locals: { user: @user, this_table: this_table } %>
+
+		<!-- contenteditable="<%#= editable?(@user) %>" -->
+		<%# biography = add_placeholder_if_nil('biography', @user) %>
+    <%#= raw(biography) %>		
+	  <div class="article biography" 
+			contenteditable="true"
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-id=<%= current_user.id if current_user %> 
+			data-attribute='biography'><!-- end of contenteditable div -->
+			<%# text = add_placeholder_if_nil('interested_in_meeting', user) %>
+		  <%#= raw(text) %>
+			Placeholder
+	  </div><!-- biography -->
+
+		<!-- DELETE THIS -->
+		<%# company = locals[:company] %>
+		<%# article = locals[:article] %>
+		<%# section_class = article.tags[0].tag_name.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
+		
+		<% if @investor.articles.any? %>
+			<% @investor.articles.each do |article| %>
+				<%= render './articles/new_article_form', locals: { object: @investor, article: article } %>
+			<% end %>
+		<% else %>
+			<% article = Article.new %>
+			<%= render './articles/new_article_form', locals: { object: @investor, article: article } %>
+		<% end %>
+	</div><!-- section -->	
+
+</div><!-- wrapper -->
+
+<%= render './layouts/background' %>
+
+
+
+
+
+

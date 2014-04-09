@@ -6,7 +6,7 @@ nav.navbar-wrapper {
   position: fixed;
   font-family: 'PT Serif', serif;
   font-size: 19px;
-  background-color: rgba(255,255,255,.2);
+  background-color: rgba(255,255,255,.5);
   z-index: 9997;
   
   i.fa-bars {
@@ -34,12 +34,12 @@ nav.navbar-wrapper {
     position: relative;
     color: #232323;
     background-color: none;
-    border-left: 3px solid black;
+//    border-left: 3px solid black;
     border-radius: 2px;
-    padding-left: 4px;
+//    padding-left: 2px;
     font-size: 19px;
-    font-weight: 600;
-    margin-left: -2px;
+    font-weight: 500;
+    margin-left: -3px;
     text-align: center;
   }
   
@@ -47,7 +47,7 @@ nav.navbar-wrapper {
     font-family: 'Lato', sans-serif;
     font-size: 16px;
     display: inline-block;
-    margin-left: 23%;
+    margin-left: 20%;
     color: rgba(80,80,80,1);
           
     a, a:visited {
@@ -204,6 +204,21 @@ nav.navbar-wrapper-two {
     i {
       padding-right: 3px;
     }
+  }
+}
+
+.in-page-navbar {
+  height: 30px;
+  line-height: 30px;
+  width: 145%;
+  background-color: #F3F9F5;
+  margin-top: 15px;
+  margin-left: 20px;
+  
+  li {
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;    
   }
 }
 

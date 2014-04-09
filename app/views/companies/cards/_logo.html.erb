@@ -1,13 +1,16 @@
 <% company = locals[:company] %>
 
 <div class="company-business-card left">
-	<% if company %>
-		<img src='<%= asset_path("/assets/company_icons/#{company.name.try(:downcase)}" + ".jpeg") %>' />
+	<% if !company.nil? && company.logo.exists? %>
+		<%= image_tag company.logo.url %>
+		<!-- <img src='<%= asset_path("/assets/company_icons/#{company.name.try(:downcase)}" + ".jpeg") %>' /> -->
 	<% else %>
-		<% if current_user.employer == company %>
-			<%#= form_for company, url: company_url(company), html: { multipart: true } do |f| %>
-				<%#= f.file_field :logo %>
-			<%# end %>
+		<% if (current_user && current_user.is_admin) ||
+			(current_user && !current_user.employer.nil? && current_user.employer == company) %>
+			<%= form_for company, url: company_url(company), html: { multipart: true } do |f| %>
+				<%= f.file_field :logo %>
+				<%= f.submit %>
+			<% end %>
 		<% end %>
 	<% end %>
 </div>

@@ -7,6 +7,13 @@ class Article < ActiveRecord::Base
     primary_key: :id
   )
   
+  belongs_to(
+    :investor,
+    class_name: 'Investor',
+    foreign_key: :investor_id,
+    primary_key: :id
+  )
+  
   has_many(
     :taggings,
     class_name: 'Tagging',

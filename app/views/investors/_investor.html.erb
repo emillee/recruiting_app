@@ -1,0 +1,5 @@
+<div class="company-top-wrapper">
+	<%= render 'investors/cards/logo', locals: { investor: locals[:investor] } %>	
+	<%= render 'investors/cards/investor_summary', locals: { investor: locals[:investor], this_table: 'investors' } %>
+	<%= render 'investors/cards/investor_stats', locals: { investor: locals[:investor], this_table: 'investors' }  %>
+</div>

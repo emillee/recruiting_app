@@ -52,7 +52,8 @@ CREATE TABLE articles (
     body text,
     author_id integer,
     tag_id integer,
-    company_id integer
+    company_id integer,
+    investor_id integer
 );
 
 
@@ -186,6 +187,49 @@ CREATE SEQUENCE identities_id_seq
 --
 
 ALTER SEQUENCE identities_id_seq OWNED BY identities.id;
+
+
+--
+-- Name: investors; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE investors (
+    id integer NOT NULL,
+    name character varying(255),
+    neighborhood character varying(255),
+    stage character varying(255)[] DEFAULT '{}'::character varying[],
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    logo_file_name character varying(255),
+    logo_content_type character varying(255),
+    logo_file_size integer,
+    logo_updated_at timestamp without time zone,
+    overview text,
+    check_size numeric[] DEFAULT '{}'::numeric[],
+    snapshots_file_name character varying(255),
+    snapshots_content_type character varying(255),
+    snapshots_file_size integer,
+    snapshots_updated_at timestamp without time zone
+);
+
+
+--
+-- Name: investors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE investors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: investors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE investors_id_seq OWNED BY investors.id;
 
 
 --
@@ -486,7 +530,9 @@ CREATE TABLE users (
     job_filters hstore DEFAULT ''::hstore,
     biography text,
     intro text,
-    interested_in_meeting text
+    interested_in_meeting text,
+    company_settings text,
+    investor_company_id integer
 );
 
 
@@ -535,6 +581,13 @@ ALTER TABLE ONLY groups ALTER COLUMN id SET DEFAULT nextval('groups_id_seq'::reg
 --
 
 ALTER TABLE ONLY identities ALTER COLUMN id SET DEFAULT nextval('identities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY investors ALTER COLUMN id SET DEFAULT nextval('investors_id_seq'::regclass);
 
 
 --
@@ -630,6 +683,14 @@ ALTER TABLE ONLY groups
 
 ALTER TABLE ONLY identities
     ADD CONSTRAINT identities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: investors_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY investors
+    ADD CONSTRAINT investors_pkey PRIMARY KEY (id);
 
 
 --
@@ -860,3 +921,23 @@ INSERT INTO schema_migrations (version) VALUES ('20140403031405');
 INSERT INTO schema_migrations (version) VALUES ('20140406212211');
 
 INSERT INTO schema_migrations (version) VALUES ('20140407192953');
+
+INSERT INTO schema_migrations (version) VALUES ('20140408173018');
+
+INSERT INTO schema_migrations (version) VALUES ('20140408200847');
+
+INSERT INTO schema_migrations (version) VALUES ('20140408205021');
+
+INSERT INTO schema_migrations (version) VALUES ('20140408205516');
+
+INSERT INTO schema_migrations (version) VALUES ('20140408211404');
+
+INSERT INTO schema_migrations (version) VALUES ('20140408215631');
+
+INSERT INTO schema_migrations (version) VALUES ('20140408222402');
+
+INSERT INTO schema_migrations (version) VALUES ('20140409165116');
+
+INSERT INTO schema_migrations (version) VALUES ('20140409171108');
+
+INSERT INTO schema_migrations (version) VALUES ('20140409201618');

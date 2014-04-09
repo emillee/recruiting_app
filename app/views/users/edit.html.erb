@@ -1,6 +1,15 @@
+<div class="edit-business-card">
+	<%= form_for @user, url: user_url(@user), html: { multipart: true } do |f| %>
+		<% empty_arr = [] %>
+		<% empty_arr << @user.employer.attributes unless @user.employer.nil? %>
+		<%= f.text_field :company_id, placeholder: 'Enter Company Name', 'data-pre' => empty_arr.to_json %>
+		<%= f.submit "Submit" %>
+	<% end %>
+</div>
+
 <!-- <div class="modal-background"></div> -->
 
-<div class="edit-business-card">
+<!-- <div class="edit-business-card">
 	<%= form_for @user, url: user_url(@user), html: { multipart: true } do |f| %>
 
 		<%= render 'shared/errors', object: f.object %>
@@ -11,7 +20,9 @@
 		<%= f.text_field :fname, placeholder: 'First Name' %>
 		<%= f.text_field :lname, placeholder: 'Last Name' %>
 		
-		
+		<% empty_arr = [] %>
+		<% empty_arr << @user.employer.attributes unless @user.employer.nil? %>
+		<%= f.text_field :company_id, placeholder: 'Enter Company Name', 'data-pre' => empty_arr.to_json %>
 		
 		<%= f.text_field :title, placeholder: 'Title' %>
 		<%= f.text_field :location, placeholder: 'Location' %>
@@ -28,4 +39,4 @@
 		<%= f.submit "Submit" %>
 
 	<% end %>
-</div>
+</div> -->

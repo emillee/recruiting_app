@@ -1,0 +1,48 @@
+div.social-sharing {
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+  width: 105%;
+  background-color: #FAFAFA;
+  text-indent: 5px;
+  padding-left: 15px;
+  margin-left: -15px;
+  
+  span {
+    color: #222222;
+    font-family: 'Clear Sans';
+  }
+  
+  i {
+    display: inline-block;    
+    cursor: pointer;
+    font-size: 20px;
+    padding: 8px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  
+  i.fa-envelope {
+    color: #1D1D1D;
+  }
+  
+  i.fa-twitter-square {
+    color: #4099FF;
+  }
+
+  i.fa-facebook-square {
+    color: #3B5998;  
+    a {
+      display: none;
+    }
+  }
+
+  i.fa-linkedin-square {
+    color: #4875B4;
+  }
+  
+  i.fa-tumblr-square {
+    color: #2B4964;
+  }  
+
+}
