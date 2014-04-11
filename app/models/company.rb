@@ -23,13 +23,13 @@ class Company < ActiveRecord::Base
     
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   
-  
+  # reads this above with attr_read  
   def store_article_id_temporarily(article_id)
     @article_id = article_id
   end
   
   def normalized_companypic_file_name
-    "id-#{self.id}-name-#{self.name}-articleid-#{self.article_id}"
+    "id-#{self.id}-name-#{self.name.downcase.gsub(' ', '-')}-articleid-#{self.article_id}"
   end
 
     

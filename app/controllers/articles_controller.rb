@@ -1,13 +1,25 @@
 class ArticlesController < ApplicationController
   
   def create
+    @article = Article.new
+    if params[:article].nil? && params[:investor_id]
+      Article.create(investor_id: params[:investor_id])
+    else
+      @article.save(article_params)
+    end
   end
   
   def update
     @article = Article.find(params[:id])
-    @company = Company.find(params[:company_id])
+    
     if @article.update_attributes(article_params)
-      redirect_to company_url(@company)
+      if params[:company_id]
+        company = Company.find(params[:company_id])
+        redirect_to company_url(company)
+      elsif params[:investor_id]
+        investor = Investor.find(params[:investor_id])
+        redirect_to investor_url(investor)
+      end
     end
   end
     
@@ -15,7 +27,7 @@ class ArticlesController < ApplicationController
   private
   
     def article_params
-      params.require(:article).permit(:title, :body, :author_id, :tag_id, :company_id)
+      params.require(:article).permit(:title, :body, :author_id, :tag_id, :company_id, :investor_id)
     end
   
 end

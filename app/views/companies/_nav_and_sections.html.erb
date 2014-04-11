@@ -14,7 +14,7 @@
 	<div id="<%= company.name %>-top-id"></div>
 	
 	<% company.articles.each do |article| %>
-		<%= render './articles/new_article_form', locals: { article: article, object: company }%>
+		<%= render './articles/new_article_form', locals: { article: article, object: company, this_table: this_table }%>
 	<% end %>
 
 </div>

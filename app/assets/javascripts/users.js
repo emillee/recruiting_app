@@ -1,5 +1,6 @@
 // ready = $('.users.show').ready(function() {
 ready_users = function() {
+
   if ($('.users').length > 0) {
     // --------------------------------------------------------------------------------------------------------------
     // USERS SHOW
@@ -135,8 +136,8 @@ ready_users = function() {
           addDraggableEvents();
         }
       })
-    };      
-  };
+    }      
+  }
 }
 $(document).ready(ready_users);
 $(document).on('page:load', ready_users);

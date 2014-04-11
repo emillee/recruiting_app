@@ -12,5 +12,6 @@
 //= require users
 //= require groups
 //= require companies
+//= require investors
 //= require_tree ./shared
 

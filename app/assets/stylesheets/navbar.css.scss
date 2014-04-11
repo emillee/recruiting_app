@@ -19,29 +19,25 @@ nav.navbar-wrapper {
     }
   }
   
-  a.logo {
-    color: black;
-    font-weight: 900;
-    margin-left: 10px;
+  span.logo-top {  
     
     &:hover {
-      color: #BE2121;
+      a.logo, a.logo-two {
+        color: rgb(192, 57, 43);
+      }
     }
-  }
+    
+    a.logo, a.logo-two {
+      color: #333332;
+      font-weight: 900;
+      margin-left: 10px;
+    }
   
-  a.logo:nth-of-type(3) {
-//    font-style: italic;
-    position: relative;
-    color: #232323;
-    background-color: none;
-//    border-left: 3px solid black;
-    border-radius: 2px;
-//    padding-left: 2px;
-    font-size: 19px;
-    font-weight: 500;
-    margin-left: -3px;
-    text-align: center;
-  }
+    a.logo-two {
+      margin-left: -3px;
+      color: #b3b3b1;
+    }
+  }  
   
   div.menu {
     font-family: 'Lato', sans-serif;
@@ -211,14 +207,27 @@ nav.navbar-wrapper-two {
   height: 30px;
   line-height: 30px;
   width: 145%;
-  background-color: #F3F9F5;
+  background-color: #333332;
   margin-top: 15px;
   margin-left: 20px;
   
-  li {
+  li, li > a {
     float: left;
     padding-left: 8px;
-    padding-right: 8px;    
+    padding-right: 8px;   
+    color: #f4f5f0; 
+    font-family: 'Clear Sans';
+    cursor: pointer;
+    
+    &:first-of-type {
+     margin-left: 5px;
+    }
+    
+    &:last-of-type {
+      float: right;
+      margin-right: 3px;
+      color: #b3b3b1;
+    }
   }
 }
 

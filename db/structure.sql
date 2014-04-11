@@ -412,6 +412,36 @@ ALTER SEQUENCE taxonomies_id_seq OWNED BY taxonomies.id;
 
 
 --
+-- Name: user_articles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE user_articles (
+    id integer NOT NULL,
+    user_id integer,
+    article_id integer
+);
+
+
+--
+-- Name: user_articles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_articles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_articles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_articles_id_seq OWNED BY user_articles.id;
+
+
+--
 -- Name: user_job_preapprovals; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -629,6 +659,13 @@ ALTER TABLE ONLY taxonomies ALTER COLUMN id SET DEFAULT nextval('taxonomies_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY user_articles ALTER COLUMN id SET DEFAULT nextval('user_articles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY user_job_preapprovals ALTER COLUMN id SET DEFAULT nextval('user_job_preapprovals_id_seq'::regclass);
 
 
@@ -731,6 +768,14 @@ ALTER TABLE ONLY tags
 
 ALTER TABLE ONLY taxonomies
     ADD CONSTRAINT taxonomies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_articles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY user_articles
+    ADD CONSTRAINT user_articles_pkey PRIMARY KEY (id);
 
 
 --
@@ -941,3 +986,9 @@ INSERT INTO schema_migrations (version) VALUES ('20140409165116');
 INSERT INTO schema_migrations (version) VALUES ('20140409171108');
 
 INSERT INTO schema_migrations (version) VALUES ('20140409201618');
+
+INSERT INTO schema_migrations (version) VALUES ('20140411030145');
+
+INSERT INTO schema_migrations (version) VALUES ('20140411030433');
+
+INSERT INTO schema_migrations (version) VALUES ('20140411030539');

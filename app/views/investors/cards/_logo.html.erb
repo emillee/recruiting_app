@@ -4,7 +4,8 @@
 	<% if !investor.nil? && investor.logo.exists? %>
 		<%= image_tag investor.logo.url %>
 	<% else %>
-		<% if current_user && !current_user.vc_employer.nil? && current_user.vc_employer == investor %>
+		<% if (current_user && !current_user.vc_employer.nil? && current_user.vc_employer == investor) || 
+				current_user.is_admin? %>
 			<%= form_for investor, url: investor_url(investor), html: { multipart: true } do |f| %>
 				<%= f.file_field :logo %>
 				<%= f.submit %>

@@ -27,4 +27,17 @@ class Article < ActiveRecord::Base
     source: :tag
   )
   
+  has_many(
+    :user_articles,
+    class_name: 'UserArticle',
+    foreign_key: :article_id,
+    primary_key: :id
+  )  
+  
+  has_many(
+    :users,
+    through: :user_articles,
+    source: :user
+  )
+  
 end

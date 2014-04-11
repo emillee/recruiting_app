@@ -86,6 +86,19 @@ class User < ActiveRecord::Base
     foreign_key: :user_id,
     primary_key: :id
   )
+  
+  has_many(
+    :user_articles,
+    class_name: 'UserArticle',
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+  
+  has_many(
+    :articles,
+    through: :user_articles,
+    source: :article
+  )
       
   # Sessions / Authentication------------------------------------------
   def self.new_guest 

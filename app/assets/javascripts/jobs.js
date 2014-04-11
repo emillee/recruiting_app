@@ -53,3 +53,5 @@ ready_jobs = function() {
 $(document).ready(ready_jobs);
 $(document).on('page:load', ready_jobs);
 
+
+

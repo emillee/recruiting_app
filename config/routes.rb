@@ -11,6 +11,7 @@ Nytech::Application.routes.draw do
 
   resources :investors do
     resources :articles, only: [:create, :update]
+    member { post :delete_snapshot }
   end    
     
   resources :companies, only: [:index, :new, :update, :show, :destroy] do

@@ -10,7 +10,8 @@
   position: relative;
 
   .info {
-    background: #999999;
+    background: #b3b3b1;
+//    background: #C2C1C2;
     height: 100%;
     position: relative;
 
@@ -18,14 +19,18 @@
       font-size: 19px;
       font-weight: 700;
 //      letter-spacing: 1px;
-      color: #333332;
+      color: black;
     }
     
     h2 {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400;
 //      letter-spacing: 1px;
+//      color: #333332;
+//      color: #464646;
+//      color: #b3b3b1;
       color: #333332;
+      font-family: 'Merriweather';
     }    
 
     .full-name {
@@ -96,7 +101,7 @@
     position: absolute;
     top: 5px;
     right: 6px;
-    opacity: .5;
+    opacity: .45;
 	  -webkit-filter: grayscale(90%);
     height: 140px;
   }

@@ -1,8 +1,10 @@
 <nav class="navbar-wrapper">
 	<a href=<%= user_url(current_user) %> data-no-turbolink='true'><i class="fa fa-bars"></i></a>
-
-	<%= link_to 'wolfpack.NYC', root_url, class: "logo" %>
-	<%#= link_to 'NYC', root_url, class: "logo" %>
+	
+	<span class="logo-top">
+		<%= link_to 'wolfpack', root_url, class: "logo" %>
+		<%= link_to 'beta', root_url, class: "logo-two" %>
+	</span>
 	
 	<div class="menu">
 		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>

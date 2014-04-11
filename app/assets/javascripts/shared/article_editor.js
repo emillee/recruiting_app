@@ -1,6 +1,6 @@
 ready_editor = function() {   
 
-  if ( $('.companies').length > 0 || $('.investors').length > 0 )  {
+  if ( $('.companies').length > 0 || $('.investors').length > 0 || $('.users').length > 0 ) {
 
     initializeEditor();
 
@@ -9,9 +9,16 @@ ready_editor = function() {
       event.preventDefault();
 
       var $title = $(this).html();
-      var $company_id = $(this).parent('.content').data('company-id');
+      var $table = $(this).parent('.content').data('table');
       var $article_id = $(this).parent('.content').data('articleid');
-      var this_url = '/companies/' + $company_id + '/articles/' + $article_id;
+      
+      if ($table === 'companies') {
+        var $id = $(this).parent('.content').data('company-id');
+      } else if ($table === 'investors') {
+        var $id = $(this).parent('.content').data('investor-id');
+      }
+      
+      var this_url = '/' + $table + '/' + $id + '/articles/' + $article_id;
       var dataObject = {};
 
       dataObject['article'] = {};
@@ -29,10 +36,19 @@ ready_editor = function() {
     $('[contenteditable=true].body').blur(function() {
 
       var $body = $(this).html();
-      var $company_id = $(this).parent('.content').data('company-id');
+      var $table = $(this).parent('.content').data('table');
       var $article_id = $(this).parent('.content').data('articleid');
-      var this_url = '/companies/' + $company_id + '/articles/' + $article_id
-      console.log(this_url)
+      
+
+      if ($table === 'companies') {
+        var $id = $(this).parent('.content').data('company-id');
+      } else if ($table === 'investors') {
+        var $id = $(this).parent('.content').data('investor-id');
+      }
+      
+      var this_url = '/' + $table + '/' + $id + '/articles/' + $article_id;
+
+
       var dataObject = {}
 
       dataObject['article'] = {};
@@ -46,6 +62,27 @@ ready_editor = function() {
     
       event.preventDefault();
     });
+    
+    // THIS IS ONLY FOR USERS
+    $('[contenteditable=true].users').blur(function() {
+      event.preventDefault()
+      var $id = $(this).data('id');
+      var $table = $(this).data('table');
+      var $model = $(this).data('model');
+      var $attribute = $(this).data('attribute');
+      var $newContent = $(this).html();
+      var $url = '/' + $table + '/' + $id
+      var dataObject = {};
+
+      dataObject[$model] = {};
+      dataObject[$model][$attribute] = $newContent;
+
+      $.ajax({
+        type: 'PUT',
+        url: $url,
+        data: dataObject
+      });
+    });    
 
     function initializeEditor() {
       var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']});

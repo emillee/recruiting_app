@@ -1,4 +1,6 @@
 class Investor < ActiveRecord::Base
+  
+  attr_reader :article_id
 
   has_attached_file :logo, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   
@@ -33,5 +35,14 @@ class Investor < ActiveRecord::Base
     foreign_key: :investor_id,
     primary_key: :id
   )
+  
+  # reads this above with attr_read
+  def store_article_id_temporarily(article_id)
+    @article_id = article_id
+  end  
+  
+  def normalized_investorpic_file_name
+    "id-#{self.id}-name-#{self.name.downcase.gsub(' ', '-')}-articleid-#{self.article_id}"
+  end
 
 end

@@ -1,7 +1,30 @@
 var ready;
 
 ready = function() {
+
   
+  // TOGGLE ROLES and REQS
+  $('.roles').click(function() {
+    $(this).addClass('selected');
+    $('.reqs').removeClass('selected')
+    $('.reqs').children('.arrow-down').addClass('hidden')
+    $(this).children('.arrow-down').removeClass('hidden');
+
+    $('.roles-sidebar-wrapper').removeClass('hidden');
+    $('.reqs-sidebar-wrapper').addClass('hidden');
+  })
+
+  $('.reqs').click(function() {
+    $(this).addClass('selected');
+    $('.roles').removeClass('selected')
+    $('.roles').children('.arrow-down').addClass('hidden')
+    $(this).children('.arrow-down').removeClass('hidden');
+    
+    $('.roles-sidebar-wrapper').addClass('hidden');
+    $('.reqs-sidebar-wrapper').removeClass('hidden');
+  })
+  
+  // NAVBAR OPACITY ON SCROLL
   $(window).scroll(function() {
     if ($(window).scrollTop() > 25) {
       $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,1)')
@@ -12,7 +35,8 @@ ready = function() {
     if ($(window).scrollTop() < 25) {
       $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,.5)')
     } 
-  })
+  })  
+
   
   // SEARCH: GET RID OF KEYWORD BANNER IF NO KEYWORDS
   $('.keywords-ul').on('click', 'li', function() {

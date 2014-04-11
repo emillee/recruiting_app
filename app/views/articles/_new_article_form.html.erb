@@ -1,12 +1,17 @@
 <% object = locals[:object] %>
 <% article = locals[:article] %>
+<% this_table = locals[:this_table] %>
 
 <% if article.tags.any? %>
 	<% section_class = article.tags[0].tag_name.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
 <% end %>
 
-<div class="editor-class-wrapper content <%= section_class %> <%= object.name %>" 
-	data-<%= object.class %>-id=<%= object.id %> data-articleid=<%= article.id %>>
+<div 
+	class = "editor-class-wrapper content <%= section_class %> <%= object.name %>" 
+	data-<%= object.class %>-id = <%= object.id %> 
+	data-articleid = <%= article.id %>
+	data-table = <%= this_table %> >
+	
 	<%= render './shared/editor' %>
 				
 	<% section_title = add_placeholders_if_nil('title', article.title) %>			

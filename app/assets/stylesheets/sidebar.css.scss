@@ -7,12 +7,45 @@ div.sidebar-wrapper {
   font-family: 'Lato', sans-serif;
   background-color: rgba(255,255,255,.5);
   
+  div.role-req {
+    
+    li {
+      position: relative;      
+      display: inline-block;
+      text-decoration: none;
+      line-height: 25px;
+      text-align: center;
+      font-size: 13px;
+      cursor: pointer;
+      background-color: rgba(192, 57, 43,.65);
+
+      &:first-of-type {
+        margin: 0;
+        padding: 0;
+        width: 108px;
+        color: white;
+      }
+      
+      &:nth-of-type(2) {
+        position: absolute;
+        color: white;
+        width: 107px;
+        right: 0;
+      }
+      
+      &.selected {
+        background-color: rgba(192, 57, 43,1);
+      }
+    }
+  }
+  
   // SEARCH FORM
   .search {
     position: relative;
     background-color: #bdc3c7;
     height: 45px;
     display: block;  
+    
     
     &:hover {
       i.fa-search {

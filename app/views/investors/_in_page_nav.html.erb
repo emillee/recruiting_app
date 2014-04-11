@@ -1,0 +1,19 @@
+<% investor = locals[:investor] %>
+
+<div class='in-page-navbar'>
+	<div class="investor-menu-items">
+		<ul>
+			<li>Activity</li>
+			<li>Openings</li>
+			<li>Fellows</li>
+			<li>Companies</li>
+			<li>What We're Looking For</li>
+			<li>Apply now!</li>
+			<li>Members Only</li>
+
+			<li>
+				<%= link_to 'New Article', investor_articles_url(investor), method: :post %>
+			</li>
+		</ul>
+	</div>
+</div>

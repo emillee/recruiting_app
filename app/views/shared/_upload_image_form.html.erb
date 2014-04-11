@@ -5,14 +5,23 @@
 
 <div class="uploader">
 	<i class="fa fa-picture-o"></i>	
-
-	<%= form_for object, url: company_url(object), html: { multipart: true } do |form| %>
-
-		<%= form.file_field :snapshots, id: "#{object.id}" %>
-
-		<input type="hidden" name="company[article_id]" value=<%= article.id %>>
 	
-		<%= form.submit 'Upload Image' %>
-	<% end %>
+	<% if controller_name == 'companies' %>
+
+		<%= form_for object, url: company_url(object), html: { multipart: true } do |form| %>
+			<%= form.file_field :snapshots, id: "#{object.id}" %>
+			<input type="hidden" name="company[article_id]" value=<%= article.id %>>
+			<%= form.submit 'Upload Image' %>
+		<% end %>		
+		
+	<% elsif controller_name == 'investors' %>
+
+		<%= form_for object, url: investor_url(object), html: { multipart: true } do |form| %>
+			<%= form.file_field :snapshots, id: "#{object.id}" %>
+			<input type="hidden" name="investor[article_id]" value=<%= article.id %>>
+			<%= form.submit 'Upload Image' %>
+		<% end %>		
+
+	<% end %>	
 		
 </div>

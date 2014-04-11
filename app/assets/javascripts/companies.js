@@ -7,15 +7,16 @@ ready_companies = function() {
     // --------------------------------------------------------------------------------------------------------------
     // COMPANIES SHOW
     // --------------------------------------------------------------------------------------------------------------
-  
+
+    $('.company-navbar').on('click', 'a', function() {
+      event.preventDefault();
+      var $company = $(this).data('company');
+      var $section = $(this).data('section');
+      $('.' + $section + '.' + $company).insertAfter('div#' + $company + '-top-id');
+    });
+      
     // $('.best_in_place').best_in_place();
-    // 
-    // $('.company-navbar').on('click', 'a', function() {
-    //   event.preventDefault();
-    //   var $company = $(this).data('company');
-    //   var $section = $(this).data('section');
-    //   $('.' + $section + '.' + $company).insertAfter('div#' + $company + '-top-id');
-    // });
+
   }
 }
 $(document).ready(ready_companies);

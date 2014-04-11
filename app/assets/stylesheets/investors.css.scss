@@ -1,35 +1,54 @@
 .investor-stat-summary {
-  padding: 15px 15px;
+  padding: 10px;
   height: 110px;
   width: 225px;
   color: #b3b3b1;
   position: relative;
   font-size: 15px;
   
-  h2 {
-    line-height: 20px;
-    
-    span:first-of-type {
-      color: white;
-    }
-
-    span:nth-of-type(2) {
-      color: #232323;
-      position: absolute;
-      left: 120px;
-    }
-    
+  h1#stats {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
   }
+  
+  p#stats-p {
+    font-size: 13px;
+    line-height: 18px;
+    color: black;
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+  }
+
+  // this is for the "stats"
+//  h2 {
+//    line-height: 20px;
+//    
+//    span:first-of-type {
+//      color: black;
+//    }
+//
+//    span:nth-of-type(2) {
+//      color: #333332;
+//      position: absolute;
+//      left: 120px;
+//    }
+//    
+//  }
 }
 
 // this is a hack for articles
 .profile-wrapper {
   .section-wrap {
     .content {
+      width: 625px;
       padding: 20px;
+      padding-bottom: 0;
       background-color: white;
       margin-left: 20px;
-      margin-top: 15px;
+      margin-top: 15px; 
+      position: relative;
 
       h1 {
         font-size: 20px;
@@ -39,10 +58,36 @@
         letter-spacing: 1px;
         font-family: 'Source Sans Pro', sans-serif;
       }
+
       
-      p {
+      article.body {
         margin: 0;
-        margin-top: 10px;
+        margin-bottom: 15px;
+        padding: 0;
+        
+        p {
+          margin: 0;
+          margin-top: 10px;
+        }        
+      }
+      
+      .uploader {
+        margin-bottom: 20px;
+        margin-left: 5px;
+      }
+
+      .social-sharing {
+        margin: 0;
+        margin-top: -10px;
+        padding-left: 0;
+        margin-left: -5px;  
+        width: 96%;
+        position: absolute;
+        bottom: 10px;
+        
+        span {
+          margin-left: 5px;
+        }
       }
     }
   }  
