@@ -55,9 +55,12 @@ class CompaniesController < ApplicationController
   
   def update
     @company = Company.find(params[:id])
-    article_id = params[:company][:article_id] if params[:company]
-    @company.store_article_id_temporarily(article_id)
+    if params[:company] && params[:company][:article_id]
+      article_id = params[:company][:article_id] 
+      @company.store_article_id_temporarily(article_id)
+    end
     
+    # ASK BACKNOL, THROWS TOO MANY REDIRECTS ERROR
     if @company.update_attributes(company_params)
       respond_with @company
     end

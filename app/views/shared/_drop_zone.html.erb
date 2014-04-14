@@ -1,7 +1,9 @@
+<% user = locals[:user] %>
+
 <div class='droppable-wrapper'>
 	<div class="skill-dropzone">
 		<ul class="skills-ul">
-			<% @user.user_skills.sort.each do |user_skill| %>
+			<% user.user_skills.sort.each do |user_skill| %>
 				<li class="user-skills" data-userskill="<%= user_skill.id %>">
 					<%= insert_image_or_text(user_skill.skill) %>
 					

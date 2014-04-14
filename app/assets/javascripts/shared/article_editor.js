@@ -16,6 +16,8 @@ ready_editor = function() {
         var $id = $(this).parent('.content').data('company-id');
       } else if ($table === 'investors') {
         var $id = $(this).parent('.content').data('investor-id');
+      } else if ($table == 'users') {
+        var $id = $(this).parent('.content').data('user-id');
       }
       
       var this_url = '/' + $table + '/' + $id + '/articles/' + $article_id;
@@ -44,6 +46,8 @@ ready_editor = function() {
         var $id = $(this).parent('.content').data('company-id');
       } else if ($table === 'investors') {
         var $id = $(this).parent('.content').data('investor-id');
+      } else if ($table == 'users') {
+        var $id = $(this).parent('.content').data('user-id');
       }
       
       var this_url = '/' + $table + '/' + $id + '/articles/' + $article_id;
@@ -64,26 +68,26 @@ ready_editor = function() {
     });
     
     // THIS IS ONLY FOR USERS
-    $('[contenteditable=true].users').blur(function() {
-      event.preventDefault()
-      var $id = $(this).data('id');
-      var $table = $(this).data('table');
-      var $model = $(this).data('model');
-      var $attribute = $(this).data('attribute');
-      var $newContent = $(this).html();
-      var $url = '/' + $table + '/' + $id
-      var dataObject = {};
-
-      dataObject[$model] = {};
-      dataObject[$model][$attribute] = $newContent;
-
-      $.ajax({
-        type: 'PUT',
-        url: $url,
-        data: dataObject
-      });
-    });    
-
+    // $('[contenteditable=true].users').blur(function() {
+    //   event.preventDefault()
+    //   var $id = $(this).data('id');
+    //   var $table = $(this).data('table');
+    //   var $model = $(this).data('model');
+    //   var $attribute = $(this).data('attribute');
+    //   var $newContent = $(this).html();
+    //   var $url = '/' + $table + '/' + $id
+    //   var dataObject = {};
+    // 
+    //   dataObject[$model] = {};
+    //   dataObject[$model][$attribute] = $newContent;
+    // 
+    //   $.ajax({
+    //     type: 'PUT',
+    //     url: $url,
+    //     data: dataObject
+    //   });
+    // });    
+    // 
     function initializeEditor() {
       var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']});
     };    

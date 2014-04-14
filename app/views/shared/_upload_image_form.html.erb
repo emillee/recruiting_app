@@ -4,7 +4,10 @@
 <%# url_path = object.class.to_s.singularize.downcase %>
 
 <div class="uploader">
-	<i class="fa fa-picture-o"></i>	
+	<span class="insert-image-span">
+		<i class="fa fa-picture-o"></i>
+		<span>Insert an Image!</span>	
+	</span>
 	
 	<% if controller_name == 'companies' %>
 
@@ -19,6 +22,14 @@
 		<%= form_for object, url: investor_url(object), html: { multipart: true } do |form| %>
 			<%= form.file_field :snapshots, id: "#{object.id}" %>
 			<input type="hidden" name="investor[article_id]" value=<%= article.id %>>
+			<%= form.submit 'Upload Image' %>
+		<% end %>		
+
+	<% elsif controller_name == 'users' %>
+
+		<%= form_for object, url: user_url(object), html: { multipart: true } do |form| %>
+			<%= form.file_field :snapshots, id: "#{object.id}" %>
+			<input type="hidden" name="user[article_id]" value=<%= article.id %>>
 			<%= form.submit 'Upload Image' %>
 		<% end %>		
 

@@ -8,6 +8,7 @@
 		<% if (current_user && current_user.is_admin) ||
 			(current_user && !current_user.employer.nil? && current_user.employer == company) %>
 			<%= form_for company, url: company_url(company), html: { multipart: true } do |f| %>
+				<h1>Insert Company Logo</h1>
 				<%= f.file_field :logo %>
 				<%= f.submit %>
 			<% end %>

@@ -2,10 +2,16 @@
 <% job = locals[:job] %>
 
 <div class="c-company-overview left">
-	<% if job.description %>
-		<h1>About <%= job.listing_company.name %></h1>
-		<p><%= job.listing_company.overview %></p>
-		<%= link_to 'More', company_url(job.listing_company) %>
-	<% end %>
+	<h1>About <%= job.listing_company.name %></h1>
+	
+	<p contenteditable="true" data-company-id="<%= job.listing_company.id %>" class="jobs-index-company-overview">
+		<% if job.listing_company.overview %>
+			<%= job.listing_company.overview %>
+		<% else %>
+			<%= 'Pending' %>
+		<% end %>
+	</p>
+
+	<%= link_to 'More', company_url(job.listing_company) %>
 </div>				
 

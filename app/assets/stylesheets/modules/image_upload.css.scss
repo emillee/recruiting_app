@@ -2,6 +2,22 @@
   margin-top: -5px;
   margin-bottom: -25px;
   
+  span {
+    cursor: pointer;
+    
+    i {
+      font-size: 13px;
+      color: #AAAAAA;
+
+    }
+    
+    span {
+      color: #AAAAAA;
+      font-size: 13px;
+      padding: 3px;
+    }
+  }
+  
   form {
     visibility: hidden;
   }          

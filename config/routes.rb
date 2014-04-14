@@ -1,13 +1,18 @@
 Nytech::Application.routes.draw do
   resources :search_suggestions
-
-  resources :users
   resources :searches, only: [:new, :show, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
   resources :taxonomies, only: [:index]
   resources :user_skills, only: [:create, :update, :destroy]
   resource :user_jobs, only: [:create, :destroy]
+  resources :tags, only: [:index, :create, :destroy]
+  resources :taggings, only: [:create, :destroy]
   resources :groups
+  
+  resources :users do 
+    resources :articles, only: [:create, :update]
+    member { post :delete_snapshot }
+  end  
 
   resources :investors do
     resources :articles, only: [:create, :update]

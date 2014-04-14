@@ -1,31 +1,68 @@
 <% article = locals[:article]%>
 
 <div class="social-sharing">
-	<span class="left">Share this!</span>
-	<i class="fa fa-envelope left"></i>			
 	
-	<div id="fb-root">
-		<i class="fa fa-facebook-square left">
-			<% request_uri = 'http://localhost:3000/' %>
-			<%= fb_share(ENV['FACEBOOK_APP_ID'], request_uri, 
-				{
-					display: "popup",
-					link: request.original_url.gsub('localhost:3000', 'wolfpackbeta.com')
-				}
-			) %>
-		</i>		
-	</div>
+	<div class="share-buttons-wrapper left">
+		<span class="left">Share this!</span>
+		<i class="fa fa-envelope left"></i>			
 	
-	<i class="fa fa-linkedin-square left"></i>		
-	<i class="fa fa-tumblr-square left"></i>
+		<div id="fb-root">
+			<i class="fa fa-facebook-square left">
+				<% request_uri = 'http://localhost:3000/' %>
+				<%= fb_share(ENV['FACEBOOK_APP_ID'], request_uri, 
+					{
+						display: "popup",
+						link: request.original_url.gsub('localhost:3000', 'wolfpackbeta.com')
+					}
+				) %>
+			</i>		
+		</div>
+	
+		<i class="fa fa-linkedin-square left"></i>		
+		<i class="fa fa-tumblr-square left"></i>
 		
-	<% tweet_default_text = article.title.nil? ? '' : "Just spreading the word! Check out: #{strip_tags(article.title.squish)} #{request.original_url.gsub('localhost:3000', 'wolfpackbeta.com')}" %>
-	<a href="https://twitter.com/share?text=<%= tweet_default_text %>" 
-		class="popup"
-		target="_blank">
-		<!-- data-text='Just spreading the word! Check out: <%#= strip_tags(article.title.squish) %>' -->
-		<i class="fa fa-twitter-square left"></i>
-	</a>				
+		<% tweet_default_text = article.title.nil? ? '' : "Just spreading the word! Check out: #{strip_tags(article.title.squish)} #{request.original_url.gsub('localhost:3000', 'wolfpackbeta.com')}" %>
+		<a href="https://twitter.com/share?text=<%= tweet_default_text %>" 
+			class="popup"
+			target="_blank">
+			<!-- data-text='Just spreading the word! Check out: <%#= strip_tags(article.title.squish) %>' -->
+			<i class="fa fa-twitter-square left"></i>
+		</a>			
+	</div>	
+	
+	<div class="add-tags-wrapper left">
+		
+		<div class="existing-tags group <%= article.tags.any? ? '' : 'hidden' %>">
+			<ul class="article-tags">
+				<h2 class="left">Tags:</h1>
+				<% article.tags.each do |tag| %>
+					<li class=" existing-tag-li left" data-id="<%= find_tagging_id(article, tag) %>">
+						<%= tag.tag_name %>
+						<i class="fa fa-times-circle"></i>
+					</li>
+				<% end %>
+			</ul>		
+		</div>
+		
+		<% @tagging = Tagging.new %>
+		<%= form_for @tagging, url: taggings_url, html: { multipart: true }, remote: true do |f| %>
+		
+			<% empty_arr = [] %>
+			<% empty_arr << @tagging.tag.attributes unless @tagging.tag.nil? %>
+			<%= f.hidden_field :article_id, value: article.id %>
+			<%= f.text_field :tag_id, placeholder: '+Add Tag', 'data-pre' => empty_arr.to_json %>
+			<%= f.submit 'New Tagging' %>
+		<% end %>
+		
+		<!-- <div class="edit-business-card">
+			<%#= form_for @user, url: user_url(@user), html: { multipart: true } do |f| %>
+				<%# empty_arr = [] %>
+				<%# empty_arr << @user.employer.attributes unless @user.employer.nil? %>
+				<%#= f.text_field :company_id, placeholder: 'Enter Company Name', 'data-pre' => empty_arr.to_json %>
+				<%#= f.submit "Submit" %>
+			<%# end %>
+		</div> -->		
+	</div>	
 
 </div>		
 

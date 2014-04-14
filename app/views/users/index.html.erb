@@ -7,8 +7,9 @@
 		<% @users.each do |user| %>
 			<li>
 				<%= render 'users/cards/bcard', locals: { user: user }%>
-				<%= render 'users/cards/interested_in_meeting', locals: { user: user } %>
-				<%= render 'users/cards/intro', locals: { user: user }%>
+				<%= render 'user_articles', locals: { user: user, this_table: 'users' } %>
+				<%#= render 'users/cards/interested_in_meeting', locals: { user: user } %>
+				<%#= render 'users/cards/intro', locals: { user: user }%>
 			</li>
 		<% end %>
 	</div>

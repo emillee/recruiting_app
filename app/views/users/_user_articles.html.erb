@@ -1,0 +1,39 @@
+<% user = locals[:user] %>
+<% this_table = locals[:this_table] %>
+
+<div class="section-wrap left">		
+	
+	<%#= render '/users/cards/interested_in_meeting', locals: { user: @user, this_table: this_table } %>
+
+  <!-- <div class="article users" 
+		contenteditable="<%#= editable?(@user) %>"
+		data-table="<%#= this_table %>"
+		data-model="<%#= this_model %>"
+		data-id=<%#= current_user.id if current_user %> 
+		data-attribute='biography'> --><!-- end of contenteditable div -->
+		<%# biography = add_placeholder_if_nil('biography', @user) %>
+    <%#= raw(biography) %>
+  <!-- </div> --><!-- biography -->					
+	
+	<% if user.articles.any? %>
+		<% user.articles.each do |article| %>
+			<%= render './articles/new_article_form', locals: { object: user, article: article, this_table: this_table } %>
+		<% end %>
+	<% else %>
+		<% article = Article.create %>
+		<% user_article = UserArticle.create(user_id: user.id, article_id: article.id) %>
+		<%= render './articles/new_article_form', locals: { object: user, article: article, this_table: this_table } %>
+	<% end %>
+
+  <div class="article skills">
+  	    <h3>
+  				My Skills
+			<% if current_user %>
+				<%= link_to 'Add Skills', '#', id: 'edit-skills' %>
+				<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden' %>
+			<% end %>
+		</h3>
+		<%= render 'shared/drop_zone', locals: { user: user } %>
+    <%= render 'shared/box_of_logos' %>
+  </div><!-- skills -->					
+</div><!-- section -->

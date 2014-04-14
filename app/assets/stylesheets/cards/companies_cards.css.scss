@@ -51,7 +51,15 @@ div.company-business-card {
     max-height: 85%;
     display: inline-block;
     border-radius: 1px;
-  }        
+  }    
+  
+  form {
+    margin: 50px;
+
+    input[type='file'], input {
+      border: none;
+    }
+  }    
 }
 
 .company-stats {

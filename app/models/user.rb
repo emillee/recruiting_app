@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
   attr_reader :password # for password length validation
   attr_reader :user_company # for autocomplete
+  attr_reader :article_id
   
   validates :password, length: { minimum: 6, allow_nil: true }, unless: :guest?
   validates :email, presence: true, unless: :guest?
@@ -17,9 +18,6 @@ class User < ActiveRecord::Base
     
   after_initialize :initialize_job_and_company_settings
   store_accessor :job_filters, :keywords, :dept, :sub_dept, :experience
-  
-  has_attached_file :avatar, styles: { medium: '300x200>', thumb: '100x100>' },
-    default_url: '/images/:style/missing.png'
   
   belongs_to(
     :employer,
@@ -99,6 +97,26 @@ class User < ActiveRecord::Base
     through: :user_articles,
     source: :article
   )
+  
+  has_attached_file :avatar, styles: { medium: '300x200>', thumb: '100x100>' },
+    default_url: '/images/:style/missing.png'
+
+  has_attached_file :snapshots, styles: { original: '200x400', medium: '300x300', large: '300x500' },
+    path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:normalized_userpic_file_name.:extension",
+    url: "/system/:class/:attachment/:id_partition/:style/:normalized_userpic_file_name.:extension"
+  
+  Paperclip.interpolates :normalized_userpic_file_name do |attachment, style|
+    attachment.instance.normalized_userpic_file_name
+  end
+
+  def store_article_id_temporarily(article_id)
+    @article_id = article_id
+  end
+  
+  def normalized_userpic_file_name
+    "id-#{self.id}-name-#{self.fname.squish}-articleid-#{self.article_id}"
+  end
+  
       
   # Sessions / Authentication------------------------------------------
   def self.new_guest 

@@ -46,7 +46,24 @@ ready_jobs = function() {
     $('ul.job-posts').on('click', '.remove', function(event) {
       $(this).parents('li').remove();
     });
-  
+    
+    $('[contenteditable=true].jobs-index-company-overview').blur(function() {
+      var $company_id = $(this).data('company-id');
+      console.log($company_id)
+      var $data = $(this).text();
+      console.log($data)
+      var $url = '/companies/' + $company_id
+
+      var dataObject = {}
+      dataObject['company'] = {}
+      dataObject['company']['overview'] = $data
+      
+      $.ajax({
+        url: $url,
+        type: 'PUT',
+        data: dataObject
+      })
+    })
   };
 }
 

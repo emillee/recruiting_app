@@ -9,7 +9,7 @@
 	<!-- BUSINESS CARD -->
 	<div class="bcard-wrapper left">	
 		<%= render 'in_page_nav'%>	
-		<%= render 'users/cards/intro', locals: { user: @user } %>
+		<%#= render 'users/cards/intro', locals: { user: @user } %>
 	</div>
 
 	<div class="profile-card-positions right group">
@@ -18,32 +18,7 @@
 		<%= render 'users/cards/action_items', locals: { user: @user } %>
 	</div>	
 
-	<div class="section-wrap left">		
-
-		<%= render '/users/cards/interested_in_meeting', locals: { user: @user, this_table: this_table } %>
-
-	  <div class="article users" 
-			contenteditable="<%= editable?(@user) %>"
-			data-table="<%= this_table %>"
-			data-model="<%= this_model %>"
-			data-id=<%= current_user.id if current_user %> 
-			data-attribute='biography'><!-- end of contenteditable div -->
-			<% biography = add_placeholder_if_nil('biography', @user) %>
-	    <%= raw(biography) %>
-	  </div><!-- biography -->					
-
-	  <div class="article skills">
-	    <h3>
-				My Skills
-				<% if current_user %>
-					<%= link_to 'Add Skills', '#', id: 'edit-skills' %>
-					<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden' %>
-				<% end %>
-			</h3>
-			<%= render 'shared/drop_zone' %>
-	    <%= render 'shared/box_of_logos' %>
-	  </div><!-- skills -->					
-	</div><!-- section -->	
+	<%= render 'user_articles', locals: { user: @user, this_table: this_table } %>
 
 </div><!-- wrapper -->
 

@@ -7,7 +7,7 @@
 <% end %>
 
 <div 
-	class = "editor-class-wrapper content <%= section_class %> <%= object.name %>" 
+	class = "editor-class-wrapper content <%= section_class %> <%= object.respond_to?(:name) ? object.name : object.fname %>" 
 	data-<%= object.class %>-id = <%= object.id %> 
 	data-articleid = <%= article.id %>
 	data-table = <%= this_table %> >
@@ -37,11 +37,14 @@
 					<%= image_tag image_path %>
 
 					<% if controller_name == 'companies' %>
-						<%= link_to 'Delete Image', delete_snapshot_company_url(path: image_path, article_id: article.id), class: 'delete-image', 
-					 		method: :post %>
+						<%= link_to 'Delete Image', delete_snapshot_company_url(path: image_path, article_id: article.id), 
+							class: 'delete-image', method: :post %>
 					<% elsif controller_name == 'investors' %>
-						<%= link_to 'Delete Image', delete_snapshot_investor_url(path: image_path, article_id: article.id), class: 'delete-image', 
-					 		method: :post %>
+						<%= link_to 'Delete Image', delete_snapshot_investor_url(path: image_path, article_id: article.id), 
+							class: 'delete-image', method: :post %>
+					<% elsif controller_name == 'users' %>
+						<%= link_to 'Delete Image', delete_snapshot_user_url(path: image_path, article_id: article.id), 
+							class: 'delete-image', method: :post %>
 					<% end %>
 				<% end %>
 			<% end %>

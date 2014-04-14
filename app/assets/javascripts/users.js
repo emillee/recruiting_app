@@ -55,26 +55,6 @@ ready_users = function() {
       })
     })
 
-    // var $kaminari = $(data).find('.pagination');
-    // $('.job-posts').empty().html($jobs);  
-
-    // $('.edit').on('click', function(e) {
-    //   e.preventDefault();
-    //   var $user_id = $(this).data('id');
-    //   var $url = "/users/" + $user_id + "/edit"
-    //   
-    //   $.ajax({
-    //     type: 'GET',
-    //     url: $url,
-    //     success: function(data) {
-    //       var $edit_data = $(data).filter(' .edit-business-card');
-    //       console.log($edit_data)
-    //       $('.business-card').html($edit_data);
-    //       addAutocompleteFields();
-    //     }
-    //   })
-    // })
-
     function addAutocompleteFields() {
       $('#user_company_id').tokenInput('/companies.json', { crossDomain: false, allowFreeTagging: true });
       // $('#employer').tokenInput('/companies.json', { crossDomain: false, allowFreeTagging: true });
@@ -136,7 +116,27 @@ ready_users = function() {
           addDraggableEvents();
         }
       })
-    }      
+    }    
+
+    // var $kaminari = $(data).find('.pagination');
+    // $('.job-posts').empty().html($jobs);  
+
+    // $('.edit').on('click', function(e) {
+    //   e.preventDefault();
+    //   var $user_id = $(this).data('id');
+    //   var $url = "/users/" + $user_id + "/edit"
+    //   
+    //   $.ajax({
+    //     type: 'GET',
+    //     url: $url,
+    //     success: function(data) {
+    //       var $edit_data = $(data).filter(' .edit-business-card');
+    //       console.log($edit_data)
+    //       $('.business-card').html($edit_data);
+    //       addAutocompleteFields();
+    //     }
+    //   })
+    // })      
   }
 }
 $(document).ready(ready_users);

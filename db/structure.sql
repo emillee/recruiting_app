@@ -48,8 +48,8 @@ SET default_with_oids = false;
 
 CREATE TABLE articles (
     id integer NOT NULL,
-    title character varying(255),
-    body text,
+    title character varying(255) DEFAULT ''::character varying,
+    body text DEFAULT ''::text,
     author_id integer,
     tag_id integer,
     company_id integer,
@@ -562,7 +562,11 @@ CREATE TABLE users (
     intro text,
     interested_in_meeting text,
     company_settings text,
-    investor_company_id integer
+    investor_company_id integer,
+    snapshots_file_name character varying(255),
+    snapshots_content_type character varying(255),
+    snapshots_file_size integer,
+    snapshots_updated_at timestamp without time zone
 );
 
 
@@ -992,3 +996,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140411030145');
 INSERT INTO schema_migrations (version) VALUES ('20140411030433');
 
 INSERT INTO schema_migrations (version) VALUES ('20140411030539');
+
+INSERT INTO schema_migrations (version) VALUES ('20140411040916');
+
+INSERT INTO schema_migrations (version) VALUES ('20140411133744');
+
+INSERT INTO schema_migrations (version) VALUES ('20140411155523');
+
+INSERT INTO schema_migrations (version) VALUES ('20140411155841');

@@ -2,26 +2,25 @@ var ready;
 
 ready = function() {
 
-  
   // TOGGLE ROLES and REQS
   $('.roles').click(function() {
     $(this).addClass('selected');
-    $('.reqs').removeClass('selected')
-    $('.reqs').children('.arrow-down').addClass('hidden')
+    $('.prefs').removeClass('selected')
+    $('.prefs').children('.arrow-down').addClass('hidden')
     $(this).children('.arrow-down').removeClass('hidden');
 
     $('.roles-sidebar-wrapper').removeClass('hidden');
-    $('.reqs-sidebar-wrapper').addClass('hidden');
+    $('.prefs-sidebar-wrapper').addClass('hidden');
   })
 
-  $('.reqs').click(function() {
+  $('.prefs').click(function() {
     $(this).addClass('selected');
     $('.roles').removeClass('selected')
     $('.roles').children('.arrow-down').addClass('hidden')
     $(this).children('.arrow-down').removeClass('hidden');
     
     $('.roles-sidebar-wrapper').addClass('hidden');
-    $('.reqs-sidebar-wrapper').removeClass('hidden');
+    $('.prefs-sidebar-wrapper').removeClass('hidden');
   })
   
   // NAVBAR OPACITY ON SCROLL
@@ -36,7 +35,6 @@ ready = function() {
       $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,.5)')
     } 
   })  
-
   
   // SEARCH: GET RID OF KEYWORD BANNER IF NO KEYWORDS
   $('.keywords-ul').on('click', 'li', function() {

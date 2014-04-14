@@ -19,7 +19,6 @@
  *= require groups
  *= require companies
  *= require investors
- *= require token-input
  *= require jquery.ui.all
  *= require profile
  *= require_directory ./flip_view

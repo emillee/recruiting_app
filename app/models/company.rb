@@ -10,31 +10,6 @@ class Company < ActiveRecord::Base
   scope :page_blank, ->(arg) { where('companies.career_page_link IS NULL') }
   scope :is_hiring, ->(arg){ Company.joins(:job_listings) }
   
-  has_attached_file :snapshots, styles: { original: '200x400', medium: '300x300', large: '300x500' }, 
-    path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension",
-    url: "/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension" 
-
-  Paperclip.interpolates :normalized_companypic_file_name do |attachment, style|
-    attachment.instance.normalized_companypic_file_name
-  end  
-
-  has_attached_file :logo, styles: { medium: '300x300>', thumb: '100x100>' },
-    default_url: '/images/:style/missing.png'
-    
-  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
-  
-  # reads this above with attr_read  
-  def store_article_id_temporarily(article_id)
-    @article_id = article_id
-  end
-  
-  def normalized_companypic_file_name
-    "id-#{self.id}-name-#{self.name.downcase.gsub(' ', '-')}-articleid-#{self.article_id}"
-  end
-
-    
-  validates_attachment_content_type :snapshots, content_type: /\Aimage\/.*\Z/
-  
   has_many(
     :job_listings,
     class_name: 'Job',
@@ -59,6 +34,30 @@ class Company < ActiveRecord::Base
   include ApiCalls
   include Filterable
   
+  has_attached_file :snapshots, styles: { original: '200x400', medium: '300x300', large: '300x500' }, 
+    path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension",
+    url: "/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension" 
+    
+
+  Paperclip.interpolates :normalized_companypic_file_name do |attachment, style|
+    attachment.instance.normalized_companypic_file_name
+  end  
+
+  has_attached_file :logo, styles: { medium: '300x300>', thumb: '100x100>' },
+    default_url: '/images/:style/missing.png'
+    
+  validates_attachment_content_type :snapshots, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/    
+    
+  
+  # reads this above with attr_read  
+  def store_article_id_temporarily(article_id)
+    @article_id = article_id
+  end
+  
+  def normalized_companypic_file_name
+    "id-#{self.id}-name-#{self.name.downcase.gsub(' ', '-')}-articleid-#{self.article_id}"
+  end  
   
   def self.all_company_names
     all_names = Company.all.map(&:name).uniq!
