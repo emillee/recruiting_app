@@ -15,15 +15,16 @@ module JobsHelper
     end      
   end
   
-  def req_skill_checked?(job, skill)
-    return true if job.req_skills.include?(skill)
-    return false
-  end    
-  
-  def dept_checked?(dept)
-    return false if current_user.job_settings[:dept].nil?
-    return true if current_user.job_settings[:dept].include?(dept)
-    return false
+  def is_setting_checked?(this_attr, val)
+    return false if current_user.job_settings[this_attr].nil?
+    return true if current_user.job_settings[this_attr].include?(val.to_s)
+    return false    
+  end
+
+  def is_pref_checked?(this_attr, val)
+    return false if current_user.job_pref[this_attr].nil?
+    return true if current_user.job_pref[this_attr].include?(val.to_s)
+    return false    
   end
   
   def sel_or_hide(dept)
@@ -34,24 +35,6 @@ module JobsHelper
     else
       return 'hidden'
     end
-  end
-    
-  def num_years_checked?(num_years)
-    return false if current_user.job_settings[:years_exp].nil?
-    return true if current_user.job_settings[:years_exp].include?(num_years.to_s)
-    return false
-  end
-  
-  def sub_dept_checked?(sub_dept)
-    return false if current_user.job_settings[:sub_dept].nil?
-    return true if current_user.job_settings[:sub_dept].include?(sub_dept)
-    return false
-  end
-  
-  def key_skill_checked?(skill)
-    return false if current_user.job_settings[:key_skills].nil?
-    return true if current_user.job_settings[:key_skills].include?(skill)
-    return false
   end
   
   def sortable(column, title=nil)

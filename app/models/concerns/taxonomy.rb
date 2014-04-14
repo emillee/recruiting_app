@@ -3,6 +3,29 @@ module Taxonomy
   
 	# SIDEBAR ---------------------------------------------------------------------------
 	
+	def self.company_stages
+	  [
+	    'Startup Idea (Pre-Funded)',
+	    'Seed-Stage ($250K+)',
+	    'Series A ($1M+)',
+	    'Series B ($3-10M+)',
+	    'Series C ($10M+)',	    	    
+	    'Corporate'	    	    
+	  ]
+  end
+  
+  def self.years_exp
+    [
+      ['Internship', 0],
+			['Entry (0-1)', 1], 
+			['Junior (1-2)', 2], 
+			['Mid (2-3)', 3], 
+			['Experienced (3-5+)', 5], 
+			['Veteran (5+)', 8],
+			['Exec (10+)', 10]
+		] 
+	end   
+	
 	module ClassMethods
     def back_end_skills
       [

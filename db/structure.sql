@@ -566,7 +566,8 @@ CREATE TABLE users (
     snapshots_file_name character varying(255),
     snapshots_content_type character varying(255),
     snapshots_file_size integer,
-    snapshots_updated_at timestamp without time zone
+    snapshots_updated_at timestamp without time zone,
+    job_prefs text
 );
 
 
@@ -1004,3 +1005,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140411133744');
 INSERT INTO schema_migrations (version) VALUES ('20140411155523');
 
 INSERT INTO schema_migrations (version) VALUES ('20140411155841');
+
+INSERT INTO schema_migrations (version) VALUES ('20140414193009');

@@ -69,51 +69,40 @@ ready = function() {
   
   // DEPARTMENT FILTER - EXPAND / COLLAPSE
   $('.sidebar-middle').on('click', 'h1.department', function() {
-    var $ul = $(this).closest('.wrapper').children('ul');
-    var $checkbox_lis = $ul.children('li');
-    var $checkboxes = $checkbox_lis.find(":checkbox");
-    
-    $checkboxes.each(function() {
-      if (this.checked === false) {
-        $(this).parent('li').toggleClass('hidden');
-      }
-    })
-    
-    $('.department .fa-caret-down').toggleClass('hidden');
-    $('.department .fa-caret-right').toggleClass('hidden');
+    var thisObject = this;
+    toggleDropDown(thisObject);
   });
-  
-  // SUB DEPT FILTER - EXPAND / COLLAPSE
+
   $('.sidebar-middle').on('click', 'h1.sub_dept', function() {
-    var $ul = $(this).closest('.wrapper').children('ul');
-    var $checkbox_lis = $ul.children('li');
-    var $checkboxes = $checkbox_lis.find(":checkbox");
-    
-    $checkboxes.each(function() {
-      if (this.checked === false) {
-        $(this).parent('li').toggleClass('hidden');
-      }
-    })
-    
-    $('.sub_dept .fa-caret-down').toggleClass('hidden');
-    $('.sub_dept .fa-caret-right').toggleClass('hidden');
+    var thisObject = this;
+    toggleDropDown(thisObject);
   });
-  
-  // EXPERIENCE FILTER - EXPAND / COLLAPSE
+    
   $('.sidebar-middle').on('click', 'h1.experience', function() {
-    var $ul = $(this).closest('.wrapper').children('ul');
+    var thisObject = this;
+    toggleDropDown(thisObject);
+  });    
+
+  $('.sidebar-middle').on('click', 'h1.company-stage', function() {
+    var thisObject = this;
+    toggleDropDown(thisObject);
+  });
+      
+  var toggleDropDown = function(thisObject) {
+    var $ul = $(thisObject).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');
     var $checkboxes = $checkbox_lis.find(":checkbox");
-    
+
     $checkboxes.each(function() {
       if (this.checked === false) {
         $(this).parent('li').toggleClass('hidden');
       }
     })
-    
-    $(this).find('.fa-caret-down').toggleClass('hidden');
-    $(this).find('.fa-caret-right').toggleClass('hidden');
-  });
+
+    $(thisObject).children('.fa-caret-down').toggleClass('hidden');
+    $(thisObject).children('.fa-caret-right').toggleClass('hidden');    
+  }
+
   
   // KEY SKILLS FILTER - EXPAND / COLLAPSE
   $('.sidebar-middle').on('click', 'h1.key-skills', function() {
@@ -147,12 +136,12 @@ ready = function() {
   });
 
   // AJAX CALL TO REFRESH SIDEBAR AND JOBS ON SUCCESS
-  $('#job-filter-form').on("ajax:success", function(event, data) {  
+  $('#roles-job-filter-form').on("ajax:success", function(event, data) {  
     var $jobs = $(data).find('.job-posts');
-    var $sidebar = $(data).find('.sidebar-middle');
+    var $sidebar = $(data).find('#roles-job-filter-form .sidebar-middle');
     var $kaminari = $(data).find('.pagination');
     $('.job-posts').empty().html($jobs);
-    $('.sidebar-middle').empty().html($sidebar);
+    $('#roles-job-filter-form .sidebar-middle').empty().html($sidebar);
     $('.pagination').empty().html($kaminari);
   });
   

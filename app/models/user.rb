@@ -15,8 +15,9 @@ class User < ActiveRecord::Base
   
   serialize :job_settings, Hash
   serialize :company_settings, Hash
+  serialize :job_prefs, Hash
     
-  after_initialize :initialize_job_and_company_settings
+  after_initialize :initialize_settings
   store_accessor :job_filters, :keywords, :dept, :sub_dept, :experience
   
   belongs_to(
@@ -212,9 +213,10 @@ class User < ActiveRecord::Base
       self.session_token = SecureRandom.urlsafe_base64
     end
   
-     def initialize_job_and_company_settings
+     def initialize_settings
        self.job_settings ||= '{}'
        self.company_settings ||= '{}'
+       self.job_prefs ||= '{}'
     end
     
     def set_admin_to_false
