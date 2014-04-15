@@ -7,6 +7,8 @@ class ArticlesController < ApplicationController
     else
       @article.save(article_params)
     end
+    
+    redirect_to :back
   end
   
   def update
@@ -21,6 +23,12 @@ class ArticlesController < ApplicationController
         redirect_to investor_url(investor)
       end
     end
+  end
+  
+  def destroy
+    article = Article.find(params[:id])
+    article.destroy
+    redirect_to :back
   end
     
   #------------------------------------------------------------------------------

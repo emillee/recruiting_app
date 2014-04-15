@@ -7,6 +7,8 @@ Nytech::Application.routes.draw do
   resource :user_jobs, only: [:create, :destroy]
   resources :tags, only: [:index, :create, :destroy]
   resources :taggings, only: [:create, :destroy]
+  resources :articles, only: [:create, :destroy]
+  resources :user_articles, only: [:create, :destroy]
   resources :groups
   
   resources :users do 

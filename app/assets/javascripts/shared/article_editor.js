@@ -3,6 +3,20 @@ ready_editor = function() {
   if ( $('.companies').length > 0 || $('.investors').length > 0 || $('.users').length > 0 ) {
 
     initializeEditor();
+    
+    // CREATE A NEW ARTICLE
+    // $('#new-article').click(function() {
+    //   alert('hi')
+    //   var $id = $(this).data('id');
+    //   var $controller = $(this).data('controller');
+    //   var $model = $(this).data('model');
+    //   var this_url = "/" + $controller + "/" + $id + "/articles" 
+    //   
+    //   $.ajax({
+    //     type: 'POST',
+    //     url: this_url
+    //   })
+    // })
 
     // CONTENTEDITABLE FOR TITLE
     $('[contenteditable=true].title').blur(function() {
@@ -41,7 +55,6 @@ ready_editor = function() {
       var $table = $(this).parent('.content').data('table');
       var $article_id = $(this).parent('.content').data('articleid');
       
-
       if ($table === 'companies') {
         var $id = $(this).parent('.content').data('company-id');
       } else if ($table === 'investors') {
@@ -51,8 +64,6 @@ ready_editor = function() {
       }
       
       var this_url = '/' + $table + '/' + $id + '/articles/' + $article_id;
-
-
       var dataObject = {}
 
       dataObject['article'] = {};

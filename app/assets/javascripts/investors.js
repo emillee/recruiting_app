@@ -1,15 +1,6 @@
 ready_investors = function() {
   
   if ($('.investors').length > 0) {
-    $('#new-article').click(function() {
-      var $investor_id = $(this).data('investor-id');
-      var this_url = "/investors/" + $investor_id + "/articles" 
-      
-      $.ajax({
-        type: 'POST',
-        url: this_url
-      })
-    })
     
   }
   

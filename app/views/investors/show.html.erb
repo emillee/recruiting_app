@@ -6,11 +6,8 @@
 } %>
 
 <div class="profile-wrapper left group">
-	<!-- BUSINESS CARD -->
-	<div class="bcard-wrapper left">		
-		<%#= render 'users/cards/intro', locals: { user: @investor } %>
-	</div>
-
+	<%= render 'in_page_nav', locals: { investor: @investor } %>	
+	
 	<div class="profile-card-positions right group">		
 		<%= render 'investors/cards/logo', locals: { investor: @investor }%>
 		<%= render 'investors/cards/investor_stats', locals: { investor: @investor, this_table: this_table } %>
@@ -18,9 +15,6 @@
 	</div>	
 
 	<div class="section-wrap left">		
-		<div class="bcard-wrapper">
-			<%= render 'in_page_nav', locals: { investor: @investor } %>	
-		</div>
 		
 		<% if @investor.articles.any? %>
 			<% @investor.articles.each do |article| %>

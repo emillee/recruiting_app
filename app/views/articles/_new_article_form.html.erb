@@ -9,10 +9,12 @@
 <div 
 	class = "editor-class-wrapper content <%= section_class %> <%= object.respond_to?(:name) ? object.name : object.fname %>" 
 	data-<%= object.class %>-id = <%= object.id %> 
-	data-articleid = <%= article.id %>
-	data-table = <%= this_table %> >
-	
+	data-articleid=<%= article.id %>
+	data-table=<%= this_table %> >	
+
 	<%= render './shared/editor' %>
+
+	<%= link_to 'Delete Article', article_url(article), method: :delete, confirm: 'Sure?', class: 'delete-article-link' %>
 				
 	<% section_title = add_placeholders_if_nil('title', article.title) %>			
 	<div class="title" contenteditable="true" data-placeholder="Enter Title">

@@ -1,0 +1,47 @@
+<!-- USERS SIDEBAR -->
+<div class="sidebar-wrapper user">
+	
+	<!-- SEARCH KEYWORDS -->
+	<div class="search">
+		<div class="wrapper">
+			<input type="search" 
+						 name="user_search[keywords]" 
+						 placeholder="Enter keyword" id="sidebar-search">
+			<i class="fa fa-search"></i>
+		</div>
+	</div>
+	
+	<div class="sidebar-middle">
+		
+		<!-- KEYWORDS -->
+		<% if !locals[:keywords].nil? && !locals[:keywords].empty? %>
+			<div class="keywords-wrapper">
+				<h1 class="keywords">Search Words:</h1>
+				<ul class="job-filters keywords-ul">					
+					<li class="job-sidebar keywords-li selected">
+						<i class="fa fa-check"></i>
+					</li>
+				</ul>
+			</div>
+		<% end %>
+		
+		<div class="wrapper">
+			<h1>I'm looking for:</h1>
+			<ul class="job-filters">
+				<% Taxonomy.departments.each do |dept| %>
+					<% checked = is_setting_checked?('dept', dept) %>
+					<!-- add code if selected -->
+					<li class="job-sidebar department">
+						<i class="<%= icon_dept_match(dept) %> left"></i>
+						<%= label_tag dept %>
+						<%= check_box_tag "user_search[dept][]", dept, checked  %>
+						<i class="fa fa-angle-right"></i>
+						<i class="fa fa-times-circle"></i>								
+					</li>						
+				<% end %>
+			</ul>
+		</div>
+		
+	</div>
+	
+</div>

@@ -1,3 +1,5 @@
+<% user = locals[:user] %>
+
 <div class='in-page-navbar'>
 	<div class="investor-menu-items">
 		<ul>
@@ -8,7 +10,11 @@
 			<li>I'm Looking to Meet</li>
 			<li>My Skills</li>
 			<li>Bio</li>
-			<li id="new-article">New Article</li>
+			<li>
+				<% url = "/user_articles?user_id=" + user.id.to_s %>
+				<a href="<%= url %>" data-method="POST" id="new-user-article" >New Article</a>
+				<%#= link_to 'New Article', user_articles_url, method: :post, id: 'new-user-article' %>
+			</li>
 		</ul>
 	</div>
 </div>
