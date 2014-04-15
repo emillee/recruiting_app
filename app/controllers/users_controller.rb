@@ -99,7 +99,7 @@ class UsersController < ApplicationController
     elsif params[:user] && params[:user][:article_id]
       redirect_to user_url(@user)
     else
-			render :edit
+			redirect_to :back
 		end
 	end
 
@@ -149,7 +149,7 @@ class UsersController < ApplicationController
   	def user_params
   		params.require(:user).permit(
 		    :is_admin, :guest, :biography, :intro, :interested_in_meeting, :investor_company_id, :snapshots,
-  		  :email, :password, :password_digest, :avatar, :fname, :lname, :title, :location, :company_id,
+  		  :email, :password, :password_digest, :avatar, :fname, :lname, :title, :location, :company_id, :location_from,
   		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
   		  {job_prefs: { company_stage: [], salary_buckets: [], equity_buckets: [] }}  		
   		)

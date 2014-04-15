@@ -7,20 +7,20 @@
   <div class="info">
 		
 		<div class="full-name">	
-		  <h1 class="h1-fname"
+		  <h1 class="h1-fname users-editable"
 				contenteditable="<%= is_editable %>"
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-id=<%= current_user.id if current_user %> 
+				data-id=<%= user.id %> 
 				data-attribute='fname'>
 				<%= (user.fname.nil? || user.fname.empty?) ? 'First Name' : user.fname %>
 		  </h1>
 		
-		  <h1 class="h1-lname" 
+		  <h1 class="h1-lname users-editable" 
 				contenteditable="<%= is_editable %>"
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-id=<%= current_user.id if current_user %> 
+				data-id=<%= user.id %> 
 				data-attribute='lname'>
 				<%= (user.lname.nil? || user.lname.empty?) ? 'Last Name' : user.lname %>
 		  </h1>
@@ -29,10 +29,11 @@
 		<div class="bcard-title">
 			<h2>I'm a</h2>
 		  <h2 id="title"
+				class="users-editable"
 				contenteditable="<%= is_editable %>"
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-id=<%= current_user.id if current_user %> 
+				data-id=<%= user.id %> 
 				data-attribute='title'>
 		
 				<%= (user.title.nil? || user.title.empty?) ? 'Title' : user.title %>
@@ -49,10 +50,11 @@
 		<div class="bcard-location">
 			<h2>I work in </h2>
 		  <h2 id="location" 
+				class="users-editable"		
 				contenteditable="<%= is_editable %>"
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-id=<%= current_user.id if current_user %> 
+				data-id=<%= user.id %> 
 				data-attribute='location'>
 				<%= (user.location.nil? || user.location.empty?) ? 'Location' : user.location %>
 		  </h2>
@@ -60,15 +62,16 @@
 		
 
 		<div class="bcard-location-two">
-			<h2>I live near </h2>
-		  <h2 id="location-two" 
+			<h2>I'm from </h2>
+		  <h2 id="location-two"
+				class="users-editable"		 
 				contenteditable="<%= is_editable %>"
 				data-table="<%= this_table %>"
 				data-model="<%= this_model %>"
-				data-id=<%= current_user.id if current_user %> 
-				data-attribute='location'>
-				Columbus Circle
-		  </h2>
+				data-id=<%= user.id %> 
+				data-attribute='location_from'>
+				<%= (user.location_from.nil? || user.location_from.empty?) ? 'Location' : user.location_from %>		  
+			</h2>
 		</div>	
 
     <%#= link_to "Build Profile", edit_user_url(current_user), class: 'edit', data: { id: current_user.id } %>

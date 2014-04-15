@@ -2,8 +2,9 @@
 ready_users = function() {
 
   if ($('.users').length > 0) {
+    
     // --------------------------------------------------------------------------------------------------------------
-    // USERS SHOW
+    // DRAG AND DROP
     // --------------------------------------------------------------------------------------------------------------
     addDraggableEvents();
     addDroppableEvents();
@@ -39,26 +40,6 @@ ready_users = function() {
       $('#add-skill').removeClass('hidden');
       addDroppableEvents();
     })
-
-    $('#employer').on('click', function() {
-      var $user_id = $(this).data('id');
-      var $url = "/users/" + $user_id + "/edit"
-
-      $.ajax({
-        type: 'GET',
-        url: $url,
-        success: function(data) {
-          var $edit_data = $(data).filter(' .edit-business-card');
-          $('#employer').replaceWith($edit_data);
-          addAutocompleteFields();
-        }
-      })
-    })
-
-    function addAutocompleteFields() {
-      $('#user_company_id').tokenInput('/companies.json', { crossDomain: false, allowFreeTagging: true });
-      // $('#employer').tokenInput('/companies.json', { crossDomain: false, allowFreeTagging: true });
-    }
 
     // ADD DRAGABLE HANDLER
     function addDraggableEvents() {
@@ -117,6 +98,32 @@ ready_users = function() {
         }
       })
     }    
+
+
+    // --------------------------------------------------------------------------------------------------------------
+    // TOKENINPUT
+    // --------------------------------------------------------------------------------------------------------------
+
+    // ADD EDIT FIELD AFTER CLICKING ON EMPLOYER FIELD
+    $('#employer').on('click', function() {
+      var $user_id = $(this).data('id');
+      var $url = "/users/" + $user_id + "/edit"
+
+      $.ajax({
+        type: 'GET',
+        url: $url,
+        success: function(data) {
+          var $edit_data = $(data).filter(' .edit-business-card');
+          $('#employer').replaceWith($edit_data);
+          addAutocompleteFields();
+        }
+      })
+    })
+
+    function addAutocompleteFields() {
+      $('#user_company_id').tokenInput('/companies.json', { crossDomain: false, allowFreeTagging: true });
+      // $('#employer').tokenInput('/companies.json', { crossDomain: false, allowFreeTagging: true });
+    }
 
     // var $kaminari = $(data).find('.pagination');
     // $('.job-posts').empty().html($jobs);  
