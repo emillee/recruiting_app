@@ -75,6 +75,17 @@ class UsersController < ApplicationController
     # params[:user].delete(:article_id) if params[:user]
     @user.store_article_id_temporarily(article_id)    
 	  
+	  if params[:user] && params[:user][:job_prefs] && params[:user][:job_prefs][:salary_buckets]
+	    params[:user][:job_prefs][:salary_buckets].map! do |salary|
+	      salary.delete('$').delete(',').to_i
+      end
+    end
+    
+	  if params[:user] && params[:user][:job_prefs] && params[:user][:job_prefs][:equity_buckets]
+	    params[:user][:job_prefs][:equity_buckets].map! do |salary|
+	      salary.delete('%').to_i
+      end
+    end
 	  
 		if @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
@@ -136,9 +147,12 @@ class UsersController < ApplicationController
 
     # TODO: is it security risk for is_admin
   	def user_params
-  		params.require(:user).permit(:email, :password, :password_digest, :avatar, :fname, :lname, :title, :location, :company_id,
-  		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }}, :is_admin, :guest,
-  		  :biography, :intro, :interested_in_meeting, :investor_company_id, :snapshots)
+  		params.require(:user).permit(
+		    :is_admin, :guest, :biography, :intro, :interested_in_meeting, :investor_company_id, :snapshots,
+  		  :email, :password, :password_digest, :avatar, :fname, :lname, :title, :location, :company_id,
+  		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
+  		  {job_prefs: { company_stage: [], salary_buckets: [], equity_buckets: [] }}  		
+  		)
   	end
 	
 end

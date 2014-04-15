@@ -32,7 +32,7 @@
 				<h1>I'm looking for:</h1>
 				<ul class="job-filters">
 					<% Taxonomy.departments.each do |dept| %>
-						<% checked = dept_checked?(dept) %>
+						<% checked = is_setting_checked?('dept', dept) %>
 						<!-- add code if selected -->
 						<li class="job-sidebar department">
 							<i class="<%= icon_dept_match(dept) %> left"></i>
@@ -54,7 +54,7 @@
 				</h1>
 				<ul class="job-filters">
 					<% return_sub_depts.each do |sub| %>
-						<% checked = sub_dept_checked?(sub) %>
+						<% checked = is_setting_checked?('sub_dept', sub) %>
 						<% is_hidden = (current_user.job_settings[:dept] &&
 						 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
 						<li class="job-sidebar <%= checked ? 'selected' : is_hidden %>">
@@ -76,7 +76,7 @@
 				</h1>
 				<ul class="job-filters">
 					<% return_sub_depts.each do |sub| %>
-						<% checked = sub_dept_checked?(sub) %>
+						<% checked = is_setting_checked?('sub_dept', sub) %>
 						<% is_hidden = (current_user.job_settings[:dept] &&
 						 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
 						<li class="job-sidebar <%= checked ? 'selected' : is_hidden %>">

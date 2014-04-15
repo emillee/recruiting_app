@@ -33,56 +33,28 @@
   }
     
   .userindex-snapshot-wrapper {
-    height: 300px;
     width: 100%;
-    background-color: gray;
+    background-color: #f4f5f0;
     
     li {
       list-style: none;
+      border-bottom: 3px solid rgba(0,0,0,.25);
       
+      .company-business-card {
+        display: inline-block;
+      }
+
       div.business-card {
-        float: left;
+
       }
       
-      .interested_in_meeting {
-        background-color: white;
-        float: left;
-        height: 150px;
-        width: 500px; 
-        
-        h3 {
-          font-size: 20px;
-        }       
-        
-        p {
-          font-size: 18px;
-        }
-      }
-      
-      #intro {
-        float: left;
-        background-color: white;
-        height: 150px;
-        width: 765px;
-        
-        h3 {
-          display: none;
-        }
-        
-        p {
-          font-size: 18px;
-          line-height: 18px;
-        }
-      }
     }
   }
   
   .profile-card-positions {
-    height: 100%;
     display: inline-block;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: rgba(0,0,0,0);
     padding-bottom: 20px;    
     border-left: 1px solid rgba(255,255,255,.25);
     

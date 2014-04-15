@@ -8,6 +8,24 @@
   font-family: 'Neuton';
   padding: 5px;
   position: relative;
+  
+  form.edit_user {
+    position: absolute;
+    top: 2px;
+    left: 25px;
+        
+    input[type='file'] {
+      position: absolute;
+      top: 50px;
+      left: 150px;
+    }
+    input[type='submit'] {
+      border: none;
+      position: absolute;
+      top: 70px;
+      left: 145px;
+    }
+  }
 
   .info {
     background: #b3b3b1;
@@ -64,7 +82,18 @@
     
     .bcard-employer {
       left: 5px;
-      top: 61px;      
+      top: 61px;     
+
+      form.edit_user {
+        position: absolute;
+        top: 0px;
+        left: 25px;
+        background-color: yellow;
+
+        ul.token-input-list {
+          height: 20px;
+        }       
+      }     
     }
 
     .bcard-location, .bcard-location-two {

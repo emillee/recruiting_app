@@ -5,7 +5,22 @@ module Taxonomy
 	
 	def self.company_stages
 	  [
-	    'Startup Idea (Pre-Funded)',
+	    'Idea Phase',
+	    'Pre-Launch',
+	    'MVP (Live)',
+	    'Seed-Stage ($250K+)',
+	    'Series A ($1M+)',
+	    'Series B ($3-10M+)',
+	    'Series C ($10M+)',	    	    
+	    'Corporate'	    	    
+	  ]
+  end
+  
+	def self.salary_minimum
+	  [
+	    'Less than $50K',
+	    '$50-$75K',
+	    '$75-$100K',
 	    'Seed-Stage ($250K+)',
 	    'Series A ($1M+)',
 	    'Series B ($3-10M+)',

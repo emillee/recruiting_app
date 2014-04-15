@@ -67,6 +67,16 @@ ready = function() {
     };
   });
   
+  $('.bucket-input').keyup(function(event) {
+    if (event.keyCode == 13) {
+      $(this).parents('form:first').submit();
+    };
+  });
+  
+  $('.bucket-input').blur(function(event) {
+    $(this).parents('form:first').submit();
+  });
+  
   // DEPARTMENT FILTER - EXPAND / COLLAPSE
   $('.sidebar-middle').on('click', 'h1.department', function() {
     var thisObject = this;
@@ -87,6 +97,12 @@ ready = function() {
     var thisObject = this;
     toggleDropDown(thisObject);
   });
+  
+  // THIS DOESNT WORK, NEED TO ACCOMODATE INPUT ITEM
+  $('.sidebar-middle').on('click', 'h1.salary', function() {
+    var thisObject = this;
+    toggleDropDown(thisObject);
+  });  
       
   var toggleDropDown = function(thisObject) {
     var $ul = $(thisObject).closest('.wrapper').children('ul');

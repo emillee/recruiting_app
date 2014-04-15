@@ -143,6 +143,18 @@ div.sidebar-wrapper {
       line-height: 30px;
       color: rgba(121,121,121,1);
       text-transform: capitalize;
+      position: relative;
+      
+      // THIS IS FOR PREFERENCES
+      input[type='text'] {
+        background-color: rgba(240,240,240,.5);
+        border: none;
+        width: 60px;
+        position: absolute;
+        top: 8px;
+        right: 5px;
+        text-align: center;
+      }
 
       &:last-of-type {
         margin-bottom: 3px;

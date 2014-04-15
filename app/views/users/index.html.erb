@@ -6,8 +6,11 @@
 	<div class="userindex-snapshot-wrapper">
 		<% @users.each do |user| %>
 			<li>
+				<% if user.employer %>
+					<%= render './companies/cards/logo', locals: { company: user.employer, user: user }%>
+				<% end %>
 				<%= render 'users/cards/bcard', locals: { user: user }%>
-				<%= render 'user_articles', locals: { user: user, this_table: 'users' } %>
+				<%#= render 'user_articles', locals: { user: user, this_table: 'users' } %>
 				<%#= render 'users/cards/interested_in_meeting', locals: { user: user } %>
 				<%#= render 'users/cards/intro', locals: { user: user }%>
 			</li>

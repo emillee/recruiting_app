@@ -13,7 +13,7 @@
 	</div>
 
 	<div class="profile-card-positions right group">
-		<%= render './companies/cards/logo', locals: { company: @user.employer }%>
+		<%= render './companies/cards/logo', locals: { company: @user.employer, user: @user }%>
 		<%= render 'users/cards/bcard', locals: { user: @user, this_table: this_table } %>
 		<%= render 'users/cards/action_items', locals: { user: @user } %>
 	</div>	

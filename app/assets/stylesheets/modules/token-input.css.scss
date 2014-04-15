@@ -1,4 +1,48 @@
 // BLANK LIST
+//
+//form.edit_user {
+//  position: absolute;
+//  top: 2px;
+//  left: 25px;
+//
+//  ul.token-input-list {
+//    height: 15px;
+//    width: 125px;
+//    
+//    li {
+//      input {
+//        width: 115px;
+//      }
+//    }
+//  }
+//}
+
+// BUSINESS CARD IN USER#SHOW
+div.edit-business-card {
+  form {
+    ul.token-input-list {
+      width: 150px;
+      
+      li {
+        margin-top: 0;
+        padding: 0;
+        height: 20px;
+        p {
+          font-size: 14px;
+        }
+        span.token-input-delete-token {
+          position: absolute;
+          top: 0px;
+          right: -3 px;
+          background-color: rgba(0,0,0,0);
+          color: black;
+        }
+      }
+    }
+  }
+  
+}
+
 ul.token-input-list {
   overflow: hidden; 
 //  height: auto !important; 

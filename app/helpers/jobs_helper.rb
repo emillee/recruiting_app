@@ -22,8 +22,8 @@ module JobsHelper
   end
 
   def is_pref_checked?(this_attr, val)
-    return false if current_user.job_pref[this_attr].nil?
-    return true if current_user.job_pref[this_attr].include?(val.to_s)
+    return false if current_user.job_prefs[this_attr].nil?
+    return true if current_user.job_prefs[this_attr].include?(val.to_s)
     return false    
   end
   
