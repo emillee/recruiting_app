@@ -1,6 +1,20 @@
 module Taxonomy
   extend ActiveSupport::Concern
   
+  # TAGS
+	def self.categories_hash
+		{
+			"About Me" => ['Intro', 'Bio', "My Skills"],
+			"My Work" => ["A Day in the Life", "Ask Me Anything", "Prior Work", "Testimonials", "References"],
+			"News / Updates" => ["News", "Milestones", "Fundraisings", "Events"],
+			"Recruiting" => ["We're Hiring", "Available for hire", "Freelance", "Consulting", "Advisory", "Part-Time"],
+			"Let's Meet" => ["I'm looking to Meet...", "Coffee chat", "Happy hour", "Cofounder"],
+			"Referrals, Q&A" => ["Referral", "Q&A"],
+			"Random" => ["Random Musings"],
+		}
+	end
+  
+  
 	# SIDEBAR ---------------------------------------------------------------------------
 	
 	def self.company_stages

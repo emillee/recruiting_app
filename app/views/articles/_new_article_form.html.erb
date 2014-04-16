@@ -3,7 +3,7 @@
 <% this_table = locals[:this_table] %>
 
 <% if article.tags.any? %>
-	<% section_class = article.tags[0].tag_name.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
+	<% section_class = normalize_string(article.tags[0].tag_name) %>
 <% end %>
 
 <div 

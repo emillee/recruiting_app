@@ -34,6 +34,8 @@ class UsersController < ApplicationController
 	def show
     set_tab('users')  	  	  
 		@user = User.find(params[:id])
+		@articles = @user.articles.order('created_at DESC')
+		@recent_articles = @articles.limit(3)
 	end
 
 	def update

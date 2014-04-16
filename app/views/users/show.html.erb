@@ -8,7 +8,7 @@
 <div class="profile-wrapper left group">
 	<!-- BUSINESS CARD -->
 
-		<%= render 'in_page_nav', locals: { user: @user } %>	
+		<%= render 'in_page_nav', locals: { user: @user, recent_articles: @recent_articles } %>	
 		<%#= render 'users/cards/intro', locals: { user: @user } %>
 
 	<div class="profile-card-positions right group">
@@ -17,7 +17,7 @@
 		<%= render 'users/cards/action_items', locals: { user: @user } %>
 	</div>	
 
-	<%= render 'user_articles', locals: { user: @user, this_table: this_table } %>
+	<%= render 'user_articles', locals: { user: @user, this_table: this_table, articles: @articles } %>
 
 </div><!-- wrapper -->
 

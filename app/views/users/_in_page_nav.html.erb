@@ -1,15 +1,13 @@
 <% user = locals[:user] %>
+<% recent_articles = locals[:recent_articles] %>
 
 <div class='in-page-navbar'>
 	<div class="investor-menu-items">
 		<ul>
 			<li>Recent Posts:</li>
-			<li>About Me</li>
-			<li>Stuff I'm Working On</li>
-			<li>Need Help With</li>
-			<li>I'm Looking to Meet</li>
-			<li>My Skills</li>
-			<li>Bio</li>
+			<% recent_articles.each do |article| %>
+				<li><%= raw(article.title) %></li>
+			<% end %>
 			<li>
 				<% url = "/user_articles?user_id=" + user.id.to_s %>
 				<a href="<%= url %>" data-method="POST" id="new-user-article" >New Article</a>

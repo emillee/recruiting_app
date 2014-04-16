@@ -1,3 +1,5 @@
+<% user = locals[:user] %>
+
 <!-- USERS SIDEBAR -->
 <div class="sidebar-wrapper user">
 	
@@ -12,35 +14,36 @@
 	</div>
 	
 	<div class="sidebar-middle">
-		
+			
 		<!-- KEYWORDS -->
 		<% if !locals[:keywords].nil? && !locals[:keywords].empty? %>
-			<div class="keywords-wrapper">
-				<h1 class="keywords">Search Words:</h1>
-				<ul class="job-filters keywords-ul">					
-					<li class="job-sidebar keywords-li selected">
-						<i class="fa fa-check"></i>
-					</li>
+		
+		<% end %>
+		
+		<% counter = 0 %>
+		<% Taxonomy.categories_hash.each do |key_category, val_subcat_arr| %>
+			<div class="wrapper">
+				<% if counter == 0 %>
+					<h1 class="first-h1"><%= user.fname %>'s Articles</h1>
+					<% counter += 1 %>
+				<% end %>
+				<h1 class="user-profile-sidebar <%= normalize_string(key_category) %>">
+					<%= key_category %>
+					<i class="fa fa-caret-down hidden"></i>
+					<i class="fa fa-caret-right"></i>	
+				</h1>			
+				<ul class="job-filters">
+					<% val_subcat_arr.each do |subcat| %>
+						<li class="job-sidebar hidden">
+							<%= label_tag subcat %>
+							<%= check_box_tag "user_search[dept][]", subcat %>
+							<i class="fa fa-angle-right"></i>
+							<i class="fa fa-times-circle"></i>								
+						</li>						
+					<% end %>
 				</ul>
 			</div>
 		<% end %>
-		
-		<div class="wrapper">
-			<h1>I'm looking for:</h1>
-			<ul class="job-filters">
-				<% Taxonomy.departments.each do |dept| %>
-					<% checked = is_setting_checked?('dept', dept) %>
-					<!-- add code if selected -->
-					<li class="job-sidebar department">
-						<i class="<%= icon_dept_match(dept) %> left"></i>
-						<%= label_tag dept %>
-						<%= check_box_tag "user_search[dept][]", dept, checked  %>
-						<i class="fa fa-angle-right"></i>
-						<i class="fa fa-times-circle"></i>								
-					</li>						
-				<% end %>
-			</ul>
-		</div>
 		
 	</div>
 	

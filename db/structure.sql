@@ -53,7 +53,9 @@ CREATE TABLE articles (
     author_id integer,
     tag_id integer,
     company_id integer,
-    investor_id integer
+    investor_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -1010,3 +1012,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140411155841');
 INSERT INTO schema_migrations (version) VALUES ('20140414193009');
 
 INSERT INTO schema_migrations (version) VALUES ('20140415140728');
+
+INSERT INTO schema_migrations (version) VALUES ('20140415191625');

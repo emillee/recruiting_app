@@ -77,26 +77,13 @@ ready = function() {
     $(this).parents('form:first').submit();
   });
   
-  // DEPARTMENT FILTER - EXPAND / COLLAPSE
-  $('.sidebar-middle').on('click', 'h1.department', function() {
+  
+  // TOGGLE H1 IN SIDEBAR
+  $('.sidebar-middle').on('click', 'h1', function() {
     var thisObject = this;
     toggleDropDown(thisObject);
   });
 
-  $('.sidebar-middle').on('click', 'h1.sub_dept', function() {
-    var thisObject = this;
-    toggleDropDown(thisObject);
-  });
-    
-  $('.sidebar-middle').on('click', 'h1.experience', function() {
-    var thisObject = this;
-    toggleDropDown(thisObject);
-  });    
-
-  $('.sidebar-middle').on('click', 'h1.company-stage', function() {
-    var thisObject = this;
-    toggleDropDown(thisObject);
-  });
   
   // THIS DOESNT WORK, NEED TO ACCOMODATE INPUT ITEM
   $('.sidebar-middle').on('click', 'h1.salary', function() {

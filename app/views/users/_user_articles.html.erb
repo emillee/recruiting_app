@@ -1,4 +1,5 @@
 <% user = locals[:user] %>
+<% articles = locals[:articles] %>
 <% this_table = locals[:this_table] %>
 
 <div class="section-wrap left">		
@@ -15,13 +16,13 @@
     <%#= raw(biography) %>
   <!-- </div> --><!-- biography -->					
 	
-	<% if user.articles.any? %>
-		<% user.articles.each do |article| %>
+	<% if articles.any? %>
+		<% articles.each do |article| %>
 			<%= render './articles/new_article_form', locals: { object: user, article: article, this_table: this_table } %>
 		<% end %>
 	<% else %>
-		<% article = Article.create %>
-		<% user_article = UserArticle.create(user_id: user.id, article_id: article.id) %>
+		<% new_article = Article.create %>
+		<% user_article = UserArticle.create(user_id: user.id, article_id: new_article.id) %>
 		<%= render './articles/new_article_form', locals: { object: user, article: article, this_table: this_table } %>
 	<% end %>
 
