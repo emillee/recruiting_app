@@ -1,5 +1,9 @@
 module UsersHelper
   
+  def editable?(user)
+    (user == current_user || current_user.is_admin) ? "true" : "false"
+  end
+  
   # def add_placeholder_if_nil(attr, user)
   #   if user && user.public_send(attr)
   #     return user.public_send(attr)
@@ -20,8 +24,5 @@ module UsersHelper
   #             <p>Give me a shout if...</p>"
   #   end
   # end
-  
-  def editable?(user)
-    (user == current_user) ? "true" : ""
-  end
+
 end

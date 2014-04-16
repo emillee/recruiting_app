@@ -4,12 +4,12 @@ module Taxonomy
   # TAGS
 	def self.categories_hash
 		{
-			"About Me" => ['Intro', 'Bio', "My Skills"],
-			"My Work" => ["A Day in the Life", "Ask Me Anything", "Prior Work", "Testimonials", "References"],
+			"About Me" => ['Intro', 'Prior Employers', "My Skills"],
+			"My Work" => ["A Day in the Life", "Prior Work", "Testimonials / References"],
 			"News / Updates" => ["News", "Milestones", "Fundraisings", "Events"],
-			"Recruiting" => ["We're Hiring", "Available for hire", "Freelance", "Consulting", "Advisory", "Part-Time"],
+			"Recruiting" => ["I'm Looking to Hire", "I'm available for hire", "Freelance", "Consulting", "Advisory", "Part-Time"],
 			"Let's Meet" => ["I'm looking to Meet...", "Coffee chat", "Happy hour", "Cofounder"],
-			"Referrals, Q&A" => ["Referral", "Q&A"],
+			"Referrals, Q&A" => ["Referral", "Question", "Ask Me Anything"],
 			"Random" => ["Random Musings"],
 		}
 	end
@@ -22,11 +22,11 @@ module Taxonomy
 	    'Idea Phase',
 	    'Pre-Launch',
 	    'MVP (Live)',
-	    'Seed-Stage ($250K+)',
-	    'Series A ($1M+)',
-	    'Series B ($3-10M+)',
-	    'Series C ($10M+)',	    	    
-	    'Corporate'	    	    
+	    'Seed (~$250K)',
+	    'Traction ($1M+)',
+	    'Growth ($3-10M+)',
+	    'PM Fit ($10M+)',	    	    
+	    'Big Company'	    	    
 	  ]
   end
   

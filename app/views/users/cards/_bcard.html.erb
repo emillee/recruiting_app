@@ -13,7 +13,11 @@
 				data-model="<%= this_model %>"
 				data-id=<%= user.id %> 
 				data-attribute='fname'>
-				<%= (user.fname.nil? || user.fname.empty?) ? 'First Name' : user.fname %>
+				<% if action_name == 'show' %>
+					<%= (user.fname.nil? || user.fname.empty?) ? 'First Name' : user.fname %>
+				<% elsif action_name == 'index' %>
+					<%= link_to "#{user.fname}", user_url(user) %>
+				<% end %>
 		  </h1>
 		
 		  <h1 class="h1-lname users-editable" 
@@ -22,7 +26,11 @@
 				data-model="<%= this_model %>"
 				data-id=<%= user.id %> 
 				data-attribute='lname'>
-				<%= (user.lname.nil? || user.lname.empty?) ? 'Last Name' : user.lname %>
+				<% if action_name == 'show' %>
+					<%= (user.lname.nil? || user.lname.empty?) ? 'Last Name' : user.lname %>
+				<% elsif action_name == 'index' %>
+					<%= link_to "#{user.lname}", user_url(user) %>				
+				<% end %>					
 		  </h1>
 		</div>
 		
@@ -81,6 +89,10 @@
 		<%= image_tag user.avatar.url %>
 	<% else %>
 		<% if current_user %>
+			<span class="insert-image-span">
+				<i class="fa fa-picture-o"></i>
+				<!-- <span>Insert Image</span>	 -->
+			</span>		
 			<%= form_for user, url: user_url(user), html: { multipart: true} do |f| %>
 				<%= f.file_field :avatar %>
 				<%= f.submit %>

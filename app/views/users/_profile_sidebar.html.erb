@@ -24,7 +24,7 @@
 		<% Taxonomy.categories_hash.each do |key_category, val_subcat_arr| %>
 			<div class="wrapper">
 				<% if counter == 0 %>
-					<h1 class="first-h1"><%= user.fname %>'s Articles</h1>
+					<h1 class="first-h1"><%= user.fname %>'s Activity</h1>
 					<% counter += 1 %>
 				<% end %>
 				<h1 class="user-profile-sidebar <%= normalize_string(key_category) %>">
