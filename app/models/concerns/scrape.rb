@@ -11,9 +11,10 @@ module Scrape
   end
   
   def clean_extra_text_and_periods
-    index = self.full_text.index(self.title.downcase)
-    text = self.full_text[index..-1]
-    text = remove_consecutive_periods(text)
+    # index = self.full_text.index(self.title.downcase) || 0
+    # text = self.full_text[index..-1]
+    # text = remove_consecutive_periods(text)
+    text = remove_consecutive_periods(self.full_text)
     self.full_text = text
     self.save
   end
@@ -25,12 +26,12 @@ module Scrape
       doc.css('script').remove
       text = doc.at('body').inner_text
       text = text.gsub(/\n/, '.')
-      text = text.squish.downcase
+      text = text.squish
     end
     
     def remove_consecutive_periods(text)
       text = text.gsub!(/\.+/, '.')
-      text = text.gsub!(/\ \. /, '')
+      text = text.gsub!(/\ \./, '')
       text = text.gsub!(/\.+/, '.')
       text
     end

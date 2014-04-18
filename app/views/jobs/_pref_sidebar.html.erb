@@ -30,6 +30,7 @@
 					<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_prefs[:company_stage] %>"></i>
 				</h1>
 				<ul class="job-filters">
+					<% current_user.job_prefs['salary_buckets'] ||= [] %>
 					<% [:salary_min, :salary_target, :salary_high].each_with_index do |salary_lvl, idx| %>
 						
 						<!-- TURN OFF CLICK HANDLER -->
@@ -49,8 +50,8 @@
 					<i class="fa fa-caret-down <%= 'hidden' if current_user.job_prefs[:company_stage] %>"></i>
 					<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_prefs[:company_stage] %>"></i>
 				</h1>
-				<ul class="job-filters">
-					<% current_user.job_prefs[:equity_buckets] ||= [] %>
+				<ul class="job-filters">					
+					<% current_user.job_prefs['equity_buckets'] ||= [] %>
 					<% [:equity_min, :equity_target, :equity_high].each_with_index do |equity_lvl, idx| %>
 						
 						<!-- TURN OFF CLICK HANDLER -->

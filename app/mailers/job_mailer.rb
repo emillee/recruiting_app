@@ -10,7 +10,7 @@ class JobMailer < ActionMailer::Base
     @job = job
     @email_sender = email_sender
     
-    mail(to: @recipient_email, from: email_sender.email, subject: @email_subject)
+    mail(to: @recipient_email, from: email_sender, subject: @email_subject)
   end
   
 end

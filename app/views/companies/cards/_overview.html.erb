@@ -11,6 +11,6 @@
 		data-model="<%= this_model %>"
 		data-attribute="overview"
 		class="regular-type">
-		<%= company.overview %>
+		<%= (company.overview.nil? || company.overview.empty?) ? '-' : company.overview %>
 	</p>
 </div>

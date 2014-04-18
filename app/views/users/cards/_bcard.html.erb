@@ -50,7 +50,7 @@
 	
 		<div class="bcard-employer">
 			<h2>at </h2>
-			<h2 id="employer" data-id="<%= current_user.id if current_user %>">
+			<h2 id="employer" data-id="<%= user.id %>">
 				<%= (user.employer.nil? || user.employer.name.empty?) ? 'Placeholder' : user.employer.name %>
 			</h2>
 		</div>
@@ -87,18 +87,20 @@
 	
 	<% if user.avatar.exists? %>
 		<%= image_tag user.avatar.url %>
-	<% else %>
-		<% if current_user %>
-			<span class="insert-image-span">
-				<i class="fa fa-picture-o"></i>
-				<!-- <span>Insert Image</span>	 -->
-			</span>		
-			<%= form_for user, url: user_url(user), html: { multipart: true} do |f| %>
-				<%= f.file_field :avatar %>
-				<%= f.submit %>
-			<% end %>
-		<% end %>
 	<% end %>
+	<% if (current_user == user || current_user.is_admin) %>
+		<div class="uploader <%= 'hidden' if user.avatar.exists? %>">
+		<span class="insert-image-span">
+			<i class="fa fa-picture-o"></i>
+			<span>Insert Image</span>	
+		</span>		
+		<%= form_for user, url: user_url(user), html: { multipart: true} do |f| %>
+			<%= f.file_field :avatar %>
+			<%= f.submit %>
+		<% end %>
+		</div>
+	<% end %>
+
 </div>
 
 

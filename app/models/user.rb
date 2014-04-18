@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   # validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   
   before_save { self.email = self.email.downcase unless self.email.nil? }
+  before_save { self.job_settings.each { |key, val| val.map!(&:downcase) } }
   before_create :create_session_token
   
   after_create :set_admin_to_false

@@ -2,6 +2,26 @@ var ready;
 
 ready = function() {
 
+  // FOR USER PROFILE SIDEBAR
+  $('.sidebar-wrapper.profile-sidebar').on('click', 'h1', function() {
+    var $tag_id = $(this).data('tag-id');
+    var tag_class_id = ".tag-id-" + $tag_id;
+    $(tag_class_id).insertAfter('#top-id');
+  })
+  
+  $('.sidebar-wrapper.profile-sidebar').on('click', 'li', function() {
+    var $tag_id = $(this).data('tag-id');
+    var tag_class_id = ".tag-id-" + $tag_id;
+    $(tag_class_id).insertAfter('#top-id');
+  })
+  
+  // FOR INVESTORS PROFILE SIDEBAR
+  $('.sidebar-wrapper.user_profile').on('click', 'h1', function() {
+    var $tag_id = $(this).data('tag-id');
+    var tag_class_id = ".tag-id-" + $tag_id;
+    $(tag_class_id).insertAfter('#top-id');
+  })
+  
   // TOGGLE ROLES and REQS
   $('.roles').click(function() {
     $(this).addClass('selected');
@@ -145,7 +165,7 @@ ready = function() {
     var $kaminari = $(data).find('.pagination');
     $('.job-posts').empty().html($jobs);
     $('#roles-job-filter-form .sidebar-middle').empty().html($sidebar);
-    $('.pagination').empty().html($kaminari);
+    $('.kaminari-wrapper').empty().html($kaminari);
   });
   
   // REMOVE ALL FILTERS

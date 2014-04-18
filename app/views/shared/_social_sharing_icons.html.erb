@@ -31,9 +31,8 @@
 	</div>	
 	
 	<div class="add-tags-wrapper left">
-		
 		<div class="existing-tags group <%= article.tags.any? ? '' : 'hidden' %>">
-			<ul class="article-tags">
+			<ul class="article-tags-<%= article.id %> article-tags">
 				<h2 class="left">Tags:</h1>
 				<% article.tags.each do |tag| %>
 					<li class=" existing-tag-li left" data-id="<%= find_tagging_id(article, tag) %>">
@@ -45,23 +44,14 @@
 		</div>
 		
 		<% @tagging = Tagging.new %>
-		<%= form_for @tagging, url: taggings_url, html: { multipart: true }, remote: true do |f| %>
+		<%= form_for @tagging, url: taggings_url, html: { multipart: true, 'data-article-id' => "#{article.id}" }, remote: true do |f| %>
 		
 			<% empty_arr = [] %>
 			<% empty_arr << @tagging.tag.attributes unless @tagging.tag.nil? %>
 			<%= f.hidden_field :article_id, value: article.id %>
-			<%= f.text_field :tag_id, placeholder: '+Add Tag', 'data-pre' => empty_arr.to_json %>
+			<%= f.text_field :tag_id, placeholder: '+Add Tag', class: 'add-tag', 'data-pre' => empty_arr.to_json %>
 			<%= f.submit 'New Tagging' %>
 		<% end %>
-		
-		<!-- <div class="edit-business-card">
-			<%#= form_for @user, url: user_url(@user), html: { multipart: true } do |f| %>
-				<%# empty_arr = [] %>
-				<%# empty_arr << @user.employer.attributes unless @user.employer.nil? %>
-				<%#= f.text_field :company_id, placeholder: 'Enter Company Name', 'data-pre' => empty_arr.to_json %>
-				<%#= f.submit "Submit" %>
-			<%# end %>
-		</div> -->		
 	</div>	
 
 </div>		

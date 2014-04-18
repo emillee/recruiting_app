@@ -1,4 +1,14 @@
 // USER BUSINESS CARD
+.bcard-employer {
+  .edit-business-card {
+    form.edit_user {
+      input[type='submit'] {
+        display: block;
+      }    
+    }
+  }  
+}
+
 .business-card {
   box-shadow: 0px 1px 2px #888888;
   height: 140px;
@@ -15,15 +25,20 @@
     left: 25px;
         
     input[type='file'] {
+      display: none;
       position: absolute;
       top: 50px;
       left: 150px;
     }
     input[type='submit'] {
+      display: none;
       border: none;
       position: absolute;
-      top: 70px;
-      left: 145px;
+      top: 0px;
+      left: 125px;
+      height: 22px;
+      background-color: #27ae60;
+      color: white;
     }
   }
 

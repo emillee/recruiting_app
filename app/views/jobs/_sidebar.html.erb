@@ -49,14 +49,15 @@
 					<!-- DEPARTMENT -->
 					<div class="wrapper">
 						<h1 class="department">
-							Department:
+							I'm a:
 							<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:dept] %>"></i>
 							<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:dept] %>"></i>
 						</h1>
 						<ul class="job-filters">
 							<% Taxonomy.departments.each do |dept| %>
+								<% dept = dept.downcase %>
 								<% checked = is_setting_checked?('dept', dept) %>
-								<li class="job-sidebar department <%= sel_or_hide(dept) %>">
+								<li class="job-sidebar department <%= sel_or_hide(dept.downcase) %>">
 									<i class="<%= icon_dept_match(dept) %> left"></i>
 									<%= label_tag dept %>
 									<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
@@ -70,12 +71,13 @@
 					<!-- SUB DEPT -->	
 					<div class="wrapper">
 						<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
-							Role:
+							Specializing in:
 							<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:sub_dept] %>"></i>
 							<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:sub_dept] %>"></i>
 						</h1>
 						<ul class="job-filters">
 							<% return_sub_depts.each do |sub| %>
+								<% sub = sub.downcase %>
 								<% checked = is_setting_checked?('sub_dept', sub) %>
 								<% is_hidden = (current_user.job_settings[:dept] &&
 								 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
@@ -93,7 +95,7 @@
 					<% if current_user.job_settings[:dept] %>
 						<div class="wrapper">
 							<h1 class="experience">
-								Experience (Yrs):
+								My experience level:
 								<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:years_exp] %>"></i>
 								<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:years_exp] %>"></i>
 							</h1>
@@ -117,7 +119,7 @@
 					<% if current_user.job_settings[:sub_dept] %>
 						<div class="wrapper">
 							<h1 class="key-skills">
-								Key Skills:
+								and key Skills:
 								<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:key_skills] %>"></i>
 								<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:key_skills] %>"></i>
 							</h1>

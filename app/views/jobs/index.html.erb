@@ -8,7 +8,7 @@
 		<% @jobs.each do |job| %>		
 
 			<% if current_user %>
-				<% next if current_user.removed_jobs.include?(job) %>
+				<% next if current_user.removed_jobs.include?(job) && @filter != 'removed' %>
 			<% end %>	
 
 			<li>			

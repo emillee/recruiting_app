@@ -1,15 +1,24 @@
+
+
 <% investor = locals[:investor] %>
 
-<div class="company-business-card left">
-	<% if !investor.nil? && investor.logo.exists? %>
-		<%= image_tag investor.logo.url %>
-	<% else %>
-		<% if (current_user && !current_user.vc_employer.nil? && current_user.vc_employer == investor) || 
-				current_user.is_admin? %>
+<div class="company-business-card">
+	<div class="uploader-logo <%= 'hidden' if investor.logo.exists? %>">
+		<%# if company && (user == current_user || current_user.is_admin) %>
+		
 			<%= form_for investor, url: investor_url(investor), html: { multipart: true } do |f| %>
+				<span class="insert-image-span">
+					<span>Insert Logo</span>	
+					<i class="fa fa-picture-o"></i>
+				</span>		
 				<%= f.file_field :logo %>
 				<%= f.submit %>
 			<% end %>
-		<% end %>
+		<%# end %>
+	</div>
+		
+	<% if !investor.nil? && investor.logo.exists? %>
+		<%= image_tag investor.logo.url %>
 	<% end %>
+
 </div>

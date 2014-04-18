@@ -1,6 +1,6 @@
 ready_image_upload = function() {   
 
-  if ( $('.companies').length > 0 || $('.investors').length > 0 || $('.users').length > 0  )  { 
+  if ( $('.companies').length > 0 || $('.investors').length > 0 || $('.users').length > 0 || $('.jobs').length > 0  )  { 
 
     // INPUT A PICTURE
     $('.insert-image-span').on('click', function() {
@@ -9,8 +9,15 @@ ready_image_upload = function() {
         $(this).parents('form:first').submit();
       });    
     });       
-  }  
-  
+    
+    $('.insert-image-span').on('click', function() {
+      $(this).parents('.uploader-logo').find("input[type='file']").click();
+      $(this).parents('.uploader-logo').find("input[type='file']").change(function() {
+        $(this).parents('form:first').submit();
+      });    
+    });
+    
+  }    
 }
 
 $(document).ready(ready_image_upload);

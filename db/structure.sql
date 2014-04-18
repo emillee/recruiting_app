@@ -211,7 +211,8 @@ CREATE TABLE investors (
     snapshots_file_name character varying(255),
     snapshots_content_type character varying(255),
     snapshots_file_size integer,
-    snapshots_updated_at timestamp without time zone
+    snapshots_updated_at timestamp without time zone,
+    about text
 );
 
 
@@ -1014,3 +1015,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140414193009');
 INSERT INTO schema_migrations (version) VALUES ('20140415140728');
 
 INSERT INTO schema_migrations (version) VALUES ('20140415191625');
+
+INSERT INTO schema_migrations (version) VALUES ('20140417162355');

@@ -1,13 +1,38 @@
 div.forward-form {
-  background-color: rgba(0,0,0,.25);
+  background-color: rgba(0,0,0,.5);
   padding: 5px 0px 6px 10px;
+  position: absolute;
+  top: 150px;
+  left: 250px;
+  width: 372px;
+  height: 150px;
+  z-index: 9999;  
   
-  #email_info_email {
-    width: 150px;
+  i.fa-times-circle {
+    position: absolute;
+    right: 11px;
+    top: 11px;
+    background-color: #34495e;
+    color: white;
+    line-height: 25px;
+    width: 23px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  #email_info_sender_email, #email_info_recipient_email {
+    line-height: 15px;
+    margin-top: 5px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    width: 155px;
+    padding: 5px;
   }
   
   #email_info_subject {
-    width: 400px;
+    padding: 5px;
+    width: 349px;
+    height: 73px;
   }
   
   input {
@@ -17,14 +42,16 @@ div.forward-form {
   
   input[type='submit'] {
     height: 20px;
-    width: 40px;
-    border: 3px solid #c0392b;
     color: white;
-    background-color: rgba(192,57,43,.75);
+    background-color: rgba(192,57,43,1);
+    position: absolute;
+    left: 11px;
+    bottom: 10px;
+    width: 362px;    
     
     &:hover {
-      background-color: white;
-      color: rgba(192,57,43,.75);          
+      background-color: rgba(192,57,43,.75);
+      color: white;
     }
   }
 }

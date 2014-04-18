@@ -14,9 +14,7 @@ ready_companies = function() {
       var $section = $(this).data('section');
       $('.' + $section + '.' + $company).insertAfter('div#' + $company + '-top-id');
     });
-      
-    // $('.best_in_place').best_in_place();
-
+    
   }
 }
 $(document).ready(ready_companies);

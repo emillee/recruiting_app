@@ -56,6 +56,7 @@ class InvestorsController < ApplicationController
   private 
   
     def investor_params
-      params.require(:investor).permit(:name, :snapshots, :article_id, :neighborhood, :logo, stage:[], check_size:[])
+      params.require(:investor).permit(:name, :snapshots, :article_id, :neighborhood, :logo,
+        :about, stage:[], check_size:[])
     end
 end

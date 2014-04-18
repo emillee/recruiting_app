@@ -4,13 +4,13 @@ module Taxonomy
   # TAGS
 	def self.categories_hash
 		{
-			"About Me" => ['Intro', 'Prior Employers', "My Skills"],
-			"My Work" => ["A Day in the Life", "Prior Work", "Testimonials / References"],
-			"News / Updates" => ["News", "Milestones", "Fundraisings", "Events"],
-			"Recruiting" => ["I'm Looking to Hire", "I'm available for hire", "Freelance", "Consulting", "Advisory", "Part-Time"],
-			"Let's Meet" => ["I'm looking to Meet...", "Coffee chat", "Happy hour", "Cofounder"],
-			"Referrals, Q&A" => ["Referral", "Question", "Ask Me Anything"],
-			"Random" => ["Random Musings"],
+			"Recent Activity" => ["A Day in the Life", "Stuff I'm Working On"],
+			"News / Updates" => ["News", "Milestones", "Fundraisings"],
+			"Recruiting" => ["I'm Looking to Hire", "I'm available for hire", "Freelance", "Consulting", "Part-Time"],
+			"Referrals, Q&A" => ["Seeking Referral", "Providing Referral", "I Have a Question", "Ask Me Anything"],
+			"Random" => ["Random Musings", "Foosball", "Beer"],
+			"Let's Meet" => ["I'm looking to Meet...", "Coffee chat", "Happy hour", "Cofounder", "Advisory"],
+			"About Me" => ['Intro', 'Prior Employers', "My Skills", "Prior Work", "References"],
 		}
 	end
   
@@ -19,14 +19,12 @@ module Taxonomy
 	
 	def self.company_stages
 	  [
-	    'Idea Phase',
-	    'Pre-Launch',
-	    'MVP (Live)',
+	    'Pre-Seed',
 	    'Seed (~$250K)',
 	    'Traction ($1M+)',
 	    'Growth ($3-10M+)',
-	    'PM Fit ($10M+)',	    	    
-	    'Big Company'	    	    
+	    'Crushing It ($10M+)',	    	    
+	    'Big Company (IPO??)'	    	    
 	  ]
   end
   
@@ -49,9 +47,9 @@ module Taxonomy
 			['Entry (0-1)', 1], 
 			['Junior (1-2)', 2], 
 			['Mid (2-3)', 3], 
-			['Experienced (3-5+)', 5], 
-			['Veteran (5+)', 8],
-			['Exec (10+)', 10]
+			['Senior / Lead (3-4+)', 4], 
+			['VP, Director (4-6+)', 6],
+			['CTO (7+)', 7]
 		] 
 	end   
 	
@@ -85,11 +83,11 @@ module Taxonomy
   
   def self.departments
     [
-      'Bus. Development',
-      'Design',
-      'Engineering',
-      'Prod. Management',
-      'Sales'
+      # 'Bus. Development',
+      'Designer',
+      'Engineer',
+      # 'Prod. Management',
+      # 'Sales'
       # 'Administrative',
       # 'Finance, Accting',
       # 'Human Resources',

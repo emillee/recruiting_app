@@ -2,19 +2,22 @@ module JobsHelper
   
   def icon_dept_match(dept)
     case dept
-    when 'Bus. Development'
+    when 'bus. development'
       return 'fa fa-briefcase'
-    when 'Engineering'
+    when 'engineer'
       return 'fa fa-code'
-    when 'Design'
+    when 'designer'
       return 'fa fa-desktop'
-    when 'Sales'
+    when 'sales'
       return 'fa fa-bar-chart-o'
-    when 'Prod. Management'
+    when 'prod. management'
       return 'fa fa-lightbulb-o'
     end      
   end
   
+  def is_attr_checked?(obj, this_attr, val)
+    obj.public_send(this_attr).include?(val)
+  end
   def is_setting_checked?(this_attr, val)
     return false if current_user.job_settings[this_attr].nil?
     return true if current_user.job_settings[this_attr].include?(val.to_s)
@@ -64,7 +67,14 @@ module JobsHelper
   
   def already_applied?(job)
     return true if current_user && current_user.jobs_applied.include?(job)
+    return false
   end
+
+  def already_removed?(job)
+    return true if current_user && current_user.removed_jobs.include?(job)
+    return false
+  end
+
   
   def description_snippet(job)
     if job.description

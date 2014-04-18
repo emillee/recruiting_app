@@ -6,6 +6,13 @@ module ApplicationHelper
     new_str = str.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-')
     return new_str
   end
+
+  def insert_tag_ids(article)
+    return_arr = article.tags.map do |tag|
+      "tag-id-#{tag.id}"
+    end
+    return_arr.join(' ')
+  end
   
   def add_placeholders_if_nil(section, text)
     return text unless text.nil? || text.empty?

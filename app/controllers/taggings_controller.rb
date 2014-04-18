@@ -9,6 +9,7 @@ class TaggingsController < ApplicationController
     session[:return_to] ||= request.referer
     
     if params[:tagging][:tag_id].to_i == 0
+      return if params[:tagging][:tag_id].squish == ""
       tag = Tag.where('tag_name = ?', params[:tagging][:tag_id].downcase.squeeze(' '))
       if tag && !@article.tags.include?(tag)
         tag = Tag.create(tag_name: params[:tagging][:tag_id].squeeze(' '))

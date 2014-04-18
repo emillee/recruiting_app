@@ -7,16 +7,11 @@
 		<%= render 'shared/flash' %>		
 		
 		<span class="social"> 1. Sign up via social: 
-				<%= link_to "", "/auth/facebook", class: "fa fa-facebook-square" %>
-				<%= link_to "", "/auth/twitter", class: "fa fa-twitter-square" %>
-				<%= link_to "", "/auth/google_oauth2", class: "fa fa-google-plus-square" %>
-				<%= link_to "", "#", class: "fa fa-github-square" %>
-				<%= link_to "", "#k", class: "fa fa-linkedin-square" %>
-				<!-- <i class="fa fa-facebook-square"></i> -->																
-				<!-- <i class="fa fa-twitter-square"></i>
-				<i class="fa fa-google-plus-square"></i>
-				<i class="fa fa-github-square"></i>				
-				<i class="fa fa-linkedin-square"></i>						 -->
+			<%= link_to "", "/auth/facebook", class: "fa fa-facebook-square" %>
+			<%= link_to "", "/auth/twitter", class: "fa fa-twitter-square" %>
+			<%= link_to "", "/auth/google_oauth2", class: "fa fa-google-plus-square" %>
+			<%= link_to "", "#", class: "fa fa-github-square" %>
+			<%= link_to "", "#", class: "fa fa-linkedin-square" %>
 		</span>
 		
 		<div class="login-wrap">
@@ -29,8 +24,6 @@
 			
 			<%= f.submit "Submit" %>
 		</div>
-		
-		<%#= f.file_field :avatar %>
 
 	<% end %>
 </div>

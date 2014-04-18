@@ -6,21 +6,76 @@
 ready_jobs = function() {
   if ($('.jobs').length > 0) {
   
+    // ADD SELECTED CLASS TO JOBNAV
+    $('.job-nav-item').on('click', function(e) {
+      e.preventDefault();
+      addModalToBody();
+      $(this).addClass('selected');
+      $(this).css('z-index', '2');
+      var $filter = $(this).data('filter');
+      var $url = "/jobs/?" + "filter=" + $filter;
+      
+      $.ajax({
+        type: 'GET',
+        url: $url,
+        success: function(data) {
+          var $filtered_jobs = $(data).find(' .job-posts > li');
+          var $new_kaminari = $(data).find(' .kaminari-wrapper');
+          $('ul.job-posts').empty().html($filtered_jobs);
+          $('.kaminari-wrapper').empty().html($new_kaminari);
+          $('.job-posts > li').css('z-index', '2');
+          $('.kaminari-wrapper').css('z-index', '2');
+          $('.job-nav.fa-times-circle').css('z-index', '2');
+          $('.job-nav.fa-times-circle').show();
+        }
+      })
+    });
+    
     // EMAIL / FORWARD A JOB POST
     $('ul.job-posts').on('click', '.forward', function(event) {
       $.ajaxSetup({ cache: false });
     
-      $(this).closest('li').css('border-bottom', 'none');
       var job_id = $(this).data('id');
       var form_url = '/jobs/' + job_id + '/forward_form';
       var div_append_id = '#div-append-' + job_id;
 
       $(div_append_id).load(form_url + ' .forward-form', function() {
+        var $top = $(window).scrollTop() + 150 + 'px';
+        $('.forward-form').css('top', $top);
         $('#email_info_email').focus();
+        setUpBlurHandlers();
+        addModalToBody();
       })
-      console.log('in forward click')
+      
       event.preventDefault();     
     });
+    
+    function setUpBlurHandlers() {
+      $('i.fa-times-circle').on('click', function() {
+        undoModal();
+      });
+      
+      setUpPropagators();
+      
+      $(document).click(function() {
+        undoModal();
+      });
+    };
+    
+    function setUpPropagators() {
+      $('.forward-form').children().click(function(e) {
+        e.stopPropagation();
+      })
+    };
+    
+    function undoModal() {
+      $('.forward-form').hide();
+      $('body').children('.modal-background').remove();
+    };
+    
+    function addModalToBody() {
+      $('body').append('<div class="modal-background"></div>');      
+    };    
   
     // SAVING AND APPLYING TO JOBS
     $('ul.job-posts').on('click', '.save', function(event) {
@@ -47,11 +102,10 @@ ready_jobs = function() {
       $(this).parents('li').remove();
     });
     
+    // EDIT COMPANY OVERVIEW IN PLACE
     $('[contenteditable=true].jobs-index-company-overview').blur(function() {
       var $company_id = $(this).data('company-id');
-      console.log($company_id)
       var $data = $(this).text();
-      console.log($data)
       var $url = '/companies/' + $company_id
 
       var dataObject = {}

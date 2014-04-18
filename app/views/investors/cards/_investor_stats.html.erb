@@ -7,10 +7,18 @@
   <div class="info">	
 		<div class="investor-stat-summary">
 			
-			<h1 id="stats">About StartUp Academy</h1>
+			<h1 id="stats">About</h1>
 			
 			<p id="stats-p">
-				As part of Bain Capital Venture's StartUp Academy, students and individuals join a full-time or intern level position at a Bain Capital Ventures portfolio company.	
+			  <span class='investors-editable'
+					contenteditable="<%= is_editable %>"
+					data-table="<%= this_table %>"
+					data-model="<%= this_model %>"
+					data-id=<%= investor.id %> 
+					data-attribute='about'>
+					<%= (investor.about.nil? || investor.about.empty?) ? '-' : investor.about %>
+			  </span>				
+				<!-- As part of Bain Capital Venture's StartUp Academy, students and individuals join a full-time or intern level position at a Bain Capital Ventures portfolio company.	 -->
 			</p>
 		
 			<!-- <h2>

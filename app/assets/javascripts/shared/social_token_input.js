@@ -5,18 +5,34 @@ ready_social = function() {
     makeWidgetsInvisble();
     setUpTagDeleteHandler();
     
-    $('#tagging_tag_id').click(function() {
-      setUpTokenInput(); 
-    });
-    
-    
-    $('form#new_tagging').on('ajax:success', function(event, data) {
-      $('.existing-tags').removeClass('hidden');
-      var $newData = $(data).find('.article-tags');
-      $('ul.article-tags').empty().html($newData);
+    // UPDATE TAG LIST ON AJAX SUCCESS
+    $('form.new_tagging').on('ajax:success', function(event, data) {
+      var $article_id = $(this).data('article-id');
+      var $ul_selector = ".article-tags-" + $article_id;
+      var $newData = $(data).find($ul_selector);
+
+      $('.existing-tags').removeClass('hidden');      
+      $($ul_selector).empty().html($newData);
       setUpTagDeleteHandler();
     });
     
+    // IMPLEMENT TOKENINPUT ON CLICK
+    $('.add-tag').click(function() {
+      var thisObj = this;
+      setUpTokenInput(thisObj); 
+    });    
+    
+    function setUpTokenInput(thisObj) {
+      $(thisObj).tokenInput('/tags.json', { 
+        crossDomain: false, 
+        allowFreeTagging: true,
+        propertyToSearch: 'tag_name', 
+        onAdd: submitTokenInputForm,
+        onReady: focusTokenInputCursor,
+        preventDuplicates: true } 
+      );      
+    };
+
     // GET HELP FROM BACKNOL ON THIS
     function setUpTagDeleteHandler() {
       $('.existing-tag-li').click(function(event) {
@@ -27,26 +43,14 @@ ready_social = function() {
         $.ajax({
           url: '/taggings/' + $tagging_id,
           type: 'DELETE'
-        })
-      })      
-    }
-    
-    
-    function setUpTokenInput() {
-      $('#tagging_tag_id').tokenInput('/tags.json', { 
-        crossDomain: false, 
-        allowFreeTagging: true,
-        propertyToSearch: 'tag_name', 
-        onAdd: submitTokenInputForm,
-        onReady: focusTokenInputCursor,
-        preventDuplicates: true } 
-      );      
+        });
+      })   ;   
     };
     
     function focusTokenInputCursor() {
       $('#token-input-tagging_tag_id').on('focus', function() {
         setUpBlurHandler()
-      })      
+      });    
       $('#token-input-tagging_tag_id').focus();
     };
     

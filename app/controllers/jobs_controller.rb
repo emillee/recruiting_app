@@ -6,9 +6,21 @@ class JobsController < ApplicationController
   
   def index
     set_tab('jobs')        
-    if current_user && !current_user.job_settings.blank?
-      @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(10).order('years_exp DESC')
+    
+    if params[:filter] && current_user
       @filter = params[:filter]
+      case params[:filter]
+      when 'applied'
+        @jobs = current_user.jobs_applied.page(params[:page]).per(10).order('years_exp DESC')
+      when 'interested'
+        @jobs = current_user.saved_jobs.page(params[:page]).per(10).order('years_exp DESC')
+      when 'removed'
+        @jobs = current_user.removed_jobs.page(params[:page]).per(10).order('years_exp DESC')
+      else
+        @jobs = Job.all.page(params[:page]).per(10).order('years_exp DESC')
+      end
+    elsif current_user && !current_user.job_settings.blank?
+      @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(10).order('years_exp DESC')
     else
       @jobs = Job.all.page(params[:page]).per(10)
       respond_to do |format|
@@ -73,16 +85,16 @@ class JobsController < ApplicationController
   end
 
   def forward_job 
-    recipient_email = params[:email_info][:email]
+    sender_email = params[:email_info][:sender_email]
+    recipient_email = params[:email_info][:recipient_email]
     email_subject = params[:email_info][:subject]
     job = Job.find(params[:job_id])
-    email_sender = current_user
     
     if JobMailer.forward_job(
       recipient_email,
       email_subject,
       job,
-      email_sender
+      sender_email
       ).deliver
       flash[:notice] = "Forwarded successfully"
     else
