@@ -25,9 +25,9 @@
 			
 			<br>
 		
-			<% @uniq_names = @jobs.map { |job| job.listing_company.name }.uniq! %>
-			<% @uniq_names.each do |name| %>
-				<img src='<%= asset_path("/asset_pathase}" + ".jpeg") %>' />		
+			<% companies = @jobs.map(&:listing_company) %>
+			<% companies.uniq.each do |company| %>
+				<%= image_tag company.logo.url %>
 			<% end %>
 		</div><!-- job-match-wrap -->
 	</div><!-- preview-section -->

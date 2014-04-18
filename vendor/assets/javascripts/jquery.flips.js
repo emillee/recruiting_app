@@ -23,7 +23,7 @@
 (function( window, undefined ) {
 
   // EDITED HERE AND SUBTRACTED FROM WIDTH BELOW
-  var f_sidebar_length = 200;
+  var f_sidebar_length = 215;
   
   // set this.$el to #flip, call _init function
   // $.function is just a way of something call this when the DOM is loaded
