@@ -2,8 +2,13 @@
 <% job = locals[:job] %>
 <% this_table = 'jobs' %>
 <% this_model = this_table.singularize %>
-<% is_editable = current_user.is_admin %>
 
+<% if current_user && current_user.is_admin %>
+	<% is_editable = 'true' %>
+<% else %>
+	<% is_editable = 'false' %>
+<% end %>	
+	
 <div class="job-description-wrapper left">	
 
 	<a href="<%= job.link %>" target="_blank">
