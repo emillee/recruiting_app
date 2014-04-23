@@ -5,13 +5,14 @@
 //= require jquery.ui.autocomplete
 //= require jquery.purr
 //= require jquery.tokeninput
-//= require best_in_place
 //= require editor
 //= require sidebar
+//= require navbar
 //= require jobs
 //= require users
 //= require groups
 //= require companies
 //= require investors
+//= require underscore
 //= require_tree ./shared
 

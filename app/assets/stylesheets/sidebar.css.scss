@@ -34,7 +34,7 @@ div.sidebar-wrapper {
       }
       
       &.selected {
-        background-color: rgba(192, 57, 43,1);
+        background-color: rgba(192,57,43,1);
       }
     }
   }
@@ -175,9 +175,11 @@ div.sidebar-wrapper {
       }     
       
       &:hover {
+        background-color: rgba(46, 204, 113, .25);
+        
         i.fa-angle-right {
           display: inline-block;
-          color: rgba(46, 204, 113, 1); 
+          color: rgba(46, 204, 113, .5); 
           font-size: 15px;
         }        
       }
@@ -197,6 +199,8 @@ div.sidebar-wrapper {
         }
         
         &:hover {
+          background-color: rgba(50,50,50,.05);
+                  
           i.fa-angle-right {
             display: none;
           }

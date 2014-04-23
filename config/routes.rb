@@ -22,6 +22,7 @@ Nytech::Application.routes.draw do
   end    
     
   resources :companies, only: [:index, :new, :update, :show, :destroy] do
+    member { get :next }
     member { put :add_section }
     member { post :delete_snapshot }
     collection { get :autocomplete_fields }

@@ -11,7 +11,7 @@ class CompaniesController < ApplicationController
     params[:company_search] ||= {}
     
     if params[:company_search].empty?
-      params[:company_search]['is_hiring'] = ['is_hiring']
+      # params[:company_search]['is_hiring'] = ['is_hiring']
        @scopes_checked = params[:company_search]
     else 
       @scopes_checked = params[:company_search]
@@ -50,6 +50,7 @@ class CompaniesController < ApplicationController
   def show
     set_tab('companies') 
     @company = Company.find(params[:id])
+    @company = @company.next if params[:next]    
     @job = @company.job_listings.build
   end
   

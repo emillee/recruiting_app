@@ -1,3 +1,6 @@
+<!-- NOTE: or operator goes left to right, job skills takes precedence over company skills -->
+<% object = locals[:user] || locals[:job] || locals[:company] %>
+
 <% if current_user %>
 	<div class="hidden box-of-logos is-droppable">
 		<ul class="box-of-logos-ul">

@@ -1,20 +1,25 @@
-<% user = locals[:user] %>
+<% object = locals[:user] || locals[:job] || locals[:company] %>
 
 <div class='droppable-wrapper'>
 	<div class="skill-dropzone">
+		<% if current_user %>
+			<%= link_to 'Add Skills', '#', id: 'edit-skills' %>
+			<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden' %>
+		<% end %>
+
 		<ul class="skills-ul">
-			<% user.user_skills.sort.each do |user_skill| %>
+			<% object.user_skills.sort.each do |user_skill| %>
 				<li class="user-skills" data-userskill="<%= user_skill.id %>">
 					<%= insert_image_or_text(user_skill.skill) %>
 					
 					<div class="level-wrap">
 						<%= form_for user_skill, remote: true, method: :put do |f| %>
 							<% [
-								['Entry', 1],
-								['Junior', 2],
-								['Mid', 3],
-								['Lead', 4],
-								['Guru', 5]
+									['Entry', 1],
+									['Junior', 2],
+									['Mid', 3],
+									['Lead', 4],
+									['Guru', 5]
 								].each do |label, year| %>
 								<% selected = (user_skill.level == year) ? 'selected' : '' %>
 								<% this_label = "#{user_skill.skill}_" + "#{year}" %>

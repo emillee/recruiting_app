@@ -64,6 +64,12 @@ group :development do
   # gem 'hirb'
 end
 
+group :test do 
+  gem 'capybara'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'guard-rspec'
+end
+
 group :test, :development do
   gem 'rspec-rails'  
 end

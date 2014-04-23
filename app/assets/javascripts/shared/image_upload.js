@@ -17,8 +17,8 @@ ready_image_upload = function() {
       });    
     });
     
-  }    
-}
+  }; 
+};
 
 $(document).ready(ready_image_upload);
 $(document).on('page:load', ready_image_upload);

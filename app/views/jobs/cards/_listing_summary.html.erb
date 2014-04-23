@@ -11,16 +11,21 @@
 	
 <div class="job-description-wrapper left">	
 
-	<a href="<%= job.link %>" target="_blank">
+	<% unless current_user.is_admin %>
+		<a href="<%= job.link %>" target="_blank">
+	<% end %>
 		<h1 class="jobs-editable"
 			contenteditable= "<%= is_editable %>"
 			data-id="<%= job.id %>" 
 			data-table="<%= this_table %>"
 			data-model="<%= this_model %>"
 			data-attribute="title">
-			<%= (job.title.nil? || job.title.empty?) ? 'Title Here' : job.title.titleize %>
+			<%= (job.title.nil? || job.title.empty?) ? 'Title Here' : ActionView::Base.full_sanitizer.sanitize(job.title.titleize) %>
 		</h1>
-	</a>
+
+	<% unless current_user.is_admin %>
+		</a>
+	<% end %>		
 
 	<% if job.description %>
 		<p><%= job.description.split(' ')[0..25].join(' ') unless job.description.nil? %>...</p>

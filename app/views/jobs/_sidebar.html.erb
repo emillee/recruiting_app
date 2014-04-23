@@ -5,7 +5,7 @@
 	<div class="role-prefs">
 		<li class="roles selected">
 			<span class="arrow-down"></span>
-			Roles
+			Skills
 		</li>
 		<li class="prefs">
 			<span class="arrow-down hidden"></span>
@@ -123,23 +123,19 @@
 								<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:key_skills] %>"></i>
 								<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:key_skills] %>"></i>
 							</h1>
-							<ul class="job-filters key-skills">
-								<% Taxonomy.front_end_key_skills.each_with_index do |skill, index| %>
-									<div class="key-skills-wrapper">
-										<li class="job-sidebar key-skills">
+							<ul class="job-filters">
+								<% current_user.job_settings[:sub_dept].each do |sub_dept| %>
+									<% Taxonomy.req_skills["#{sub_dept}"].each do |skill, array| %>
+										<% checked = is_setting_checked?('key_skills', skill) %>
+										<% is_hidden = (current_user.job_settings[:dept] &&
+										 		current_user.job_settings[:key_skills]) ? 'hidden' : '' %>												
+										<li class="job-sidebar key-skills <%= checked ? 'selected' : is_hidden %>">
 											<%= label_tag skill %>
+											<%= check_box_tag "user[job_settings][key_skills][]", skill, checked %>
+											<i class="fa fa-angle-right"></i>
+											<i class="fa fa-times-circle"></i>														
 										</li>
-							
-										<div class="degree-wrapper">
-											<% Taxonomy.key_skill_degrees[index].each do |degree| %>
-												<% checked = is_setting_checked?('key_skills', degree) %>
-												<li class="degree <%= 'selected' if checked %>">
-													<%= label_tag degree %>
-													<%= check_box_tag "user[job_settings][key_skills][]", degree, checked %>
-												</li>
-											<% end %>
-										</div>
-									</div>
+									<% end %>
 								<% end %>
 							</ul>
 						</div>

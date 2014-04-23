@@ -44,7 +44,7 @@ ready_social = function() {
           url: '/taggings/' + $tagging_id,
           type: 'DELETE'
         });
-      })   ;   
+      });   
     };
     
     function focusTokenInputCursor() {
@@ -71,7 +71,7 @@ ready_social = function() {
     $('.fa-linkedin-square').on('click', function() {
       var $widget = $(this).closest('.content').children('.IN-widget');
       $widget.children('span').children('span').click();
-    })
+    });
 
     $('.fa-facebook-square').on('click', function() {
       var fb_link = $(this).find('a');
@@ -90,7 +90,7 @@ ready_social = function() {
      window.open(fb_link.attr('href'), null, opts);
 
      return false;
-    })
+    });
 
     // TWEET
     $('.popup').click(function(event) {
@@ -115,11 +115,11 @@ ready_social = function() {
     	window.onload = function() {
     		$('.IN-widget').addClass('visibility-hidden');
     		$('i.fa-facebook-square a').addClass('hidden');
-    	}
-    }    
-  }
-  
-}
+    	};
+    }; 
+
+  };
+};
 
 $(document).ready(ready_social);
 $(document).on('page:load', ready_social);

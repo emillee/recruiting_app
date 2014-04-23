@@ -57,9 +57,22 @@
 			class="regular-type">				
 			<%= (company.neighborhood.nil? || company.neighborhood.empty?) ? "-" : company.neighborhood %>
 		</span>			
-	</h3>						
+	</h3>			
 
-	<!-- <h3>Twitter: <%#= company.twitter_username || "" %></h3> -->
-	<!-- <h3><%#= best_in_place company, :career_page_link %></h3> -->
-	<%= link_to "Go to #{company.name}'s career page", company.career_page_link, target: '_blank' %>
+	<% if current_user.is_admin %>
+			<%= form_for(company) do |f| %>
+				<%= f.text_field :career_page_link %>
+				<%= f.submit "Submit Career Page" %>
+			<% end %>			
+	<% else %>
+		<!-- <h3>Twitter: <%#= company.twitter_username || "" %></h3> -->
+		<!-- <h3><%#= best_in_place company, :career_page_link %></h3> -->
+		<%= link_to "Go to #{company.name}'s career page", company.career_page_link, target: '_blank' %>
+	<% end %>
 </div><!-- company-stats -->
+
+
+
+
+
+

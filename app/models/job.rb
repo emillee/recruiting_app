@@ -70,7 +70,8 @@ class Job < ActiveRecord::Base
   scope :dept, ->(dept_arr) { where('jobs.dept IN (?)', dept_arr) }
   scope :sub_dept, ->(sub_dept_arr) { where('jobs.sub_dept IN (?)', sub_dept_arr) }
   scope :years_exp, ->(years_exp_arr) { where('jobs.years_exp <= (?)', years_exp_arr.max) } 
-  
+  # scope :key_skills, ->(key_skill_arr) { where('jobs.req_skills = (?)', key_skill_arr) }
+
   validates :company_id, presence: true
   
   def import_data
@@ -80,6 +81,7 @@ class Job < ActiveRecord::Base
     self.get_dept if (self.dept.nil? || self.dept.empty?)
     self.get_sub_dept if (self.sub_dept.nil? || self.sub_dept.empty?)
     self.get_years_exp if (self.years_exp.nil? || self.years_exp.to_s.empty?)
+    # self.get_req_skills
   end
     
   # UTILITY-------------------------------------------------------------------------------

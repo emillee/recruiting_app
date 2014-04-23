@@ -39,6 +39,7 @@ class JobsController < ApplicationController
     @job = @company.job_listings.new(job_params)
     
     if @job.save
+      @job.import_data
       redirect_to company_url(@company)
     else
       flash[:error] = "Please try again"

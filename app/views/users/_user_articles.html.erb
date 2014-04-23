@@ -28,14 +28,8 @@
 	<% end %>
 
   <div class="article skills">
-  	    <h3>
-  				My Skills
-			<% if current_user %>
-				<%= link_to 'Add Skills', '#', id: 'edit-skills' %>
-				<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden' %>
-			<% end %>
-		</h3>
+  	<h3>My Skills</h3>
 		<%= render 'shared/drop_zone', locals: { user: user } %>
-    <%= render 'shared/box_of_logos' %>
+    <%= render 'shared/box_of_logos', locals: { user: user }  %>
   </div><!-- skills -->					
 </div><!-- section -->

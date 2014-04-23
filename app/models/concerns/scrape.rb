@@ -11,10 +11,8 @@ module Scrape
   end
   
   def clean_extra_text_and_periods
-    # index = self.full_text.index(self.title.downcase) || 0
-    # text = self.full_text[index..-1]
-    # text = remove_consecutive_periods(text)
-    text = remove_consecutive_periods(self.full_text)
+    text = remove_extra_text(self.full_text)
+    text = remove_consecutive_periods(text)
     self.full_text = text
     self.save
   end
@@ -22,17 +20,39 @@ module Scrape
 	# PRIVATE ---------------------------------------------------------------------------
   private
   
+    def remove_extra_text(text)
+      return self.full_text if self.title.nil?
+      
+      sentences = text.split('.')
+      lower_case = sentences.map(&:downcase)
+
+      return_arr = []
+      lower_case.each_with_index do |sentence, index|
+        return_arr << index if sentence =~ /#{self.title}/
+      end
+
+      first_idx = return_arr.first if return_arr.any?
+      if first_idx
+        return sentences[first_idx..-1].join('.').strip 
+      else
+        return self.full_text
+      end
+    end
+
     def clean_full_text(doc)
       doc.css('script').remove
-      text = doc.at('body').inner_text
-      text = text.gsub(/\n/, '.')
+      text = doc.css('body').to_s.scan(/\<\/li\>/).any? ? doc.css('body').to_s.gsub!(/\<\/li\>/, '.</li>') : doc.css('body').to_s
+      text = ActionView::Base.full_sanitizer.sanitize(text)
+      # text = doc.at('body').inner_text
+      text = text.gsub(/\n/, '. ')
       text = text.squish
     end
     
     def remove_consecutive_periods(text)
-      text = text.gsub!(/\.+/, '.')
-      text = text.gsub!(/\ \./, '')
-      text = text.gsub!(/\.+/, '.')
+      # replace consecutive periods with one period
+      text = text.gsub(/[\s*\.*]\.*[\s*\.*]/, '. ')
+      text = text.gsub(/ \. /, '')
+      text = text.gsub(/[\s*\.*]\.*[\s*\.*]/, '. ')
       text
     end
 

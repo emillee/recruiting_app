@@ -153,7 +153,9 @@ class UsersController < ApplicationController
 		    :is_admin, :guest, :biography, :intro, :interested_in_meeting, :investor_company_id, :snapshots,
   		  :email, :password, :password_digest, :avatar, :fname, :lname, :title, :location, :company_id, :location_from,
   		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
-  		  {job_prefs: { company_stage: [], salary_buckets: [], equity_buckets: [] }}  		
+  		  {job_prefs: { company_stage: [], salary_buckets: [], equity_buckets: [] }},  		
+  		  {company_settings: { company_stage: [], salary_buckets: [], equity_buckets: [] }}  		
+  		  
   		)
   	end
 	

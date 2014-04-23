@@ -3,6 +3,7 @@
 <div class="companies-wrapper">
 	<ul class="companies-posts">
 		<li class="company-wrapper">
+			<%= link_to 'Next', company_url(@company, next: true), id: 'next' %>
 			<%= render 'company', locals: { company: @company } %>
 		</li>
 	</ul>

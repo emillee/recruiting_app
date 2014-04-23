@@ -63,7 +63,15 @@ class Company < ActiveRecord::Base
     all_names = Company.all.map(&:name).uniq!
     all_names
   end
+
+  def next
+    Company.where("id > ?", self.id).order("id ASC").first
+  end
   
+  def prev
+    Company.where("id < ?", self.id).order("id DESC").first
+  end
+
 end
 
 

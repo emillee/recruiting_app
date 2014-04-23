@@ -105,8 +105,8 @@ ready_editor = function() {
       var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']});
     };    
 
-  }
-}
+  };
+};
 
 $(document).ready(ready_editor);
 $(document).on('page:load', ready_editor);

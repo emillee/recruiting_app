@@ -3,6 +3,18 @@ div.companies-wrapper {
   top: 75px;
   left: 300px;
   margin-bottom: 30px;
+
+  #next {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+    color: white;
+    background-color: black;
+    z-index: 9999;
+  }
   
   form.new_job {
     height: 20px;

@@ -18,9 +18,10 @@ module JobsHelper
   def is_attr_checked?(obj, this_attr, val)
     obj.public_send(this_attr).include?(val)
   end
+  
   def is_setting_checked?(this_attr, val)
     return false if current_user.job_settings[this_attr].nil?
-    return true if current_user.job_settings[this_attr].include?(val.to_s)
+    return true if current_user.job_settings[this_attr].include?(val.to_s.downcase)
     return false    
   end
 
@@ -59,6 +60,10 @@ module JobsHelper
 	  sub_dept_arr.uniq! if sub_dept_arr.any? 
 	  sub_dept_arr.sort!
 	end
+
+  def return_years_exp
+    return current_user.job_settings[:years_exp] if current_user && current_user.job_settings[:years_exp]
+  end  
 	
 	def has_saved_job?(job)
 	  return true if current_user && current_user.saved_jobs.include?(job)

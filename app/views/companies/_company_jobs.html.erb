@@ -68,13 +68,14 @@
 			<span class="heading">Req Skills: </span>
 				<%= form_for(job) do |f| %>
 					<%= hidden_field_tag "job[req_skills][]", "" %>
-					<% Taxonomy.key_skill_degrees.flatten.each do |skill| %>
-						<label>
-							<%= skill %>
-							<%= check_box_tag "job[req_skills][]", skill, is_attr_checked?(job, 'req_skills', skill) %>			
-						</label>
+					<% if Taxonomy.req_skills["#{job.sub_dept}"] %>
+						<% Taxonomy.req_skills["#{job.sub_dept}"].each do |skill, key_word_arr| %>
+							<label>
+								<%= skill %>
+								<%= check_box_tag "job[req_skills][]", skill, is_attr_checked?(job, 'req_skills', skill) %>			
+							</label>
+						<% end %>
 					<% end %>
-			
 					<%= f.submit "Submit" %>
 				<% end %>
 		</p>
