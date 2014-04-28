@@ -23,10 +23,12 @@ module ImportData
         if title_match.nil?
           title_match = uniq_title
           index = self.full_text.downcase.index(uniq_title.downcase)
-        elsif index && self.full_text.downcase.index(uniq_title.downcase) && (self.full_text.downcase.index(uniq_title.downcase) < index)
+        end
+
+        if index && self.full_text.downcase.index(uniq_title.downcase) && (self.full_text.downcase.index(uniq_title.downcase) < index)
           title_match = uniq_title
           index = self.full_text.downcase.index(uniq_title.downcase)
-        end         
+        end                
       end
     end
     

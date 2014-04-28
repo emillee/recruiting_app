@@ -11,7 +11,7 @@ class Company < ActiveRecord::Base
   scope :page_blank, ->(arg) { where('companies.career_page_link IS NULL') }
   scope :is_hiring, ->(arg){ Company.joins(:job_listings) }
   
-  has_many :job_listings
+  has_many :job_listings, class_name: 'Job', foreign_key: :company_id
   has_many :employees
   has_many :articles
   has_many :object_skills

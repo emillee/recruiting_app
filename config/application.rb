@@ -24,6 +24,9 @@ module Nytech
     
     config.assets.paths << Rails.root.join('app', 'assets', 'components', 'fonts', 'templates', 'vendor')
     
+    # Loads joins model folder
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
+    
     config.assets.precompile += [Rails.root.to_s + '/vendor/assets/javascripts/*.js']
     
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.woff *.eot *.ttf)
