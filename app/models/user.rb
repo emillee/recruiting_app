@@ -21,90 +21,19 @@ class User < ActiveRecord::Base
   after_initialize :initialize_settings
   store_accessor :job_filters, :keywords, :dept, :sub_dept, :experience
   
-  belongs_to(
-    :employer,
-    class_name: 'Company',
-    foreign_key: :company_id,
-    primary_key: :id
-  )
-  
-  belongs_to(
-    :vc_employer,
-    class_name: 'Investor', 
-    foreign_key: :investor_company_id,
-    primary_key: :id
-  )
-  
-  has_many(
-    :user_jobs,
-    class_name: 'UserJob',
-    foreign_key: :user_id,
-    primary_key: :id
-  )
-  
-  has_many(
-    :jobs_applied,
-    through: :user_jobs,
-    source: :job_applied_to
-  )
-  
-  has_many(
-    :saved_jobs,
-    through: :user_jobs,
-    source: :job_saved
-  )
-  
-  has_many(
-    :removed_jobs,
-    through: :user_jobs,
-    source: :removed_job
-  )
-  
-  has_many(
-    :user_job_preapprovals,
-    class_name: 'UserJobPreapproval',
-    foreign_key: :user_id,
-    primary_key: :id
-  )
-  
-  has_many(
-    :preapproved_jobs,
-    through: :user_job_preapprovals,
-    source: :job
-  )
-  
-  has_many(
-    :identities,
-    class_name: 'Identity',
-    foreign_key: :user_id,
-    primary_key: :id
-  )
-  
-  has_many(
-    :object_skills,
-    class_name: 'ObjectSkill',
-    foreign_key: :user_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :tech_stack,
-    through: :object_skills,
-    source: :skill
-  )  
-  
-  has_many(
-    :user_articles,
-    class_name: 'UserArticle',
-    foreign_key: :user_id,
-    primary_key: :id
-  )
-  
-  has_many(
-    :articles,
-    through: :user_articles,
-    source: :article
-  )
+  belongs_to :employer, class_name: 'Company', foreign_key: :company_id  
+  belongs_to :vc_employer, class_name: 'Investor', foreign_key: :investor_company_id
+  has_many :user_jobs
+  has_many :identities
+  has_many :jobs_applied, through: :user_jobs, source: :job_applied_to
+  has_many :saved_jobs, through: :user_jobs, source: :job_saved
+  has_many :removed_jobs, through: :user_jobs, source: :removed_job
+  has_many :user_job_preapprovals, class_name: 'UserJobPreapproval', foreign_key: :user_id
+  has_many :preapproved_jobs, through: :user_job_preapprovals, source: :job
+  has_many :object_skills
+  has_many :tech_stack, through: :object_skills, source: :skill
+  has_many :user_articles
+  has_many :articles, through: :user_articles, source: :article
   
   has_attached_file :avatar, styles: { medium: '300x200>', thumb: '100x100>' },
     default_url: '/images/:style/missing.png'

@@ -11,58 +11,14 @@ class Job < ActiveRecord::Base
   before_save { self.sub_dept = self.sub_dept.downcase.squish if self.sub_dept }
   before_save { self.years_exp = self.years_exp.to_s.squish.to_i if self.years_exp }
   
-  belongs_to(
-    :listing_company,
-     class_name: 'Company',
-     foreign_key: :company_id,
-     primary_key: :id
-  )
-
-  has_many(
-    :user_job_applicants,
-    class_name: 'UserJob',
-    foreign_key: :applied_job_id,
-    primary_key: :id
-  )
-  
-  has_many(
-    :users_that_saved_job,
-    class_name: 'UserJob',
-    foreign_key: :saved_job_id,
-    primary_key: :id
-  )
-   
-  has_many(
-    :saved_jobs,
-    class_name: 'UserJob',
-    foreign_key: :saved_job_id,
-    primary_key: :id
-  ) 
-  
-  has_many(
-    :applicants,
-    through: :user_job_applicants,
-    source: :user
-  )
-  
-  has_many(
-    :saved_users,
-    through: :users_that_saved_job,
-    source: :user
-  )
-  
-  has_many(
-    :user_job_preapprovals,
-    class_name: 'UserJobPreapproval',
-    foreign_key: :job_id,
-    primary_key: :id
-  )
-  
-  has_many(
-    :preapproved_applicants,
-    through: :user_job_preapprovals,
-    source: :user
-  )
+  belongs_to :listing_company, class_name: 'Company', foreign_key: :company_id
+  has_many :user_job_applicants, class_name: 'UserJob', foreign_key: :applied_job_id
+  has_many :users_that_saved_job, class_name: 'UserJob', foreign_key: :saved_job_id
+  has_many :saved_jobs, class_name: 'UserJob', foreign_key: :saved_job_id
+  has_many :applicants, through: :user_job_applicants, source: :user  
+  has_many :saved_users, through: :users_that_saved_job, source: :user
+  has_many :user_job_preapprovals, class_name: 'UserJobPreapproval', foreign_key: :job_id
+  has_many :preapproved_applicants, through: :user_job_preapprovals, source: :user
   
   include Scrape
   include ImportData
@@ -93,9 +49,6 @@ class Job < ActiveRecord::Base
   def self.rank_jobs_based_on_settings(jobs, user)
     return jobs if user.job_settings[:key_skills].nil?
 
-    # dept_weighting = 100
-    # sub_dept_weighting = 50
-    # years_exp_weighting = 25
     skill_points_weighting = 10
 
     jobs.each do |job|

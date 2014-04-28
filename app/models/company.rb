@@ -1,7 +1,8 @@
 class Company < ActiveRecord::Base
   
-  validates :name, presence: true
   attr_reader :article_id
+
+  validates :name, presence: true
   
   scope :keywords, ->(keywords) { where('companies.name @@ :q OR companies.overview @@ :q', q: keywords) }
   scope :page_available, ->(arg) { where('companies.career_page_link IS NOT NULL AND 
@@ -10,39 +11,11 @@ class Company < ActiveRecord::Base
   scope :page_blank, ->(arg) { where('companies.career_page_link IS NULL') }
   scope :is_hiring, ->(arg){ Company.joins(:job_listings) }
   
-  has_many(
-    :job_listings,
-    class_name: 'Job',
-    foreign_key: :company_id,
-    primary_key: :id
-  )
-  
-  has_many(
-    :employees,
-    class_name: 'User',
-    foreign_key: :company_id,
-    primary_key: :id
-  )
-  
-  has_many(
-    :articles,
-    class_name: 'Article',
-    foreign_key: :company_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :object_skills,
-    class_name: 'ObjectSkill',
-    foreign_key: :company_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :tech_stack,
-    through: :object_skills,
-    source: :skill
-  )
+  has_many :job_listings
+  has_many :employees
+  has_many :articles
+  has_many :object_skills
+  has_many :tech_stack, through: :object_skills, source: :skill
 
   include ApiCalls
   include Filterable
@@ -51,7 +24,6 @@ class Company < ActiveRecord::Base
     path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension",
     url: "/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension" 
     
-
   Paperclip.interpolates :normalized_companypic_file_name do |attachment, style|
     attachment.instance.normalized_companypic_file_name
   end  
@@ -61,7 +33,6 @@ class Company < ActiveRecord::Base
     
   validates_attachment_content_type :snapshots, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/    
-    
   
   # reads this above with attr_read  
   def store_article_id_temporarily(article_id)

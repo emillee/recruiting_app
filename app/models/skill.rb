@@ -6,12 +6,7 @@ class Skill < ActiveRecord::Base
 
 	has_attached_file :logo, styles: { medium: 'x60' }, default_url: '/images/:style/missing.png'
 
-	has_many(
-		:object_skills,
-		class_name: 'ObjectSkill',
-		foreign_key: :skill_id,
-		primary_key: :id
-	)
+	has_many :object_skills
 
 	def self.return_skill_hash_from_dept(dept_arr)
 		return_hash = {}
