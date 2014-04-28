@@ -19,13 +19,13 @@ module ImportData
     title_match, index = nil, nil
     
     Job.all_unique_titles.each do |uniq_title|
-      if self.full_text.match(/#{uniq_title}/i)
+      if self.full_text.downcase.match(/#{uniq_title.downcase}/i)
         if title_match.nil?
           title_match = uniq_title
-          index = self.full_text.index(uniq_title.downcase)
-        elsif index && self.full_text.index(uniq_title.downcase) && (self.full_text.index(uniq_title.downcase) < index)
+          index = self.full_text.downcase.index(uniq_title.downcase)
+        elsif index && self.full_text.downcase.index(uniq_title.downcase) && (self.full_text.downcase.index(uniq_title.downcase) < index)
           title_match = uniq_title
-          index = self.full_text.index(uniq_title)
+          index = self.full_text.downcase.index(uniq_title.downcase)
         end         
       end
     end

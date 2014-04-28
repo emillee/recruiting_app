@@ -1,16 +1,22 @@
 Nytech::Application.routes.draw do
+  resource :user_jobs, only: [:create, :destroy]
+  resource :session, only: [:new, :create, :destroy]
   resources :search_suggestions
   resources :searches, only: [:new, :show, :create, :destroy]
-  resource :session, only: [:new, :create, :destroy]
   resources :taxonomies, only: [:index]
-  resources :user_skills, only: [:create, :update, :destroy]
-  resource :user_jobs, only: [:create, :destroy]
+  resources :object_skills, only: [:create, :update, :destroy] 
   resources :tags, only: [:index, :create, :destroy]
   resources :taggings, only: [:create, :destroy]
   resources :articles, only: [:create, :destroy]
   resources :user_articles, only: [:create, :destroy]
   resources :groups
   
+  resources :skills, only: [:index, :create, :update, :destroy] do
+    collection { get :name }
+    collection { get :dept }
+    collection { get :sub_dept }
+  end
+
   resources :users do 
     resources :articles, only: [:create, :update]
     member { post :delete_snapshot }

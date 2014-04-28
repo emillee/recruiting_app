@@ -1,5 +1,9 @@
 class Job < ActiveRecord::Base
-  
+
+  attr_reader :job_score
+  attr_writer :job_score
+  attr_reader :max_score
+
   before_create :set_is_draft
   before_save { self.full_text = ActionView::Base.full_sanitizer.sanitize(self.full_text) }
   before_save { self.title = self.title.downcase.squish if self.title }
@@ -82,6 +86,27 @@ class Job < ActiveRecord::Base
     self.get_sub_dept if (self.sub_dept.nil? || self.sub_dept.empty?)
     self.get_years_exp if (self.years_exp.nil? || self.years_exp.to_s.empty?)
     # self.get_req_skills
+  end
+
+  # RANKING-------------------------------------------------------------------------------
+
+  def self.rank_jobs_based_on_settings(jobs, user)
+    return jobs if user.job_settings[:key_skills].nil?
+
+    # dept_weighting = 100
+    # sub_dept_weighting = 50
+    # years_exp_weighting = 25
+    skill_points_weighting = 10
+
+    jobs.each do |job|
+      job.job_score ||= 0
+      skill_matches ||= 0
+      skill_matches = (user.tech_stack & job.listing_company.tech_stack).count
+      job.job_score += skill_points_weighting * skill_matches
+    end
+
+    jobs.sort! {|a,b| b.job_score <=> a.job_score }
+    jobs
   end
     
   # UTILITY-------------------------------------------------------------------------------

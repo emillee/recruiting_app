@@ -1,17 +1,54 @@
 <!-- NOTE: or operator goes left to right, job skills takes precedence over company skills -->
 <% object = locals[:user] || locals[:job] || locals[:company] %>
 
+<% if current_user.job_settings[:sub_dept] %>
+	<% first_sub_dept = current_user.job_settings[:sub_dept].first %>
+<% else %>
+	<% first_sub_dept = 'back-end' %>
+<% end %>
+
 <% if current_user %>
 	<div class="hidden box-of-logos is-droppable">
 		<ul class="box-of-logos-ul">
-			<% Job.back_end_skills.sort.each do |skill| %>
+
+			<!-- # returns a hash where keys are sub_dept_name_string and value is an array of skill objects (of unique skill names) -->
+			<% dept = current_user.job_settings[:dept] || 'engineer' %>
+			<% skill_hash = Skill.return_skill_hash_from_dept(dept) %>
+
+			<% skill_hash.each do |key, val_obj_arr| %>
+				<%= link_to key, '#', class: key %>
+
 				<ul>
-					<% next if current_user.user_skills.map(&:skill).map(&:downcase).include?(skill.downcase)%>
-					<li data-skill="<%= skill %>" data-user="<%= current_user.id %>">
-						<%= insert_image_or_text(skill) %>
-					</li>
+					<% val_obj_arr.each do |skill_obj| %>
+						<% next if object.tech_stack.include?(skill_obj) %>
+						<li data-skill-id="<%= skill_obj.id %>" data-object-id="<%= object.id %>" 
+								data-object-class="<%= object.class.to_s.downcase %>">
+							<% if skill_obj.logo.exists? %>
+								<%= image_tag(skill_obj.logo.url, class: 'is-draggable') %>
+							<% else %>
+								<%= render './shared/upload_logo', locals: { object: skill_obj } %>
+							<% end %>
+						</li>
+						
+					<% end %>
 				</ul>
 			<% end %>
+
 		</ul>
 	</div>
 <% end %>
+
+<% skill = Skill.new %>
+<%= form_for(skill) do |f| %>
+	<%= f.text_field :skill_name, placeholder: 'Skill name' %>
+	<%= f.text_field :skill_dept, placeholder: 'Skill dept' %>
+	<%= f.text_field :skill_sub_dept, placeholder: 'Skill sub dept' %>
+	<input type="textbox" name="skill[preferred_phrases][]" placeholder="preferred phrases" >
+	<input type="textbox" name="skill[required_phrases][]" placeholder="required phrases">
+
+	<%= f.submit %>
+<% end %>
+
+
+
+

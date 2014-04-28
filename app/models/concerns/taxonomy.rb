@@ -90,8 +90,8 @@ module Taxonomy
 			['Junior (1-2)', 2], 
 			['Mid (2-3)', 3], 
 			['Senior / Lead (3-4+)', 4], 
-			['VP, Director (4-6+)', 6],
-			['CTO (7+)', 7]
+			['VP, Director (4-7+)', 7],
+			['CTO (7+)', 10]
 		] 
 	end   
   

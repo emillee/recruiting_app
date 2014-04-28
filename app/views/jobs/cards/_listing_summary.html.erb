@@ -10,6 +10,7 @@
 <% end %>	
 	
 <div class="job-description-wrapper left">	
+	<%#= "in listing summary #{job.job_score}" %>
 
 	<% unless current_user.is_admin %>
 		<a href="<%= job.link %>" target="_blank">

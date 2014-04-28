@@ -1,12 +1,13 @@
 class JobsController < ApplicationController
   
   respond_to :html, :json
+  before_filter :set_this_tab, only: [:index, :show]
 
   # RESTful Routes ---------------------------------------------------------------------------
   
   def index
-    set_tab('jobs')        
-    
+    @jobs = Job.all.joins(:user_jobs)
+
     if params[:filter] && current_user
       @filter = params[:filter]
       case params[:filter]
@@ -47,8 +48,7 @@ class JobsController < ApplicationController
     end
   end
   
-  def show 
-    set_tab('jobs')      
+  def show      
     @job = Job.find(params[:id])
   end
    
@@ -131,6 +131,10 @@ class JobsController < ApplicationController
   		params.require(:job).permit(:link, :title, :full_text, :is_draft,
   		  :company_id, :dept, :sub_dept, :years_exp, :description, key_phrases: [], req_skills: [])
   	end
+
+    def set_this_tab
+      set_tab('jobs')  
+    end
   
 end
 

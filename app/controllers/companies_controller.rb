@@ -1,10 +1,10 @@
 class CompaniesController < ApplicationController
 
+  before_filter :set_this_tab, only: [:index, :new]
   respond_to :html, :json, :js
 
   # RESTful Routes ---------------------------------------------------------------------------
   def index
-    set_tab('companies')
     @job = Job.new
     @keywords = params[:company_search][:keywords] if params[:company_search]
     @all_scopes = %w(is_hiring page_available page_unavailable page_blank)
@@ -34,8 +34,7 @@ class CompaniesController < ApplicationController
     end
   end
   
-  def new
-    set_tab('companies')    
+  def new   
     @company = Company.new
     @job = Job.new
   end
@@ -48,7 +47,6 @@ class CompaniesController < ApplicationController
   end 
   
   def show
-    set_tab('companies') 
     @company = Company.find(params[:id])
     @company = @company.next if params[:next]    
     @job = @company.job_listings.build
@@ -115,6 +113,11 @@ class CompaniesController < ApplicationController
       params.require(:company).permit(:name, :total_money_raised, :num_employees, :career_page_link, :overview, :year_founded,
         :neighborhood, :category_code, :city, :snapshots, :logo, { career_sections: ['Keys Here'] })
   	end
+
+    def set_this_tab
+      set_tab('companies')
+    end
+
   		
 end
 

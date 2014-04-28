@@ -1,12 +1,12 @@
 class InvestorsController < ApplicationController
   
+  before_filter :set_this_tab, only: [:index, :show]
+
   def index
-    set_tab('investors')
     @investors = Investor.all
   end
   
   def show
-    set_tab('investors')
     @investor = Investor.find(params[:id])
   end
   
@@ -59,4 +59,15 @@ class InvestorsController < ApplicationController
       params.require(:investor).permit(:name, :snapshots, :article_id, :neighborhood, :logo,
         :about, stage:[], check_size:[])
     end
+
+    def set_this_tab
+      set_tab('investors')
+    end
 end
+
+
+
+
+
+
+

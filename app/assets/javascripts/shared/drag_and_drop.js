@@ -4,16 +4,20 @@ ready_drag_and_drop = function() {
 
     addDraggableEvents();
     addDroppableEvents();
-    
-    // REMOVE OUTLINE BOX AFTER DONE WITH EDIT MODE
-    $('.article.skills').on('click', '#save-skills', function() {
+
+    // ADD BOX OUTILNE WHEN IN EDIT MODE
+    $('.skill-dropzone').on('click', '#edit-skills', function() {
       event.preventDefault();
-      $(this).addClass('hidden')
-      $('#edit-skills').removeClass('hidden');
-      $('.box-of-logos').addClass('hidden');
-      $('.skill-dropzone').removeClass('is-droppable');
-      $('#add-skill').addClass('hidden');
+      toggleBoxOfLogos();
+      addDroppableEvents();
     })
+
+    // REMOVE OUTLINE BOX AFTER DONE WITH EDIT MODE
+    $('.skill-dropzone').on('click', '#save-skills', function(event) {
+      event.preventDefault();
+      toggleBoxOfLogos();
+    });
+       
     
     // SUBMIT FORM FOR USER SKILL DEGREES ON CLICK
     $('.skills-ul').on('click', 'input[type="radio"]', function() {
@@ -21,21 +25,19 @@ ready_drag_and_drop = function() {
     })
 
     // AFTER FORM SUBMISSION AJAX CALL
-    $('.skills-ul').on('ajax:success', '.edit_user_skill', function(event, data) {
+    $('.skills-ul').on('ajax:success', '.edit_object_skill', function(event, data) {
       var $skills = $(data).find(' .skills-ul');
       $('.skills-ul').empty().html($skills);
     })
 
-    // ADD BOX OUTILNE WHEN IN EDIT MODE
-    $('.article.skills').on('click', '#edit-skills', function() {
-      event.preventDefault();
-      $(this).addClass('hidden');
-      $('#save-skills').removeClass('hidden');
-      $('.box-of-logos').removeClass('hidden');
-      $('.skill-dropzone').addClass('is-droppable');
-      $('#add-skill').removeClass('hidden');
-      addDroppableEvents();
-    })
+    // SHOW BOX OF LOGOS
+    function toggleBoxOfLogos() {
+      $('.box-of-logos').toggleClass('hidden');
+      $('.skill-dropzone').toggleClass('is-droppable');
+      $('#edit-skills').toggleClass('hidden');      
+      $('#save-skills').toggleClass('hidden');
+      $('#add-skill').toggleClass('hidden');
+    };     
 
     // ADD DRAGABLE HANDLER
     function addDraggableEvents() {
@@ -48,38 +50,42 @@ ready_drag_and_drop = function() {
     // ADD DROPPABLE HANDLER
     function addDroppableEvents() {
       $('.skill-dropzone.is-droppable').droppable({
-        drop: createUserSkill
+        drop: createObjectSkill
       });
 
       $('.box-of-logos.is-droppable').droppable({
-        drop: destroyUserSkill
+        drop: destroyObjectSkill
       });    
     }
 
-    // POST TO USER_SKILL TABLE 
-    function createUserSkill(event, ui) {
+    // POST TO OBJECT_SKILL TABLE 
+    function createObjectSkill(event, ui) {
       var draggable = ui.draggable;
-      var user_id = draggable.closest('li').data('user');
-      var skill = draggable.closest('li').data('skill');
-      var post_to_url = '/user_skills/?user_id=' + user_id + '&' + 'skill=' + skill
+      var object_id = draggable.closest('li').data('object-id');
+      var object_class = draggable.closest('li').data('object-class');
+      var object_class_id_url = object_class + "_id=";
+      var skill_id = draggable.closest('li').data('skill-id');
+      var post_to_url = '/object_skills/?' + object_class_id_url + object_id + '&' + 'skill_id=' + skill_id;
+      var ul_identifier = ' .skills-ul' + "." + object_class + "-" + object_id;
 
       $.ajax({
         type: 'POST',
         url: post_to_url,
         success: function(data) {
           draggable.remove();
-          var $skills = $(data).find(' .skills-ul');
+          var $skills = $(data).find(ul_identifier);
           $('ul.skills-ul').empty().html($skills);
+          $('.skills-ul').children('#add-skill').toggleClass('hidden');
           addDraggableEvents();
         }
       })
     };
 
-    // REMOVE USER_SKILL
-    function destroyUserSkill(event, ui) {
+    // REMOVE OBJECT_SKILL
+    function destroyObjectSkill(event, ui) {
       var draggable = ui.draggable;
-      var userskill_id = draggable.closest('li').data('userskill');
-      var this_url = '/user_skills/' + userskill_id
+      var object_skill_id = draggable.closest('li').data('object-skill-id');
+      var this_url = '/object_skills/' + object_skill_id
 
       $.ajax({
         type: 'POST',

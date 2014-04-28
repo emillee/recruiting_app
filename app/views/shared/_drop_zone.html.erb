@@ -1,4 +1,5 @@
 <% object = locals[:user] || locals[:job] || locals[:company] %>
+<% obj_class_id = object.class.to_s.downcase + '_id' %>
 
 <div class='droppable-wrapper'>
 	<div class="skill-dropzone">
@@ -7,13 +8,18 @@
 			<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden' %>
 		<% end %>
 
-		<ul class="skills-ul">
-			<% object.user_skills.sort.each do |user_skill| %>
-				<li class="user-skills" data-userskill="<%= user_skill.id %>">
-					<%= insert_image_or_text(user_skill.skill) %>
+		<ul class="skills-ul <%= object.class.to_s.downcase %>-<%= object.id %>" >
+			<% object.tech_stack.each do |skill_obj| %>
+				<% object_skill = ObjectSkill.where(obj_class_id => object.id, skill_id: skill_obj.id).first %>
+				<li class="user-skills" data-object-skill-id="<%= object_skill.id %>">
+					<% if skill_obj.logo.exists? %>
+						<%= image_tag(skill_obj.logo.url, class: 'is-draggable') %>
+					<% else %>
+						<%= render './shared/upload_logo', locals: { object: skill_obj } %>
+					<% end %>
 					
 					<div class="level-wrap">
-						<%= form_for user_skill, remote: true, method: :put do |f| %>
+						<%= form_for object_skill, remote: true, method: :put do |f| %>
 							<% [
 									['Entry', 1],
 									['Junior', 2],
@@ -21,10 +27,10 @@
 									['Lead', 4],
 									['Guru', 5]
 								].each do |label, year| %>
-								<% selected = (user_skill.level == year) ? 'selected' : '' %>
-								<% this_label = "#{user_skill.skill}_" + "#{year}" %>
+								<% selected = (object_skill.level == year) ? 'selected' : '' %>
+								<% this_label = "#{object_skill.skill.skill_name}_" + "#{year}" %>
 								<label for="<%= this_label %>" class="skill-radio <%= selected %>"><%= label %></label>
-								<input id="<%= this_label %>" name="user_skill[level]" type="radio" value="<%= year %>">
+								<input id="<%= this_label %>" name="object_skill[level]" type="radio" value="<%= year %>">
 							<% end %>
 							
 							<%= f.submit 'Submit' %>
@@ -34,6 +40,7 @@
 				</li>
 			<% end %>
 			<li id="add-skill" class="user-skills hidden">+ Drag a new skill from below anywhere up here!</li>
-		<ul>
+		</ul>
 	</div>
 </div>
+

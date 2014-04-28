@@ -125,6 +125,7 @@
 							</h1>
 							<ul class="job-filters">
 								<% current_user.job_settings[:sub_dept].each do |sub_dept| %>
+									<% next if Taxonomy.req_skills["#{sub_dept}"].nil? %>
 									<% Taxonomy.req_skills["#{sub_dept}"].each do |skill, array| %>
 										<% checked = is_setting_checked?('key_skills', skill) %>
 										<% is_hidden = (current_user.job_settings[:dept] &&

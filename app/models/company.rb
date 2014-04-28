@@ -30,7 +30,20 @@ class Company < ActiveRecord::Base
     foreign_key: :company_id,
     primary_key: :id
   )
-  
+
+  has_many(
+    :object_skills,
+    class_name: 'ObjectSkill',
+    foreign_key: :company_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :tech_stack,
+    through: :object_skills,
+    source: :skill
+  )
+
   include ApiCalls
   include Filterable
   

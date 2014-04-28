@@ -6,10 +6,6 @@ class SessionsController < ApplicationController
   
   def create
     auth = request.env['omniauth.auth']
-    p '-----------request.env[omniauth.auth]------------'
-    p auth
-    p '----------request.env[omniauth]-------------'
-    p request.env['omniauth']
     
     # if the session create is coming from social
     if auth

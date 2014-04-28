@@ -45,6 +45,7 @@ gem 'linkedin'
 # ML GEMS
 gem 'hpricot' # DELETE THIS
 gem 'stemmer'
+gem 'statsample'
 # gem "classifier", "~> 1.3.4"
 # gem 'amatch'
 # gem 'gsl'

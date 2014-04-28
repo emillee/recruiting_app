@@ -277,6 +277,38 @@ ALTER SEQUENCE jobs_id_seq OWNED BY jobs.id;
 
 
 --
+-- Name: object_skills; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE object_skills (
+    id integer NOT NULL,
+    user_id integer,
+    level integer,
+    company_id integer,
+    skill_id integer
+);
+
+
+--
+-- Name: object_skills_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE object_skills_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: object_skills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE object_skills_id_seq OWNED BY object_skills.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -315,6 +347,43 @@ CREATE SEQUENCE search_suggestions_id_seq
 --
 
 ALTER SEQUENCE search_suggestions_id_seq OWNED BY search_suggestions.id;
+
+
+--
+-- Name: skills; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE skills (
+    id integer NOT NULL,
+    skill_name character varying(255),
+    skill_dept character varying(255),
+    skill_sub_dept character varying(255),
+    required_phrases character varying(255)[] DEFAULT '{}'::character varying[],
+    preferred_phrases character varying(255)[] DEFAULT '{}'::character varying[],
+    logo_file_name character varying(255),
+    logo_content_type character varying(255),
+    logo_file_size integer,
+    logo_updated_at timestamp without time zone
+);
+
+
+--
+-- Name: skills_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE skills_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: skills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE skills_id_seq OWNED BY skills.id;
 
 
 --
@@ -507,37 +576,6 @@ ALTER SEQUENCE user_jobs_id_seq OWNED BY user_jobs.id;
 
 
 --
--- Name: user_skills; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE user_skills (
-    id integer NOT NULL,
-    user_id integer,
-    skill character varying(255),
-    level integer
-);
-
-
---
--- Name: user_skills_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE user_skills_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: user_skills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE user_skills_id_seq OWNED BY user_skills.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -640,7 +678,21 @@ ALTER TABLE ONLY jobs ALTER COLUMN id SET DEFAULT nextval('jobs_id_seq'::regclas
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY object_skills ALTER COLUMN id SET DEFAULT nextval('object_skills_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY search_suggestions ALTER COLUMN id SET DEFAULT nextval('search_suggestions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY skills ALTER COLUMN id SET DEFAULT nextval('skills_id_seq'::regclass);
 
 
 --
@@ -683,13 +735,6 @@ ALTER TABLE ONLY user_job_preapprovals ALTER COLUMN id SET DEFAULT nextval('user
 --
 
 ALTER TABLE ONLY user_jobs ALTER COLUMN id SET DEFAULT nextval('user_jobs_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY user_skills ALTER COLUMN id SET DEFAULT nextval('user_skills_id_seq'::regclass);
 
 
 --
@@ -756,6 +801,14 @@ ALTER TABLE ONLY search_suggestions
 
 
 --
+-- Name: skills_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY skills
+    ADD CONSTRAINT skills_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -807,7 +860,7 @@ ALTER TABLE ONLY user_jobs
 -- Name: user_skills_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY user_skills
+ALTER TABLE ONLY object_skills
     ADD CONSTRAINT user_skills_pkey PRIMARY KEY (id);
 
 
@@ -817,6 +870,62 @@ ALTER TABLE ONLY user_skills
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_jobs_on_company_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_jobs_on_company_id ON jobs USING btree (company_id);
+
+
+--
+-- Name: index_object_skills_on_company_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_object_skills_on_company_id ON object_skills USING btree (company_id);
+
+
+--
+-- Name: index_object_skills_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_object_skills_on_user_id ON object_skills USING btree (user_id);
+
+
+--
+-- Name: index_user_jobs_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_user_jobs_on_user_id ON user_jobs USING btree (user_id);
+
+
+--
+-- Name: index_user_jobs_on_user_id_and_applied_job_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_user_jobs_on_user_id_and_applied_job_id ON user_jobs USING btree (user_id, applied_job_id);
+
+
+--
+-- Name: index_user_jobs_on_user_id_and_removed_job_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_user_jobs_on_user_id_and_removed_job_id ON user_jobs USING btree (user_id, removed_job_id);
+
+
+--
+-- Name: index_user_jobs_on_user_id_and_saved_job_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_user_jobs_on_user_id_and_saved_job_id ON user_jobs USING btree (user_id, saved_job_id);
+
+
+--
+-- Name: index_users_on_company_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_company_id ON users USING btree (company_id);
 
 
 --
@@ -1021,3 +1130,19 @@ INSERT INTO schema_migrations (version) VALUES ('20140417162355');
 INSERT INTO schema_migrations (version) VALUES ('20140423123149');
 
 INSERT INTO schema_migrations (version) VALUES ('20140423150522');
+
+INSERT INTO schema_migrations (version) VALUES ('20140423151740');
+
+INSERT INTO schema_migrations (version) VALUES ('20140423154757');
+
+INSERT INTO schema_migrations (version) VALUES ('20140424023359');
+
+INSERT INTO schema_migrations (version) VALUES ('20140424024304');
+
+INSERT INTO schema_migrations (version) VALUES ('20140424025030');
+
+INSERT INTO schema_migrations (version) VALUES ('20140424133640');
+
+INSERT INTO schema_migrations (version) VALUES ('20140424170644');
+
+INSERT INTO schema_migrations (version) VALUES ('20140424203330');

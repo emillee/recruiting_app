@@ -81,11 +81,17 @@ class User < ActiveRecord::Base
   )
   
   has_many(
-    :user_skills,
-    class_name: 'UserSkill',
+    :object_skills,
+    class_name: 'ObjectSkill',
     foreign_key: :user_id,
     primary_key: :id
   )
+
+  has_many(
+    :tech_stack,
+    through: :object_skills,
+    source: :skill
+  )  
   
   has_many(
     :user_articles,

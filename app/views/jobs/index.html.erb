@@ -3,10 +3,11 @@
 <div class="jobs-wrapper">
 	
 	<%= render 'job_navbar' %>
-	
-	<ul class="job-posts">
-		<% @jobs.each do |job| %>		
 
+	<ul class="job-posts">
+		<% @jobs = Job.rank_jobs_based_on_settings(@jobs, current_user) %>
+		
+		<% @jobs.each do |job| %>		
 			<% if current_user %>
 				<% next if current_user.removed_jobs.include?(job) && @filter != 'removed' %>
 			<% end %>	
@@ -20,10 +21,11 @@
 			<div id="div-append-<%= job.id %>"></div>
 		<% end %>
 	</ul>
-	
+
 	<div class="kaminari-wrapper">
 		<%= paginate @jobs %>
-	</div>
+	</div>	
+
 </div>
 
 <%= render './layouts/background' %>

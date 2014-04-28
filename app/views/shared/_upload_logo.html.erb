@@ -1,0 +1,13 @@
+<% object = locals[:object] %>
+
+<div class="uploader-logo <%= 'hidden' if object.logo.exists? %>">
+		<%= form_for object, url: skill_url(object), html: { multipart: true } do |f| %>
+			<span class="insert-image-span">
+				<span>Insert Logo for <%= object.skill_name %></span>	
+				<i class="fa fa-picture-o"></i>
+			</span>		
+			<%= f.file_field :logo %>
+			<%= f.submit %>
+		<% end %>
+	<%# end %>
+</div>
