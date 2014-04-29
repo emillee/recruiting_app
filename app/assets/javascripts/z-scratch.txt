@@ -1,3 +1,60 @@
+ // EXPAND DROPDOWN ON HOVER
+ // $('.sidebar-middle').on('mouseenter', '.wrapper', function() {
+ //   var $ul = $(this).children('ul');
+ //   var $checkbox_lis = $ul.children('li');
+ //   var $checkboxes = $checkbox_lis.find(":checkbox");
+
+ //   $checkboxes.each(function() {
+ //     if (this.checked === false) {
+ //       $(this).parent('li').show(500);
+ //     }
+ //   })
+
+ //   $(this).find('.fa-caret-down').toggleClass('hidden');
+ //   $(this).find('.fa-caret-right').toggleClass('hidden');
+ // });  
+ 
+ // $('.sidebar-middle').on('mouseleave', '.wrapper', function() {
+ //   var $ul = $(this).children('ul');
+ //   var $checkbox_lis = $ul.children('li');
+ //   var $checkboxes = $checkbox_lis.find(":checkbox");
+   
+ //   var any_checked = _.any($checkboxes, function(checkbox) {
+ //     return checkbox.checked === true;
+ //   });
+   
+ //   if (any_checked) {
+ //     $checkboxes.each(function() {
+ //       if (this.checked === false) {
+ //         $(this).parent('li').hide(400);
+ //       };
+ //     });
+ //   };
+
+ //   $(this).find('.fa-caret-down').toggleClass('hidden');
+ //   $(this).find('.fa-caret-right').toggleClass('hidden');          
+ // });
+
+ // CLICK CHECKBOX FOR DEGREES
+//  $('.sidebar-middle').on('click', 'li.degree', function(e) {
+//   var $checkbox = $(this).find(":checkbox")[0];
+//   if (e.target != $checkbox) $checkbox.checked = !$checkbox.checked
+//   $(this).toggleClass("selected", $checkbox.checked);
+//   $(this).closest('.fa-check').toggleClass('hidden');
+// });
+ 
+ // KEY SKILLS FILTER - EXPAND / COLLAPSE
+ // $('.sidebar-middle').on('click', 'h1.key-skills', function() {
+ //   var $ul = $(this).closest('.wrapper').children('ul');
+ //   var $wrapper = $ul.children('div.key-skills-wrapper');
+ //   $wrapper.toggleClass('hidden')
+   
+ //   $('.key-skills .fa-caret-down').toggleClass('hidden');
+ //   $('.key-skills .fa-caret-right').toggleClass('hidden');
+ // });  
+
+
+
 // var $kaminari = $(data).find('.pagination');
 // $('.job-posts').empty().html($jobs);  
 

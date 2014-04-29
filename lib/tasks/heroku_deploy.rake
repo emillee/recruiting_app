@@ -2,7 +2,7 @@ namespace :heroku do
   
   desc "deploy app to heroku"
   task :deploy do
-    app = 'nytech'
+    app = 'wolfpackbeta'
     remote = "git@heroku.com:#{app}.git"
     
     system "heroku maintenance:on --app #{app}"

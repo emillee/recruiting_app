@@ -1,4 +1,4 @@
-ready_companies = function() {    
+var ready_companies = function() {    
   if ($('.companies').length > 0 ) {
   
     // --------------------------------------------------------------------------------------------------------------
@@ -31,7 +31,6 @@ ready_companies = function() {
         crossDomain: false,
         allowFreeTagging: true,
         propertyToSearch: property_to_search,
-        // onAdd: focusTokenInputCursor(input_selector),
         onReady: focusTokenInputCursor(),
         preventDuplicates: true
       });
@@ -42,8 +41,9 @@ ready_companies = function() {
       $('#token-input-skill_skill_name').focus();  
     };
     
-  }
-}
+  };
+};
+
 $(document).ready(ready_companies);
 $(document).on('page:load', ready_companies);
 

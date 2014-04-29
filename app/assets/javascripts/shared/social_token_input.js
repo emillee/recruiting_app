@@ -86,7 +86,6 @@ ready_social = function() {
                    ',top='    + top    +
                    ',left='   + left;
 
-
      window.open(fb_link.attr('href'), null, opts);
 
      return false;

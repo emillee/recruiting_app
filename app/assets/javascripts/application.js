@@ -2,8 +2,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.ui.all
-//= require jquery.ui.autocomplete
-//= require jquery.purr
 //= require jquery.tokeninput
 //= require editor
 //= require sidebar

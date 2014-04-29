@@ -1,9 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------
-// JOBS INDEX
-// --------------------------------------------------------------------------------------------------------------
-
-// ready_jobs = $('.jobs.index').ready(function() {
-ready_jobs = function() {
+var ready_jobs = function() {
   if ($('.jobs').length > 0) {
   
     // ADD SELECTED CLASS TO JOBNAV
@@ -33,6 +28,7 @@ ready_jobs = function() {
     
     // EMAIL / FORWARD A JOB POST
     $('ul.job-posts').on('click', '.forward', function(event) {
+      event.preventDefault();  
       $.ajaxSetup({ cache: false });
     
       var job_id = $(this).data('id');
@@ -45,17 +41,15 @@ ready_jobs = function() {
         $('#email_info_email').focus();
         setUpBlurHandlers();
         addModalToBody();
-      })
-      
-      event.preventDefault();     
+      });   
     });
     
     function setUpBlurHandlers() {
+      setUpPropagators();
+      
       $('i.fa-times-circle').on('click', function() {
         undoModal();
       });
-      
-      setUpPropagators();
       
       $(document).click(function() {
         undoModal();
@@ -65,7 +59,7 @@ ready_jobs = function() {
     function setUpPropagators() {
       $('.forward-form').children().click(function(e) {
         e.stopPropagation();
-      })
+      });
     };
     
     function undoModal() {
@@ -97,7 +91,7 @@ ready_jobs = function() {
       });
     });
   
-    // REMOVE A FILTER WHEN CLICKED
+    // REMOVE A JOB WHEN CLICK REMOVE
     $('ul.job-posts').on('click', '.remove', function(event) {
       $(this).parents('li').remove();
     });
@@ -116,10 +110,11 @@ ready_jobs = function() {
         url: $url,
         type: 'PUT',
         data: dataObject
-      })
-    })
+      });
+    });
+    
   };
-}
+};
 
 $(document).ready(ready_jobs);
 $(document).on('page:load', ready_jobs);

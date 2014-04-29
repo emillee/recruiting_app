@@ -1,27 +1,22 @@
-var ready;
-
-ready = function() {
+var ready = function() {
   
   // TOGGLE ROLES and REQS
   $('.roles').click(function() {
-    $(this).addClass('selected');
-    $('.prefs').removeClass('selected')
-    $('.prefs').children('.arrow-down').addClass('hidden')
-    $(this).children('.arrow-down').removeClass('hidden');
-
-    $('.roles-sidebar-wrapper').removeClass('hidden');
-    $('.prefs-sidebar-wrapper').addClass('hidden');
-  })
+    toggleSidebarTriangle.apply(this, ['.prefs', '.prefs-sidebar-wrapper', '.roles-sidebar-wrapper']);
+  });
 
   $('.prefs').click(function() {
+    toggleSidebarTriangle.apply(this, ['.roles', '.roles-sidebar-wrapper', '.prefs-sidebar-wrapper']);
+  });
+  
+  function toggleSidebarTriangle(selector, wrapSelector, wrapSelectorTwo) {
     $(this).addClass('selected');
-    $('.roles').removeClass('selected')
-    $('.roles').children('.arrow-down').addClass('hidden')
     $(this).children('.arrow-down').removeClass('hidden');
-    
-    $('.roles-sidebar-wrapper').addClass('hidden');
-    $('.prefs-sidebar-wrapper').removeClass('hidden');
-  }) 
+    $(selector).removeClass('selected')
+    $(selector).children('.arrow-down').addClass('hidden')
+    $(wrapSelector).addClass('hidden');
+    $(wrapSelectorTwo).removeClass('hidden');    
+  };
   
   // SEARCH: GET RID OF KEYWORD BANNER IF NO KEYWORDS
   $('.keywords-ul').on('click', 'li', function() {
@@ -64,7 +59,6 @@ ready = function() {
     $(this).parents('form:first').submit();
   });
   
-  
   // TOGGLE H1 IN SIDEBAR
   $('.sidebar-middle').on('click', 'h1', function() {
     var thisObject = this;
@@ -76,21 +70,6 @@ ready = function() {
     var thisObject = this;
     toggleDropDown(thisObject);
   });  
-      
-  var toggleDropDown = function(thisObject) {
-    var $ul = $(thisObject).closest('.wrapper').children('ul');
-    var $checkbox_lis = $ul.children('li');
-    var $checkboxes = $checkbox_lis.find(":checkbox");
-
-    $checkboxes.each(function() {
-      if (this.checked === false) {
-        $(this).parent('li').toggleClass('hidden');
-      }
-    })
-
-    $(thisObject).children('.fa-caret-down').toggleClass('hidden');
-    $(thisObject).children('.fa-caret-right').toggleClass('hidden');    
-  }
   
   // CLICK CHECKBOX - CLICK CHECKBOX, SHOW ICON
   $('.sidebar-middle').on('click', 'li.job-sidebar', function(e) {
@@ -122,61 +101,22 @@ ready = function() {
     $('.job-sidebar').removeClass('selected');
     $('.job-filters').parents('form:first').submit();
   });
-
-  // EXPAND DROPDOWN ON HOVER
-  // $('.sidebar-middle').on('mouseenter', '.wrapper', function() {
-  //   var $ul = $(this).children('ul');
-  //   var $checkbox_lis = $ul.children('li');
-  //   var $checkboxes = $checkbox_lis.find(":checkbox");
-
-  //   $checkboxes.each(function() {
-  //     if (this.checked === false) {
-  //       $(this).parent('li').show(500);
-  //     }
-  //   })
-
-  //   $(this).find('.fa-caret-down').toggleClass('hidden');
-  //   $(this).find('.fa-caret-right').toggleClass('hidden');
-  // });  
   
-  // $('.sidebar-middle').on('mouseleave', '.wrapper', function() {
-  //   var $ul = $(this).children('ul');
-  //   var $checkbox_lis = $ul.children('li');
-  //   var $checkboxes = $checkbox_lis.find(":checkbox");
-    
-  //   var any_checked = _.any($checkboxes, function(checkbox) {
-  //     return checkbox.checked === true;
-  //   });
-    
-  //   if (any_checked) {
-  //     $checkboxes.each(function() {
-  //       if (this.checked === false) {
-  //         $(this).parent('li').hide(400);
-  //       };
-  //     });
-  //   };
+  var toggleDropDown = function(thisObject) {
+    var $ul = $(thisObject).closest('.wrapper').children('ul');
+    var $checkbox_lis = $ul.children('li');
+    var $checkboxes = $checkbox_lis.find(":checkbox");
 
-  //   $(this).find('.fa-caret-down').toggleClass('hidden');
-  //   $(this).find('.fa-caret-right').toggleClass('hidden');          
-  // });
+    $checkboxes.each(function() {
+      if (this.checked === false) {
+        $(this).parent('li').toggleClass('hidden');
+      };
+    });
 
-  // CLICK CHECKBOX FOR DEGREES
- //  $('.sidebar-middle').on('click', 'li.degree', function(e) {
- //   var $checkbox = $(this).find(":checkbox")[0];
- //   if (e.target != $checkbox) $checkbox.checked = !$checkbox.checked
- //   $(this).toggleClass("selected", $checkbox.checked);
- //   $(this).closest('.fa-check').toggleClass('hidden');
- // });
-  
-  // KEY SKILLS FILTER - EXPAND / COLLAPSE
-  // $('.sidebar-middle').on('click', 'h1.key-skills', function() {
-  //   var $ul = $(this).closest('.wrapper').children('ul');
-  //   var $wrapper = $ul.children('div.key-skills-wrapper');
-  //   $wrapper.toggleClass('hidden')
-    
-  //   $('.key-skills .fa-caret-down').toggleClass('hidden');
-  //   $('.key-skills .fa-caret-right').toggleClass('hidden');
-  // });  
+    $(thisObject).children('.fa-caret-down').toggleClass('hidden');
+    $(thisObject).children('.fa-caret-right').toggleClass('hidden');    
+  };
+
 };
 
 $(document).ready(ready);

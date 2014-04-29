@@ -1,19 +1,17 @@
-var nav_ready;
-
-nav_ready = function() {
+var nav_ready = function() {
 
   // NAVBAR OPACITY ON SCROLL
   $(window).scroll(function() {
     if ($(window).scrollTop() > 25) {
-      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,1)')
-    } 
-  }) 
+      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,1)');
+    };
+  });
 
   $(window).scroll(function() {
     if ($(window).scrollTop() < 25) {
-      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,.5)')
-    } 
-  }) 
+      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,.5)');
+    };
+  });
 
 };
 

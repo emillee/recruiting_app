@@ -1,4 +1,4 @@
-ready_drag_and_drop = function() {   
+var ready_drag_and_drop = function() {   
 
   if ( $('.companies').length > 0 || $('.users').length > 0 ) { 
 
@@ -10,25 +10,24 @@ ready_drag_and_drop = function() {
       event.preventDefault();
       toggleBoxOfLogos();
       addDroppableEvents();
-    })
+    });
 
     // REMOVE OUTLINE BOX AFTER DONE WITH EDIT MODE
     $('.skill-dropzone').on('click', '#save-skills', function(event) {
       event.preventDefault();
       toggleBoxOfLogos();
     });
-       
     
     // SUBMIT FORM FOR USER SKILL DEGREES ON CLICK
     $('.skills-ul').on('click', 'input[type="radio"]', function() {
       $(this).parents('form:first').submit();
-    })
+    });
 
     // AFTER FORM SUBMISSION AJAX CALL
     $('.skills-ul').on('ajax:success', '.edit_object_skill', function(event, data) {
       var $skills = $(data).find(' .skills-ul');
       $('.skills-ul').empty().html($skills);
-    })
+    });
 
     // SHOW BOX OF LOGOS
     function toggleBoxOfLogos() {
@@ -56,7 +55,7 @@ ready_drag_and_drop = function() {
       $('.box-of-logos.is-droppable').droppable({
         drop: destroyObjectSkill
       });    
-    }
+    };
 
     // POST TO OBJECT_SKILL TABLE 
     function createObjectSkill(event, ui) {
@@ -78,7 +77,7 @@ ready_drag_and_drop = function() {
           $('.skills-ul').children('#add-skill').toggleClass('hidden');
           addDraggableEvents();
         }
-      })
+      });
     };
 
     // REMOVE OBJECT_SKILL
@@ -93,13 +92,13 @@ ready_drag_and_drop = function() {
         url: this_url,
         success: function(data) {
           draggable.parent('li').remove();
-          var $box_of_logos = $(data).find(' .box-of-logos-ul')
+          var $box_of_logos = $(data).find(' .box-of-logos-ul');
           $('ul.box-of-logos-ul').empty().html($box_of_logos);
           addDroppableEvents();
           addDraggableEvents();
         }
-      })
-    }   
+      });
+    };
 
   };
 };

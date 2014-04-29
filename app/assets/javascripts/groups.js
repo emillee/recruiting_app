@@ -1,8 +1,5 @@
-// ready = $('.groups.show').ready(function() {
-ready_groups = function() {    
+var ready_groups = function() {    
   if ($('.groups').length > 0) {
-
-    // initializeEditor();
   
     $(document).on('mousemove', function(e) {
       $('#add_image_button').css({
@@ -15,8 +12,8 @@ ready_groups = function() {
       execCommandOnElement(testDiv, 'insertImage', 'red');
     });
 
-  }
-}
+  };
+};
   
 $(document).ready(ready_groups);
 $(document).on('page:load', ready_groups);  
