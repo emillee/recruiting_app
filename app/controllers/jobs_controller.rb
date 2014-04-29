@@ -20,8 +20,9 @@ class JobsController < ApplicationController
       else
         @jobs = Job.all.page(params[:page]).per(10).order('years_exp DESC')
       end
-    elsif current_user && !current_user.job_settings.blank?
-      @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(10).order('years_exp DESC')
+    elsif current_user && (current_user.job_settings.any? || current_user.job_prefs.any?)
+      #@jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(10).order('years_exp DESC')
+      @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))
     else
       @jobs = Job.all.page(params[:page]).per(10)
       respond_to do |format|

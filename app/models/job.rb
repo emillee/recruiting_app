@@ -46,16 +46,21 @@ class Job < ActiveRecord::Base
 
   # RANKING-------------------------------------------------------------------------------
 
-  def self.rank_jobs_based_on_settings(jobs, user)
-    return jobs if user.job_settings[:key_skills].nil?
+  def self.rank_jobs(jobs, user)
+    #return jobs if user.job_settings[:key_skills].nil?
 
-    skill_points_weighting = 10
+    skill_points_weighting = 5
+    industry_points_weighting = 5
 
     jobs.each do |job|
       job.job_score ||= 0
       skill_matches ||= 0
       skill_matches = (user.tech_stack & job.listing_company.tech_stack).count
       job.job_score += skill_points_weighting * skill_matches
+      if job.listing_company.category_code
+        job.job_score += industry_points_weighting if user.job_prefs && 
+          user.job_prefs[:company_industry].map(&:downcase).include?(job.listing_company.category_code.downcase)
+      end
     end
 
     jobs.sort! {|a,b| b.job_score <=> a.job_score }

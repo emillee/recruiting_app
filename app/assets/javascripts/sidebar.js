@@ -93,15 +93,30 @@ var ready = function() {
     $('.kaminari-wrapper').empty().html($kaminari);
     $('#roles-job-filter-form .sidebar-middle').empty().html($sidebar);
   });
+
+  $('#pref-job-filter-form').on("ajax:success", function(event, data) {  
+    var $jobs = $(data).find('.job-posts');
+    var $sidebar = $(data).find('#pref-job-filter-form .sidebar-middle');
+    var $kaminari = $(data).find('.pagination');
+    $('.job-posts').empty().html($jobs);
+    $('.kaminari-wrapper').empty().html($kaminari);
+    $('#pref-job-filter-form .sidebar-middle').empty().html($sidebar);
+  });  
   
   // REMOVE ALL FILTERS
-  $('#clear-all').click(function() {
+  $('#clear-all-roles').click(function() {
     $('.keywords-li').click();
-    $('.job-sidebar').find(':checkbox').prop('checked', false);
-    $('.job-sidebar').removeClass('selected');
-    $('.job-filters').parents('form:first').submit();
+    $('.roles-sidebar-wrapper .job-sidebar').find(':checkbox').prop('checked', false);
+    $('.roles-sidebar-wrapper .job-sidebar').removeClass('selected');
+    $('#roles-job-filter-form').submit();
   });
-  
+
+  $('#clear-all-prefs').click(function() {
+    $('.prefs-sidebar-wrapper .job-sidebar').find(':checkbox').prop('checked', false);
+    $('.prefs-sidebar-wrapper .job-sidebar').removeClass('selected');
+    $('#pref-job-filter-form').submit();
+  });
+
   var toggleDropDown = function(thisObject) {
     var $ul = $(thisObject).closest('.wrapper').children('ul');
     var $checkbox_lis = $ul.children('li');

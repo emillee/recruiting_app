@@ -5,9 +5,9 @@
 	<%= render 'job_navbar' %>
 
 	<ul class="job-posts">
-		<% @jobs = Job.rank_jobs_based_on_settings(@jobs, current_user) %>
+		<% jobs = Job.rank_jobs(@jobs, current_user) %>
 		
-		<% @jobs.each do |job| %>		
+		<% jobs.each do |job| %>		
 			<% if current_user %>
 				<% next if current_user.removed_jobs.include?(job) && @filter != 'removed' %>
 			<% end %>	
@@ -23,7 +23,7 @@
 	</ul>
 
 	<div class="kaminari-wrapper">
-		<%= paginate @jobs %>
+		<%#= paginate @jobs %>
 	</div>	
 
 </div>

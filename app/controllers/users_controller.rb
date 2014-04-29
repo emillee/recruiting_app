@@ -40,31 +40,11 @@ class UsersController < ApplicationController
 
 	def update
     @user = User.find(params[:id])
-    
-    if params[:user]
-      keywords_arr = params[:user][:job_settings][:keywords] unless params[:user][:job_settings].nil?
 
-      without_blanks = []
-    
-      if keywords_arr
-        keywords_arr.each do |keyword|
-          without_blanks << keyword unless keyword == ""
-        end
-      end      
-    
-      if without_blanks.empty?
-        params[:user][:job_settings].delete(:keywords) unless params[:user][:job_settings].nil? 
-      else
-        params[:user][:job_settings][:keywords] = without_blanks
-      end
-    
-  		if params[:user][:job_settings] && params[:user][:job_settings].nil?
-  		  @user.update_column('job_settings', {})
-  		  @jobs = Job.all
-  		  redirect_to jobs_url
-  	  end
-  	end
-  	
+    params[:user] = remove_blanks(params[:user], :job_settings, :keywords) unless params[:user].nil?
+    params[:user] = remove_blanks(params[:user], :job_prefs, :company_stage) unless params[:user].nil?
+    params[:user] = remove_blanks(params[:user], :job_prefs, :company_industry) unless params[:user].nil?
+
   	# if autcomplete sends back a company name (new company)
   	if params[:user] && params[:user][:company_id] && params[:user][:company_id].to_i == 0
   	  company = Company.create(name: params[:user][:company_id])
@@ -74,27 +54,14 @@ class UsersController < ApplicationController
 	  
 	  # WHEN UPDATING ARTICLE
     article_id = params[:user][:article_id] if params[:user]
-    # params[:user].delete(:article_id) if params[:user]
     @user.store_article_id_temporarily(article_id)    
-	  
-	  if params[:user] && params[:user][:job_prefs] && params[:user][:job_prefs][:salary_buckets]
-	    params[:user][:job_prefs][:salary_buckets].map! do |salary|
-	      salary.delete('$').delete(',').to_i
-      end
-    end
-    
-	  if params[:user] && params[:user][:job_prefs] && params[:user][:job_prefs][:equity_buckets]
-	    params[:user][:job_prefs][:equity_buckets].map! do |salary|
-	      salary.delete('%').to_i
-      end
-    end
 	  
 		if @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
 			sign_in(@user)
 		end
 		
-		if params[:user] && params[:user][:job_settings]
+		if params[:user] && (params[:user][:job_settings] || params[:user][:job_prefs])
 		  redirect_to jobs_url
 	  elsif params[:user] && params[:user][:company_settings]
 	    redirect_to companies_url
@@ -153,11 +120,38 @@ class UsersController < ApplicationController
 		    :is_admin, :guest, :biography, :intro, :interested_in_meeting, :investor_company_id, :snapshots,
   		  :email, :password, :password_digest, :avatar, :fname, :lname, :title, :location, :company_id, :location_from,
   		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
-  		  {job_prefs: { company_stage: [], salary_buckets: [], equity_buckets: [] }},  		
-  		  {company_settings: { company_stage: [], salary_buckets: [], equity_buckets: [] }}  		
-  		  
+  		  {job_prefs: { company_stage: [], company_industry: [], salary_buckets: [], equity_buckets: [] }},  		
+  		  {company_settings: { company_stage: [] }}
   		)
   	end
+
+    def remove_blanks(params, cat, sub_cat)
+      no_blanks = []
+      
+      if params[cat] && params[cat][sub_cat]
+        params[cat][sub_cat].each do |item|
+          no_blanks << item if item != ''
+          no_blanks.empty? ? params[cat].delete(sub_cat) : params[cat][sub_cat] = no_blanks
+        end
+      end
+
+      params    
+    end
 	
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,0 +1,12 @@
+USER#UPDATE_ATTRIBUTES
+if params[:user] && params[:user][:job_prefs] && params[:user][:job_prefs][:salary_buckets]
+  params[:user][:job_prefs][:salary_buckets].map! do |salary|
+    salary.delete('$').delete(',').to_i
+  end
+end
+
+if params[:user] && params[:user][:job_prefs] && params[:user][:job_prefs][:equity_buckets]
+  params[:user][:job_prefs][:equity_buckets].map! do |salary|
+    salary.delete('%').to_i
+  end
+end

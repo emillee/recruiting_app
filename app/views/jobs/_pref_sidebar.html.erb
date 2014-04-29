@@ -2,68 +2,33 @@
 	<%= form_for current_user, remote: true, html: { id: "pref-job-filter-form" } do |f| %>
 
 		<div class="sidebar-middle">
-	
-			<div class="wrapper">
-				<h1 class="company-stage">
-					Company Stage:
-					<i class="fa fa-caret-down <%= 'hidden' if current_user.job_prefs[:company_stage] %>"></i>
-					<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_prefs[:company_stage] %>"></i>
-				</h1>
-				<ul class="job-filters">
-					<% Taxonomy.company_stages.each do |stage| %>
-						<% checked = is_pref_checked?('company_stage', stage) %>
-						<li class="job-sidebar <%= 'selected' if current_user.job_prefs[:company_stage] && 
-							current_user.job_prefs[:company_stage].include?(stage) %>">
-							<%= label_tag stage %>
-							<%= check_box_tag "user[job_prefs][company_stage][]", stage, checked  %>
-							<i class="fa fa-angle-right"></i>
-							<i class="fa fa-times-circle"></i>								
-						</li>
-					<% end %>
-				</ul>
-			</div>
-
-			<div class="wrapper">
-				<h1 class="salary">
-					Salary:
-					<i class="fa fa-caret-down <%= 'hidden' if current_user.job_prefs[:company_stage] %>"></i>
-					<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_prefs[:company_stage] %>"></i>
-				</h1>
-				<ul class="job-filters">
-					<% current_user.job_prefs['salary_buckets'] ||= [] %>
-					<% [:salary_min, :salary_target, :salary_high].each_with_index do |salary_lvl, idx| %>
-						
-						<!-- TURN OFF CLICK HANDLER -->
-						<li class="job-sidebar <%= 'selected' if current_user.job_prefs[salary_lvl] %>">
-							<%= label_tag salary_lvl %>
-							<%= text_field_tag "user[job_prefs][salary_buckets][]", 
-								number_to_currency(current_user.job_prefs['salary_buckets'][idx], precision: 0), 
-								placeholder: '$', class: 'bucket-input' %>								
-						</li>
-					<% end %>
-				</ul>
-			</div>
 			
-			<div class="wrapper">
-				<h1 class="equity">
-					Equity:
-					<i class="fa fa-caret-down <%= 'hidden' if current_user.job_prefs[:company_stage] %>"></i>
-					<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_prefs[:company_stage] %>"></i>
-				</h1>
-				<ul class="job-filters">					
-					<% current_user.job_prefs['equity_buckets'] ||= [] %>
-					<% [:equity_min, :equity_target, :equity_high].each_with_index do |equity_lvl, idx| %>
-						
-						<!-- TURN OFF CLICK HANDLER -->
-						<li class="job-sidebar <%= 'selected' if current_user.job_prefs[equity_lvl] %>">
-							<%= label_tag equity_lvl %>
-							<%= text_field_tag "user[job_prefs][equity_buckets][]", 
-								number_to_percentage(current_user.job_prefs['equity_buckets'][idx], precision: 2), 
-								placeholder: '%', class: 'bucket-input' %>								
-						</li>
-					<% end %>
-				</ul>
-			</div>
+			<% preferences = ['company_stage', 'company_industry'] %>
+
+			<% preferences.each do |preference| %>
+
+				<div class="wrapper">
+					<h1 class="<%= preference %>">
+						<%= preference.split('_').map(&:titleize).join(' ') %>
+						<i class="fa fa-caret-down <%= 'hidden' if current_user.job_prefs[preference] %>"></i>
+						<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_prefs[preference] %>"></i>
+					</h1>
+					<ul class="job-filters">
+						<% Taxonomy.public_send(preference).each do |pref_choice| %>
+							<% checked = is_pref_checked?(preference, pref_choice) %>
+							<% is_hidden = current_user.job_prefs[preference] ? 'hidden' : '' %>
+							<li class="job-sidebar <%= checked ? 'selected' : is_hidden %>">
+								<%= label_tag pref_choice %>
+								<%= check_box_tag "user[job_prefs][#{preference}][]", pref_choice, checked  %>
+								<i class="fa fa-angle-right"></i>
+								<i class="fa fa-times-circle"></i>								
+							</li>
+						<% end %>
+						<%= hidden_field_tag "user[job_prefs][#{preference}][]", nil %>
+					</ul>
+				</div>	
+
+			<% end %>
 
 			<%= f.submit "Submit" %>
 		<% end %>
@@ -71,6 +36,6 @@
 	</div>
 
 	<div class="clear">
-		<button id="clear-all">Clear All</button>
+		<button id="clear-all-prefs">Clear All</button>
 	</div>
 <% end %>
