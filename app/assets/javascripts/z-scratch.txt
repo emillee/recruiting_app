@@ -53,8 +53,6 @@
  //   $('.key-skills .fa-caret-right').toggleClass('hidden');
  // });  
 
-
-
 // var $kaminari = $(data).find('.pagination');
 // $('.job-posts').empty().html($jobs);  
 

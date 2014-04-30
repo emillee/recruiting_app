@@ -48,6 +48,7 @@ gem 'linkedin'
 gem 'hpricot' # DELETE THIS
 gem 'stemmer'
 gem 'statsample'
+gem 'rb-libsvm'
 # gem "classifier", "~> 1.3.4"
 # gem 'amatch'
 # gem 'gsl'

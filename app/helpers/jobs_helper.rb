@@ -66,17 +66,20 @@ module JobsHelper
   end  
 	
 	def has_saved_job?(job)
-	  return true if current_user && current_user.saved_jobs.include?(job)
+	  # return true if current_user && current_user.saved_jobs.include?(job)
+    return true if current_user && job.saved_users.include?(current_user)
 	  return false
   end
   
   def already_applied?(job)
-    return true if current_user && current_user.jobs_applied.include?(job)
+    #return true if current_user && current_user.jobs_applied.include?(job)
+    return true if current_user && job.applicants.include?(current_user)
     return false
   end
 
   def already_removed?(job)
-    return true if current_user && current_user.removed_jobs.include?(job)
+    # return true if current_user && current_user.removed_jobs.include?(job)
+    return true if current_user && job.removed_users.include?(current_user)
     return false
   end
 

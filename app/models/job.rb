@@ -12,11 +12,15 @@ class Job < ActiveRecord::Base
   before_save { self.years_exp = self.years_exp.to_s.squish.to_i if self.years_exp }
   
   belongs_to :listing_company, class_name: 'Company', foreign_key: :company_id
+  
   has_many :user_job_applicants, class_name: 'UserJob', foreign_key: :applied_job_id
   has_many :users_that_saved_job, class_name: 'UserJob', foreign_key: :saved_job_id
-  has_many :saved_jobs, class_name: 'UserJob', foreign_key: :saved_job_id
+  has_many :users_that_removed_job, class_name: 'UserJob', foreign_key: :removed_job_id
+
   has_many :applicants, through: :user_job_applicants, source: :user  
   has_many :saved_users, through: :users_that_saved_job, source: :user
+  has_many :removed_users, through: :users_that_removed_job, source: :user
+
   has_many :user_job_preapprovals, class_name: 'UserJobPreapproval', foreign_key: :job_id
   has_many :preapproved_applicants, through: :user_job_preapprovals, source: :user
   
@@ -63,7 +67,7 @@ class Job < ActiveRecord::Base
       end
     end
 
-    jobs.sort! {|a,b| b.job_score <=> a.job_score }
+    jobs.sort! { |a,b| b.job_score <=> a.job_score }
     jobs
   end
     

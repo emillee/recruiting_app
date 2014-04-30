@@ -37,9 +37,9 @@
 	<% end %>
 
 	<% saved_class = has_saved_job?(job) ? "saved" : "save" %>
-	<% applied_class = already_applied?(job) ? "applied_already" : "applied" %>											
-	<% removed_class = already_removed?(job) ? "removed_already" : "remove" %>											
-
+	<% applied_class = already_applied?(job) ? "applied_already" : "applied" %>				
+	<% removed_class = already_removed?(job) ? "removed_already" : "remove" %>
+												
 	<div class="action-items">	
 		<span>Status:</span>
 		<%= link_to 'I Applied Already', user_jobs_url(user_id: user_id, 
@@ -50,4 +50,5 @@
 				class: removed_class, remote: true, method: :post %>
 		<%= link_to 'Forward', '#', class: 'forward', data: { id: job.id } %>	
 	</div>
+	
 </div>

@@ -85,13 +85,13 @@ var ready = function() {
   });
 
   // AJAX CALL TO REFRESH SIDEBAR AND JOBS ON SUCCESS
-  $('#roles-job-filter-form').on("ajax:success", function(event, data) {  
+  $('#roles-job-filter-form').on("ajax:success", function(event, data) { 
     var $jobs = $(data).find('.job-posts');
-    var $sidebar = $(data).find('#roles-job-filter-form .sidebar-middle');
+    // var $sidebar = $(data).find('#roles-job-filter-form .sidebar-middle');
     var $kaminari = $(data).find('.pagination');
     $('.job-posts').empty().html($jobs);
     $('.kaminari-wrapper').empty().html($kaminari);
-    $('#roles-job-filter-form .sidebar-middle').empty().html($sidebar);
+    // $('#roles-job-filter-form .sidebar-middle').empty().html($sidebar);
   });
 
   $('#pref-job-filter-form').on("ajax:success", function(event, data) {  

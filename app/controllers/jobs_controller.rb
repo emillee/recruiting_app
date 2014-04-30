@@ -6,8 +6,6 @@ class JobsController < ApplicationController
   # RESTful Routes ---------------------------------------------------------------------------
   
   def index
-    @jobs = Job.all.joins(:user_jobs)
-
     if params[:filter] && current_user
       @filter = params[:filter]
       case params[:filter]
@@ -21,8 +19,10 @@ class JobsController < ApplicationController
         @jobs = Job.all.page(params[:page]).per(10).order('years_exp DESC')
       end
     elsif current_user && (current_user.job_settings.any? || current_user.job_prefs.any?)
-      #@jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(10).order('years_exp DESC')
-      @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))
+      jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).
+        includes([{listing_company: :tech_stack}, :applicants, :saved_users, :removed_users])
+      @jobs = Job.rank_jobs(jobs, current_user)
+      @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(10)
     else
       @jobs = Job.all.page(params[:page]).per(10)
       respond_to do |format|
