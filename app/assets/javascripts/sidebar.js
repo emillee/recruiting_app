@@ -87,11 +87,11 @@ var ready = function() {
   // AJAX CALL TO REFRESH SIDEBAR AND JOBS ON SUCCESS
   $('#roles-job-filter-form').on("ajax:success", function(event, data) { 
     var $jobs = $(data).find('.job-posts');
-    // var $sidebar = $(data).find('#roles-job-filter-form .sidebar-middle');
+    var $sidebar = $(data).find('#roles-job-filter-form .sidebar-middle');
     var $kaminari = $(data).find('.pagination');
     $('.job-posts').empty().html($jobs);
     $('.kaminari-wrapper').empty().html($kaminari);
-    // $('#roles-job-filter-form .sidebar-middle').empty().html($sidebar);
+    $('#roles-job-filter-form .sidebar-middle').empty().html($sidebar);
   });
 
   $('#pref-job-filter-form').on("ajax:success", function(event, data) {  
@@ -100,7 +100,6 @@ var ready = function() {
     var $kaminari = $(data).find('.pagination');
     $('.job-posts').empty().html($jobs);
     $('.kaminari-wrapper').empty().html($kaminari);
-    $('#pref-job-filter-form .sidebar-middle').empty().html($sidebar);
   });  
   
   // REMOVE ALL FILTERS
@@ -131,6 +130,42 @@ var ready = function() {
     $(thisObject).children('.fa-caret-down').toggleClass('hidden');
     $(thisObject).children('.fa-caret-right').toggleClass('hidden');    
   };
+
+   $('.sidebar-middle').on('mouseenter', '.wrapper', function() {
+     var $ul = $(this).children('ul');
+     var $checkbox_lis = $ul.children('li');
+     var $checkboxes = $checkbox_lis.find(":checkbox");
+
+     $checkboxes.each(function() {
+       if (this.checked === false) {
+         $(this).parent('li').show(600);
+       }
+     })
+
+     $(this).find('.fa-caret-down').toggleClass('hidden');
+     $(this).find('.fa-caret-right').toggleClass('hidden');
+   });  
+   
+   $('.sidebar-middle').on('mouseleave', '.wrapper', function() {
+     var $ul = $(this).children('ul');
+     var $checkbox_lis = $ul.children('li');
+     var $checkboxes = $checkbox_lis.find(":checkbox");
+     
+     var any_checked = _.any($checkboxes, function(checkbox) {
+       return checkbox.checked === true;
+     });
+     
+     if (any_checked) {
+       $checkboxes.each(function() {
+         if (this.checked === false) {
+           $(this).parent('li').hide(500);
+         };
+       });
+     };
+
+     $(this).find('.fa-caret-down').toggleClass('hidden');
+     $(this).find('.fa-caret-right').toggleClass('hidden');          
+   });  
 
 };
 

@@ -12,7 +12,7 @@
 <div class="job-description-wrapper left">	
 	<%= job.job_score %>
 
-	<% unless current_user.is_admin %>
+	<% unless current_user && current_user.is_admin %>
 		<a href="<%= job.link %>" target="_blank">
 	<% end %>
 		<h1 class="jobs-editable"
@@ -24,7 +24,7 @@
 			<%= (job.title.nil? || job.title.empty?) ? 'Title Here' : ActionView::Base.full_sanitizer.sanitize(job.title.titleize) %>
 		</h1>
 
-	<% unless current_user.is_admin %>
+	<% unless current_user && current_user.is_admin %>
 		</a>
 	<% end %>		
 

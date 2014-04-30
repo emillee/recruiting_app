@@ -87,7 +87,6 @@ ready_social = function() {
                    ',left='   + left;
 
      window.open(fb_link.attr('href'), null, opts);
-
      return false;
     });
 
@@ -105,10 +104,8 @@ ready_social = function() {
                    ',left='   + left;
 
       window.open(url, 'twitter', opts);
-
       return false;
     });  
-
           
     function makeWidgetsInvisble() {
     	window.onload = function() {

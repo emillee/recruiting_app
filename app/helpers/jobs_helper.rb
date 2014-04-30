@@ -1,5 +1,21 @@
 module JobsHelper
   
+  # NEEDS REFACTORING - EAGER LOAD THIS
+  def return_subcategory(prev_category, target_category)
+    previous_category_array = current_user.job_settings[prev_category] 
+    results_array = []
+    
+    if previous_category_array
+      Job.all.each do |job|
+        results_array << job.public_send(target_category) if previous_category_array.
+          include?(job.public_send(prev_category))
+      end
+    end
+
+    results_array.uniq! if results_array.any? 
+    results_array.sort!
+  end  
+  
   def icon_dept_match(dept)
     case dept
     when 'bus. development'
@@ -47,19 +63,6 @@ module JobsHelper
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     link_to title, {sort: column, direction: direction}, {class: css_class}
   end
-  
-  def return_sub_depts
-    current_depts = current_user.job_settings[:dept] 
-    sub_dept_arr = []
-    
-    if current_depts
-      Job.all.each do |job|
-  		  sub_dept_arr << job.sub_dept if current_depts.include?(job.dept)
-  	  end
-  	end
-	  sub_dept_arr.uniq! if sub_dept_arr.any? 
-	  sub_dept_arr.sort!
-	end
 
   def return_years_exp
     return current_user.job_settings[:years_exp] if current_user && current_user.job_settings[:years_exp]
