@@ -17,9 +17,12 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 
 gem 'kaminari'
-gem 'paperclip'
 gem 'rmagick'
 gem 'sendgrid'
+
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'zip'
 
 gem 'nokogiri'
 gem "mechanize", "~> 2.7.2"
