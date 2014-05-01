@@ -1,5 +1,12 @@
 module SessionsHelper
 
+	def require_membership
+		unless (current_user.is_member || current_user.is_admin)
+			store_location
+			redirect_to login_url
+		end
+	end	
+
 	def sign_in(user)
 		session[:session_token] = user.session_token
 		self.current_user = user
@@ -24,7 +31,7 @@ module SessionsHelper
 	def require_sign_in
 		unless signed_in?
 			store_location
-			redirect_to signin_url, flash[:notice] = 'Please sign in'
+			redirect_to login_url
 		end
 	end
 

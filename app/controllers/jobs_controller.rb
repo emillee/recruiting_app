@@ -2,6 +2,7 @@ class JobsController < ApplicationController
   
   respond_to :html, :json
   before_filter :set_this_tab, only: [:index, :show]
+  before_filter :require_sign_in
 
   # RESTful Routes ---------------------------------------------------------------------------
   

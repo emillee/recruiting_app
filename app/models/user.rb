@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   before_save { self.job_settings.each { |key, val| val.map!(&:downcase) } }
   before_create :create_session_token
   
-  after_create :set_admin_to_false
+  after_create :set_is_admin_and_is_member_to_false
   
   serialize :job_settings, Hash
   serialize :company_settings, Hash
@@ -155,8 +155,9 @@ class User < ActiveRecord::Base
        self.job_prefs ||= '{}'
     end
     
-    def set_admin_to_false
+    def set_is_admin_and_is_member_to_false
       self.is_admin = false
+      self.is_member = false
       self.save
     end
   

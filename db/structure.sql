@@ -599,9 +599,6 @@ CREATE TABLE users (
     location character varying(255),
     company_id integer,
     job_filters hstore DEFAULT ''::hstore,
-    biography text,
-    intro text,
-    interested_in_meeting text,
     company_settings text,
     investor_company_id integer,
     snapshots_file_name character varying(255),
@@ -1146,3 +1143,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140424133640');
 INSERT INTO schema_migrations (version) VALUES ('20140424170644');
 
 INSERT INTO schema_migrations (version) VALUES ('20140424203330');
+
+INSERT INTO schema_migrations (version) VALUES ('20140430223118');

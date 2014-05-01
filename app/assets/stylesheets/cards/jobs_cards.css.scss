@@ -11,10 +11,12 @@
     margin-top: 7px;
     font-size: 20px;      
     line-height: 30px;
+    height: 30px;
     font-weight: 900;
     font-style: bold;
     color: #050002;
     display: inline-block;
+    overflow: hidden;
     
     &:hover {
       color: rgb(2,91,121);

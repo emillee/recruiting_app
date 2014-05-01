@@ -51,7 +51,7 @@ class Job < ActiveRecord::Base
   # RANKING-------------------------------------------------------------------------------
 
   def self.rank_jobs(jobs, user)
-    #return jobs if user.job_settings[:key_skills].nil?
+    return jobs if user.job_settings[:key_skills].nil?
 
     skill_points_weighting = 5
     industry_points_weighting = 5

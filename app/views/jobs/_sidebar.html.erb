@@ -13,7 +13,6 @@
 		</li>
 	</div>
 	
-	
 	<div class="roles-sidebar-wrapper">
 	
 		<% if current_user %>
@@ -157,13 +156,34 @@
 				<button id="clear-all-roles">Clear All</button>
 			</div>
 
+		<% else %>		
+			<div class="sidebar-middle">
+				<div class="wrapper">
+					<h1 class="department">
+						I'm a:
+						<i class="fa fa-caret-down"></i>
+					</h1>
+					<ul class="job-filters">
+						<% Taxonomy.departments.each do |dept| %>
+							<% dept = dept.downcase %>
+							<li class="job-sidebar department">
+								<i class="<%= icon_dept_match(dept) %> left"></i>
+								<%= label_tag dept %>
+								<%= check_box_tag "user[job_settings][dept][]", dept, false %>
+								<i class="fa fa-angle-right"></i>
+								<i class="fa fa-times-circle"></i>								
+							</li>
+						<% end %>
+					</ul>
+				</div>	
+			</div>	
 		<% end %>
-		
+
 	</div><!-- roles sidebar wrapper -->
 	
 	<!-- PREFERENCES SIDEBAR WRAPPER -->
 	<div class="prefs-sidebar-wrapper hidden">
-		<%= render 'pref_sidebar' %>
+		<%= render 'jobs/pref_sidebar' %>
 	</div>
 	
 </div>

@@ -31,6 +31,6 @@ module Nytech
     
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.woff *.eot *.ttf)
     
-    config.active_record.schema_format = :sql
+    config.active_record.schema_format = :ruby
   end
 end
