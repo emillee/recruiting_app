@@ -1,16 +1,17 @@
 <nav class="navbar-wrapper">
-	<a href=<%= user_url(current_user) %> data-no-turbolink='true'><i class="fa fa-bars"></i></a>
-	
+	<!-- <a href=<%#= user_url(current_user) %> data-no-turbolink='true'><i class="fa fa-bars"></i></a> -->
+	<a href=<%= root_url %> data-no-turbolink='true'><i class="fa fa-bars"></i></a>
+
 	<span class="logo-top">
 		<%= link_to 'wolfpack', root_url, class: "logo" %>
 		<%= link_to '.vc', root_url, class: "logo-two" %>
 	</span>
 
 	<div class="menu">
-		<%= link_to 'All', '#', class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
-		<%= link_to 'News', '#', class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
-		<%= link_to 'People', users_url, class: "#{'selected' if @tab == 'users'}", data: { no_turbolink: true }  %>
-		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
+		<%#= link_to 'All', '#', class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
+		<%#= link_to 'News', '#', class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
+		<%#= link_to 'People', users_url, class: "#{'selected' if @tab == 'users'}", data: { no_turbolink: true }  %>
+		<%#= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
 		<%#= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
 		<%#= link_to 'Angels & VCs', investors_url,  class: "#{'selected' if @tab == 'investors'}", data: { no_turbolink: true } %>
 		<%#= link_to 'Groups', '#',  class: "#{'selected' if @tab == 'groups'}", data: { no_turbolink: true } %>
@@ -19,7 +20,7 @@
 
 	<div class="session">
 		<% if signed_in? %>
-			<%= link_to "Apply for Membership", login_url %>		
+			<%#= link_to "Apply for Membership", login_url %>		
 			<i class="fa fa-power-off"></i> 
 			<%= link_to "Log Out", logout_url, method: :delete %>		
 		<% end %>

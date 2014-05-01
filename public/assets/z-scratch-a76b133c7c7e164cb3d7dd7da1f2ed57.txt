@@ -1,0 +1,139 @@
+ // EXPAND DROPDOWN ON HOVER
+ // $('.sidebar-middle').on('mouseenter', '.wrapper', function() {
+ //   var $ul = $(this).children('ul');
+ //   var $checkbox_lis = $ul.children('li');
+ //   var $checkboxes = $checkbox_lis.find(":checkbox");
+
+ //   $checkboxes.each(function() {
+ //     if (this.checked === false) {
+ //       $(this).parent('li').show(500);
+ //     }
+ //   })
+
+ //   $(this).find('.fa-caret-down').toggleClass('hidden');
+ //   $(this).find('.fa-caret-right').toggleClass('hidden');
+ // });  
+ 
+ // $('.sidebar-middle').on('mouseleave', '.wrapper', function() {
+ //   var $ul = $(this).children('ul');
+ //   var $checkbox_lis = $ul.children('li');
+ //   var $checkboxes = $checkbox_lis.find(":checkbox");
+   
+ //   var any_checked = _.any($checkboxes, function(checkbox) {
+ //     return checkbox.checked === true;
+ //   });
+   
+ //   if (any_checked) {
+ //     $checkboxes.each(function() {
+ //       if (this.checked === false) {
+ //         $(this).parent('li').hide(400);
+ //       };
+ //     });
+ //   };
+
+ //   $(this).find('.fa-caret-down').toggleClass('hidden');
+ //   $(this).find('.fa-caret-right').toggleClass('hidden');          
+ // });
+
+ // CLICK CHECKBOX FOR DEGREES
+//  $('.sidebar-middle').on('click', 'li.degree', function(e) {
+//   var $checkbox = $(this).find(":checkbox")[0];
+//   if (e.target != $checkbox) $checkbox.checked = !$checkbox.checked
+//   $(this).toggleClass("selected", $checkbox.checked);
+//   $(this).closest('.fa-check').toggleClass('hidden');
+// });
+ 
+ // KEY SKILLS FILTER - EXPAND / COLLAPSE
+ // $('.sidebar-middle').on('click', 'h1.key-skills', function() {
+ //   var $ul = $(this).closest('.wrapper').children('ul');
+ //   var $wrapper = $ul.children('div.key-skills-wrapper');
+ //   $wrapper.toggleClass('hidden')
+   
+ //   $('.key-skills .fa-caret-down').toggleClass('hidden');
+ //   $('.key-skills .fa-caret-right').toggleClass('hidden');
+ // });  
+
+// var $kaminari = $(data).find('.pagination');
+// $('.job-posts').empty().html($jobs);  
+
+// $('.edit').on('click', function(e) {
+//   e.preventDefault();
+//   var $user_id = $(this).data('id');
+//   var $url = "/users/" + $user_id + "/edit"
+//   
+//   $.ajax({
+//     type: 'GET',
+//     url: $url,
+//     success: function(data) {
+//       var $edit_data = $(data).filter(' .edit-business-card');
+//       console.log($edit_data)
+//       $('.business-card').html($edit_data);
+//       addAutocompleteFields();
+//     }
+//   })
+// })
+
+
+// function initializeEditor() {
+//   var editor = new Editor('.editable', { buttons: ['b', 'i', 'blockquote', 'h1', 'h2', 'h3', 'a', 'cancel']});
+// };
+// 
+// function execCommandOnElement(el, commandName, value) {
+//   if (typeof value == 'undefined') {
+//     value = null;
+//   }
+// 
+//   if (typeof window.getSelection != 'undefined') {
+//     // Non IE
+//     var sel = window.getSelection();
+//   
+//     // Save the current selection
+//     var savedRanges = [];
+//     for (var i=0, len = sel.rangeCount; i < len; i++) {
+//       savedRanges[i] = sel.getRangeAt(i).cloneRange();
+//     }
+//   
+//     // Temporarily enable designMode so that 
+//     // document.execCommand will work
+//     document.designMode = 'on';
+//   
+//     // Select the element's content
+//     sel = window.getSelection();
+//     var range = document.createRange();
+//     range.selectNodeContents(el);
+//     sel.removeAllRanges();
+//     sel.addRange(range);
+//   
+//     // Execute the command
+//     document.execCommand(commandName, false, value);
+//   
+//     // Disable designMode
+//     document.designMode = 'off';
+//   
+//     // Restore the previous selection
+//     sel = window.getSelection();
+//     sel.removeAllRanges();
+//     for (var i=0, len=savedRanges.length; i < len; i++) {
+//       sel.addRange(savedRanges[i]);
+//     } 
+//   } else if (typeof document.body.createTextRange != 'undefined' ){
+//     // IE Case
+//     var textRange = document.body.createTextRange();
+//     textRange.moveToElementText(el);
+//     textRange.execCOmmand(commandName, false, value);
+//   }
+// }
+
+
+// $('ul.job-posts').on('click', '.applied', function(event) {
+//   $(this).addClass('applied_already');
+//   $(this).removeClass('applied');
+//   var user_id = $(this).data('user-id')
+//   var job_id = $(this).data('applied-job-id')
+//   var this_url = "/user_jobs" + "?" + "applied_job_id=" + job_id + "&" + "user_id=" + user_id
+// 
+//   $.ajax({
+//     type: 'POST',
+//     url: this_url
+//   });
+// });

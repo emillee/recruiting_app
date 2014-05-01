@@ -10,7 +10,7 @@
 <% end %>	
 	
 <div class="job-description-wrapper left">	
-	<%= job.job_score %>
+	<%#= job.job_score %>
 
 	<% unless current_user && current_user.is_admin %>
 		<a href="<%= job.link %>" target="_blank">

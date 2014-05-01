@@ -13,6 +13,7 @@ module JobsHelper
     end
 
     results_array.uniq! if results_array.any? 
+    results_array.compact!
     results_array.sort!
   end  
   
