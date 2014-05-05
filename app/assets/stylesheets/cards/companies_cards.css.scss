@@ -36,9 +36,10 @@
 div.company-business-card {
   position: relative;
   display: inline-block;
-  width: 265px;
-  height: 150px;
+  width: 255px;
+  height: 141px;
   background-color: white;
+  border: 5px solid #FAFAFA;
 
   img {
     position: absolute;

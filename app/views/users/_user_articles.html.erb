@@ -3,19 +3,7 @@
 <% this_table = locals[:this_table] %>
 
 <div class="section-wrap left">		
-	<div id="top-id"></div>
-	
-	<%#= render '/users/cards/interested_in_meeting', locals: { user: @user, this_table: this_table } %>
-
-  <!-- <div class="article users" 
-		contenteditable="<%#= editable?(@user) %>"
-		data-table="<%#= this_table %>"
-		data-model="<%#= this_model %>"
-		data-id=<%#= current_user.id if current_user %> 
-		data-attribute='biography'> --><!-- end of contenteditable div -->
-		<%# biography = add_placeholder_if_nil('biography', @user) %>
-    <%#= raw(biography) %>
-  <!-- </div> --><!-- biography -->					
+	<div id="top-id"></div>				
 	
 	<% if articles.any? %>
 		<% articles.each do |article| %>
@@ -24,12 +12,13 @@
 	<% else %>
 		<% new_article = Article.create %>
 		<% user_article = UserArticle.create(user_id: user.id, article_id: new_article.id) %>
-		<%= render './articles/new_article_form', locals: { object: user, article: article, this_table: this_table } %>
+		<%= render './articles/new_article_form', locals: { object: user, article: new_article, this_table: this_table } %>
 	<% end %>
 
   <div class="article skills">
   	<h3>My Skills</h3>
 		<%= render 'shared/drop_zone', locals: { user: user } %>
     <%= render 'shared/box_of_logos', locals: { user: user }  %>
-  </div><!-- skills -->					
-</div><!-- section -->
+  </div>
+
+</div>

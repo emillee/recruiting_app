@@ -4,6 +4,13 @@
   width: 100%;
   display: block;
   width: 640px;
+
+  #edit-skills, #save-skills {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 16px;
+  }
   
   .is-droppable {
     background-color: #EBEBEB;

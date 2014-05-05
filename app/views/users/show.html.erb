@@ -5,21 +5,20 @@
 	user: @user
 } %>
 
-<div class="profile-wrapper left group">
-	<!-- BUSINESS CARD -->
+<div class="profile-wrapper group">
 
-		<%= render 'in_page_nav', locals: { user: @user, recent_articles: @recent_articles } %>	
-		<%#= render 'users/cards/intro', locals: { user: @user } %>
-
-	<div class="profile-card-positions right group">
+	<div class="profile-card-positions group">
 		<%= render './companies/cards/logo', locals: { company: @user.employer, user: @user }%>
+		<%= render 'users/cards/intro', locals: { user: @user, this_table: this_table } %>
 		<%= render 'users/cards/bcard', locals: { user: @user, this_table: this_table } %>
-		<%= render 'users/cards/action_items', locals: { user: @user } %>
+		<%#= render 'users/cards/action_items', locals: { user: @user } %>
 	</div>	
+
+	<%= render 'in_page_nav', locals: { user: @user, recent_articles: @recent_articles } %>	
 
 	<%= render 'user_articles', locals: { user: @user, this_table: this_table, articles: @articles } %>
 
-</div><!-- wrapper -->
+</div>
 
 <%= render './layouts/background' %>
 

@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140430225136) do
+ActiveRecord::Schema.define(version: 20140501211509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
   create_table "articles", force: true do |t|
-    t.string   "title",      default: ""
-    t.text     "body",       default: ""
+    t.string   "title",       default: ""
+    t.text     "body",        default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "company_id"
+    t.integer  "investor_id"
   end
 
   create_table "companies", force: true do |t|
@@ -199,6 +201,7 @@ ActiveRecord::Schema.define(version: 20140430225136) do
     t.text     "job_prefs"
     t.string   "location_from"
     t.boolean  "is_member"
+    t.text     "intro"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

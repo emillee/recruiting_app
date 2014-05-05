@@ -2,12 +2,12 @@
 <% this_table = 'users' %>
 <% this_model = this_table.singularize %>
 
-<div id="intro" 
+<div class="intro" 
 	contenteditable="<%= editable?(user) %>"
 	data-table="<%= this_table %>"
 	data-model="<%= this_model %>"
 	data-id=<%= current_user.id if current_user %>
 	data-attribute='intro'><!-- end of contenteditable div -->
-	<% intro = add_placeholder_if_nil('intro', user) %>
+	<% intro = user.intro ? user.intro : '<p>Tell us about YOU!</p><p>What are you working on, who are you looking to meet?</p>' %>
 	<%= raw(intro) %>
 </div><!-- menu -->

@@ -1,7 +1,7 @@
 nav.navbar-wrapper {
   border-top: 3px solid #00080E;
 //  padding-bottom: 3px;
-  line-height: 42px;
+  line-height: 40px;
   width: 100%;
   position: fixed;
   font-family: 'PT Serif', serif;
@@ -20,7 +20,6 @@ nav.navbar-wrapper {
   }
   
   span.logo-top {  
-    
     &:hover {
       a.logo, a.logo-two {
         color: rgb(192, 57, 43);
@@ -30,7 +29,7 @@ nav.navbar-wrapper {
     a.logo, a.logo-two {
       color: #232323;
       font-weight: 900;
-      margin-left: 10px;
+      margin-left: 50px;
     }
   
     a.logo-two {

@@ -3,10 +3,9 @@
   top: 75px;
   left: 300px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: rgba(0,0,0,.05);
+  background-color: rgba(0,0,0,.02);
   width: 1000px;
   height: 100%;
-//  border: 1px solid rgba(0,0,0,.05);
   margin-bottom: 100px;
   padding-bottom: 20px;
 
@@ -31,6 +30,37 @@
 	  font-size: 18px;
 	  line-height: 24px;    	
   }
+
+  // This wraps the company and user business cards
+  .profile-card-positions {
+    display: inline-block; 
+    border-left: 1px solid rgba(255,255,255,.25);
+    width: 100%;
+    
+    .company-business-card {
+      margin-top: 15px; 
+      margin-left: 18px;
+      float: left;
+    }
+
+    .intro {
+      margin-top: 15px; 
+      float: left;
+      background-color: #f4f5f0;
+      width: 435px;
+      height: 141px;
+      border-top: 5px solid #FAFAFA;
+      border-bottom: 5px solid #FAFAFA;
+    }
+
+    .business-card {
+      margin-top: 15px;
+      margin-right: 18px;
+      border: none;
+      box-shadow: none;
+      float: right;
+    }
+  } 
     
   .userindex-snapshot-wrapper {
     width: 100%;
@@ -43,80 +73,21 @@
       .company-business-card {
         display: inline-block;
       }
-
-      div.business-card {
-
-      }
-      
     }
   }
-  
-  .profile-card-positions {
-    display: inline-block;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 20px;    
-    border-left: 1px solid rgba(255,255,255,.25);
-    
-
-    .company-business-card {
-      margin-top: 15px;
-      border: 1px solid rgba(0,0,0,.1);
-    }
-
-    .business-card {
-      margin-top: 15px;
-      border: none;
-      box-shadow: none;
-    }
-    
-  };
-
-  // ------------------------------------------------------------------------------------------------------------------
-    
+      
   // MAIN CONTENT SECTION
-  
 	.section-wrap > div > h3:first-of-type {
 	  margin-top: 5px;
 	}
   	
   .section-wrap {
   	display: inline-block;
-  	
   	  
 	  div:first-of-type > h3:first-of-type {
 	    margin-top: 15px; 
 	  }
-	  
-    .article {	
-      padding-bottom: 10px;
-  	  background-color: rgba(255,255,255,1);
-  	  width: 665px;
-  	  margin-left: 20px;
-  	  margin-top: 15px; 
-	   
-      h3 {
-        padding-top: 15px;
-      }
-
-      a {
-        float: right;
-        margin-right: 10px;
-        font-size: 13px;
-        padding: 2px 7px;
-        color: #3498db;
-        border: 2px solid #3498db;
-        
-        &:hover {
-          border: 2px solid #3498db;
-          background-color: #3498db;
-          color: white;
-        }           
-      }
-	  } // article
-	  
   }
-
 }
 
 

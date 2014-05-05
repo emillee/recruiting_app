@@ -2,22 +2,20 @@
 <% user = locals[:user] %>
 
 <div class="company-business-card">
-	<div class="uploader-logo <%= 'hidden' if company.logo.exists? %>">
-		<%# if company && (user == current_user || current_user.is_admin) %>
-		
-			<%= form_for company, url: company_url(company), html: { multipart: true } do |f| %>
-				<span class="insert-image-span">
-					<span>Insert Logo</span>	
-					<i class="fa fa-picture-o"></i>
-				</span>		
-				<%= f.file_field :logo %>
-				<%= f.submit %>
-			<% end %>
-		<%# end %>
-	</div>
-		
 	<% if !company.nil? && company.logo.exists? %>
 		<%= image_tag company.logo.url %>
 	<% end %>
 
+	<% if company && (user == current_user || current_user.is_admin) %>
+		<div class="uploader-logo <%= 'hidden' if company.logo.exists? %>">
+			<span class="insert-image-span">
+				<span>Insert Logo</span>	
+				<i class="fa fa-picture-o"></i>
+			</span>	
+			<%= form_for company, url: company_url(company), html: { multipart: true } do |f| %>	
+				<%= f.file_field :logo %>
+				<%= f.submit %>
+			<% end %>
+		</div>
+	<% end %>	
 </div>

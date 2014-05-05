@@ -29,7 +29,7 @@ class Company < ActiveRecord::Base
   end  
 
   has_attached_file :logo, styles: { medium: '300x300>', thumb: '100x100>' },
-    default_url: '/images/:style/missing.png'
+    default_url: '/images/app_images/missing_company_logo.jpg'
     
   validates_attachment_content_type :snapshots, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/    

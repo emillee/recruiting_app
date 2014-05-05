@@ -4,3 +4,86 @@ a.delete-article-link {
   text-decoration: none;
   color: #c0392b;
 }
+
+// this is a hack for articles
+.profile-wrapper {
+
+	.in-page-navbar {
+		width: 962px;
+		background-color: #333332;
+	}
+
+  .section-wrap {
+    .content {
+      width: 912px;
+      padding: 25px;
+      padding-bottom: 0;
+      background-color: #FDFDFD;
+      margin-left: 20px;
+      margin-top: 15px; 
+      position: relative;
+
+      h1 {
+        font-size: 24px;
+        padding: 0 0 8px 0;
+        letter-spacing: 1px;
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+      
+      article.body {
+        margin: 0;
+        margin-bottom: 15px;
+        padding: 0;
+        
+        p {
+        	font-size: 20px;
+          margin: 0;
+          margin-top: 10px;
+        }        
+      }
+      
+      .uploader {
+        margin-bottom: 20px;
+        margin-left: 5px;
+      }
+
+      .social-sharing {
+        width: 101%;
+        position: relative;
+        
+        span {
+          margin-left: 5px;
+        }
+      }
+    }
+  }  
+}
+
+.article.skills {	
+  padding: 25px;
+  padding-bottom: 10px;
+  background-color: #FDFDFD;
+  width: 912px;
+  margin-left: 20px;
+  margin-top: 15px;
+  position: relative; 
+ 
+  h3 {
+    padding-top: 15px;
+  }
+
+  a {
+    float: right;
+    margin-right: 10px;
+    font-size: 13px;
+    padding: 2px 7px;
+    color: #3498db;
+    border: 2px solid #3498db;
+    
+    &:hover {
+      border: 2px solid #3498db;
+      background-color: #3498db;
+      color: white;
+    }           
+  }
+}  

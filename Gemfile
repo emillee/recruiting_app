@@ -16,6 +16,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 
+gem 'redis'
+gem 'hiredis'
+gem 'goliath'
+gem 'pry'
+
 gem 'kaminari'
 gem 'rmagick'
 gem 'sendgrid'

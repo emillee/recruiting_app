@@ -1,42 +1,78 @@
-// user#show - side
+// COMPANY BUSINESS CARD - USER#SHOW
 .company-business-card {
+
   &:hover {
     .uploader-logo {
       cursor: pointer;
-      top: -50px    ;
-      position: relative;
-      z-index: 9999;
+      z-index: 9998;
       display: block;
-      i, span {
-        color: rgba(51,51,50,.5);        
+
+      .insert-image-span {
+        i {
+          position: absolute;
+          text-align: center;
+          cursor: pointer;
+          font-size: 50px;    
+          color: #333332;
+          top: 35px;
+          left: 95px;  
+          background-color: rgba(255,255,255,.5);  
+          padding: 10px; 
+          padding-bottom: 15px;
+        }
+
+        span {
+          color: #333332;
+          width: 75px;
+          font-size: 13px;
+          position: absolute;
+          top: 95px;
+          left: 95px;
+          text-align: center;
+          z-index: 9999;
+          font-weight: 700;
+        }
       }
     }
+
   }
     
   .uploader-logo {
-    form > span {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      span {
-        font-size: 13px;
-        height: 18px;
-        display: inline-block;
-        color: #333332;
-      }
+    cursor: pointer;
+    z-index: 9998;
+    
+    .insert-image-span {
       i {
-        margin-top: 3px;
-        font-size: 18px;
-        color: #333332;
+        position: absolute;
+        text-align: center;
+        cursor: pointer;
+        font-size: 50px;    
+        color: #b3b3b1;
+        top: 35px;
+        left: 95px;  
+        padding: 10px; 
+        padding-bottom: 15px;
+      }
+
+      span {
+        color: #b3b3b1;
+        width: 75px;
+        font-size: 13px;
+        position: absolute;
+        top: 95px;
+        left: 95px;
+        text-align: center;
+        z-index: 9999;
+        font-weight: 700;
       }
     }
-    input {
-      visibility: hidden;
-    }  
-    
+  }
+  input {
+    visibility: hidden;
   }
 }
 
+// USER BUSINESS CARD
 .business-card {
   &:hover {
     .uploader {
@@ -67,7 +103,6 @@
       right: -15px;
     }
   }
-  
 }
 
 .uploader {
