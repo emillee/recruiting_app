@@ -23,6 +23,9 @@ gem 'redis'
 # gem 'goliath'
 # gem 'pry'
 
+# Chat with Websockets
+gem 'websocket-rails', git: 'git://github.com/DanKnox/websocket-rails.git'
+
 gem 'kaminari'
 gem 'rmagick'
 gem 'sendgrid'
@@ -76,6 +79,10 @@ group :development do
   gem 'railroady'
   # gem 'spring'
   # gem 'hirb'
+
+  # For websocket chat
+  gem 'tilt'
+  gem 'coffee-rails-source-maps'  
 end
 
 group :test do 

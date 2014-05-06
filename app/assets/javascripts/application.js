@@ -15,3 +15,5 @@
 //= require underscore
 //= require_tree ./shared
 
+//= require websocket_rails/main
+
