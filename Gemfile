@@ -16,10 +16,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 
+# For Chat 
+gem 'puma'
 gem 'redis'
-gem 'hiredis'
-gem 'goliath'
-gem 'pry'
+# gem 'hiredis'
+# gem 'goliath'
+# gem 'pry'
 
 gem 'kaminari'
 gem 'rmagick'

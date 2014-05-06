@@ -11,6 +11,10 @@ Nytech::Application.routes.draw do
   resources :user_articles, only: [:create, :destroy]
   resources :groups
   
+  resources :chats, only: [:index, :create, :destroy, :show] do 
+    collection { get :events }
+  end
+
   resources :skills, only: [:index, :create, :update, :destroy] do
     collection { get :name }
     collection { get :dept }

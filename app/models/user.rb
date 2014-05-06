@@ -34,6 +34,21 @@ class User < ActiveRecord::Base
   has_many :tech_stack, through: :object_skills, source: :skill
   has_many :user_articles
   has_many :articles, through: :user_articles, source: :article
+
+  has_many :chats
+
+  # has_many(
+  #   :user_one_chats,
+  #   class_name: 'UserChat',
+  #   foreign_key: :user_one_id,
+  #   primary_key: :id
+  # )
+
+  # has_many(
+  #   :chats_as_user_one,
+  #   through: :user_one_chats,
+  #   source: :user_one
+  # )
   
   has_attached_file :avatar, styles: { medium: '300x200>', thumb: '100x100>' },
     default_url: '/images/:style/missing.png'

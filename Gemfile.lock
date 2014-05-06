@@ -51,8 +51,6 @@ GEM
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
     arel (4.0.2)
-    async-rack (0.5.1)
-      rack (~> 1.1)
     atomic (1.1.14)
     aws-sdk (1.39.0)
       json (~> 1.4)
@@ -89,11 +87,8 @@ GEM
     distribution (0.7.0)
     domain_name (0.5.16)
       unf (>= 0.0.5, < 1.0.0)
-    em-synchrony (1.0.1)
-      eventmachine (>= 1.0.0.beta.1)
     equalizer (0.0.9)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     excon (0.16.10)
     execjs (2.0.2)
     extendmatrix (0.3.1)
@@ -112,17 +107,6 @@ GEM
     formatador (0.2.4)
     fql (0.3.1)
       multi_json
-    goliath (0.9.4)
-      async-rack
-      em-synchrony (>= 1.0.0)
-      eventmachine (>= 1.0.0.beta.3)
-      http_parser.rb
-      http_router (~> 0.9.0)
-      log4r
-      multi_json
-      rack (>= 1.2.2)
-      rack-contrib
-      rack-respond_to
     guard (2.2.4)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -142,16 +126,12 @@ GEM
     heroku-api (0.3.8)
       excon (~> 0.16.10)
     hike (1.2.3)
-    hiredis (0.4.5)
     hpricot (0.8.6)
     http (0.5.0)
       http_parser.rb
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
-    http_router (0.9.7)
-      rack (>= 1.0.0)
-      url_mount (~> 0.2.1)
     httparty (0.12.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -183,7 +163,6 @@ GEM
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    log4r (1.1.10)
     lumberjack (1.0.4)
     mail (2.5.3)
       i18n (>= 0.4.0)
@@ -269,12 +248,9 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    puma (1.6.3)
+      rack (~> 1.2)
     rack (1.5.2)
-    rack-accept-media-types (0.9)
-    rack-contrib (1.1.0)
-      rack (>= 0.9.1)
-    rack-respond_to (0.9.8)
-      rack-accept-media-types (>= 0.6)
     rack-test (0.6.2)
       rack (>= 1.0)
     railroady (1.1.1)
@@ -402,8 +378,6 @@ GEM
     unf (0.1.3)
       unf_ext
     unf_ext (0.0.6)
-    url_mount (0.2.1)
-      rack
     webrobots (0.1.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -422,10 +396,8 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   figaro
   fql
-  goliath
   guard-rspec
   heroku
-  hiredis
   hpricot
   httparty
   jbuilder (~> 1.2)
@@ -445,7 +417,7 @@ DEPENDENCIES
   omniauth-twitter
   paperclip
   pg
-  pry
+  puma
   railroady
   rails (= 4.0.0)
   rails3-jquery-autocomplete!
