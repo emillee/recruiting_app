@@ -34,14 +34,14 @@ WebsocketRails.setup do |config|
   # when that channel is made private. If you don't wish active
   # subscribers to be removed from a previously public channel
   # when making it private, set the following to true.
-  # config.keep_subscribers_when_private = false
+  config.keep_subscribers_when_private = true
 
   # Set to true if you wish to broadcast channel subscriber_join and
   # subscriber_part events. All subscribers of a channel will be 
   # notified when other clients join and part the channel. If you are
   # using the UserManager, the current_user object will be sent along
   # with the event.
-  # config.broadcast_subscriber_events = true
+  config.broadcast_subscriber_events = true
 
   # Used as the key for the WebsocketRails.users Hash. This method
   # will be called on the `current_user` object in your controller

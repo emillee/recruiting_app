@@ -26,6 +26,7 @@ module Nytech
     
     # Loads joins model folder
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'controllers', '{**/}')]
     
     config.assets.precompile += [Rails.root.to_s + '/vendor/assets/javascripts/*.js']
     

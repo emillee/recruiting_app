@@ -1,0 +1,40 @@
+<div class="span3 user-list">
+
+  <div class="well sidebar-nav">
+    <h3>Admin</h3>
+    <ul class="nav nav-list" id="user-list">
+      <li><%= @chatroom.admin.fname %></li>
+    </ul>
+  </div>
+
+  <br>
+
+  <div class="well sidebar-nav">
+    <h3>Users</h3>
+    <ul class="nav nav-list" id="user-list">
+      <% @chatroom.users.each do |user| %>
+        <li><%= user.fname %></li>
+      <% end %>
+    </ul>
+  </div>  
+
+</div>
+
+<div id="chat-<%= @chatroom.room_id %>" data-chat-id="<%= @chatroom.room_id %> 
+    class="well" data-uri="<%= request.host %>:<%= request.port %>/websocket">
+  <ul>
+    <% @chatroom.messages.each do |message| %>
+      <li><%= message.message_body %></li>
+    <% end %>
+  </ul>  
+</div>
+
+<div class="form-inline well">
+  <%= form_for @message, remote: true do |f| %>
+    <%= f.text_field :message_body %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :chatroom_id, value: @chatroom.id %>
+
+    <%= f.submit 'Submit', id: 'send' %>
+  <% end %>
+</div>

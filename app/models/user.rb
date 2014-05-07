@@ -34,8 +34,7 @@ class User < ActiveRecord::Base
   has_many :tech_stack, through: :object_skills, source: :skill
   has_many :user_articles
   has_many :articles, through: :user_articles, source: :article
-
-  has_many :chats
+  has_many :messages
 
   # has_many(
   #   :user_one_chats,

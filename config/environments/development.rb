@@ -33,4 +33,7 @@ Nytech::Application.configure do
   # To open emails in gem letter opener
   config.action_mailer.delivery_method = :letter_opener
   
+  # https://github.com/websocket-rails/websocket-rails/wiki/Installation-and-Setup
+  config.middleware.delete Rack::Lock
+  
 end

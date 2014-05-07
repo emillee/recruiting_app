@@ -1,6 +1,5 @@
 jQuery ->
   window.chatController = new Chat.Controller($('#chat').data('uri'), true);
-  console.log('up top')
 
 window.Chat = {}
 
@@ -34,7 +33,6 @@ class Chat.Controller
     @bindEvents()
 
   bindEvents: =>
-    console.log('bind events')
     @dispatcher.bind 'new_message', @newMessage
     @dispatcher.bind 'user_list', @updateUserList
     $('input#user_name').on 'keyup', @updateUserInfo
@@ -42,7 +40,6 @@ class Chat.Controller
     $('#message').keypress (e) -> $('#send').click() if e.keyCode == 13
 
   newMessage: (message) =>
-    console.log('newMessage')
     @messageQueue.push message
     @shiftMessageQueue() if @messageQueue.length > 15
     @appendMessage message
@@ -52,7 +49,6 @@ class Chat.Controller
     message = $('#message').val()
     @dispatcher.trigger 'new_message', {user_name: @user.user_name, msg_body: message}
     $('#message').val('')
-    console.log('sendMessage')
 
   updateUserList: (userList) =>
     $('#user-list').html @userListTemplate(userList)
@@ -63,7 +59,6 @@ class Chat.Controller
     @dispatcher.trigger 'change_username', @user.serialize()
 
   appendMessage: (message) ->
-    console.log('appendMessage')
     messageTemplate = @template(message)
     $('#chat').append messageTemplate
     messageTemplate.slideDown 140
@@ -82,7 +77,3 @@ class Chat.Controller
 
 
 
-
-
-
-    

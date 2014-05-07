@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505224109) do
+ActiveRecord::Schema.define(version: 20140506185531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,25 @@ ActiveRecord::Schema.define(version: 20140505224109) do
     t.integer  "investor_id"
   end
 
-  create_table "chats", force: true do |t|
-    t.string  "content"
-    t.integer "user_id"
+  create_table "chatroom_messages", force: true do |t|
+    t.integer "chatroom_id"
+    t.integer "message_id"
+  end
+
+  add_index "chatroom_messages", ["chatroom_id"], name: "index_chatroom_messages_on_chatroom_id", using: :btree
+
+  create_table "chatroom_users", force: true do |t|
+    t.integer  "chatroom_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chatroom_users", ["chatroom_id"], name: "index_chatroom_users_on_chatroom_id", using: :btree
+  add_index "chatroom_users", ["user_id"], name: "index_chatroom_users_on_user_id", using: :btree
+
+  create_table "chatrooms", force: true do |t|
+    t.integer "admin_id"
     t.string  "room_id"
   end
 
@@ -106,6 +122,15 @@ ActiveRecord::Schema.define(version: 20140505224109) do
 
   add_index "jobs", ["company_id"], name: "index_jobs_on_company_id", using: :btree
 
+  create_table "messages", force: true do |t|
+    t.string   "message_body"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
   create_table "object_skills", force: true do |t|
     t.integer "user_id"
     t.integer "level"
@@ -160,11 +185,6 @@ ActiveRecord::Schema.define(version: 20140505224109) do
   create_table "user_articles", force: true do |t|
     t.integer "user_id"
     t.integer "article_id"
-  end
-
-  create_table "user_chats", force: true do |t|
-    t.integer "user_one_id"
-    t.integer "user_two_id"
   end
 
   create_table "user_job_preapprovals", force: true do |t|
