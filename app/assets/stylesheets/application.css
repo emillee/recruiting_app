@@ -21,7 +21,7 @@
  *= require investors
  *= require jquery.ui.all
  *= require profile
- *= require chats
+ *= require chatrooms
  *= require_directory ./flip_view
  *= require_directory ./cards
  *= require_directory ./modules

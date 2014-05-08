@@ -19,6 +19,15 @@ class ChatroomsController < ApplicationController
 	def show
 		@message = Message.new
 		@chatroom = Chatroom.find_by_room_id(params[:room_id])
+
+		unless (@chatroom.admin == current_user || @chatroom.users.include?(current_user)) 
+			ChatroomUser.create(chatroom_id: @chatroom.id, user_id: current_user.id)
+		end
+
+		room_to_publish = @chatroom.room_id
+		user_fname = current_user.fname || 'user-name-placeholder'
+		message_obj = { user_fname: user_fname }
+		WebsocketRails[room_to_publish].trigger(:client_connected, message_obj)
 	end
 
 	private

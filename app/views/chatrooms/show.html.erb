@@ -1,8 +1,8 @@
-<div class="span3 user-list">
+<div class="span3 user-list-div">
 
   <div class="well sidebar-nav">
     <h3>Admin</h3>
-    <ul class="nav nav-list" id="user-list">
+    <ul class="nav nav-list" id="admin-list">
       <li><%= @chatroom.admin.fname || 'admin-name-placeholder' %></li>
     </ul>
   </div>
@@ -11,7 +11,7 @@
 
   <div class="well sidebar-nav">
     <h3>Users</h3>
-    <ul class="nav nav-list" id="user-list">
+    <ul class="nav nav-list" id="user-list-ul">
       <% @chatroom.users.each do |user| %>
         <li><%= user.fname || 'user-name-placeholder' %></li>
       <% end %>
@@ -24,7 +24,7 @@
     class="well" data-uri="<%= request.host %>:<%= request.port %>/websocket">
   <ul>
     <% @chatroom.messages.each do |message| %>
-      <li><%= message.message_body %></li>
+      <li><%= message.user.fname || 'user-name-placeholder' %> : <%= message.message_body %></li>
     <% end %>
   </ul>  
 </div>

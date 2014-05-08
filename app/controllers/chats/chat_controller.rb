@@ -26,6 +26,11 @@ class ChatController < WebsocketRails::BaseController
     end
   end
 
+  def client_connected
+    p 'inside client connected'
+    p "#{request.url}"
+  end
+
 end
 
 

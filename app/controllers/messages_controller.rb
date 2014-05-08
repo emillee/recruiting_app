@@ -13,17 +13,17 @@ class MessagesController < ApplicationController
 				)
 				chatroom = Chatroom.find(chatroom_id.to_i)
 				
-				p "ROOMID"
-				p "#{chatroom.room_id}"
-				some_object = {}
 				room_to_publish = chatroom.room_id
 				# room_to_publish = 'awesome'
+				user_fname = @message.user.fname || 'user-name-placeholder'
+				message_obj = @message.attributes.merge({user_fname: user_fname})
 
-				WebsocketRails[room_to_publish].trigger(:publish_chatroom_message, some_object)
+				WebsocketRails[room_to_publish].trigger(:publish_chatroom_message, message_obj)
 				p 'in message#create'
 			end
-	
-			redirect_to :back
+		
+			# causes #SHOW to be served again, which isn't what we want
+			# redirect_to :back
 		end
 	end
 
