@@ -11,7 +11,7 @@
 //= require groups
 //= require companies
 //= require investors
-//= require chats
+//= require chatrooms
 //= require underscore
 //= require_tree ./shared
 

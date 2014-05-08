@@ -3,7 +3,7 @@
   <div class="well sidebar-nav">
     <h3>Admin</h3>
     <ul class="nav nav-list" id="user-list">
-      <li><%= @chatroom.admin.fname %></li>
+      <li><%= @chatroom.admin.fname || 'admin-name-placeholder' %></li>
     </ul>
   </div>
 
@@ -13,14 +13,14 @@
     <h3>Users</h3>
     <ul class="nav nav-list" id="user-list">
       <% @chatroom.users.each do |user| %>
-        <li><%= user.fname %></li>
+        <li><%= user.fname || 'user-name-placeholder' %></li>
       <% end %>
     </ul>
   </div>  
 
 </div>
 
-<div id="chat-<%= @chatroom.room_id %>" data-chat-id="<%= @chatroom.room_id %> 
+<div id="chat" data-chat-id="<%= @chatroom.room_id %> 
     class="well" data-uri="<%= request.host %>:<%= request.port %>/websocket">
   <ul>
     <% @chatroom.messages.each do |message| %>
