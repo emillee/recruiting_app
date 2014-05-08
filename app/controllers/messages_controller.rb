@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
 				p 'in message#create'
 			end
 		
-			# causes #SHOW to be served again, which isn't what we want
+			# causes #SHOW to be served again, which isn't what we want, now causes an internal server errors
 			# redirect_to :back
 		end
 	end
