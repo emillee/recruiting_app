@@ -1,11 +1,9 @@
-<!-- JOBS SIDEBAR FILTERS -->
-
 <div class="sidebar-wrapper">
 	
 	<div class="role-prefs">
 		<li class="roles selected">
 			<span class="arrow-down"></span>
-			Skills
+			Roles
 		</li>
 		<li class="prefs">
 			<span class="arrow-down hidden"></span>
@@ -46,9 +44,9 @@
 					</div>
 			
 					<!-- DEPARTMENT -->
-					<div class="wrapper">
+					<div class="wrapper dept-div">
 						<h1 class="department">
-							I'm a:
+							I am a:
 							<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:dept] %>"></i>
 							<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:dept] %>"></i>
 						</h1>

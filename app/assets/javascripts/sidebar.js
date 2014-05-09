@@ -131,41 +131,41 @@ var ready = function() {
     $(thisObject).children('.fa-caret-right').toggleClass('hidden');    
   };
 
-   $('.sidebar-middle').on('mouseenter', '.wrapper', function() {
-     var $ul = $(this).children('ul');
-     var $checkbox_lis = $ul.children('li');
-     var $checkboxes = $checkbox_lis.find(":checkbox");
+   // $('.sidebar-middle').on('mouseenter', '.wrapper', function() {
+   //   var $ul = $(this).children('ul');
+   //   var $checkbox_lis = $ul.children('li');
+   //   var $checkboxes = $checkbox_lis.find(":checkbox");
 
-     $checkboxes.each(function() {
-       if (this.checked === false) {
-         $(this).parent('li').show(600);
-       }
-     })
+   //   $checkboxes.each(function() {
+   //     if (this.checked === false) {
+   //       $(this).parent('li').show(600);
+   //     }
+   //   })
 
-     $(this).find('.fa-caret-down').toggleClass('hidden');
-     $(this).find('.fa-caret-right').toggleClass('hidden');
-   });  
+   //   $(this).find('.fa-caret-down').toggleClass('hidden');
+   //   $(this).find('.fa-caret-right').toggleClass('hidden');
+   // });  
    
-   $('.sidebar-middle').on('mouseleave', '.wrapper', function() {
-     var $ul = $(this).children('ul');
-     var $checkbox_lis = $ul.children('li');
-     var $checkboxes = $checkbox_lis.find(":checkbox");
+   // $('.sidebar-middle').on('mouseleave', '.wrapper', function() {
+   //   var $ul = $(this).children('ul');
+   //   var $checkbox_lis = $ul.children('li');
+   //   var $checkboxes = $checkbox_lis.find(":checkbox");
      
-     var any_checked = _.any($checkboxes, function(checkbox) {
-       return checkbox.checked === true;
-     });
+   //   var any_checked = _.any($checkboxes, function(checkbox) {
+   //     return checkbox.checked === true;
+   //   });
      
-     if (any_checked) {
-       $checkboxes.each(function() {
-         if (this.checked === false) {
-           $(this).parent('li').hide(500);
-         };
-       });
-     };
+   //   if (any_checked) {
+   //     $checkboxes.each(function() {
+   //       if (this.checked === false) {
+   //         $(this).parent('li').hide(500);
+   //       };
+   //     });
+   //   };
 
-     $(this).find('.fa-caret-down').toggleClass('hidden');
-     $(this).find('.fa-caret-right').toggleClass('hidden');          
-   });  
+   //   $(this).find('.fa-caret-down').toggleClass('hidden');
+   //   $(this).find('.fa-caret-right').toggleClass('hidden');          
+   // });  
 
 };
 
