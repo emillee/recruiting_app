@@ -3,8 +3,8 @@
   width: 480px;
   display: inline-block;
   height: 100%;
-  padding-left: 20px;  
-  padding-right: 20px;
+  padding-left: 10px;  
+  padding-right: 30px;
   background-color: rgba(236,240,241,1);
 
   h1 {
@@ -42,23 +42,41 @@
     height: 70px;
     overflow: hidden;
     display: inline-block;
+    margin-right: 15px;
   }
 
   div.action-items {
-    background-color: rgba(0,0,0,.05);
-    height: 25px;
+    background-color: rgba(0,0,0,.1);
+    width: 30px;
+    height: 50px;
     line-height: 25px;
-    margin-top: 5px;
+    position: absolute;
+    top: 5px;
+    right: 270px;
+    height: 142px;
+
+    &:hover {
+      background-color: rgba(0,0,0,.5); 
+    }
     
     span {
       margin-left: 5px;
     }
+
+    a:first-of-type {
+      margin-top: 5px;
+    }
+
+    .fa-bookmark {
+      margin-left: 2px;
+    }
     
     a.applied, a.view, a.forward, a.remove, a.save, a.viewed, a.saved {
       color: rgb(141,141,141);
-      font-size: 13px;  
-      display: inline-block;
-      padding-left: 7px;
+      font-size: 17px; 
+      padding: 8px; 
+      display: block;
+      // padding-left: 7px;
 
       &:hover {
         color: #2c3e50;
@@ -67,7 +85,8 @@
 
     a.viewed, a.saved, a.applied_already, a.removed_already {
       color: #2ecc71;    
-      font-size: 13px;
+      font-size: 17px; 
+      padding: 8px; 
 //      text-decoration: underline;              
     }
   }

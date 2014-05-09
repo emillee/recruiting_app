@@ -36,19 +36,44 @@
 		<% end %>
 	<% end %>
 
-	<% saved_class = has_saved_job?(job) ? "saved" : "save" %>
-	<% applied_class = already_applied?(job) ? "applied_already" : "applied" %>				
-	<% removed_class = already_removed?(job) ? "removed_already" : "remove" %>
+	<% applied_class = already_applied?(job) ? "applied_already fa fa-check" : "applied fa fa-check" %>				
+	<% saved_class = has_saved_job?(job) ? "saved fa fa-bookmark" : "save fa fa-bookmark" %>
+	<% removed_class = already_removed?(job) ? "removed_already fa-times-circle-o" : "remove fa fa-times" %>
 												
 	<div class="action-items">	
-		<span>Status:</span>
-		<%= link_to 'I Applied Already', user_jobs_url(user_id: user_id, 
-					applied_job_id: job.id), class: applied_class, remote: true, method: :post %>		
-		<%= link_to 'Interested', user_jobs_url(user_id: user_id, 
-					saved_job_id: job.id), class: saved_class, remote: true, method: :post %>
-		<%= link_to 'Not Interested', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
-				class: removed_class, remote: true, method: :post %>
-		<%= link_to 'Forward', '#', class: 'forward', data: { id: job.id } %>	
+		<% if already_applied?(job) %>
+			<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
+					class: 'applied_already fa fa-check', remote: true, method: :delete %>
+		<% else %>
+			<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
+					class: "applied fa fa-check", remote: true, method: :post %>
+		<% end %>
+
+		<% if has_saved_job?(job) %>
+			<%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
+					class: "saved fa fa-bookmark", remote: true, method: :delete %>
+		<% else %>
+			<%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
+					class: "save fa fa-bookmark", remote: true, method: :post %>
+		<% end %>
+
+		<% if already_removed?(job) %>
+			<%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
+					class: "removed_already fa fa-times-circle-o", remote: true, method: :delete %>
+		<% else %>		
+			<%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
+					class: "remove fa fa-times", remote: true, method: :post %>
+		<% end %>
+
+		<%= link_to '', '#', class: 'forward fa fa-mail-forward', data: { id: job.id } %>	
 	</div>
 	
 </div>
+
+
+
+
+
+
+
+

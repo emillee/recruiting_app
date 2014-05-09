@@ -73,28 +73,39 @@ var ready_jobs = function() {
   
     // SAVING AND APPLYING TO JOBS
     $('ul.job-posts').on('click', '.save', function(event) {
-      this.innerHTML = 'Interested';
-      $(this).addClass('saved');
-      $(this).removeClass('save');
+      // this.innerHTML = 'Interested';
+      $(this).toggleClass('saved');
+      $(this).toggleClass('save');
     });
+
+    $('ul.job-posts').on('click', '.saved', function(event) {
+      // this.innerHTML = 'Interested';
+      $(this).toggleClass('saved');
+      $(this).toggleClass('save');
+    });    
   
     $('ul.job-posts').on('click', '.applied', function(event) {
-      $(this).addClass('applied_already');
-      $(this).removeClass('applied');
-      var user_id = $(this).data('user-id');
-      var job_id = $(this).data('applied-job-id');
-      var this_url = "/user_jobs" + "?" + "applied_job_id=" + job_id + "&" + "user_id=" + user_id;
-    
-      $.ajax({
-        type: 'POST',
-        url: this_url
-      });
+      $(this).toggleClass('applied_already');
+      $(this).toggleClass('applied');
     });
+
+    $('ul.job-posts').on('click', '.applied_already', function(event) {
+      $(this).toggleClass('applied_already');
+      $(this).toggleClass('applied');
+    });    
   
     // REMOVE A JOB WHEN CLICK REMOVE
     $('ul.job-posts').on('click', '.remove', function(event) {
       $(this).parents('li').remove();
+      $(this).toggleClass('removed');
+      $(this).toggleClass('remove');
     });
+
+    $('ul.job-posts').on('click', '.removed', function(event) {
+      $(this).parents('li').remove();
+      $(this).toggleClass('removed');
+      $(this).toggleClass('remove');
+    });    
     
     // EDIT COMPANY OVERVIEW IN PLACE
     $('[contenteditable=true].jobs-index-company-overview').blur(function() {
