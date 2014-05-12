@@ -9,24 +9,22 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require ./layouts/reset
+ *= require reset
  *= require general
  *= require backgrounds
  *= require session
- *= require sidebar
- *= require navbar
- *= require jobs
- *= require groups
- *= require companies
- *= require investors
+ *= require states
  *= require jquery.ui.all
- *= require profile
- *= require chatrooms
+ *= require_directory ./articles 
+ *= require_directory ./chatrooms
+ *= require_directory ./companies
  *= require_directory ./flip_view
- *= require_directory ./cards
- *= require_directory ./modules
- *= require_directory ./layouts
- *= require_directory ./states  
+ *= require_directory ./groups
+ *= require_directory ./investors
+ *= require_directory ./jobs
+ *= require_directory ./navigation  
+ *= require_directory ./shared
+ *= require_directory ./users
  */
  
  

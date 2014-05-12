@@ -5,7 +5,7 @@
 	user: @user
 } %>
 
-<div class="profile-wrapper group">
+<div class="user-show-wrapper group">
 
 	<div class="profile-card-positions group">
 		<%= render './companies/cards/logo', locals: { company: @user.employer, user: @user }%>
@@ -16,9 +16,28 @@
 
 	<%= render 'in_page_nav', locals: { user: @user, recent_articles: @recent_articles } %>	
 
-	<%= render 'user_articles', locals: { user: @user, this_table: this_table, articles: @articles } %>
+		
+		<div id="top-id"></div>				
+		
+		<% if @articles.any? %>
+			<% @articles.each do |article| %>
+				<%= render './articles/article', 
+					locals: { object: @user, article: article, this_table: this_table } %>
+			<% end %>
+		<% else %>
+			<% new_article = Article.create %>
+			<% user_article = UserArticle.create(user_id: user.id, article_id: new_article.id) %>
+			<%= render './articles/article', locals: { object: user, article: new_article, this_table: this_table } %>
+		<% end %>
 
-</div>
+	  <div class="article skills">
+	  	<h3>My Skills</h3>
+			<%= render 'shared/drop_zone', locals: { user: @user } %>
+	    <%= render 'shared/box_of_logos', locals: { user: @user }  %>
+	  </div>
+	</div>
+
+
 
 <%= render './layouts/background' %>
 

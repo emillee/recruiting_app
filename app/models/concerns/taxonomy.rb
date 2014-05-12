@@ -18,13 +18,12 @@ module Taxonomy
   # TAGS
 	def self.categories_hash
 		{
-			"Recent Activity" => ["A Day in the Life", "Stuff I'm Working On"],
-			"News / Updates" => ["News", "Milestones", "Fundraisings"],
-			"Recruiting" => ["I'm Looking to Hire", "I'm available for hire", "Freelance", "Consulting", "Part-Time"],
-			"Referrals, Q&A" => ["Seeking Referral", "Providing Referral", "I Have a Question", "Ask Me Anything"],
-			"Random" => ["Random Musings", "Foosball", "Beer"],
-			"Let's Meet" => ["I'm looking to Meet...", "Coffee chat", "Happy hour", "Cofounder", "Advisory"],
-			"About Me" => ['Intro', 'Prior Employers', "My Skills", "Prior Work", "References"],
+			# "Random" => ["Random Musings", "Foosball", "Beer"],
+			# "Let's Meet" => ["I'm looking to Meet...", "Coffee chat", "Happy hour", "Cofounder", "Advisory"],
+			"About Me" => ['Intro', "My Skills", "Prior Work", "References"],
+      # "Recent Activity" => ["A Day in the Life", "Stuff I'm Working On"],
+      # "News / Updates" => ["News", "Milestones", "Fundraisings"],
+      # "Recruiting" => ["I'm Looking to Hire", "I'm available for hire", "Freelance", "Consulting", "Part-Time"],
 		}
 	end
 

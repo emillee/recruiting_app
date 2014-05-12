@@ -1,0 +1,28 @@
+// FOR COMPANIES, USERS, INVESTORS
+.in-page-navbar {
+  height: 30px;
+  line-height: 30px;
+  width: 963px;
+  background-color: #b3b3b1;
+  margin-top: 15px;
+  margin-left: 20px;
+  
+  li, li > a {
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;   
+    color: #f4f5f0; 
+    font-family: 'Clear Sans';
+    cursor: pointer;
+    
+    &:first-of-type {
+     margin-left: 5px;
+    }
+    
+    &:last-of-type {
+      float: right;
+      margin-right: 1px;
+      color: #34495e;
+    }
+  }
+}

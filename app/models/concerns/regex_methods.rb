@@ -20,6 +20,8 @@ module RegexMethods
     ''
   end
 
+  .full_text.match(/\d - \d (years|yrs|year\(s\))/)
+
   def get_years_exp
     if self.full_text.match(/(\d+)\+ (years|yrs|year\(s\))/)
       years = self.full_text.match(/(\d+)\+ (years|yrs|year\(s\))/)[1]

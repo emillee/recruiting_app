@@ -110,6 +110,7 @@ ready_social = function() {
     function makeWidgetsInvisble() {
     	window.onload = function() {
     		$('.IN-widget').addClass('visibility-hidden');
+        $('.IN-widget').css('position', 'absolute');
     		$('i.fa-facebook-square a').addClass('hidden');
     	};
     }; 

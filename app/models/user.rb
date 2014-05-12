@@ -1,11 +1,15 @@
 class User < ActiveRecord::Base
   
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  
   attr_reader :password # for password length validation
   attr_reader :user_company # for autocomplete
   attr_reader :article_id
   
-  validates :password, length: { minimum: 6, allow_nil: true }, unless: :guest?
-  validates :email, presence: true, unless: :guest?
+  validates :fname, length: { maximum: 25, allow_nil: true }
+  validates :lname, length: { maximum: 30, allow_nil: true }
+  validates :password, length: { minimum: 6, maximum: 20, allow_nil: true }
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   # validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   
   before_save { self.email = self.email.downcase unless self.email.nil? }
@@ -71,8 +75,10 @@ class User < ActiveRecord::Base
       
   # Sessions / Authentication------------------------------------------
   def self.new_guest 
+    random_email_placeholder = SecureRandom.hex(3) + '@' + 'wolfpackguest.com'
+    
     self.new(
-      email: "guest", 
+      email: random_email_placeholder, 
       guest: true,
       password: SecureRandom.urlsafe_base64
     )

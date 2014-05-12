@@ -1,0 +1,131 @@
+// COMPANY BUSINESS CARD - USER#SHOW
+.company-business-card {
+
+  &:hover {
+    .uploader-logo {
+      cursor: pointer;
+      z-index: 9998;
+      display: block;
+
+      .insert-image-span {
+        i {
+          position: absolute;
+          text-align: center;
+          cursor: pointer;
+          font-size: 50px;    
+          color: #333332;
+          top: 35px;
+          left: 95px;  
+          background-color: rgba(255,255,255,.5);  
+          padding: 10px; 
+          padding-bottom: 15px;
+        }
+
+        span {
+          color: #333332;
+          width: 75px;
+          font-size: 13px;
+          position: absolute;
+          top: 95px;
+          left: 95px;
+          text-align: center;
+          z-index: 9999;
+          font-weight: 700;
+        }
+      }
+    }
+
+  }
+    
+  .uploader-logo {
+    cursor: pointer;
+    z-index: 9998;
+    
+    .insert-image-span {
+      i {
+        position: absolute;
+        text-align: center;
+        cursor: pointer;
+        font-size: 50px;    
+        color: #b3b3b1;
+        top: 35px;
+        left: 95px;  
+        padding: 10px; 
+        padding-bottom: 15px;
+      }
+
+      span {
+        color: #b3b3b1;
+        width: 75px;
+        font-size: 13px;
+        position: absolute;
+        top: 95px;
+        left: 95px;
+        text-align: center;
+        z-index: 9999;
+        font-weight: 700;
+      }
+    }
+  }
+  input {
+    visibility: hidden;
+  }
+}
+
+// USER BUSINESS CARD
+.business-card {
+  &:hover {
+    .uploader {
+      display: block;
+      i {
+        color: rgba(51,51,50,.5);        
+      }
+    }
+  }
+  
+  .insert-image-span {
+    position: absolute;
+    top: 45px;
+    right: 25px;
+
+    i {
+      cursor: pointer;
+      font-size: 50px;    
+      color: #333332;
+    }
+
+    span {
+      color: #333332;
+      width: 75px;
+      font-size: 13px;
+      position: absolute;
+      top: 50px;
+      right: -15px;
+    }
+  }
+}
+
+.uploader {
+//  margin-top: -5px;
+  margin-bottom: -25px;
+  
+  span {
+    cursor: pointer;
+    
+    i {
+      font-size: 13px;
+      color: #AAAAAA;
+    }
+    
+    span {
+      color: #AAAAAA;
+      font-size: 13px;
+      padding: 3px;
+    }
+  }
+  
+  form {
+    visibility: hidden;
+    height: 0;
+  }          
+}

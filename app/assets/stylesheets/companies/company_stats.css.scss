@@ -1,0 +1,38 @@
+.company-stats {
+  background-color: #333332;
+  padding: 10px 15px;
+  float: right;
+  height: 130px;
+  width: 270px;
+  color: #b3b3b1;
+  position: relative;
+  
+  h3 {
+    font-size: 13px;
+    line-height: 19px;
+    
+    span:first-of-type {
+      color: white;
+    }
+    
+    span:nth-of-type(2) {
+      position: absolute;
+      left: 135px;
+    }
+  }
+  
+  a {
+    text-align: center;
+    line-height: 18px;
+    bottom: 10px;
+    padding: 4px 5px;
+    width: 260px;
+    background-color: black;
+    position: absolute;
+    color:  #5cb86e;
+    font-family: 'Lato';
+  }
+}
+
+
+

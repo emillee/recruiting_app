@@ -1,7 +1,10 @@
 <div class="top-bar">
-	<%= link_to 'Applied', '#', class: 'job-nav-item', data: { filter: 'applied' } %>	
-	<%= link_to 'Interested', '#', class: 'job-nav-item', data: { filter: 'interested' } %>
-	<%= link_to 'Removed', '#', class: 'job-nav-item', data: { filter: 'removed' }  %>
+	<%= link_to ' Applied', '#', class: 'job-nav-item
+		fa fa-check', data: { filter: 'applied' } %>	
+	<%= link_to ' Bookmarked', '#', class: 'job-nav-item
+		fa fa-bookmark', data: { filter: 'interested' } %>
+	<%= link_to ' Removed', '#', class: 'job-nav-item
+		fa fa-times', data: { filter: 'removed' }  %>
 
 	<!-- <span class="view-options">
 		<%= link_to 'Flip View', flip_view_jobs_url, data: { no_turbolink: true } %>

@@ -6,9 +6,25 @@ describe User do
 			fname: 'john',
 			lname: 'smith',
 			email: 'test@gmail.com',
-			password: 'please'
+			password: 'please',
 		}
 	end
+
+	before do 
+		@user = User.new(@attr)
+	end
+
+	subject { @user }
+
+	it "should not be admin by default" do
+		@user.save
+		@user.is_admin.should == false
+	end
+
+	it "should not be member by default" do
+		@user.save
+		@user.is_member.should == false
+	end	
 
 	it "should create an instance given valid attributes" do
 		User.create!(email: 'test@email.com', password: 'please')
@@ -20,13 +36,13 @@ describe User do
 	end
 
 	it "should reject first name that is too long" do
-		long_name = 'a' * 25
+		long_name = 'a' * 26
 		long_name_user = User.new(@attr.merge(fname: long_name))
 		long_name_user.should_not be_valid
 	end
 
 	it "should reject last name that is too long" do 
-		long_name = 'a' * 35
+		long_name = 'a' * 31
 		long_name_user = User.new(@attr.merge(lname: long_name))
 		long_name_user.should_not be_valid
 	end
@@ -54,7 +70,7 @@ describe User do
 	end
 
 	it "should reject email addresses identical up to case" do
-		upcased_email = @attr[:email].upcased
+		upcased_email = @attr[:email].upcase
 		User.create!(@attr.merge(email: upcased_email))
 		user_with_duplicate_email = User.new(@attr)
 		user_with_duplicate_email.should_not be_valid
@@ -80,7 +96,7 @@ describe User do
 		end
 
 		it "should reject long password" do
-			long = 'a' * 20
+			long = 'a' * 21
 			hash = @attr.merge(password: long)
 			User.new(hash).should_not be_valid
 		end
@@ -103,7 +119,7 @@ describe User do
 		describe "password_match?(password_string) method" do
 
 			it "should exist" do
-				@user.should respond_to(password_match?('something'))
+				@user.should respond_to(:password_match?)
 			end
 
 			it "should return true if passwords match" do

@@ -1,0 +1,85 @@
+.article-wrapper {
+  width: 910px;
+  padding: 25px;
+  padding-bottom: 0;
+  background-color: #FDFDFD;
+  margin-left: 20px;
+  margin-top: 15px; 
+  position: relative;
+
+  a.delete-article-link {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    text-decoration: none;
+    color: black;
+  }  
+
+  h1 {
+    font-size: 24px;
+    padding: 0 0 8px 0;
+    letter-spacing: 1px;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #141312;
+    margin-left: -25px;
+    padding-left: 25px;
+    margin-top: -25px;
+    padding-top: 15px;
+    background-color: #F3F9F5;
+    padding-bottom: 15px;
+    width: 960px;    
+  }
+  
+  article.body {
+    padding-bottom: 15px;
+    
+    p {
+      color: #232323;
+      font-size: 20px;
+      line-height: 32px;
+      margin: 0;
+      margin-top: 15px;
+    }        
+  }
+
+  .uploader {
+    margin-bottom: 10px;
+    margin-left: 5px;
+  }
+
+  .add-tags-wrapper {
+    position: absolute;
+    top: 17px;
+    right: -63px;
+    margin-bottom: 10px;
+
+    #tagging_tag_id {
+      font-size: 13px;
+    }
+
+    i {
+      margin-left: 3px;
+      color: #AAAAAA;
+      font-size: 14px;
+      padding: 3px;      
+    }
+  }
+
+  div.social-sharing {
+    background-color: #FAFAFA;
+    margin-left: -25px;
+    width: 960px;
+    
+    div.share-buttons-wrapper {
+      display: inline-block;
+      width: 100%;
+      line-height: 35px;
+      margin-left: 25px;
+      
+      i {
+        margin-left: 10px;
+        float: left;
+      }
+    }
+  }         
+}  
