@@ -96,7 +96,7 @@ describe User do
 		end
 
 		it "should reject long password" do
-			long = 'a' * 21
+			long = 'a' * 26
 			hash = @attr.merge(password: long)
 			User.new(hash).should_not be_valid
 		end

@@ -5,6 +5,17 @@ var ready_drag_and_drop = function() {
     addDraggableEvents();
     addDroppableEvents();
 
+    // SHOW AND HIDE DIFF SKILL SETS
+    $('.box-of-logos-ul').on('click', 'a', function(e) {
+      e.preventDefault();
+      var selected_skill = $(this).data('selected');
+      console.log('selected skill:' + selected_skill)
+      var selector = '.box-of-logos-ul > li' + '.' + selected_skill;
+      $('.box-of-logos-ul > li').addClass('hidden');
+      console.log('selector:' + selector)
+      $(selector).removeClass('hidden');
+    });    
+
     // ADD BOX OUTILNE WHEN IN EDIT MODE
     $('.skill-dropzone').on('click', '#edit-skills', function() {
       event.preventDefault();

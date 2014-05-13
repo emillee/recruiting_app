@@ -11,20 +11,24 @@
 		<%= render 'shared/flash' %>		
 
 		<span class="social guest">
-			<%= link_to "Sign in with Guest Account", users_url, method: :post %>
+			<%= link_to "Sign in as Guest", users_url, method: :post %>
 		</span>		
 	
-		<span class="social"> Sign in via social: 
+		<span class="social">
+			<h1>Apply for Membership</h1>
+			<p>Currently, Wolfpack membership is for NYC startup professionals only.</p>
+			<p>To apply, please sign in with any of your social logins below:</p>
 			<%= link_to "", "/auth/facebook", class: "fa fa-facebook-square" %>
 			<%= link_to "", "/auth/twitter", class: "fa fa-twitter-square" %>
 			<%= link_to "", "/auth/google_oauth2/", class: "fa fa-google-plus-square" %>
 			<%= link_to "", "/auth/github", class: "fa fa-github-square" %>
-			<%= link_to "", "/auth/linkedin", class: "fa fa-linkedin-square" %>
+			<%#= link_to "", "/auth/linkedin", class: "fa fa-linkedin-square" %>
 		</span>
 	
 		<div class="login-wrap">
-			<h1>Or sign in via email</h1>
+			<h1>Or apply via email, and send us a link to any of your online profiles</h1>
 			<%= f.text_field :email, placeholder: 'Enter Email' %>
+			<%= f.text_field :online_profile_link, placeholder: 'Enter Link to Online Profile' %>
 			<%= f.password_field :password, placeholder: 'Enter password' %>
 		
 			<%= f.submit "Submit" %>

@@ -7,17 +7,18 @@ class SessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth']
     
-    # if the session create is coming from social
+    # if the session create is coming from omniauth social login
     if auth
       @identity = Identity.find_with_omniauth(auth) if auth
       @identity = Identity.initialize_from_omniauth(auth) if @identity.nil?
-    
+
       if signed_in?
+        # if the omniauth identity already has a linked user
         if @identity.user == current_user
           @identity.save!
           redirect_to root_url, notice: 'Already linked that account'
         else
-          # links a new social 
+          # link the user that is already signed in to the identity
           @identity.user = current_user
           @identity.save!
           redirect_to root_url
@@ -27,11 +28,18 @@ class SessionsController < ApplicationController
           sign_in(@identity.user)
           redirect_to root_url, notice: 'Signed in!'
         else
-          @user = User.new_guest
+          @user = User.new
           @user = @user.inputs_from_omniauth(auth)
-          @identity.user_id = @user.id
+          user_already_exists = User.find_by_email(@user.email)
+          if user_already_exists
+            user = user_already_exists
+          else
+            user = User.new_guest
+            user.save!
+          end
+          @identity.user_id = user.id
           @identity.save!
-          sign_in(@user)
+          sign_in(user)
           redirect_to root_url
         end
       end
@@ -44,7 +52,7 @@ class SessionsController < ApplicationController
         flash[:welcome] = ""
         redirect_back_or(root_url)
       else
-        flash.now[:error] = 'Invalid login credentials. Please try again.'
+        flash[:error] = 'Invalid login credentials. Please try again.'
         render :new
       end
     end      

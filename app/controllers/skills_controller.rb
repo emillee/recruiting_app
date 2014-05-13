@@ -44,6 +44,7 @@ class SkillsController < ApplicationController
 			@skill.required_phrases << params[:skill][:required_phrases]
 		end
 
+		@skill.update_attributes(skill_params)
 		redirect_to :back
 	end
 

@@ -67,7 +67,7 @@ module Taxonomy
   
   def self.years_exp
     [
-      ['Internship', 0],
+      # ['Internship', 0],
 			['Entry (0-1)', 1], 
 			['Junior (1-2)', 2], 
 			['Mid (2-3)', 3], 

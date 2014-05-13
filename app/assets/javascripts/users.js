@@ -2,7 +2,7 @@ var ready_users = function() {
   if ($('.users').length > 0) {
 
     // FOR USER PROFILE SIDEBAR
-    $('.sidebar-wrapper.profile-sidebar').on('click', 'h1', function() {
+    $('.sidebar-wrapper.profile-sidebar').on('click', 'a', function() {
       moveTaggedToTop.apply(this);
     });
     

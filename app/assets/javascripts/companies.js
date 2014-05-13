@@ -32,7 +32,8 @@ var ready_companies = function() {
         allowFreeTagging: true,
         propertyToSearch: property_to_search,
         onReady: focusTokenInputCursor(),
-        preventDuplicates: true
+        preventDuplicates: true,
+        tokenValue: property_to_search
       });
     };
 

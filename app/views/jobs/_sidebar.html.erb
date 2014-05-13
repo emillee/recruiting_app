@@ -113,7 +113,8 @@
 					</div>
 			
 					<!-- KEY SKILLS -->				
-					<% h1_hidden = return_subcategory(:years_exp, :key_skills).any? ? '' : 'hidden' %>
+					<% h1_hidden = current_user.job_settings[:sub_dept] ? '' : 'hidden' %>
+					
 					<% is_hidden = (current_user.job_settings[:dept] &&
 					 		current_user.job_settings[:key_skills]) ? 'hidden' : '' %>						
 					<div class="wrapper <%= h1_hidden %>">

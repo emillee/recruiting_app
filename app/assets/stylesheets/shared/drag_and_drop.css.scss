@@ -40,6 +40,7 @@
         height: 100%;
         background-color: white;
         cursor: pointer;
+        z-index: 9999;
       }
       
       div.level-wrap {
@@ -102,29 +103,7 @@
         }
       }
     }
-  } 
-}
-
-
-.box-of-logos {
-  margin-left: 20px;
-  margin-top: 15px;
-  height: 300px;
-  width: 620px;
-  background-color: lightgray;
-
-  img {
-    float: left;
-    height: 60px;
-    margin: 10px;   
-    background-color: white; 
-    cursor: pointer;
   }
 }
-
-
-
-
-
 
 

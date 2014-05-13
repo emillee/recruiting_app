@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   
   validates :fname, length: { maximum: 25, allow_nil: true }
   validates :lname, length: { maximum: 30, allow_nil: true }
-  validates :password, length: { minimum: 6, maximum: 20, allow_nil: true }
+  validates :password, length: { minimum: 6, maximum: 25, allow_nil: true }
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   # validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   
@@ -39,19 +39,6 @@ class User < ActiveRecord::Base
   has_many :user_articles
   has_many :articles, through: :user_articles, source: :article
   has_many :messages
-
-  # has_many(
-  #   :user_one_chats,
-  #   class_name: 'UserChat',
-  #   foreign_key: :user_one_id,
-  #   primary_key: :id
-  # )
-
-  # has_many(
-  #   :chats_as_user_one,
-  #   through: :user_one_chats,
-  #   source: :user_one
-  # )
   
   has_attached_file :avatar, styles: { medium: '300x200>', thumb: '100x100>' },
     default_url: '/images/:style/missing.png'
@@ -100,7 +87,6 @@ class User < ActiveRecord::Base
   def inputs_from_omniauth(auth)
     self.fname, self.lname = auth.info.name.split(' ')[0], auth.info.name.split(' ')[1] if auth.info.name
     self.email = auth.info.email if auth.info.email
-    self.save!
     self
   end
 

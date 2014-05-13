@@ -16,7 +16,6 @@
 
 	<%= render 'in_page_nav', locals: { user: @user, recent_articles: @recent_articles } %>	
 
-		
 		<div id="top-id"></div>				
 		
 		<% if @articles.any? %>
@@ -30,14 +29,12 @@
 			<%= render './articles/article', locals: { object: user, article: new_article, this_table: this_table } %>
 		<% end %>
 
-	  <div class="article skills">
-	  	<h3>My Skills</h3>
+	  <div class="article-wrapper skills">
+	  	<h1>My Skills</h1>
 			<%= render 'shared/drop_zone', locals: { user: @user } %>
 	    <%= render 'shared/box_of_logos', locals: { user: @user }  %>
 	  </div>
 	</div>
-
-
 
 <%= render './layouts/background' %>
 

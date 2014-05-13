@@ -29,10 +29,10 @@
 	<% end %>		
 
 	<% if job.description %>
-		<p><%= job.description.split(' ')[0..25].join(' ') unless job.description.nil? %>...</p>
+		<p><%= job.description.split(' ')[0..35].join(' ') unless job.description.nil? %>...</p>
 	<% else %>
 		<% if job.full_text %>
-			<p>	<%= job.full_text.split(' ')[0..25].join(' ') unless job.full_text.nil? %>...</p>
+			<p>	<%= job.full_text.split(' ')[0..35].join(' ') unless job.full_text.nil? %>...</p>
 		<% end %>
 	<% end %>
 

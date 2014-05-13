@@ -4,6 +4,10 @@ class Skill < ActiveRecord::Base
 	validates :skill_dept, presence: true
 	validates :skill_sub_dept, presence: true
 
+	before_save { self.skill_name = self.skill_name.downcase.split(' ').join('-') }
+	before_save { self.skill_dept = self.skill_dept.downcase.split(' ').join('-') }
+	before_save { self.skill_sub_dept = self.skill_sub_dept.downcase.split(' ').join('-') }
+	
 	has_attached_file :logo, styles: { medium: 'x60' }, default_url: '/images/:style/missing.png'
 
 	has_many :object_skills
