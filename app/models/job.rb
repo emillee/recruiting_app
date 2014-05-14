@@ -2,6 +2,8 @@ class Job < ActiveRecord::Base
 
   attr_reader :job_score
   attr_writer :job_score
+  attr_reader :skill_matches
+  attr_writer :skill_matches  
   attr_reader :max_score
 
   before_create :set_is_draft
@@ -59,9 +61,12 @@ class Job < ActiveRecord::Base
     jobs.each do |job|
       job.job_score ||= 0
       skill_matches ||= 0
-      skill_matches = (user.tech_stack & job.listing_company.tech_stack).count
-      job.job_score += skill_points_weighting * skill_matches
-      if job.listing_company.category_code
+      
+      skill_matches_arr = (user.tech_stack.map(&:skill_name).uniq & 
+        job.listing_company.tech_stack.map(&:skill_name).uniq)
+      job.skill_matches = skill_matches_arr
+      job.job_score += skill_points_weighting * skill_matches_arr.count
+      if job.listing_company.category_code && user.job_prefs[:company_industry]
         job.job_score += industry_points_weighting if user.job_prefs && 
           user.job_prefs[:company_industry].map(&:downcase).include?(job.listing_company.category_code.downcase)
       end

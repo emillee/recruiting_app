@@ -8,17 +8,43 @@ div.session-form {
   background-color: #3498db;
   border-radius: 3px;
   z-index: 2;
-  
-  a.fa-times-circle {
-    font-size: 22px;
-    color: white;
-    float: right;
-    margin-top: 10px;
-    margin-right: 10px;
-  }
 
+  span.new-vs-returning {
+    display: inline-block;
+    line-height: 40px;
+    width: 100%;
+    background-color: white;
+
+    a.selected, a.not-selected {
+      display: inline-block;
+      line-height: 40px;
+      width: 279px;
+      text-align: center;
+    }
+
+    a.selected {
+      background-color: #16a085;
+      color: white;
+      margin-left: 0;
+    }
+
+    a.not-selected {
+      background-color: rgba(22,160,133,.75);
+      color: white;
+      margin-left: 0;
+    }
+
+    a.fa-times-circle {
+      font-size: 22px;
+      background-color: #333332;
+      color: white;
+      float: right;
+      padding: 7px;
+    }
+  }
+  
   .social.guest {
-    top: 40px;
+    top: 30px;
     background-color: #34495e;
     display: inline-block;
 
@@ -42,7 +68,7 @@ div.session-form {
     margin: auto;
     position: relative;
     display: inline-block;
-    top: 50px;
+    top: 40px;
     left: 50px;
     width: 500px;
     line-height: 35px;
@@ -86,7 +112,7 @@ div.session-form {
     background-color: rgba(52,73,94,.65);
     width: 470px;
     margin-left: 50px;
-    margin-top: 70px;
+    margin-top: 60px;
     padding: 15px;
     // text-align: center;
     
@@ -99,7 +125,7 @@ div.session-form {
     
     //  session is for login, user for new users
     #session_email, #session_password, 
-    #user_email, #user_password, #session_online_profile_link, input[type="submit"] {
+    #user_email, #user_password, #user_link_to_online_profile, input[type="submit"] {
       border: none;
       margin: auto;
       position: relative;
@@ -111,7 +137,7 @@ div.session-form {
     }
   
     #session_email, #session_password, 
-    #user_email, #user_password, #session_online_profile_link {
+    #user_email, #user_password, #user_link_to_online_profile {
       text-indent: 3px;
       background-color: rgba(255,255,255,.7);
     
@@ -119,7 +145,7 @@ div.session-form {
       background-color: rgba(255,255,255,1);      
       }
     }
-    #session_online_profile_link, input[type="submit"] {
+    #user_link_to_online_profile, input[type="submit"] {
       margin-left: 10px;
     }
 
@@ -140,6 +166,8 @@ div.session-form {
         color: #7f8c8d;
     }     
 
+
+
     input[type="submit"] {
       width: 227px;
       border: 3px solid white;
@@ -154,6 +182,19 @@ div.session-form {
     }
   }
 }
+
+.session-form {
+      .session-returning-user-form {
+      .login-wrap {
+        input[type="submit"] {
+          margin-left: 0;
+          width: 460px;
+        }
+        
+      }
+    }
+}
+
 
 
 

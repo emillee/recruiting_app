@@ -12,28 +12,34 @@
 		<ul class="box-of-logos-ul group">
 
 			<!-- # returns a hash where keys are sub_dept_name_string and value is an array of skill objects (of unique skill names) -->
-			<% dept = current_user.job_settings[:dept] || 'engineer' %>
-			<% skill_hash = Skill.return_skill_hash_from_dept(dept) %>
 
-			<div class="group">
-				<% skill_hash.each do |key, val_obj_arr| %>
-					<%= link_to key, '#', class: key, data: { selected: key } %>
-				<% end %>
-			</div> 
+			<% Taxonomy.departments.each do |dept| %>
+				<div class="dept-selector" data-dept='<%= dept.downcase %>'><%= dept %></div>
 
-			<% skill_hash.each do |key, val_obj_arr| %>
-					<% val_obj_arr.each do |skill_obj| %>
-						<% next if object.tech_stack.include?(skill_obj) %>
-						<li class="<%= key %> <%= 'hidden' unless key == 'back-end' %>" 
-							data-skill-id="<%= skill_obj.id %>" data-object-id="<%= object.id %>" 
-							data-object-class="<%= object.class.to_s.downcase %>">
-							<% if skill_obj.logo.exists? %>
-								<%= image_tag(skill_obj.logo.url, class: 'is-draggable') %>
-							<% else %>
-								<%= render './shared/upload_logo', locals: { object: skill_obj } %>
-							<% end %>
-						</li>
+				<%# dept = current_user.job_settings[:dept] || 'engineer' %>
+				<% skill_hash = Skill.return_skill_hash_from_dept(dept.downcase) %>
+
+				<div class="group <%= dept.downcase %> ">
+					<% skill_hash.each do |key, val_obj_arr| %>
+						<% this_class = "#{key} " + "#{dept.downcase} " + "#{'hidden' if dept.downcase != 'engineer'}" %>
+						<%= link_to key, '#', class: this_class, data: { selected: key } %>
 					<% end %>
+				</div> 
+
+				<% skill_hash.each do |key, val_obj_arr| %>
+						<% val_obj_arr.each do |skill_obj| %>
+							<% next if object.tech_stack.include?(skill_obj) %>
+							<li class="<%= key %> <%= 'hidden' unless key == 'back-end' %>" 
+								data-skill-id="<%= skill_obj.id %>" data-object-id="<%= object.id %>" 
+								data-object-class="<%= object.class.to_s.downcase %>">
+								<% if skill_obj.logo.exists? %>
+									<%= image_tag(skill_obj.logo.url, class: 'is-draggable') %>
+								<% else %>
+									<%= render './shared/upload_logo', locals: { object: skill_obj } %>
+								<% end %>
+							</li>
+						<% end %>
+				<% end %>												
 			<% end %>
 
 		</ul>

@@ -10,7 +10,13 @@
 <% end %>	
 	
 <div class="job-description-wrapper left">	
-	<%#= job.job_score %>
+	<span class="admin-job-scorecard">
+		<% if current_user && current_user.is_admin %>
+			<%= job.skill_matches %>
+			<%= job.job_score %>
+			<p>Note: this is in listing_summary</p>
+		<% end %>
+	</span>
 
 	<% unless current_user && current_user.is_admin %>
 		<a href="<%= job.link %>" target="_blank">

@@ -12,6 +12,16 @@ div.jobs-wrapper {
       height: 150px;
       border-bottom: 5px solid rgba(0,0,0,.1);
 
+      span.admin-job-scorecard {
+        position: absolute;
+        top: 0px;
+        height: 200px;
+        width: 200px;
+        right: -210px;
+        background-color: yellow;
+        display: inline-block;
+      }
+
       &:nth-of-type(even) {
         // .company-business-card {
         //   float: right;       

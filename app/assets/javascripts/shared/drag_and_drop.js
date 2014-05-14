@@ -5,7 +5,17 @@ var ready_drag_and_drop = function() {
     addDraggableEvents();
     addDroppableEvents();
 
-    // SHOW AND HIDE DIFF SKILL SETS
+    // SHOW AND HIDE DIFF SKILL SETS BASED ON DEPT
+    $('div.dept-selector').on('click', function() {
+      var selected_dept = $(this).data('dept');
+      console.log(selected_dept);
+      var selector = 'a' + '.' + selected_dept;
+      console.log(selector);
+      $('.group > a').addClass('hidden');
+      $(selector).removeClass('hidden');
+    });      
+
+    // SHOW AND HIDE DIFF SKILL SETS BASED ON SUB DEPT
     $('.box-of-logos-ul').on('click', 'a', function(e) {
       e.preventDefault();
       var selected_skill = $(this).data('selected');

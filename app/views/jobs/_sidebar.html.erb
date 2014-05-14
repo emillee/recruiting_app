@@ -57,6 +57,7 @@
 								<li class="job-sidebar department <%= sel_or_hide(dept.downcase) %>">
 									<i class="<%= icon_dept_match(dept) %> left"></i>
 									<%= label_tag dept %>
+									<%= Job.where(dept: dept).count %>
 									<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
 									<i class="fa fa-angle-right"></i>
 									<i class="fa fa-times-circle"></i>								
@@ -80,6 +81,7 @@
 								<% checked = is_setting_checked?('sub_dept', sub) %>
 								<li class="job-sidebar <%= checked ? 'selected' : li_hidden %>">
 									<%= label_tag sub %>
+									<%= Job.where(sub_dept: sub).count %>
 									<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
 									<i class="fa fa-angle-right"></i>
 									<i class="fa fa-times-circle"></i>								

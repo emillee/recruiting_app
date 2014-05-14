@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   
   def new
+    @user = User.new
     render :new
   end
   
@@ -51,7 +52,7 @@ class SessionsController < ApplicationController
         sign_in(user)
         flash[:welcome] = ""
         redirect_back_or(root_url)
-      else
+      elsif params[]
         flash[:error] = 'Invalid login credentials. Please try again.'
         render :new
       end

@@ -10,7 +10,7 @@
 			data-table="<%= this_table %>"
 			data-model="<%= this_model %>"
 			data-attribute="total_money_raised"
-			class="regular-type">				
+			class="companies-editable">				
 			<%= (company.total_money_raised.nil? || company.total_money_raised.empty?) ? "-" : company.total_money_raised %>
 		</span>
 	</h3>
@@ -21,7 +21,7 @@
 			data-table="<%= this_table %>"
 			data-model="<%= this_model %>"
 			data-attribute="num_employees"
-			class="regular-type">				
+			class="companies-editable">				
 			<%= company.num_employees.nil? ? "-" : company.num_employees %>
 		</span>			
 	</h3>
@@ -32,7 +32,7 @@
 			data-table="<%= this_table %>"
 			data-model="<%= this_model %>"
 			data-attribute="category_code"
-			class="regular-type">				
+			class="companies-editable">				
 			<%= (company.category_code.nil? || company.category_code.empty?) ? "-" : company.category_code %>
 		</span>			
 	</h3>
@@ -43,7 +43,7 @@
 			data-table="<%= this_table %>"
 			data-model="<%= this_model %>"
 			data-attribute="city"
-			class="regular-type">				
+			class="companies-editable">				
 			<%= (company.city.nil? || company.city.empty?) ? "-" : company.city %>
 		</span>			
 	</h3>						
@@ -54,7 +54,7 @@
 			data-table="<%= this_table %>"
 			data-model="<%= this_model %>"
 			data-attribute="neighborhood"
-			class="regular-type">				
+			class="companies-editable">				
 			<%= (company.neighborhood.nil? || company.neighborhood.empty?) ? "-" : company.neighborhood %>
 		</span>			
 	</h3>			

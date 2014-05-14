@@ -6,6 +6,7 @@
 //= require editor
 //= require sidebar
 //= require navbar
+//= require sessions
 //= require jobs
 //= require users
 //= require groups
