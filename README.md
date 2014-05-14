@@ -1,5 +1,8 @@
 == README
 
+CLI to restore backup on local
+gunzip -c db/backups/db_name_2014-05-14_00-30-45_dump.sql.gz | psql nytech_development
+
 NYTech
 - Add dashboard/login
 

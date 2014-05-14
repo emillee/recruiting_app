@@ -52,7 +52,7 @@ class SessionsController < ApplicationController
         sign_in(user)
         flash[:welcome] = ""
         redirect_back_or(root_url)
-      elsif params[]
+      else
         flash[:error] = 'Invalid login credentials. Please try again.'
         render :new
       end
