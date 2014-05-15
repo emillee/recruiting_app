@@ -1,0 +1,28 @@
+#admin-ranked-jobs {
+	table {
+		position: absolute;
+		top: 50px;
+
+		th, td {
+			border: 1px solid black;
+		}
+
+		td {
+			width: 75px;
+			text-align: center;
+		}
+
+		td.full-text {
+			width: 600px;
+			text-align: left;
+		}
+
+		tr {
+			text-align: center;
+		}
+
+		tr.jobs-tr {
+			border-bottom: 3px solid black;
+		}
+	}
+}

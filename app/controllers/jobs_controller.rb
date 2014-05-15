@@ -23,6 +23,9 @@ class JobsController < ApplicationController
       jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).
         includes([{listing_company: :tech_stack}, :applicants, :saved_users, :removed_users])
       @jobs = Job.rank_jobs(jobs, current_user)
+
+      @jobs.sort! { |a,b| b.job_score <=> a.job_score }
+
       @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(10)
     else
       @jobs = Job.all.page(params[:page]).per(10)
@@ -76,6 +79,18 @@ class JobsController < ApplicationController
   def root_action
     redirect_to jobs_url
   end
+
+  def admin_ranked_jobs
+    @jobs = []
+    jobs = Job.all.sample(10)
+
+    jobs.each do |job|
+      @job_ranker = JobRanker.new(job, current_user)
+      @jobs << @job_ranker.job
+    end
+
+    @jobs.sort! { |a,b| b.job_score <=> a.job_score }
+  end    
   
   def import_data
     @job = Job.find(params[:id])

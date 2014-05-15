@@ -2,6 +2,8 @@ class Job < ActiveRecord::Base
 
   attr_reader :job_score
   attr_writer :job_score
+  attr_reader :job_score_tracker
+  attr_writer :job_score_tracker
   attr_reader :skill_matches
   attr_writer :skill_matches  
   attr_reader :max_score
@@ -39,6 +41,25 @@ class Job < ActiveRecord::Base
   # scope :key_skills, ->(key_skill_arr) { where('jobs.req_skills = (?)', key_skill_arr) }
 
   validates :company_id, presence: true
+
+  def self.return_skills(sub_dept_arr)
+    skills = []
+    sub_dept_arr.each do |sub_dept|
+      skills << self.return_skills_by_sub_dept(sub_dept)
+    end
+
+    skills.flatten.uniq
+  end
+
+  def self.return_skills_by_sub_dept(sub_dept)
+    sub_dept = sub_dept.downcase
+    jobs = Job.where(sub_dept: sub_dept)
+    company_objs = jobs.map(&:listing_company).uniq
+    skill_objs = company_objs.select { |c| !c.tech_stack.empty? }.map(&:tech_stack).flatten.uniq
+    sub_dept = sub_dept.split(' ').join('-')
+    skill_objs = skill_objs.select { |s| s.skill_sub_dept ==  sub_dept }
+    skill_objs
+  end
   
   def import_data
     self.get_text_from_link if (self.full_text.nil? || self.full_text.empty?)
@@ -55,16 +76,18 @@ class Job < ActiveRecord::Base
   def self.rank_jobs(jobs, user)
     return jobs if user.job_settings[:key_skills].nil?
 
-    skill_points_weighting = 5
-    industry_points_weighting = 5
+    skill_points_weighting = 2
+    industry_points_weighting = 1
 
     jobs.each do |job|
       job.job_score ||= 0
       skill_matches ||= 0
+
+      # this is a collection of skill object id's
+      user_tech_stack = user.job_settings[:key_skills].map(&:to_i)
+      job_tech_stack = job.listing_company.tech_stack.map(&:id)
       
-      skill_matches_arr = (user.tech_stack.map(&:skill_name).uniq & 
-        job.listing_company.tech_stack.map(&:skill_name).uniq)
-      job.skill_matches = skill_matches_arr
+      skill_matches_arr = (user_tech_stack.uniq & job_tech_stack.uniq)
       job.job_score += skill_points_weighting * skill_matches_arr.count
       if job.listing_company.category_code && user.job_prefs[:company_industry]
         job.job_score += industry_points_weighting if user.job_prefs && 

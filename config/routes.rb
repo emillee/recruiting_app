@@ -43,6 +43,7 @@ Nytech::Application.routes.draw do
     member { put :update_req_skills }
     member { get :forward_form }
     collection { get :flip_view }
+    collection { get :admin_ranked_jobs }
   end
   
   namespace :admin do 
@@ -55,9 +56,8 @@ Nytech::Application.routes.draw do
   match '/login',                    to: 'sessions#new', via: :get
   match '/filters',                  to: 'jobs#filters', via: :get
   match '/forward_job',              to: 'jobs#forward_job', via: :post
-  
-  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-   
+  match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
+
   root to: 'jobs#root_action'
 end
 

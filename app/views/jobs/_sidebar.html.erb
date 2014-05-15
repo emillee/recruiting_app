@@ -127,18 +127,14 @@
 						</h1>
 						<ul class="job-filters">	
 							<% if current_user.job_settings[:sub_dept] %>
-								<% current_user.job_settings[:sub_dept].each do |sub_dept| %>
-									<% next if Taxonomy.req_skills["#{sub_dept}"].nil? %>
-									<% Taxonomy.req_skills["#{sub_dept}"].each do |skill, array| %>
-										<% checked = is_setting_checked?('key_skills', skill) %>
-											
-										<li class="job-sidebar key-skills <%= checked ? 'selected' : is_hidden %>">
-											<%= label_tag skill %>
-											<%= check_box_tag "user[job_settings][key_skills][]", skill, checked %>
-											<i class="fa fa-angle-right"></i>
-											<i class="fa fa-times-circle"></i>														
-										</li>
-									<% end %>
+								<% Job.return_skills(current_user.job_settings[:sub_dept]).each do |skill_obj| %>
+									<% checked = is_setting_checked?('key_skills', skill_obj.id) %>
+									<li class="job-sidebar key-skills <%= checked ? 'selected' : is_hidden %>">
+										<%= label_tag skill_obj.skill_name %>
+										<%= check_box_tag "user[job_settings][key_skills][]", skill_obj.id, checked %>
+										<i class="fa fa-angle-right"></i>
+										<i class="fa fa-times-circle"></i>														
+									</li>									
 								<% end %>
 							<% end %>
 						</ul>
