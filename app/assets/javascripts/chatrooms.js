@@ -50,3 +50,4 @@ var ready_chatroom = function() {
 
 $(document).ready(ready_chatroom);
 $(document).on('page:load', ready_chatroom);
+
