@@ -1,32 +1,68 @@
-<!-- <div class="jobs-wrapper">
-	<ul class="job-posts"> -->
-		
-		<table>
-			<tr>
-				<th>ID</th>
-				<th>Company Name</th>
-				<th><%= sortable("title") %></th>
-				<th><%= sortable("dept") %></th>
-				<th><%= sortable("sub_dept") %></th>
-				<th>Years Exp</th>
-				<td>Link</td>
-			</tr>
-			
-			<% @jobs.each do |job| %>		
-				<tr>
-					<td><%= job.id %></td>
-					<td><%= job.listing_company.name %></td>
-					<td><%= job.title %></td>
-					<td><%= job.dept %></td>
-					<td><%= job.sub_dept %></td>
-					<td><%= job.years_exp || '-' %></td>
-					<td><%= job.link %></td>
-				</tr>
-			<% end %>
-			
-	</table>
-	<!-- </ul>
-</div> -->
+<div id="admin-ranked-jobs">
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Dept</th>
+			<th>SubDept</th>
+			<th>YearsExp</th>
+			<th>Company</th>
+			<th>Job Req Skills</th>
+			<th>Company Tech Stack</th>
+			<th>User Tech Stack</th>
+			<th>Full Text</th>
+			<th>Score</th>
+		</tr>
 
-<!-- <div class="jobs-background"></div>
-<div class="jobs-background-overlay"></div> -->
+		<% @jobs.each do |job| %>
+			<tr class="jobs-tr">
+				<td><%= job.title %></td>
+				<td><%= job.dept %></td>
+				<td><%= job.sub_dept %></td>
+				<td><%= job.years_exp %></td>
+				<td><%= job.listing_company.name %></td>
+				<td><%= job.req_skills %></td>
+				<td>
+					<ul>
+						Company Tech Stack:
+						<% job.listing_company.tech_stack.each do |skill| %>
+							<li><%= skill.skill_name %></li>
+						<% end %>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						User Job Settings:
+						<% current_user.job_settings[:key_skills].each do |skill| %>
+							<li><%= skill %></li>
+						<% end %>
+					</ul>
+					<br>
+					<ul>
+						User Tech Stack:
+						<% current_user.tech_stack.each do |skill| %>
+							<li><%= skill.skill_name %></li>
+						<% end %>
+					</ul>
+				</td>
+				<td class="full-text">
+					<% job.full_text.split('.').each do |sentence| %>
+						<%= sentence %>
+						<br><br>
+					<% end %>
+				</td>
+				<td>
+					<h1>Job Score:</h1>
+					<%= job.job_score %>
+					<h1>JobScoreTracker</h1>
+					<%= job.job_score_tracker %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+
+<div id="user-job-preferences">
+	<% current_user.job_settings[:key_skills].each do |skill| %>
+		<%= skill %>
+	<% end %>
+</div>

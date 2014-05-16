@@ -1,0 +1,20 @@
+<% company = locals[:company] %>
+<% this_table = locals[:this_table] %>
+<% this_model = this_table.singularize %>
+
+<div class="company-mid-wrapper">
+	
+	<div class="company-navbar">
+		<% get_unique_tags(company).each do |tag_name| %>
+			<% data_section = tag_name.downcase.gsub(/[^a-z0-9\s]/, '').strip.gsub(/\s/, '-') %>
+			<%= link_to "#{tag_name}", '#', data: { company: "#{company.name}", section: "#{data_section}" }%>
+		<% end %>
+	</div>
+	
+	<div id="<%= company.name %>-top-id"></div>
+	
+	<% company.articles.each do |article| %>
+		<%= render './articles/new_article_form', locals: { article: article, object: company, this_table: this_table }%>
+	<% end %>
+
+</div>

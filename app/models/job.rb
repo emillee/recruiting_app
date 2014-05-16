@@ -27,6 +27,9 @@ class Job < ActiveRecord::Base
 
   has_many :user_job_preapprovals, class_name: 'UserJobPreapproval', foreign_key: :job_id
   has_many :preapproved_applicants, through: :user_job_preapprovals, source: :user
+
+  has_many :job_skills
+  has_many :required_skills, through: :job_skills, source: :job  
   
   include Scrape
   include ImportData
@@ -38,7 +41,30 @@ class Job < ActiveRecord::Base
   scope :dept, ->(dept_arr) { where('jobs.dept IN (?)', dept_arr) }
   scope :sub_dept, ->(sub_dept_arr) { where('jobs.sub_dept IN (?)', sub_dept_arr) }
   scope :years_exp, ->(years_exp_arr) { where('jobs.years_exp <= (?)', years_exp_arr.max) } 
-  # scope :key_skills, ->(key_skill_arr) { where('jobs.req_skills = (?)', key_skill_arr) }
+  scope :key_skills, ->(key_skills) { 
+    where("to_tsvector('english', title) @@ #{sanitize_query(key_skills)} OR to_tsvector('english', full_text) @@ #{sanitize_query(key_skills)}") 
+  }
+
+  def self.sanitize_query(query, conjunction=' || ')
+    "(" + tokenize_query(query).map{|t| self.term(t)}.join(conjunction) + ")"
+  end
+
+  def self.tokenize_query(query)
+    query.split(/(\s|[&|:])+/)
+  end 
+
+  def self.term(t)
+    # Strip leading apostrophes, they are never legal, "'ok" becomes "ok"
+    t = t.gsub(/^'+/,'')
+    # Strip any *s that are not at the end of the term
+    t = t.gsub(/\*[^$]/,'')
+    # Rewrite "sear*" as "sear:*" to support wildcard matching on terms
+    t = t.gsub(/\*$/,':*')
+    # If the only remaining text is a wildcard, return an empty string
+    t = "" if t.match(/^[:* ]+$/)
+
+    "to_tsquery('english', #{quote_value t})"
+  end  
 
   validates :company_id, presence: true
 

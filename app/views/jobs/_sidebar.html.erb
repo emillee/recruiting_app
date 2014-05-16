@@ -1,6 +1,6 @@
 <div class="sidebar-wrapper">
 	
-	<div class="role-prefs">
+<!-- 	<div class="role-prefs">
 		<li class="roles selected">
 			<span class="arrow-down"></span>
 			Roles
@@ -9,7 +9,7 @@
 			<span class="arrow-down hidden"></span>
 			Preferences
 		</li>
-	</div>
+	</div> -->
 	
 	<div class="roles-sidebar-wrapper">
 	
@@ -27,7 +27,7 @@
 				<div class="sidebar-middle">
 		
 					<!-- KEYWORDS -->
-					<div class="keywords-wrapper <%= "hidden" unless show_keywords? %>">
+					<div class="keywords-wrapper <%= "hidden" unless current_user.job_settings[:keywords] %>">
 						<h1 class="keywords">Search Words:</h1>
 						<ul class="job-filters keywords-ul">
 							<% if current_user.job_settings[:keywords] %>

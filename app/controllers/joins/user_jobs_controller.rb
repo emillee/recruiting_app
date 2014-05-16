@@ -3,7 +3,6 @@ class UserJobsController < ApplicationController
   respond_to :html, :json
 
   # RESTful Routes ---------------------------------------------------------------------------
-
   def create
     if params[:saved_job_id]
       UserJob.create(user_id: params[:user_id], saved_job_id: params[:saved_job_id])

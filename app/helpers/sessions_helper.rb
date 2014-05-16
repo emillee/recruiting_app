@@ -1,5 +1,15 @@
 module SessionsHelper
 
+	def redirect_back_or(default)
+		redirect_to(session[:return_to] || default)
+		session.delete(:return_to)
+	end
+
+	def store_location
+		session[:return_to] = request.url 
+	end	
+
+	# requirements by user type or session
 	def require_membership
 		unless (current_user.is_member || current_user.is_admin)
 			store_location
@@ -7,6 +17,14 @@ module SessionsHelper
 		end
 	end	
 
+	def require_sign_in
+		unless signed_in?
+			store_location
+			redirect_to login_url
+		end
+	end	
+
+	# sign in or out
 	def sign_in(user)
 		session[:session_token] = user.session_token
 		self.current_user = user
@@ -16,6 +34,12 @@ module SessionsHelper
 		!current_user.nil?
 	end
 
+	def sign_out
+		self.current_user = nil
+		session[:session_token] = nil
+	end
+
+	# current_user
 	def current_user=(user)
 		@current_user = user
 	end
@@ -26,27 +50,6 @@ module SessionsHelper
 
 	def current_user?(user)
 		user == current_user
-	end
-
-	def require_sign_in
-		unless signed_in?
-			store_location
-			redirect_to login_url
-		end
-	end
-
-	def sign_out
-		self.current_user = nil
-		session[:session_token] = nil
-	end
-
-	def redirect_back_or(default)
-		redirect_to(session[:return_to] || default)
-		session.delete(:return_to)
-	end
-
-	def store_location
-		session[:return_to] = request.url 
 	end
 
 end

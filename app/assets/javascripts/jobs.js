@@ -1,7 +1,7 @@
 var ready_jobs = function() {
   if ($('.jobs').length > 0) {
   
-    // ADD SELECTED CLASS TO JOBNAV
+    // ADD SELECTED CLASS TO JOB NAVBAR
     $('.job-nav-item').on('click', function(e) {
       e.preventDefault();
       addModalToBody();
@@ -71,58 +71,24 @@ var ready_jobs = function() {
       $('body').append('<div class="modal-background"></div>');      
     };    
   
-    // SAVING AND APPLYING TO JOBS
-    $('ul.job-posts').on('click', '.save', function(event) {
+    // SAVINGS, APPLYING, REMOVING JOBS
+    $('ul.job-posts').on('click', '.save, .saved', function(event) {
       // this.innerHTML = 'Interested';
       $(this).toggleClass('saved');
       $(this).toggleClass('save');
     });
 
-    $('ul.job-posts').on('click', '.saved', function(event) {
-      // this.innerHTML = 'Interested';
-      $(this).toggleClass('saved');
-      $(this).toggleClass('save');
-    });    
-  
-    $('ul.job-posts').on('click', '.applied', function(event) {
+    $('ul.job-posts').on('click', '.applied, .applied_already', function(event) {
       $(this).toggleClass('applied_already');
       $(this).toggleClass('applied');
-    });
-
-    $('ul.job-posts').on('click', '.applied_already', function(event) {
-      $(this).toggleClass('applied_already');
-      $(this).toggleClass('applied');
-    });    
+    });  
   
     // REMOVE A JOB WHEN CLICK REMOVE
-    $('ul.job-posts').on('click', '.remove', function(event) {
+    $('ul.job-posts').on('click', '.remove, .removed', function(event) {
       $(this).parents('li').remove();
       $(this).toggleClass('removed');
       $(this).toggleClass('remove');
-    });
-
-    $('ul.job-posts').on('click', '.removed', function(event) {
-      $(this).parents('li').remove();
-      $(this).toggleClass('removed');
-      $(this).toggleClass('remove');
-    });    
-    
-    // EDIT COMPANY OVERVIEW IN PLACE
-    $('[contenteditable=true].jobs-index-company-overview').blur(function() {
-      var $company_id = $(this).data('company-id');
-      var $data = $(this).text();
-      var $url = '/companies/' + $company_id
-
-      var dataObject = {}
-      dataObject['company'] = {}
-      dataObject['company']['overview'] = $data
-      
-      $.ajax({
-        url: $url,
-        type: 'PUT',
-        data: dataObject
-      });
-    });
+    });   
     
   };
 };

@@ -35,7 +35,6 @@ module ImportData
     self.title = title_match
     self.save
   end
-
   
   def get_dept
     if self.title

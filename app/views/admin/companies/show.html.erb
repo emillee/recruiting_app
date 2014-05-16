@@ -1,0 +1,28 @@
+<div class="companies-wrapper">
+	<ul class="companies-posts">
+		<li class="company-wrapper">
+			<%= link_to 'Next', company_url(@company, next: true), id: 'next' %>
+
+			<div class="company-top-wrapper">
+				<%= render '././companies/cards/logo', locals: { company: @company } %>
+				<%= render '././companies/cards/overview', locals: { company: @company, this_table: 'companies' } %>
+				<%= render '././companies/cards/stats', locals: { company: @company, this_table: 'companies' } %>
+			</div>
+
+			<%= render 'nav_and_sections', locals: { company: @company, this_table: 'companies' } %>
+
+			<% if @company.persisted? %>
+
+				<%= form_for([@company, @job]) do |f| %>
+					<%= f.text_field :link, class: "hello", placeholder: "Post New Job" %>
+					<%= f.submit "Create New Job" %>
+				<% end %>
+				
+				<%= render 'company_jobs', locals: { company: @company } %>
+			<% end %>
+
+		</li>
+	</ul>
+</div>
+
+<%= render '././layouts/background' %>

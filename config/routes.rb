@@ -1,6 +1,6 @@
 Nytech::Application.routes.draw do
-  resource :user_jobs, only: [:create, :destroy]
-  resource :session, only: [:new, :create, :destroy]
+  resource  :user_jobs, only: [:create, :destroy]
+  resource  :session, only: [:new, :create, :destroy]
   resources :search_suggestions
   resources :searches, only: [:new, :show, :create, :destroy]
   resources :taxonomies, only: [:index]
@@ -43,11 +43,10 @@ Nytech::Application.routes.draw do
     member { put :update_req_skills }
     member { get :forward_form }
     collection { get :flip_view }
-    collection { get :admin_ranked_jobs }
   end
   
   namespace :admin do 
-    resources :jobs, :companies, only: [:index, :new]
+    resources :jobs, :companies, only: [:index, :show, :new]
   end
     
   match '/home',                     to: 'static_pages#home', via: :get

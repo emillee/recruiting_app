@@ -1,7 +1,7 @@
 <% user = locals[:user] %>
 <% this_table = 'users' %>
 <% this_model = this_table.singularize %>
-<% is_editable = editable?(user) %>
+<% is_editable = bcard_editable?(user) %>
 
 <div class="business-card">
   <div class="info">

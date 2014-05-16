@@ -2,7 +2,7 @@ module CsvMethods
   extend ActiveSupport::Concern
   
   module ClassMethods
-    
+
     def import_from_csv(delete_prev = false, file)
       if delete_prev
         self.class.delete_all
@@ -20,9 +20,7 @@ module CsvMethods
           csv << product.attributes.values_at(*column_names)
         end
       end
-    end
-    
-  end
-  
-  
+    end  
+
+  end  
 end

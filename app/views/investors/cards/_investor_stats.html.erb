@@ -1,7 +1,7 @@
 <% investor = locals[:investor] %>
 <% this_table = locals[:this_table] %>
 <% this_model = this_table.singularize %>
-<% is_editable = 'true' %>
+<% is_editable = editable_if_admin(current_user) %>
 
 <div class="business-card">
   <div class="info">	

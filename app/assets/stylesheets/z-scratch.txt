@@ -1,5 +1,4 @@
-SIDEBAR
-// KEY SKILLS
+// SIDEBAR KEY SKILLS
 ul.key-skills {
   cursor: auto;
   
@@ -93,7 +92,6 @@ ul.key-skills {
     }
   }
 }
-
 
 DARK SIDEBAR
 .f-sidebar-buffer {

@@ -3,7 +3,6 @@ class ObjectSkillsController < ApplicationController
   respond_to :json, :js
 
   # RESTful Routes ---------------------------------------------------------------------------
-  
   def create
     if params[:user_id]
       @user = User.find(params[:user_id])

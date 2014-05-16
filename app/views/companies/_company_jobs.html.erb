@@ -1,7 +1,7 @@
 <% company = locals[:company] %>
 <% this_table = 'jobs' %>
 <% this_model = this_table.singularize %>
-<% is_editable = current_user.is_admin %>
+<% is_editable = editable_if_admin(current_user) %>
 
 <% company.job_listings.order("created_at DESC").each do |job| %>
 

@@ -3,7 +3,6 @@ class TaggingsController < ApplicationController
   def show
   end
   
-  
   def create
     @article = Article.find(params[:tagging][:article_id])
     session[:return_to] ||= request.referer
