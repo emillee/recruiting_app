@@ -2,10 +2,13 @@ div.sidebar-wrapper {
   margin-top: 42px;
   margin-left: 0px;
   width: 215px;
-  height: 100%;
   position: fixed;
   font-family: 'Lato', sans-serif;
-  background-color: rgba(255,255,255,.5);
+
+  // this is for overflow scroll
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
   
   div.role-prefs {
     
@@ -64,7 +67,7 @@ div.sidebar-wrapper {
       border: none;
       height: 22px;
       border-radius: 2px;
-      width: 175px;
+      width: 82%;
       color: black;
       position: relative;
       margin-left: 4px;
@@ -92,9 +95,6 @@ div.sidebar-wrapper {
   
   // MIDDLE PORTION
   .sidebar-middle {
-    height: 100%;
-    overflow: auto;
-    position: relative;
     cursor: pointer;
 
     // FOR THE FIRST DIV
@@ -205,11 +205,11 @@ div.sidebar-wrapper {
       
       i.fa-angle-right, i.fa-times-circle {
         position: absolute;
-        right: 13px;
-        margin-top: 7px;
-        display: none;
-        font-size: 15px;
-        font-weight: 900;
+        display: none;        
+        font-size: 20px;
+        font-weight: 900;  
+        right: 10px;
+        margin-top: 4px;            
       }     
       
       &:hover {
@@ -218,7 +218,6 @@ div.sidebar-wrapper {
         i.fa-angle-right {
           display: inline-block;
           color: rgba(46, 204, 113, .5); 
-          font-size: 15px;
         }        
       }
       
@@ -233,7 +232,7 @@ div.sidebar-wrapper {
         i.fa-angle-right {
           display: inline-block;
           color: rgba(46, 204, 113, 1); 
-          font-size: 15px;           
+          font-size: 20px;           
         }
         
         &:hover {
@@ -246,8 +245,8 @@ div.sidebar-wrapper {
           i.fa-times-circle {
             display: inline-block;
             color: #CCCCCC; 
-            font-size: 15px;
-            right: 10px;
+            // font-size: 15px;
+            // right: 10px;
           }          
         }
       }
@@ -256,16 +255,16 @@ div.sidebar-wrapper {
   
   // CLEAR PORTION
   .clear {
-    background-color: white;
+    background-color: #FDFDFD;
     height: 65px;
     position: fixed;
     left: 0px;
-    bottom: 10px;
+    bottom: 0px;
     width: 215px;
 
     #clear-all-roles, #clear-all-prefs {
       border: none;
-      margin-top: 20px;
+      margin-top: 18px;
       margin-left: 23px;
       height: 30px;
       width: 168px;

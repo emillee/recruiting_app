@@ -13,6 +13,53 @@ var nav_ready = function() {
     };
   });
 
+  $('.fa-pencil-square-o, #contact-us-link').on('click', function() {
+    event.preventDefault();
+    console.log('hello')
+    $.ajaxSetup({ cache: false });
+
+    var form_url = '/contact_us'
+    $('<div id="contact-us"></div>').insertAfter('.navbar-wrapper');
+    
+    $('#contact-us').load(form_url + ' .forward-form', function() {
+      var $top = $(window).scrollTop() + 250 + 'px';
+      $('#contact-us').css('position', 'absolute');
+      $('#contact-us').css('left', '250px');
+      $('.forward-form').css('top', $top);
+      $('#email_info_sender_email').focus();
+      setUpBlurHandlers();
+      addModalToBody();
+    });
+  });
+
+  function setUpPropagators() {
+    $('.forward-form').children().click(function(e) {
+      e.stopPropagation();
+    });
+  };
+
+  function setUpBlurHandlers() {
+    setUpPropagators();
+    
+    $('i.fa-times-circle').on('click', function() {
+      undoModal();
+    });
+    
+    $(document).click(function() {
+      undoModal();
+    });
+  };
+      
+  function addModalToBody() {
+    $('body').append('<div class="modal-background"></div>');      
+  };       
+  
+  function undoModal() {
+    $('.forward-form').hide();
+    $('body').children('.modal-background').remove();
+  };
+  
+
 };
 
 $(document).ready(nav_ready);

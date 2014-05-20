@@ -68,12 +68,12 @@ module Taxonomy
   def self.years_exp
     [
       # ['Internship', 0],
-			['Entry (0-1)', 1], 
-			['Junior (1-2)', 2], 
-			['Mid (2-3)', 3], 
-			['Senior / Lead (3-4+)', 4], 
-			['VP, Director (4-7+)', 7],
-			['CTO (7+)', 10]
+			['0-1 : Years', 1], 
+			['1-2 : Years', 2], 
+			['2-3 : Years', 3], 
+			['3-4 : Years', 4], 
+			['4-7 : Years', 7],
+			['7+  : Years', 10]
 		] 
 	end   
   

@@ -71,19 +71,30 @@ class Job < ActiveRecord::Base
   def self.return_skills(sub_dept_arr)
     skills = []
     sub_dept_arr.each do |sub_dept|
+
+      if sub_dept == 'data'
+        skills << self.return_skills_by_sub_dept('data', 'data-science')
+        skills << self.return_skills_by_sub_dept('data', 'database')
+      end  
+
+      if sub_dept == 'full-stack'
+        skills << self.return_skills_by_sub_dept('back-end')
+        skills << self.return_skills_by_sub_dept('front-end')
+      end  
+
       skills << self.return_skills_by_sub_dept(sub_dept)
     end
 
     skills.flatten.uniq
   end
 
-  def self.return_skills_by_sub_dept(sub_dept)
-    sub_dept = sub_dept.downcase
+  def self.return_skills_by_sub_dept(job_sub_dept, skill_sub_dept=nil)
+    sub_dept = job_sub_dept.downcase
     jobs = Job.where(sub_dept: sub_dept)
     company_objs = jobs.map(&:listing_company).uniq
     skill_objs = company_objs.select { |c| !c.tech_stack.empty? }.map(&:tech_stack).flatten.uniq
     sub_dept = sub_dept.split(' ').join('-')
-    skill_objs = skill_objs.select { |s| s.skill_sub_dept ==  sub_dept }
+    skill_objs = skill_objs.select { |s| s.skill_sub_dept ==  (skill_sub_dept || sub_dept) }
     skill_objs
   end
   

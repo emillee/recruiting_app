@@ -38,7 +38,7 @@ var ready_editor = function() {
         var $id = $(this).parent('.content').data('company-id');
       } else if ($table === 'investors') {
         var $id = $(this).parent('.content').data('investor-id');
-      } else if ($table == 'users') {
+      } else if ($table === 'users') {
         var $id = $(this).parent('.content').data('user-id');
       }
       

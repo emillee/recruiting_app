@@ -3,7 +3,7 @@
 <% this_model = this_table.singularize %>
 
 <div class="intro" 
-	contenteditable="<%= editable?(user) %>"
+	contenteditable="<%= editable_if_admin(user) %>"
 	data-table="<%= this_table %>"
 	data-model="<%= this_model %>"
 	data-id=<%= current_user.id if current_user %>

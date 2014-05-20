@@ -56,6 +56,8 @@ Nytech::Application.routes.draw do
   match '/filters',                  to: 'jobs#filters', via: :get
   match '/forward_job',              to: 'jobs#forward_job', via: :post
   match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
+  match '/contact_us',               to: 'application#contact_us', via: :get
+  match '/send_contact_us_email',    to: 'application#send_contact_us_email', via: :post
 
   root to: 'jobs#root_action'
 end

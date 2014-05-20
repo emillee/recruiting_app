@@ -1,9 +1,9 @@
 nav.navbar-wrapper {
   border-top: 3px solid #00080E;
-//  padding-bottom: 3px;
   line-height: 40px;
   width: 100%;
   position: fixed;
+  top: 0;
   font-family: 'PT Serif', serif;
   font-size: 19px;
   background-color: rgba(255,255,255,.5);
@@ -76,7 +76,7 @@ nav.navbar-wrapper {
     
     i {
       position: relative;
-      right: -95px;
+      right: -120px;
       font-size: 16px;
       
       &:hover {

@@ -1,0 +1,11 @@
+<div class="forward-form">
+	<i class="fa fa-times-circle"></i>
+	
+  <%= form_tag send_contact_us_email_url, method: :post do %>
+  	<%= text_field_tag "email_info[sender_email]", nil, placeholder: 'Enter your email' %>
+    <%= text_field_tag "email_info[recipient_email]", nil, value: 'contact@wolfpackbeta.com' %>
+    <%= text_area_tag "email_info[email_body]", nil, placeholder: "What's up?" %>
+
+    <%= submit_tag "Send" %>
+  <% end %>
+</div>

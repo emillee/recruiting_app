@@ -3,7 +3,7 @@
 
 	<span class="logo-top">
 		<%= link_to 'wolfpack', root_url, class: "logo" %>
-		<%= link_to '.vc', root_url, class: "logo-two" %>
+		<%= link_to 'beta', root_url, class: "logo-two" %>
 	</span>
 
 	<div class="menu">
@@ -19,9 +19,11 @@
 
 	<div class="session">
 		<% if signed_in? %>
+			<i class="fa fa-pencil-square-o"></i> 
+			<%= link_to "Contact Us", '#', id: 'contact-us-link' %>		
 			<%#= link_to "Apply for Membership", login_url %>		
-			<i class="fa fa-power-off"></i> 
-			<%= link_to "Log Out", logout_url, method: :delete %>		
+			<!-- <i class="fa fa-power-off"></i>  -->
+			<%#= link_to "Log Out", logout_url, method: :delete %>		
 		<% end %>
 	</div>
 </nav>

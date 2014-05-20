@@ -57,7 +57,7 @@
 								<li class="job-sidebar department <%= sel_or_hide(dept.downcase) %>">
 									<i class="<%= icon_dept_match(dept) %> left"></i>
 									<%= label_tag dept %>
-									<%= Job.where(dept: dept).count %>
+									<%#= Job.where(dept: dept).count %>
 									<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
 									<i class="fa fa-angle-right"></i>
 									<i class="fa fa-times-circle"></i>								
@@ -81,7 +81,7 @@
 								<% checked = is_setting_checked?('sub_dept', sub) %>
 								<li class="job-sidebar <%= checked ? 'selected' : li_hidden %>">
 									<%= label_tag sub %>
-									<%= Job.where(sub_dept: sub).count %>
+									<%#= Job.where(sub_dept: sub).count %>
 									<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
 									<i class="fa fa-angle-right"></i>
 									<i class="fa fa-times-circle"></i>								
@@ -115,7 +115,8 @@
 					</div>
 			
 					<!-- KEY SKILLS -->				
-					<% h1_hidden = current_user.job_settings[:sub_dept] ? '' : 'hidden' %>
+					<% h1_hidden = (current_user.job_settings[:sub_dept] && 
+						Job.return_skills(current_user.job_settings[:sub_dept]).any?) ? '' : 'hidden' %>
 					
 					<% is_hidden = (current_user.job_settings[:dept] &&
 					 		current_user.job_settings[:key_skills]) ? 'hidden' : '' %>						
@@ -127,7 +128,7 @@
 						</h1>
 						<ul class="job-filters">	
 							<% if current_user.job_settings[:sub_dept] %>
-								<% Job.return_skills(current_user.job_settings[:sub_dept]).each do |skill_obj| %>
+								<% Job.return_skills(current_user.job_settings[:sub_dept]).sort.each do |skill_obj| %>
 									<% checked = is_setting_checked?('key_skills', skill_obj.id) %>
 									<li class="job-sidebar key-skills <%= checked ? 'selected' : is_hidden %>">
 										<%= label_tag skill_obj.skill_name %>

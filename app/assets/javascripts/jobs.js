@@ -43,34 +43,7 @@ var ready_jobs = function() {
         addModalToBody();
       });   
     });
-    
-    function setUpBlurHandlers() {
-      setUpPropagators();
-      
-      $('i.fa-times-circle').on('click', function() {
-        undoModal();
-      });
-      
-      $(document).click(function() {
-        undoModal();
-      });
-    };
-    
-    function setUpPropagators() {
-      $('.forward-form').children().click(function(e) {
-        e.stopPropagation();
-      });
-    };
-    
-    function undoModal() {
-      $('.forward-form').hide();
-      $('body').children('.modal-background').remove();
-    };
-    
-    function addModalToBody() {
-      $('body').append('<div class="modal-background"></div>');      
-    };    
-  
+ 
     // SAVINGS, APPLYING, REMOVING JOBS
     $('ul.job-posts').on('click', '.save, .saved', function(event) {
       // this.innerHTML = 'Interested';
@@ -89,6 +62,33 @@ var ready_jobs = function() {
       $(this).toggleClass('removed');
       $(this).toggleClass('remove');
     });   
+
+    function setUpPropagators() {
+      $('.forward-form').children().click(function(e) {
+        e.stopPropagation();
+      });
+    };
+
+    function setUpBlurHandlers() {
+      setUpPropagators();
+      
+      $('i.fa-times-circle').on('click', function() {
+        undoModal();
+      });
+      
+      $(document).click(function() {
+        undoModal();
+      });
+    };
+        
+    function addModalToBody() {
+      $('body').append('<div class="modal-background"></div>');      
+    };       
+    
+    function undoModal() {
+      $('.forward-form').hide();
+      $('body').children('.modal-background').remove();
+    };    
     
   };
 };
