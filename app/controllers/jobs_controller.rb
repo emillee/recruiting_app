@@ -26,11 +26,16 @@ class JobsController < ApplicationController
           Skill.find(skill_id.to_i).skill_name.gsub('-', ' ')
         end.join(' | ')
 
+        rank = <<-RANK
+          ts_rank(to_tsvector(title), #{Job.sanitize_query(skills)}) +
+          ts_rank(to_tsvector(full_text), #{Job.sanitize_query(skills)})
+        RANK
+
         @jobs = Job.filter(current_user
           .job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))
           .key_skills(skills)
           .includes([{listing_company: :tech_stack}, :applicants, :saved_users, :removed_users])
-          .order('years_exp DESC').page(params[:page]).per(10)
+          .order("#{rank} DESC").page(params[:page]).per(10)
       else
         @jobs = Job.filter(current_user
           .job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))

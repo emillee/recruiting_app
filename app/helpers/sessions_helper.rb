@@ -22,6 +22,7 @@ module SessionsHelper
 			store_location
 			redirect_to login_url
 		end
+		
 	end	
 
 	# sign in or out
