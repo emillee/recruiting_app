@@ -109,14 +109,16 @@ class JobsController < ApplicationController
   end
 
   def forward_job 
+    job = Job.find(params[:job_id])
     sender_email = params[:email_info][:sender_email]
     recipient_email = params[:email_info][:recipient_email]
-    email_subject = params[:email_info][:subject]
-    job = Job.find(params[:job_id])
+    subject_line = "You received a forward from #{sender_email}: #{job.title.titleize}"
+    email_body = params[:email_info][:body]
     
     if JobMailer.forward_job(
       recipient_email,
-      email_subject,
+      subject_line,
+      email_body,
       job,
       sender_email
       ).deliver

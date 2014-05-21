@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
   		subject_line,
   		email_body
   	).deliver
+
+    redirect_to :back
   end
   
 end

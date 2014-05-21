@@ -82,7 +82,7 @@ var ready = function() {
   $('.sidebar-middle').on('click', '.job-sidebar', function() {
     $(this).parents('form:first').submit();
     $('#sidebar-search').val('');
-    $('<div class="loading"></div>').insertAfter('.navbar-wrapper');
+    $('<i class="fa fa-paw"></i><div class="loading"></div>').insertAfter('.navbar-wrapper');
   });
 
   // AJAX CALL TO REFRESH SIDEBAR AND JOBS ON SUCCESS
@@ -94,6 +94,7 @@ var ready = function() {
     $('.kaminari-wrapper').empty().html($kaminari);
     $('#roles-job-filter-form .sidebar-middle').empty().html($sidebar);
     $('.loading').remove();
+    $('.fa-paw').remove();
   });
 
   $('#pref-job-filter-form').on("ajax:success", function(event, data) {  

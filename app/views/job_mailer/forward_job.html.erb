@@ -1,8 +1,9 @@
-<p>Hi! <%= @email_sender %> thought you would find this interesting</p>
+<p><%= @email_body %></p>
 
-<%= @job.title %>
-<%= @job.description %>
+<h3>Description:</h3>
+<p><%= @job.title.titleize %></p>
+<p><%= @job.description %></p>
 
-View <%= link_to 'View listings', @job.link %>
+<p><a href="<%= @job.link %>"><%= @job.link %></a><p>
 
-Powered by <%= link_to 'Wolfpack Beta', 'www.wolfpackbeta.com' %>
+<h5>Powered by WolfpackBeta : <a href="http://www.wolfpackbeta.com">www.wolfpackbeta.com</a></h5>

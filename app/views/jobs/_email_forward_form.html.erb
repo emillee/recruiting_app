@@ -4,9 +4,10 @@
   <%= form_tag forward_job_url, method: :post do %>
   	<%= text_field_tag "email_info[sender_email]", nil, placeholder: 'Enter your email' %>
     <%= text_field_tag "email_info[recipient_email]", nil, placeholder: 'Enter recipient email' %>
-    <%= text_area_tag "email_info[subject]", "Thought you might find this listing interesting! \n\n#{@job.link}" %>
+    <%= text_area_tag "email_info[body]", "I thought you might find this interesting!" %>
     <%= hidden_field_tag "job_id", @job.id %>
 
     <%= submit_tag "Send" %>
   <% end %>
 </div>
+
