@@ -1,6 +1,6 @@
 <div class="sidebar-wrapper">
 	
-<!-- 	<div class="role-prefs">
+	<div class="role-prefs">
 		<li class="roles selected">
 			<span class="arrow-down"></span>
 			Roles
@@ -9,7 +9,7 @@
 			<span class="arrow-down hidden"></span>
 			Preferences
 		</li>
-	</div> -->
+	</div>
 	
 	<div class="roles-sidebar-wrapper">
 	
@@ -46,7 +46,7 @@
 					<!-- DEPARTMENT -->
 					<div class="wrapper dept-div">
 						<h1 class="department">
-							I am a:
+							Filters:
 							<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:dept] %>"></i>
 							<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:dept] %>"></i>
 						</h1>
@@ -71,7 +71,7 @@
 					<% li_hidden = (h1_hidden && current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
 					<div class="wrapper <%= h1_hidden %>">
 						<h1 class="sub_dept">
-							Specializing in:
+							Specialty:
 							<i class="fa fa-caret-down <%= 'hidden' unless li_hidden == '' %>"></i>
 							<i class="fa fa-caret-right <%= 'hidden' if li_hidden == '' %>"></i>
 						</h1>
@@ -95,7 +95,7 @@
 					<% li_hidden = (h1_hidden && current_user.job_settings[:years_exp]) ? 'hidden' : '' %>
 					<div class="wrapper <%= h1_hidden %>">
 						<h1 class="experience">
-							My experience level:
+							Experience:
 							<i class="fa fa-caret-down <%= 'hidden' unless li_hidden == '' %>"></i>
 							<i class="fa fa-caret-right <%= 'hidden' if li_hidden == '' %>"></i>
 						</h1>
@@ -122,7 +122,7 @@
 					 		current_user.job_settings[:key_skills]) ? 'hidden' : '' %>						
 					<div class="wrapper <%= h1_hidden %>">
 						<h1 class="key-skills">
-							and key Skills:
+							Key Skills:
 							<i class="fa fa-caret-down <%= 'hidden' if is_hidden %>"></i>
 							<i class="fa fa-caret-right <%= 'hidden' unless is_hidden %>"></i>
 						</h1>

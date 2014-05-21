@@ -2,7 +2,7 @@ var ready_jobs = function() {
   if ($('.jobs').length > 0) {
   
     // ADD SELECTED CLASS TO JOB NAVBAR
-    $('.job-nav-item').on('click', function(e) {
+    $('.job-actions-wrapper').on('click', '.fa-check, .fa-bookmark, .fa-times', function(e) {
       e.preventDefault();
       addModalToBody();
       $(this).addClass('selected');
@@ -20,8 +20,8 @@ var ready_jobs = function() {
           $('.kaminari-wrapper').empty().html($new_kaminari);
           $('.job-posts > li').css('z-index', '2');
           $('.kaminari-wrapper').css('z-index', '2');
-          $('.job-nav.fa-times-circle').css('z-index', '2');
-          $('.job-nav.fa-times-circle').show();
+          $('.fa-times-circle').css('z-index', '2');
+          $('.fa-times-circle').css('display', 'inline-block');
         }
       })
     });
@@ -46,7 +46,6 @@ var ready_jobs = function() {
  
     // SAVINGS, APPLYING, REMOVING JOBS
     $('ul.job-posts').on('click', '.save, .saved', function(event) {
-      // this.innerHTML = 'Interested';
       $(this).toggleClass('saved');
       $(this).toggleClass('save');
     });

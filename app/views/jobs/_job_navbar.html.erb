@@ -1,16 +1,12 @@
-<div class="top-bar">
-	<%= link_to ' Applied', '#', class: 'job-nav-item
-		fa fa-check', data: { filter: 'applied' } %>	
-	<%= link_to ' Bookmarked', '#', class: 'job-nav-item
-		fa fa-bookmark', data: { filter: 'interested' } %>
-	<%= link_to ' Removed', '#', class: 'job-nav-item
-		fa fa-times', data: { filter: 'removed' }  %>
+<div class="job-navbar">
 
-	<!-- <span class="view-options">
-		<%= link_to 'Flip View', flip_view_jobs_url, data: { no_turbolink: true } %>
-		<i class="fa fa-barcode"></i>
-	</span> -->
-	
-	<%= link_to ' Back', jobs_url, class: 'fa fa-times-circle right job-nav hidden' %>
-	<%= @job_count.count if @job_count %>
+	<%= link_to 'Post a job', '#', class: 'new-job-post' %>
+
+	<div class="job-actions-wrapper right">
+		<%= link_to ' Applied', '#', class: 'fa fa-check', data: { filter: 'applied' } %>	
+		<%= link_to ' Bookmarked', '#', class: 'fa fa-bookmark', data: { filter: 'interested' } %>
+		<%= link_to ' Removed', '#', class: 'fa fa-times', data: { filter: 'removed' }  %>
+		<%= link_to ' Back', jobs_url, class: 'fa fa-times-circle' %>
+	</div>
+
 </div>

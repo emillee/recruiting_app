@@ -1,0 +1,43 @@
+@mixin link-style {
+  color: #ecf0f1;
+  font-size: 13px;
+  display: inline-block;
+  padding: 10px;
+  line-height: 13px;  
+}
+
+.job-navbar {
+  line-height: 30px;
+  width: 1050px;
+  background-color: rgba(0,0,0,0.5);
+  color: rgba(230,230,230,1);
+  font-family: 'Lato';
+  display: inline-block;
+
+  a.new-job-post {
+    @include link-style;
+  }
+  
+  .job-actions-wrapper {
+    display: inline-block;
+
+    a {
+      @include link-style;
+      
+      &.fa-times-circle {
+        background-color: #c0392b;
+        display: none;
+      }
+      
+      &:hover {
+        background-color: rgba(41,128,185,.65);      
+      }
+      
+      &.selected {
+        background-color: #2980b9;
+      }
+    }
+  }
+
+  
+}

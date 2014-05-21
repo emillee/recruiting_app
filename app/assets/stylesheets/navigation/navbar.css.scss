@@ -163,57 +163,6 @@ nav.navbar-wrapper-two {
 }
 
 // JOBS NAVBAR
-.top-bar {
-  line-height: 30px;
-  background-color: rgba(0,0,0,.5);
-  color: rgba(230,230,230,1);
-  font-family: 'Lato';
-  
-  a {
-    color: #ecf0f1;
-    font-size: 13px;
-    display: inline-block;
-    padding: 10px;
-    line-height: 13px;
-    font-size: 13px;
-    position: relative;
-    
-    &.fa-times-circle {
-      background-color: #c0392b;
-      display: none;
-    }
-    
-    &:first-of-type {
-      margin-left: 1px;
-    }
-    
-    &:hover {
-      background-color: rgba(41,128,185,.65);      
-    }
-    
-    &.selected {
-      background-color: #2980b9;
-    }
-  }
-  
-  span.view-options {
-    float: right;
-    line-height: 5px;
-    border: 1px solid white;
-    margin-right: 4px;
-    padding: 0;
-    margin: 0;
-    padding: 0;
-
-    a {
-      border: none;
-    }
-    
-    i {
-      padding-right: 3px;
-    }
-  }
-}
 
 
 
