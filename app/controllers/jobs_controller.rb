@@ -1,11 +1,10 @@
 class JobsController < ApplicationController
   
-  respond_to :html, :json
+  respond_to    :html, :json
   before_filter :set_this_tab, only: [:index, :show]
   before_filter :require_sign_in
 
   # RESTful Routes ---------------------------------------------------------------------------
-  
   def index
     if params[:filter] && current_user
       @filter = params[:filter]
@@ -92,7 +91,6 @@ class JobsController < ApplicationController
   end
   
   # NON RESTFUL ---------------------------------------------------------------------------
-  
   def import_data
     @job = Job.find(params[:id])
     @job.import_data
@@ -128,6 +126,11 @@ class JobsController < ApplicationController
 	# PRIVATE ---------------------------------------------------------------------------
 	private
 
+    def job_params
+      params.require(:job).permit(:link, :title, :full_text, :is_draft,
+        :company_id, :dept, :sub_dept, :years_exp, :description, key_phrases: [], req_skills: [])
+    end  
+
 	  def job_preapproved?(job)
 	    if current_user
 	      current_user.preapproved_jobs.include?(job)
@@ -135,11 +138,6 @@ class JobsController < ApplicationController
         return false
       end
     end
-
-  	def job_params
-  		params.require(:job).permit(:link, :title, :full_text, :is_draft,
-  		  :company_id, :dept, :sub_dept, :years_exp, :description, key_phrases: [], req_skills: [])
-  	end
 
     def set_this_tab
       set_tab('jobs')  
