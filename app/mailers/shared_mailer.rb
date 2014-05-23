@@ -1,4 +1,4 @@
-class ApplicationMailer < ActionMailer::Base
+class SharedMailer < ActionMailer::Base
 
 	include SendGrid
 	default from: 'contact@wolfpackbeta.com'
