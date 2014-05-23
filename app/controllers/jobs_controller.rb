@@ -93,11 +93,6 @@ class JobsController < ApplicationController
   
   # NON RESTFUL ---------------------------------------------------------------------------
   
-  # For config/routes root to:
-  def root_action
-    redirect_to jobs_url
-  end  
-  
   def import_data
     @job = Job.find(params[:id])
     @job.import_data
@@ -128,17 +123,6 @@ class JobsController < ApplicationController
     end
     
     redirect_to jobs_url
-  end
-  
-  def flip_view
-    set_tab('jobs')      
-    if current_user && !current_user.job_settings.blank?
-      @jobs = Job.filter(current_user.job_settings.slice(:dept, :sub_dept, :years_exp, :keywords)).page(params[:page]).per(15).order('years_exp DESC')
-      @preapproved_jobs = @jobs.select { |job| job_preapproved?(job) }
-    else
-      @jobs = Job.all.page(params[:page]).per(15)
-      @preapproved_jobs = @jobs.select { |job| job_preapproved?(job) }
-    end
   end
   
 	# PRIVATE ---------------------------------------------------------------------------
