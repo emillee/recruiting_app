@@ -20,6 +20,7 @@
   
   .job-actions-wrapper {
     display: inline-block;
+    z-index: 2;
 
     a {
       @include link-style;

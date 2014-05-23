@@ -19,7 +19,7 @@ module JobsHelper
   
   def icon_dept_match(dept)
     case dept
-    when 'bus. development'
+    when 'business'
       return 'fa fa-briefcase'
     when 'engineer'
       return 'fa fa-code'
@@ -31,6 +31,71 @@ module JobsHelper
       return 'fa fa-lightbulb-o'
     end      
   end
+
+  def icon_skill_match(skill)
+    case skill.downcase
+    when 'php'
+      return 'icon-php'
+    when 'perl'
+      return 'icon-perl'
+    when 'c++'
+      return 'icon-cplusplus'
+    when 'java'
+      return 'icon-java'
+    when 'python'
+      return 'icon-python'
+    when 'ruby-on-rails'
+      return 'icon-ruby'
+    when 'node'
+      return 'icon-nodejs'
+    when 'clojure'
+      return 'icon-clojure'
+    when 'scala'
+      return 'icon-scala'
+    when 'c'
+      return 'icon-c'
+    when 'c#'
+      return 'icon-csharp'
+    when 'hadoop'
+      return 'icon-hadoop'
+    when 'mysql'
+      return 'icon-mysql'
+    when 'postgres'
+      return 'icon-postgres'
+    when 'redis'
+      return 'icon-redis'
+    when 'javascript'
+      return 'icon-javascript'
+    when 'html/css'
+      return 'icon-html'
+    when 'objective-c'
+      return 'icon-iphone'
+    when 'iphone'
+      return 'icon-iphone'      
+    when 'blackberry'
+      return 'icon-blackberry'
+    when 'windows-phone'
+      return 'fa fa-windows'
+    when 'android'
+      return 'fa fa-android'
+    when 'centos'
+      return 'icon-centos'  
+    when 'nginx'
+      return 'icon-nginx'    
+    when 'debian'
+      return 'icon-debian'   
+    when 'linux'
+      return 'fa fa-linux'
+    when 'github'
+      return 'fa-git'
+    when 'aws'
+      return 'icon-aws'
+    when 'heroku'
+      return 'icon-heroku'  
+    else              
+      return nil
+    end    
+  end  
   
   def is_attr_checked?(obj, this_attr, val)
     obj.public_send(this_attr).include?(val)

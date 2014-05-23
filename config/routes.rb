@@ -7,7 +7,7 @@ Nytech::Application.routes.draw do
   resources :object_skills, only: [:create, :update, :destroy] 
   resources :tags, only: [:index, :create, :destroy]
   resources :taggings, only: [:create, :destroy]
-  resources :articles, only: [:create, :destroy]
+  resources :articles, only: [:index, :create, :destroy]
   resources :user_articles, only: [:create, :destroy]
   resources :groups
   resources :chatrooms, only: [:index, :create, :destroy, :show]

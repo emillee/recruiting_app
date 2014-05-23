@@ -16,7 +16,13 @@
 
 	<%= render 'in_page_nav', locals: { user: @user, recent_articles: @recent_articles } %>	
 
-		<div id="top-id"></div>				
+		<div id="top-id"></div>		
+
+	  <div class="article-wrapper skills">
+	  	<h1>My Skills</h1>
+			<%= render 'shared/drop_zone', locals: { user: @user } %>
+	    <%= render 'shared/box_of_logos', locals: { user: @user }  %>
+	  </div>				
 		
 		<% if @articles.any? %>
 			<% @articles.each do |article| %>
@@ -25,15 +31,10 @@
 			<% end %>
 		<% else %>
 			<% new_article = Article.create %>
-			<% user_article = UserArticle.create(user_id: user.id, article_id: new_article.id) %>
-			<%= render './articles/article', locals: { object: user, article: new_article, this_table: this_table } %>
+			<% user_article = UserArticle.create(user_id: @user.id, article_id: new_article.id) %>
+			<%= render './articles/article', locals: { object: @user, article: new_article, this_table: this_table } %>
 		<% end %>
 
-	  <div class="article-wrapper skills">
-	  	<h1>My Skills</h1>
-			<%= render 'shared/drop_zone', locals: { user: @user } %>
-	    <%= render 'shared/box_of_logos', locals: { user: @user }  %>
-	  </div>
 	</div>
 
 <%= render './layouts/background' %>

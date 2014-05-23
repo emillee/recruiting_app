@@ -97,130 +97,67 @@ div.sidebar-wrapper {
   .sidebar-middle {
     cursor: pointer;
 
-    .wrapper {
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      padding-bottom: 5px;
-      background-color: #FDFDFD;
-    }
-
     // FOR THE FIRST DIV
     .wrapper.dept-div {
-
-      ul {
-        // margin: auto;
-        text-align: center; 
-        
-
-        li {
-          position: relative;
-          display: inline-block;
-          width: 68px;
-          height: 68px; 
-          text-indent: 0;
-          border-radius: 2px;
-          
-          i {
-            font-size: 25px;
-            margin-top: 10px;
-            color: rgba(0,0,0,0.3);
-
-            label {
-              font-size: 13px;
-            }            
-          }        
-
-          &.selected {
-            background-color: rgba(0,0,0,0.05);
-
-            i.fa-desktop {
-              color: #3498db;
-              // border-left: 2px solid #3498db;
-            }
-            i.fa-code {
-              color: #cc3f30;
-              // border-left: 2px solid #cc3f30;
-            }             
-          }
-
-          &:hover {
-            background-color: rgba(46, 204, 113, .25);
-          }           
-        }        
-      }
-    }
-
-    .wrapper.years-exp {
-      ul > li {
+      // background-color: #333332; 
+      ul li {
         line-height: 30px;
-        height: 30px;
-        width: 25px;
-        display: inline-block;
-        color: rgba(0,0,0,0.3);
+        position: relative;
+        // padding-left: 15px;
         text-indent: 0;
-        text-align: center;
-        margin-left: -1px;
-
-        &:first-of-type {
-          margin-left: 7px;
+        background-color: #fdfdfd;
+        
+        label {
+          margin-left: 35px;
         }
+        
+        i.left {
+          position: absolute;
+          display: inline-block;
+          color: #1D1D1D;
+          font-size: 12px;
+          // background-color: blue;
+          line-height: 30px;
+          width: 30px;
+          text-align: center;
+          background-color: #fafafa;
+        }          
 
         &.selected {
-          background-color: rgba(0,0,0,0.05);
-          color: black;
-        }
-      }
-    }
+          background-color: #fafafa;
 
-    .wrapper.key-skills {
-      margin-left: 20px;
+          i.fa-desktop {
+            color: #3498db;
+            border-left: 2px solid #3498db;
+          }
+          i.fa-code {
+            color: #cc3f30;
+            border-left: 2px solid #cc3f30;
+          }             
 
-      ul > li {
-        line-height: 30px;
-        text-indent: 0;        
-        padding: 5px;
-        display: inline-block;
-
-        p {
-          position: relative;
-          right: -40px; 
         }
 
-        i.skill-icon {
-          font-size: 30px;
-          vertical-align: middle;
-          display: inline-block;
-        }
-
-        img {
-          display: inline-block;
-          -webkit-filter: grayscale(85%);
-          position: relative;
-          top: 0;
-          bottom: 0;
-          margin: auto; 
-          max-height: 23px;
-          vertical-align: middle;
-        } 
-
-        &.selected, &:hover {
-          img {  -webkit-filter: grayscale(15%); }
-        }         
+        &:hover {
+          background-color: rgba(46, 204, 113, .25);
+        }           
       }
     }
     
     // CATEGORIES
     h1 {
+      background-color: #FDFDFD;
+      // background-color: #FAFAFA;
       font-size: 14px; 
-      text-indent: 35px;
+      margin-left: 30px;
       line-height: 30px;
-      color: black;
+      color: #b3b3b1;
       text-transform: uppercase; 
       position: relative;
       font-weight: 300;
       
       i {
         position: absolute;
-        left: -18px;
+        left: -23px;
         top: 3px; 
         font-weight: 100;
         font-size: 16px;     
@@ -235,6 +172,7 @@ div.sidebar-wrapper {
 
       i.fa-caret-down {
         color: rgba(2,119,158,1);
+        // background-color: rgba(0,0,0,.05);
       }
       
       &:hover {
@@ -250,7 +188,7 @@ div.sidebar-wrapper {
     li.job-sidebar {
       text-indent: 35px;
       line-height: 30px;
-      color: rgba(0,0,0,0.5);
+      color: rgba(121,121,121,1);
       text-transform: capitalize;
       position: relative;
       
@@ -269,9 +207,9 @@ div.sidebar-wrapper {
         position: absolute;
         display: none;        
         font-size: 20px;
-        font-weight: 900;
-        top: 2px;  
-        right: 5px;          
+        font-weight: 900;  
+        right: 10px;
+        margin-top: 4px;            
       }     
       
       &:hover {
@@ -280,13 +218,11 @@ div.sidebar-wrapper {
         i.fa-angle-right {
           display: inline-block;
           color: rgba(46, 204, 113, .5); 
-          top: 4px;  
-          right: 5px;            
         }        
       }
       
       &.selected {
-        // background-color: #fafafa;
+        background-color: #fafafa;
         color: rgba(26,26,26,1);
         
         i.fa-times-circle {
@@ -309,8 +245,8 @@ div.sidebar-wrapper {
           i.fa-times-circle {
             display: inline-block;
             color: #CCCCCC; 
-            top: 6px;  
-            right: 5px;    
+            // font-size: 15px;
+            // right: 10px;
           }          
         }
       }

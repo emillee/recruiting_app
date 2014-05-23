@@ -68,6 +68,7 @@ module Taxonomy
   def self.years_exp
     [
       # ['Internship', 0],
+      ['0-1 : Years', 0],
 			['0-1 : Years', 1], 
 			['1-2 : Years', 2], 
 			['2-3 : Years', 3], 
@@ -76,6 +77,35 @@ module Taxonomy
 			['7+  : Years', 10]
 		] 
 	end   
+
+  def self.milestones 
+    [ 
+      'Beta Launch',
+      'Recent funding',
+      'TechCrunch',
+    ]
+  end
+
+  def self.vc_backed 
+    [ 
+      'YC',
+      'Techstars',
+      'ERA',
+      'Eniac',
+    ]
+  end  
+
+  def self.employment_type
+    [
+      'Full-Time',
+      'Part-Time',
+      'Remote',
+      'Consultant',
+      'Free-lance',
+      'Advisory'
+    ]
+  end
+
   
   def self.front_end_key_skills
     [
@@ -89,7 +119,7 @@ module Taxonomy
     [
       'Designer',
       'Engineer',
-      # 'Bus. Development',
+      # 'Business',
       # 'Prod. Management',
       # 'Sales'
       # 'Administrative',

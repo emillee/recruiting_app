@@ -7,10 +7,12 @@
 	</span>
 
 	<div class="menu">
-		<%#= link_to 'All', '#', class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
-		<%#= link_to 'News', '#', class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
+		<%= link_to 'All Activity', '#', class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
+		<%= link_to 'News', '#', class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
+		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
+		<%= link_to 'Directory', '#' %>
+
 		<%#= link_to 'People', users_url, class: "#{'selected' if @tab == 'users'}", data: { no_turbolink: true }  %>
-		<%#= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
 		<%#= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
 		<%#= link_to 'Angels & VCs', investors_url,  class: "#{'selected' if @tab == 'investors'}", data: { no_turbolink: true } %>
 		<%#= link_to 'Groups', '#',  class: "#{'selected' if @tab == 'groups'}", data: { no_turbolink: true } %>
@@ -22,8 +24,8 @@
 			<i class="fa fa-pencil-square-o"></i> 
 			<%= link_to "Feedback", '#', id: 'contact-us-link' %>		
 			<%#= link_to "Apply for Membership", login_url %>		
-			<!-- <i class="fa fa-power-off"></i>  -->
-			<%#= link_to "Log Out", logout_url, method: :delete %>		
+			<i class="fa fa-power-off"></i> 
+			<%= link_to "Log Out", logout_url, method: :delete %>		
 		<% end %>
 	</div>
 </nav>
