@@ -19,7 +19,6 @@
  *= require_directory ./articles 
  *= require_directory ./chatrooms
  *= require_directory ./companies
- *= require_directory ./flip_view
  *= require_directory ./groups
  *= require_directory ./investors
  *= require_directory ./jobs
