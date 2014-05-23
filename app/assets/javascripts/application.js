@@ -14,7 +14,6 @@
 //= require investors
 //= require chatrooms
 //= require underscore
-//= require analytics
 //= require_tree ./shared
 
 //= require websocket_rails/main

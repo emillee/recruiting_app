@@ -14,7 +14,6 @@
  *= require backgrounds
  *= require session
  *= require states
- *= require font-mfizz
  *= require jquery.ui.all
  *= require_directory ./articles 
  *= require_directory ./chatrooms
