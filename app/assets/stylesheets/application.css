@@ -22,6 +22,7 @@
  *= require_directory ./investors
  *= require_directory ./jobs
  *= require_directory ./navigation  
+ *= require_directory ./sidebar  
  *= require_directory ./shared
  *= require_directory ./users
  */

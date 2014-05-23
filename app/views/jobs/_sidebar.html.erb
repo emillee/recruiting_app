@@ -1,195 +1,140 @@
-<div class="sidebar-wrapper">
-	
-	<div class="role-prefs">
-		<li class="roles selected">
-			<span class="arrow-down"></span>
-			Roles
-		</li>
-		<li class="prefs">
-			<span class="arrow-down hidden"></span>
-			Preferences
-		</li>
-	</div>
-	
-	<div class="roles-sidebar-wrapper">
-	
-		<% if current_user %>
-			<%= form_for current_user, remote: true, html: { id: "roles-job-filter-form" } do |f| %>
-	
-				<!-- SEARCH KEYWORDS -->
-				<div class="search">
-					<div class="wrapper">
-						<input type="search" name="user[job_settings][keywords][]" placeholder="Enter keyword" id="sidebar-search">
-						<i class="fa fa-search"></i>
-					</div>
-				</div>
-		
-				<div class="sidebar-middle">
-		
-					<!-- KEYWORDS -->
-<!-- 					<div class="keywords-wrapper <%= "hidden" unless current_user.job_settings[:keywords] %>">
-						<h1 class="keywords">Search Words:</h1>
-						<ul class="job-filters keywords-ul">
-							<% if current_user.job_settings[:keywords] %>
-								<% current_user.job_settings[:keywords].each do |keyword| %>
-									<li class="job-sidebar keywords-li selected">
-										<%= keyword %>
-										<%= check_box_tag "user[job_settings][keywords][]", keyword, checked = true if current_user.job_settings[:keywords] && current_user.job_settings[:keywords].include?(keyword) %>
-										<i class="fa fa-angle-right"></i>
-										<i class="fa fa-times-circle"></i>
-									</li>
-								<% end %>
-							<% end %>
-						</ul>
-					</div> -->
-			
-					<!-- DEPARTMENT -->
-					<div class="wrapper dept-div">
-						<h1 class="department">
-							My Background: 
-							<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:dept] %>"></i>
-							<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:dept] %>"></i>
-						</h1>
+<%= render './sidebar/sidebar_toggle' %>
 
-						<ul class="job-filters">
-							<% Taxonomy.departments.each do |dept| %>
-								<% dept = dept.downcase %>
-								<% checked = is_setting_checked?('dept', dept) %>
-								<li class="job-sidebar department <%= sel_or_hide(dept.downcase) %>">
-									<i class="<%= icon_dept_match(dept) %>">
-										<%= label_tag dept %>
-										<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
-									</i>
-									<!-- <i class="fa fa-angle-right"></i> -->
-									<!-- <i class="fa fa-times-circle"></i>								 -->
-								</li>
-							<% end %>
-						</ul>			
-										
+<div class="roles-sidebar-wrapper">
 
-					</div>
-		
-					<!-- SUB DEPT -->	
-					<% h1_hidden = return_subcategory(:dept, :sub_dept).any? ? '' : 'hidden' %>
-					<% li_hidden = (h1_hidden && current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
-					<div class="wrapper  subdept-div <%= h1_hidden %>">
-						<h1 class="sub_dept">
-							Specialty:
-							<i class="fa fa-caret-down <%= 'hidden' unless li_hidden == '' %>"></i>
-							<i class="fa fa-caret-right <%= 'hidden' if li_hidden == '' %>"></i>
-						</h1>
-						<ul class="job-filters">
-							<% return_subcategory(:dept, :sub_dept).each do |sub| %>
-								<% sub = sub.downcase %>
-								<% checked = is_setting_checked?('sub_dept', sub) %>
-								<li class="job-sidebar <%= checked ? 'selected' : li_hidden %>">
-									<%= label_tag sub %>
-									<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
-									<i class="fa fa-angle-right"></i>
-									<i class="fa fa-times-circle"></i>								
-								</li>
-							<% end %>
-						</ul>
-					</div>	
-			
-					<!-- EXPERIENCE -->							
-					<% h1_hidden = return_subcategory(:sub_dept, :years_exp).any? ? '' : 'hidden' %>
-					<% li_hidden = (h1_hidden && current_user.job_settings[:years_exp]) ? 'hidden' : '' %>
-					<div class="wrapper years-exp <%= h1_hidden %>">
-						<h1 class="experience">
-							Years Experience:
-							<i class="fa fa-caret-down <%= 'hidden' unless li_hidden == '' %>"></i>
-							<i class="fa fa-caret-right <%= 'hidden' if li_hidden == '' %>"></i>
-						</h1>
-						<ul class="job-filters">
-							<% Taxonomy.years_exp.each do |label, num_years| %>
-								<% checked = is_setting_checked?('years_exp', num_years) %>	
-								<% is_hidden = (current_user.job_settings[:dept] &&
-								 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>													
-								<li class="job-sidebar <%= checked ? 'selected' : li_hidden %>">
-									<%= label_tag "#{num_years}" %>
-									<%= check_box_tag "user[job_settings][years_exp][]", num_years, checked %>
-<!-- 									<i class="fa fa-angle-right"></i>
-									<i class="fa fa-times-circle"></i>		 -->						
-								</li>
-							<% end %>
-						</ul>
-					</div>
-			
-					<!-- KEY SKILLS -->				
-					<% h1_hidden = (current_user.job_settings[:sub_dept] && 
-						Job.return_skills(current_user.job_settings[:sub_dept]).any?) ? '' : 'hidden' %>
-					
-					<% is_hidden = (current_user.job_settings[:dept] &&
-					 		current_user.job_settings[:key_skills]) ? 'hidden' : '' %>						
-					<div class="wrapper key-skills <%= h1_hidden %>">
-						<h1 class="key-skills">
-							Key Skills:
-							<i class="fa fa-caret-down <%= 'hidden' if is_hidden %>"></i>
-							<i class="fa fa-caret-right <%= 'hidden' unless is_hidden %>"></i>
-						</h1>
-
-						<ul class="job-filters">	
-							<% if current_user.job_settings[:sub_dept] %>
-								<% Job.return_skills(current_user.job_settings[:sub_dept]).each do |skill_obj| %>
-									<% checked = is_setting_checked?('key_skills', skill_obj.id) %>
-									<li class="job-sidebar key-skills <%= checked ? 'selected' : is_hidden %>">
-										<i class="<%= icon_skill_match(skill_obj.skill_name) %> skill-icon"></i>
-										<%= image_tag skill_obj.logo.url if icon_skill_match(skill_obj.skill_name).nil? %>
-										<%= check_box_tag "user[job_settings][key_skills][]", skill_obj.id, checked %>
-										
-										<!-- <i class="fa fa-angle-right"></i> -->
-										<!-- <i class="fa fa-times-circle"></i>														 -->
-									</li>									
-								<% end %>
-							<% end %>
-						</ul>
-					</div>
-			
-					<% if request.env['PATH_INFO'] == '/jobs/flip_view' %>
-						<%= hidden_field_tag 'flip-viewer', 'req_from_flip_view' %>
-					<% end %>
-				
-					<%= f.submit "Submit" %>
-				<% end %>
-			
-			</div>
+	<% if current_user %>
+		<%= form_for current_user, remote: true, html: { id: "roles-job-filter-form" } do |f| %>
 	
-			<div class="clear">
-				<button id="clear-all-roles">Clear All</button>
-			</div>
-
-		<% else %>		
 			<div class="sidebar-middle">
-				<div class="wrapper">
+
+				<%= render './sidebar/sidebar_search' %>
+		
+				<!-- DEPARTMENT -->
+				<div class="wrapper dept-div">
 					<h1 class="department">
-						I'm a:
-						<i class="fa fa-caret-down"></i>
+						My Background: 
+						<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:dept] %>"></i>
+						<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:dept] %>"></i>
 					</h1>
+
 					<ul class="job-filters">
 						<% Taxonomy.departments.each do |dept| %>
 							<% dept = dept.downcase %>
-							<li class="job-sidebar department">
-								<i class="<%= icon_dept_match(dept) %> left"></i>
-								<%= label_tag dept %>
-								<%= check_box_tag "user[job_settings][dept][]", dept, false %>
+							<% checked = is_setting_checked?('dept', dept) %>
+							<li class="job-sidebar department <%= sel_or_hide(dept.downcase) %>">
+								<i class="<%= icon_dept_match(dept) %>">
+									<%= label_tag dept %>
+									<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
+								</i>
+								<!-- <i class="fa fa-angle-right"></i> -->
+								<!-- <i class="fa fa-times-circle"></i>								 -->
+							</li>
+						<% end %>
+					</ul>			
+									
+
+				</div>
+	
+				<!-- SUB DEPT -->	
+				<% h1_hidden = return_subcategory(:dept, :sub_dept).any? ? '' : 'hidden' %>
+				<% li_hidden = (h1_hidden && current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
+				<div class="wrapper  subdept-div <%= h1_hidden %>">
+					<h1 class="sub_dept">
+						Specialty:
+						<i class="fa fa-caret-down <%= 'hidden' unless li_hidden == '' %>"></i>
+						<i class="fa fa-caret-right <%= 'hidden' if li_hidden == '' %>"></i>
+					</h1>
+					<ul class="job-filters">
+						<% return_subcategory(:dept, :sub_dept).each do |sub| %>
+							<% sub = sub.downcase %>
+							<% checked = is_setting_checked?('sub_dept', sub) %>
+							<li class="job-sidebar <%= checked ? 'selected' : li_hidden %>">
+								<%= label_tag sub %>
+								<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
 								<i class="fa fa-angle-right"></i>
 								<i class="fa fa-times-circle"></i>								
 							</li>
 						<% end %>
 					</ul>
 				</div>	
-			</div>	
-		<% end %>
+		
+				<!-- EXPERIENCE -->							
+				<% h1_hidden = return_subcategory(:sub_dept, :years_exp).any? ? '' : 'hidden' %>
+				<% li_hidden = (h1_hidden && current_user.job_settings[:years_exp]) ? 'hidden' : '' %>
+				<div class="wrapper years-exp <%= h1_hidden %>">
+					<h1 class="experience">
+						Years Experience:
+						<i class="fa fa-caret-down <%= 'hidden' unless li_hidden == '' %>"></i>
+						<i class="fa fa-caret-right <%= 'hidden' if li_hidden == '' %>"></i>
+					</h1>
+					<ul class="job-filters">
+						<% Taxonomy.years_exp.each do |label, num_years| %>
+							<% checked = is_setting_checked?('years_exp', num_years) %>	
+							<% is_hidden = (current_user.job_settings[:dept] &&
+							 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>													
+							<li class="job-sidebar <%= checked ? 'selected' : li_hidden %>">
+								<%= label_tag "#{num_years}" %>
+								<%= check_box_tag "user[job_settings][years_exp][]", num_years, checked %>
+<!-- 									<i class="fa fa-angle-right"></i>
+								<i class="fa fa-times-circle"></i>		 -->						
+							</li>
+						<% end %>
+					</ul>
+				</div>
+		
+				<!-- KEY SKILLS -->				
+				<% h1_hidden = (current_user.job_settings[:sub_dept] && 
+					Job.return_skills(current_user.job_settings[:sub_dept]).any?) ? '' : 'hidden' %>
+				
+				<% is_hidden = (current_user.job_settings[:dept] &&
+				 		current_user.job_settings[:key_skills]) ? 'hidden' : '' %>						
+				<div class="wrapper key-skills <%= h1_hidden %>">
+					<h1 class="key-skills">
+						Key Skills:
+						<i class="fa fa-caret-down <%= 'hidden' if is_hidden %>"></i>
+						<i class="fa fa-caret-right <%= 'hidden' unless is_hidden %>"></i>
+					</h1>
 
-	</div><!-- roles sidebar wrapper -->
-	
-	<!-- PREFERENCES SIDEBAR WRAPPER -->
-	<div class="prefs-sidebar-wrapper hidden">
-		<%= render 'jobs/pref_sidebar' %>
-	</div>
-	
+					<ul class="job-filters">	
+						<% if current_user.job_settings[:sub_dept] %>
+							<% Job.return_skills(current_user.job_settings[:sub_dept]).each do |skill_obj| %>
+								<% checked = is_setting_checked?('key_skills', skill_obj.id) %>
+								<li class="job-sidebar key-skills <%= checked ? 'selected' : is_hidden %>">
+									<i class="<%= icon_skill_match(skill_obj.skill_name) %> skill-icon"></i>
+									<%= image_tag skill_obj.logo.url if icon_skill_match(skill_obj.skill_name).nil? %>
+									<%= check_box_tag "user[job_settings][key_skills][]", skill_obj.id, checked %>
+									
+									<!-- <i class="fa fa-angle-right"></i> -->
+									<!-- <i class="fa fa-times-circle"></i>														 -->
+								</li>									
+							<% end %>
+						<% end %>
+					</ul>
+				</div>
+		
+				<% if request.env['PATH_INFO'] == '/jobs/flip_view' %>
+					<%= hidden_field_tag 'flip-viewer', 'req_from_flip_view' %>
+				<% end %>
+			
+				<%= f.submit "Submit" %>
+			<% end %>
+		
+		</div>
+
+		<div class="clear">
+			<button id="clear-all-roles">Clear All</button>
+		</div>
+
+	<% end %>
+
+</div><!-- roles sidebar wrapper -->
+
+<!-- PREFERENCES SIDEBAR WRAPPER -->
+<div class="prefs-sidebar-wrapper hidden">
+	<%= render 'jobs/pref_sidebar' %>
 </div>
+	
+
 
 
 

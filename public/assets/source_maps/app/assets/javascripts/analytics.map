@@ -6,5 +6,5 @@
     "/assets/source_maps/app/assets/javascripts/analytics.coffee"
   ],
   "names": [],
-  "mappings": "AAAA;AAAA,EAAA,CAAA,CAAE,QAAF,CAAW,CAAC,EAAZ,CAAe,aAAf,EAA8B,SAAA,GAAA;AAC5B,IAAA,IAAG,mBAAH;aACE,IAAI,CAAC,IAAL,CAAU,CAAC,gBAAD,CAAV,EADF;KAAA,MAEK,IAAG,0BAAH;aACH,WAAW,CAAC,cAAZ,CAAA,EADG;KAHuB;EAAA,CAA9B,CAAA,CAAA;AAAA"
+  "mappings": "AAAA;AAAA;AAAA"
 }
