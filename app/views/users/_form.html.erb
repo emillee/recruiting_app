@@ -21,8 +21,8 @@
 		
 			<div class="login-wrap">
 				<h1>Or apply via email, and send us a link to any of your online profiles</h1>
-				<%= f.text_field :email, placeholder: 'Enter Email' %>
-				<%= f.text_field :link_to_online_profile, placeholder: 'Enter Link to Online Profile' %>
+				<%= f.email_field :email, placeholder: 'Enter Email' %>
+				<%= f.url_field :link_to_online_profile, placeholder: 'Enter Link to Online Profile' %>
 				<%= f.password_field :password, placeholder: 'Enter password' %>
 			
 				<%= f.submit "Submit" %>
