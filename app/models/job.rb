@@ -45,6 +45,30 @@ class Job < ActiveRecord::Base
     where("to_tsvector('english', title) @@ #{sanitize_query(key_skills)} OR to_tsvector('english', full_text) @@ #{sanitize_query(key_skills)}") 
   }
 
+  def self.return_jobs_with_key_skills(user)
+    skills = user.job_settings[:key_skills].map do |skill_id|
+      Skill.find(skill_id.to_i).skill_name.gsub('-', ' ')
+    end.join(' | ')
+
+    rank = <<-RANK
+      ts_rank(to_tsvector(title), #{Job.sanitize_query(skills)}) +
+      ts_rank(to_tsvector(full_text), #{Job.sanitize_query(skills)})
+    RANK
+
+   Job.filter(user
+    .job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))
+    .key_skills(skills)
+    .includes([{listing_company: :tech_stack}, :applicants, :saved_users, :removed_users])
+    .order("#{rank} DESC")
+  end 
+
+  def self.return_jobs_without_key_skills(user)
+    Job.filter(user
+      .job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))
+      .includes([{listing_company: :tech_stack}, :applicants, :saved_users, :removed_users])
+      .order('years_exp DESC')
+  end
+
   def self.sanitize_query(query, conjunction=' || ')
     "(" + tokenize_query(query).map{|t| self.term(t)}.join(conjunction) + ")"
   end
@@ -109,7 +133,6 @@ class Job < ActiveRecord::Base
   end
 
   # RANKING-------------------------------------------------------------------------------
-
   def self.rank_jobs(jobs, user)
     return jobs if user.job_settings[:key_skills].nil?
 
@@ -136,8 +159,7 @@ class Job < ActiveRecord::Base
     jobs
   end
     
-  # UTILITY-------------------------------------------------------------------------------
-  
+  # UTILITY------------------------------------------------------------------------------
   def first_thirty
     self.full_text.split(' ')[0..30].join(' ')
   end

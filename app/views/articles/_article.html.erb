@@ -6,13 +6,11 @@
 	<% section_class = normalize_string(article.tags[0].tag_name) %>
 <% end %>
 
-<div class="editor-class-wrapper article-wrapper 
-		<%= section_class %> 
-		<%= object.respond_to?(:name) ? object.name : object.fname %> 
-		<%= insert_tag_ids(article) %>"
-	data-<%= object.class %>-id = <%= object.id %> 
-	data-articleid=<%= article.id %>
-	data-table=<%= this_table %> >	
+<div class="editor-class-wrapper article-wrapper <%= section_class %> 
+	<%#= object.respond_to?(:name) ? object.name : object.fname %> <%= insert_tag_ids(article) %>"
+
+	data-article-id="<%= article.id %>"
+	data-table="<%= this_table %>">	
 
 	<%= render './shared/editor' %>
 

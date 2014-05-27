@@ -1,0 +1,41 @@
+#sidebar-dept {
+
+  ul {
+    text-align: center; 
+    
+    li {
+      position: relative;
+      display: inline-block;
+      width: 68px;
+      height: 68px; 
+      text-indent: 0;
+      border-radius: 2px;
+      
+      i {
+        font-size: 25px;
+        margin-top: 10px;
+        color: rgba(0,0,0,0.3);
+
+        label {
+          font-size: 13px;
+        }            
+      }        
+
+      &.selected {
+        background-color: rgba(0,0,0,0.05);
+
+        i.fa-desktop {
+          color: #3498db;
+        }
+
+        i.fa-code {
+          color: #cc3f30;
+        }             
+      }
+
+      &:hover {
+        background-color: rgba(46, 204, 113, .25);
+      }           
+    }        
+  }
+}

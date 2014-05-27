@@ -10,7 +10,7 @@
 				<%= render './sidebar/sidebar_search' %>
 		
 				<!-- DEPARTMENT -->
-				<div class="wrapper dept-div">
+				<div class="wrapper" id="sidebar-dept">
 					<h1 class="department">
 						My Background: 
 						<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:dept] %>"></i>
@@ -26,19 +26,15 @@
 									<%= label_tag dept %>
 									<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
 								</i>
-								<!-- <i class="fa fa-angle-right"></i> -->
-								<!-- <i class="fa fa-times-circle"></i>								 -->
 							</li>
 						<% end %>
 					</ul>			
-									
-
 				</div>
 	
 				<!-- SUB DEPT -->	
 				<% h1_hidden = return_subcategory(:dept, :sub_dept).any? ? '' : 'hidden' %>
 				<% li_hidden = (h1_hidden && current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
-				<div class="wrapper  subdept-div <%= h1_hidden %>">
+				<div class="wrapper <%= h1_hidden %>">
 					<h1 class="sub_dept">
 						Specialty:
 						<i class="fa fa-caret-down <%= 'hidden' unless li_hidden == '' %>"></i>
@@ -61,7 +57,7 @@
 				<!-- EXPERIENCE -->							
 				<% h1_hidden = return_subcategory(:sub_dept, :years_exp).any? ? '' : 'hidden' %>
 				<% li_hidden = (h1_hidden && current_user.job_settings[:years_exp]) ? 'hidden' : '' %>
-				<div class="wrapper years-exp <%= h1_hidden %>">
+				<div class="wrapper <%= h1_hidden %>" id="sidebar-years-exp">
 					<h1 class="experience">
 						Years Experience:
 						<i class="fa fa-caret-down <%= 'hidden' unless li_hidden == '' %>"></i>
@@ -75,8 +71,6 @@
 							<li class="job-sidebar <%= checked ? 'selected' : li_hidden %>">
 								<%= label_tag "#{num_years}" %>
 								<%= check_box_tag "user[job_settings][years_exp][]", num_years, checked %>
-<!-- 									<i class="fa fa-angle-right"></i>
-								<i class="fa fa-times-circle"></i>		 -->						
 							</li>
 						<% end %>
 					</ul>
@@ -88,33 +82,26 @@
 				
 				<% is_hidden = (current_user.job_settings[:dept] &&
 				 		current_user.job_settings[:key_skills]) ? 'hidden' : '' %>						
-				<div class="wrapper key-skills <%= h1_hidden %>">
+				<div class="wrapper <%= h1_hidden %>" id="sidebar-key-skills">
 					<h1 class="key-skills">
 						Key Skills:
 						<i class="fa fa-caret-down <%= 'hidden' if is_hidden %>"></i>
 						<i class="fa fa-caret-right <%= 'hidden' unless is_hidden %>"></i>
 					</h1>
 
-					<ul class="job-filters">	
+					<ul class="job-filters group">	
 						<% if current_user.job_settings[:sub_dept] %>
 							<% Job.return_skills(current_user.job_settings[:sub_dept]).each do |skill_obj| %>
 								<% checked = is_setting_checked?('key_skills', skill_obj.id) %>
-								<li class="job-sidebar key-skills <%= checked ? 'selected' : is_hidden %>">
+								<li class="job-sidebar key-skills <%= checked ? 'selected' : is_hidden %> left">
 									<i class="<%= icon_skill_match(skill_obj.skill_name) %> skill-icon"></i>
 									<%= image_tag skill_obj.logo.url if icon_skill_match(skill_obj.skill_name).nil? %>
 									<%= check_box_tag "user[job_settings][key_skills][]", skill_obj.id, checked %>
-									
-									<!-- <i class="fa fa-angle-right"></i> -->
-									<!-- <i class="fa fa-times-circle"></i>														 -->
 								</li>									
 							<% end %>
 						<% end %>
 					</ul>
 				</div>
-		
-				<% if request.env['PATH_INFO'] == '/jobs/flip_view' %>
-					<%= hidden_field_tag 'flip-viewer', 'req_from_flip_view' %>
-				<% end %>
 			
 				<%= f.submit "Submit" %>
 			<% end %>
@@ -127,7 +114,7 @@
 
 	<% end %>
 
-</div><!-- roles sidebar wrapper -->
+</div>
 
 <!-- PREFERENCES SIDEBAR WRAPPER -->
 <div class="prefs-sidebar-wrapper hidden">

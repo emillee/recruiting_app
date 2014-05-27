@@ -6,36 +6,31 @@
   z-index: 1;
 }
 
-.hidden {
-  display: none;
-}
+.hidden { display: none; }
+.show { display: block; }
+.visibility-hidden { visibility: hidden; }
+.visibility-visible { visibility: visible; }
+.hide { opacity: 0; }
+.clear { clear: both; }
 
-.show {
-  display: block;
-}
+.left { float: left; }
+.right { float: right; }
 
-.visibility-hidden {
-  visibility: hidden;
-}
-
-.visibility-visible {
-  visibility: visible;
-}
-
-.hide {
-  opacity: 0;
-}
-
-.clear {
+.group:after {
+  content: "";
+  display: table;
   clear: both;
 }
 
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
+.fa-paw {
+  position: absolute;
+  top: 350px;
+  left: 655px;
+  z-index: 9999;
+  font-size: 20px;
+  background-color: rgba(255,255,255,.5);
+  padding: 7px;
+  border-radius: 15px;
 }
 
 .loading{
@@ -49,29 +44,21 @@
   border-width: 5px;
   border-style:solid;
   border-color:#fff #fff rgba(0,0,0,.5) rgba(0,0,0,.5);
-  opacity:.9;
-  border-radius:20px;
-  -webkit-animation:rotate 1s linear infinite;
-  -ms-animation:rotate 1s linear infinite;
-  }
-  @-webkit-keyframes rotate{
-  0%{-webkit-transform:rotate(0deg)}
-  100%{-webkit-transform:rotate(360deg)}
-  }
-  @-ms-keyframes rotate{
-  0%{-ms-transform:rotate(0deg)}
-  100%{-ms-transform:rotate(360deg)}
+  opacity: 0.9;
+  border-radius: 20px;
+  -webkit-animation: rotate 1s linear infinite;
+  -ms-animation: rotate 1s linear infinite;
 }
 
-.fa-paw {
-  position: absolute;
-  top: 350px;
-  left: 655px;
-  z-index: 9999;
-  font-size: 20px;
-  background-color: rgba(255,255,255,.5);
-  padding: 7px;
-  border-radius: 15px;
+@-webkit-keyframes rotate{
+  0% { -webkit-transform:rotate(0deg) }
+  100% { -webkit-transform:rotate(360deg) }
 }
+
+@-ms-keyframes rotate{
+  0%{-ms-transform:rotate(0deg) }
+  100%{-ms-transform:rotate(360deg) }
+}
+
 
 

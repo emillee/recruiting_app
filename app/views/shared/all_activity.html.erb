@@ -1,0 +1,20 @@
+<% @feed = @jobs + @articles + @users %>
+
+<div class="main-content-wrapper" >
+
+	<ul>
+		<% @feed.each do |feed_item| %>
+			<li>
+				<% if feed_item.class == Job %>
+					<%= render './jobs/job_listing_snapshot', locals: { job: feed_item } %>
+				<% elsif feed_item.class == Article %>
+					<%= render './articles/article', locals: { article: feed_item } %>
+				<% else %>
+					<%= feed_item.class %>
+					<%= feed_item %>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+
+</div>

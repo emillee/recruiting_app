@@ -30,16 +30,17 @@ var ready_editor = function() {
     });    
         
     function handleArticleBlur(selector) {
+      console.log('aaa');
       var $content = $(this).html();
-      var $table = $(this).parent('.content').data('table');
-      var $article_id = $(this).parent('.content').data('articleid');
+      var $table = $(this).parent('.article-wrapper').data('table');
+      var $article_id = $(this).parent('.article-wrapper').data('article-id');
       
       if ($table === 'companies') {
-        var $id = $(this).parent('.content').data('company-id');
+        var $id = $(this).parent('.article-wrapper').data('company-id');
       } else if ($table === 'investors') {
-        var $id = $(this).parent('.content').data('investor-id');
+        var $id = $(this).parent('.article-wrapper').data('investor-id');
       } else if ($table === 'users') {
-        var $id = $(this).parent('.content').data('user-id');
+        var $id = $(this).parent('.article-wrapper').data('user-id');
       }
       
       var this_url = '/' + $table + '/' + $id + '/articles/' + $article_id;
@@ -56,6 +57,7 @@ var ready_editor = function() {
     };  
     
     function persistContentEditable() {
+      console.log('bbb');
       var $id = $(this).data('id');
       var $table = $(this).data('table');
       var $model = $(this).data('model');

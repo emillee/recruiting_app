@@ -19,4 +19,17 @@ class SharedController < ApplicationController
     redirect_to :back
   end	
 
+  def all_activity
+    if current_user.job_settings.any? && current_user.job_settings[:key_skills] 
+      @jobs = Job.return_jobs_with_key_skills(current_user).page(params[:page]).per(10) 
+    elsif current_user.job_settings.any?
+      @jobs = Job.return_jobs_without_key_skills(current_user).page(params[:page]).per(10)
+    else
+      @jobs = Job.all.page(params[:page]).per(10)
+    end
+
+    @articles = Article.all
+    @users = User.all
+  end
+
 end

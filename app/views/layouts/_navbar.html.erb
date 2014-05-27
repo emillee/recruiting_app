@@ -7,7 +7,7 @@
 	</span>
 
 	<div class="menu">
-		<%= link_to 'All Activity', '#', class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
+		<%= link_to 'All Activity', all_activity_url, class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
 		<%= link_to 'News', '#', class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
 		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
 		<%= link_to 'Directory', '#' %>

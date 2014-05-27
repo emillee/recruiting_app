@@ -61,5 +61,7 @@ Nytech::Application.routes.draw do
   match '/contact_us',               to: 'shared#contact_us', via: :get
   match '/send_contact_us_email',    to: 'shared#send_contact_us_email', via: :post
 
+  match '/all_activity',             to: 'shared#all_activity', via: :get
+
   root to: 'jobs#index'
 end

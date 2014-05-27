@@ -6,44 +6,12 @@ class JobsController < ApplicationController
 
   # RESTful Routes ---------------------------------------------------------------------------
   def index
-    if params[:filter] && current_user
-      @filter = params[:filter]
-      case params[:filter]
-      when 'applied'
-        @jobs = current_user.jobs_applied.page(params[:page]).per(10).order('years_exp DESC')
-      when 'interested'
-        @jobs = current_user.saved_jobs.page(params[:page]).per(10).order('years_exp DESC')
-      when 'removed'
-        @jobs = current_user.removed_jobs.page(params[:page]).per(10).order('years_exp DESC')
-      else
-        @jobs = Job.all.page(params[:page]).per(10).order('years_exp DESC')
-      end
-    elsif current_user && (current_user.job_settings.any? || current_user.job_prefs.any?)
-      
-      if current_user.job_settings[:key_skills]
-        skills = current_user.job_settings[:key_skills].map do |skill_id|
-          Skill.find(skill_id.to_i).skill_name.gsub('-', ' ')
-        end.join(' | ')
-
-        rank = <<-RANK
-          ts_rank(to_tsvector(title), #{Job.sanitize_query(skills)}) +
-          ts_rank(to_tsvector(full_text), #{Job.sanitize_query(skills)})
-        RANK
-
-        @jobs = Job.filter(current_user
-          .job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))
-          .key_skills(skills)
-          .includes([{listing_company: :tech_stack}, :applicants, :saved_users, :removed_users])
-          .order("#{rank} DESC").page(params[:page]).per(10)
-      else
-        @jobs = Job.filter(current_user
-          .job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))
-          .includes([{listing_company: :tech_stack}, :applicants, :saved_users, :removed_users])
-          .order('years_exp DESC').page(params[:page]).per(10)         
-      end
-      # @jobs = Job.rank_jobs(jobs, current_user)
-      # @jobs.sort! { |a,b| b.job_score <=> a.job_score }
-      # @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(10)
+    if params[:filter]
+      @jobs = filtered_jobs(params[:filter])
+    elsif current_user.job_settings.any? && current_user.job_settings[:key_skills] 
+      @jobs = Job.return_jobs_with_key_skills(current_user).page(params[:page]).per(10) 
+    elsif current_user.job_settings.any?
+      @jobs = Job.return_jobs_without_key_skills(current_user).page(params[:page]).per(10)
     else
       @jobs = Job.all.page(params[:page]).per(10)
       respond_to do |format|
@@ -51,6 +19,10 @@ class JobsController < ApplicationController
         format.csv { render text: @jobs.to_csv }
       end      
     end
+
+    # @jobs = Job.rank_jobs(jobs, current_user)
+    # @jobs.sort! { |a,b| b.job_score <=> a.job_score }
+    # @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(10)    
   end
   
   def new
@@ -129,7 +101,20 @@ class JobsController < ApplicationController
     def job_params
       params.require(:job).permit(:link, :title, :full_text, :is_draft,
         :company_id, :dept, :sub_dept, :years_exp, :description, key_phrases: [], req_skills: [])
-    end  
+    end       
+
+    def filtered_jobs(filter)
+      case filter
+      when 'applied'
+        return current_user.jobs_applied.page(params[:page]).per(10).order('years_exp DESC')
+      when 'interested'
+        return current_user.saved_jobs.page(params[:page]).per(10).order('years_exp DESC')
+      when 'removed'
+        return current_user.removed_jobs.page(params[:page]).per(10).order('years_exp DESC')
+      else
+        return Job.all.page(params[:page]).per(10).order('years_exp DESC')
+      end
+    end
 
 	  def job_preapproved?(job)
 	    if current_user

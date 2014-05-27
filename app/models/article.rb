@@ -8,5 +8,7 @@ class Article < ActiveRecord::Base
   
   has_many :user_articles  
   has_many :users, through: :user_articles, source: :user
-  
+
+  has_many :images
+
 end
