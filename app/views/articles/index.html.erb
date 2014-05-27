@@ -1,5 +1,4 @@
-<div class="articles-wrapper">
-	<% @articles.each do |article| %>
-		<%= render 'article', locals: { object: current_user, article: article, this_table: 'users' } %>
-	<% end %>
-</div>
+
+<% @articles.each do |article| %>
+	<%= render 'article_preview', locals: { object: current_user, article: article, this_table: 'users' } %>
+<% end %>

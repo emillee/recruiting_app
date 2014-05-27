@@ -1,27 +1,18 @@
-<div class="jobs-wrapper">
-	
-	<%= render 'job_navbar' %>
+<ul>
 
-	<ul class="job-posts">
-		
-		<% @jobs.each do |job| %>		
-			<% if current_user %>
-				<% next if job.removed_users.include?(current_user) && @filter != 'removed' %>
-			<% end %>	
+	<% @jobs.each do |job| %>
 
-			<li>			
-				<%= render 'job_listing_snapshot', locals: { job: job } %>
-			</li>
-      
-			<div id="div-append-<%= job.id %>"></div>
-		<% end %>
-	</ul>
+		<% next if job.removed_users.include?(current_user) && @filter != 'removed' %>
 
-	<div class="kaminari-wrapper">
-		<%= paginate @jobs %>
-	</div>	
+		<li><%= render 'job_listing_preview', locals: { job: job } %></li>
+    
+		<div id="div-append-<%= job.id %>"></div>
+	<% end %>
+</ul>
 
-</div>
+<div class="kaminari-wrapper">
+	<%= paginate @jobs %>
+</div>	
 
 <%= render './layouts/background' %>
 

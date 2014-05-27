@@ -12,10 +12,17 @@
 		<%= render 'layouts/navbar' %>
 
 		<div class="sidebar-wrapper">
-			<%= render "#{controller_name}/sidebar" %>
+			<%= render "#{controller_name}_sidebar" %>
 		</div>
 
-		<%= yield %>
+		<div class="main-content-wrapper">
+			
+			<div class="in-page-navbar">
+				<%= render "#{controller_name}_inpage_navbar" %>
+			</div>
+
+			<%= yield %>
+		</div>
 
 		<%= render 'layouts/footer' %>
 

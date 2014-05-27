@@ -3,15 +3,14 @@
 <% this_table = 'jobs' %>
 <% this_model = this_table.singularize %>
 
+<!-- COMPANY BUSINESS CARD -->
 <span class="left">
-	<%= render './companies/cards/logo', locals: { company: job.listing_company } %>	
+	<%= render './companies/company_bcard', locals: { company: job.listing_company } %>	
 </span>
-	
-<div class="job-description-wrapper left">	
-	<% unless current_user && current_user.is_admin %>
-		<a href="<%= job.link %>" target="_blank">
-	<% end %>
 
+<!-- MAIN PREVIEW SECTION -->
+<div class="job-description-wrapper left">	
+	
 	<h1 class="jobs-editable"
 		contenteditable= "<%= editable_if_admin(current_user) %>"
 		data-id="<%= job.id %>" 
@@ -19,11 +18,7 @@
 		data-model="<%= this_model %>"
 		data-attribute="title">
 		<%= (job.title.nil? || job.title.empty?) ? 'Title Here' : ActionView::Base.full_sanitizer.sanitize(job.title.titleize) %>
-	</h1>
-
-	<% unless current_user && current_user.is_admin %>
-		</a>
-	<% end %>		
+	</h1>	
 
 	<% if job.description %>
 		<p><%= job.description.split(' ')[0..35].join(' ') unless job.description.nil? %>...</p>
@@ -67,6 +62,7 @@
 	
 </div>
 
+<!-- COMPANY OVERVIEW -->
 <div class="c-company-overview left">
 	<h1>About <%= job.listing_company.name %></h1>
 

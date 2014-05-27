@@ -1,11 +1,45 @@
-// FOR COMPANIES, USERS, INVESTORS
+@mixin link-style {
+  color: #ecf0f1;
+  font-size: 13px;
+  display: inline-block;
+  padding: 10px;
+  line-height: 13px;  
+}
+
 .in-page-navbar {
   height: 30px;
   line-height: 30px;
   width: 963px;
   background-color: #b3b3b1;
   margin-top: 15px;
-  margin-left: 20px;
+  font-family: 'Lato';
+  width: 1050px;  
+
+  a.new-job-post {
+    @include link-style;
+  }
+  
+  .job-actions-wrapper {
+    display: inline-block;
+    z-index: 2;
+
+    a {
+      @include link-style;
+      
+      &.fa-times-circle {
+        background-color: #c0392b;
+        display: none;
+      }
+      
+      &:hover {
+        background-color: rgba(41,128,185,.65);      
+      }
+      
+      &.selected {
+        background-color: #2980b9;
+      }
+    }
+  }
   
   li, li > a {
     float: left;
