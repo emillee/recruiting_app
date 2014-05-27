@@ -1,53 +1,46 @@
+@mixin background-style {
+  z-index: -9998;
+  position: fixed;
+  left: 215px;
+  height: 100%;
+  width: 100%;
+  top: 2px;
+}
+
 .jobs-background {
   opacity: 1;
-  z-index: -9999;
-  position: fixed;
-  top: 2px;
-  left: 215px;
   background-image: url('flip/fabric_plaid.png');
-  height: 100%;
-  width: 100%; 
+  @include background-style;
 }
 
 .jobs-background-overlay {
-  z-index: -9998;
-  position: fixed;
-  top: 45px;
-  left: 215px;
-//  left: 250px;
   background: url('app_images/pattern.png') repeat;   
-  height: 100%;
-  width: 100%;
-  opacity: .4;    
+  opacity: 0.4;    
+  @include background-style;
 }
 
 .starry-background-overlay {
-  z-index: -9998;
-  position: fixed;
-  top: 45px;
-  left: 215px;
-//  left: 250px;
   background: url('app_images/starry.png') repeat;   
-  height: 100%;
-  width: 100%;
-  opacity: .8;    
+  opacity: .8;   
+  @include background-style; 
 }
 
 .darkfabric-background-overlay {
-  z-index: -9998;
-  position: fixed;
-  top: 45px;
-  left: 215px;
-//  left: 250px;
   background: url('app_images/binding_dark.png') repeat;   
-  height: 100%;
-  width: 100%;
-  opacity: .9;    
+  opacity: 0.9;    
+  @include background-style;
 }
 
 .diagonal-pattern {
-  z-index: 9999;
+  z-index: 9998;
   background: url(
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAI0lEQVQIW2NkQAP/gYARWQwsAAIwQZgAiA8WRBYAC6ILgAQBGkYUAlJke18AAAAASUVORK5CYII='
   ) repeat;
 }
+
+
+
+
+
+
+

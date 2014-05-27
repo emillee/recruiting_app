@@ -1,9 +1,17 @@
 <% article = locals[:article] %>
 
-<div class="article-preview-wrapper">	
+<div class="preview-description-wrapper company left">	
 	
-	<h1><%= article.title %></h1>
-	
-	<p><%= article.first_fulltext_sentence %></p>
+	<span class="left">
+		<%= raw(article.title) %>
+	</span>
+	<span class="article-text left">
+		<%= raw(article.first_fulltext_sentence) %>
+	</span>
 
 </div>
+
+<span class="left">
+	<%= render './users/cards/bcard', locals: { user: current_user } %>
+</span>
+	

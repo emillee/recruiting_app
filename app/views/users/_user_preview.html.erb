@@ -2,12 +2,20 @@
 <% this_table = 'users' %>
 <% this_model = this_table.singularize %>
 
+<div class="profile-card-positions group">
+
+<%= render './companies/company_bcard', locals: { company: user.employer, user: user }%>
+
 <div class="intro" 
 	contenteditable="<%= editable_if_admin(user) %>"
 	data-table="<%= this_table %>"
 	data-model="<%= this_model %>"
 	data-id=<%= current_user.id if current_user %>
-	data-attribute='intro'><!-- end of contenteditable div -->
+	data-attribute='intro'>
 	<% intro = user.intro ? user.intro : '<p>Tell us about YOU!</p><p>What are you working on, who are you looking to meet?</p>' %>
 	<%= raw(intro) %>
-</div><!-- menu -->
+</div>
+
+<%= render './users/user_bcard', locals: { user: user } %>
+
+</div>

@@ -5,37 +5,26 @@
 	user: @user
 } %>
 
-<div class="user-show-wrapper group">
+<%= render 'user_preview', locals: { user: @user, this_table: this_table } %>
+	
+<div id="top-id"></div>		
 
-	<div class="profile-card-positions group">
-		<%= render './companies/cards/logo', locals: { company: @user.employer, user: @user }%>
-		<%= render 'users/cards/intro', locals: { user: @user, this_table: this_table } %>
-		<%= render 'users/cards/bcard', locals: { user: @user, this_table: this_table } %>
-		<%#= render 'users/cards/action_items', locals: { user: @user } %>
-	</div>	
+<div class="article-wrapper skills">
+	<h1>My Skills</h1>
+	<%= render 'shared/drop_zone', locals: { user: @user } %>
+  <%= render 'shared/box_of_logos', locals: { user: @user }  %>
+</div>				
 
-	<%= render 'in_page_nav', locals: { user: @user, recent_articles: @recent_articles } %>	
-
-		<div id="top-id"></div>		
-
-	  <div class="article-wrapper skills">
-	  	<h1>My Skills</h1>
-			<%= render 'shared/drop_zone', locals: { user: @user } %>
-	    <%= render 'shared/box_of_logos', locals: { user: @user }  %>
-	  </div>				
-		
-		<% if @articles.any? %>
-			<% @articles.each do |article| %>
-				<%= render './articles/article', 
-					locals: { object: @user, article: article, this_table: this_table } %>
-			<% end %>
-		<% else %>
-			<% new_article = Article.create %>
-			<% user_article = UserArticle.create(user_id: @user.id, article_id: new_article.id) %>
-			<%= render './articles/article', locals: { object: @user, article: new_article, this_table: this_table } %>
-		<% end %>
-
-	</div>
+<% if @articles.any? %>
+	<% @articles.each do |article| %>
+		<%= render './articles/article', 
+			locals: { object: @user, article: article, this_table: this_table } %>
+	<% end %>
+<% else %>
+	<% new_article = Article.create %>
+	<% user_article = UserArticle.create(user_id: @user.id, article_id: new_article.id) %>
+	<%= render './articles/article', locals: { object: @user, article: new_article, this_table: this_table } %>
+<% end %>	
 
 <%= render './layouts/background' %>
 

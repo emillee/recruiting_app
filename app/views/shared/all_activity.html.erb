@@ -1,22 +1,16 @@
 <% @feed = @jobs + @articles + @users %>
 
-<div class="main-content-wrapper" >
+<ul>
+	<% @feed.shuffle.each do |feed_item| %>
+			<% if feed_item.class == Job %>
+				<li><%= render './jobs/job_listing_preview', locals: { job: feed_item } %></li>
+			<% elsif feed_item.class == Article %>
+				<% next if feed_item.title.nil? || feed_item.title.empty? %>	
+				<li><%= render './articles/article_preview', locals: { article: feed_item } %></li>
+			<% elsif feed_item.class == User %>
+				<li><%= render './users/user_preview', locals: { user: feed_item } %></li>
+			<% end %>
+		
+	<% end %>
+</ul>
 
-	<ul>
-		<% @feed.each do |feed_item| %>
-				<% if feed_item.class == Job %>
-					<li><%= render './jobs/job_listing_snapshot', locals: { job: feed_item } %></li>
-				<% elsif feed_item.class == Article %>
-					<% next if feed_item.title.nil? || feed_item.title.empty? %>	
-					<li><%= render './articles/article_preview', locals: { article: feed_item } %></li>
-				<% else %>
-					<li>
-						<%= feed_item.class %>
-						<%= feed_item %>
-					</li>
-				<% end %>
-			
-		<% end %>
-	</ul>
-
-</div>

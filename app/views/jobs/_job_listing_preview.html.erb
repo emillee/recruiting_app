@@ -9,7 +9,7 @@
 </span>
 
 <!-- MAIN PREVIEW SECTION -->
-<div class="job-description-wrapper left">	
+<div class="preview-description-wrapper left">	
 	
 	<h1 class="jobs-editable"
 		contenteditable= "<%= editable_if_admin(current_user) %>"
@@ -20,13 +20,15 @@
 		<%= (job.title.nil? || job.title.empty?) ? 'Title Here' : ActionView::Base.full_sanitizer.sanitize(job.title.titleize) %>
 	</h1>	
 
-	<% if job.description %>
-		<p><%= job.description.split(' ')[0..35].join(' ') unless job.description.nil? %>...</p>
-	<% else %>
-		<% if job.full_text %>
-			<p>	<%= job.full_text.split(' ')[0..35].join(' ') unless job.full_text.nil? %>...</p>
+	<span class="article-text">
+		<% if job.description %>
+			<p><%= job.description.split(' ')[0..35].join(' ') unless job.description.nil? %>...</p>
+		<% else %>
+			<% if job.full_text %>
+				<p>	<%= job.full_text.split(' ')[0..35].join(' ') unless job.full_text.nil? %>...</p>
+			<% end %>
 		<% end %>
-	<% end %>
+	</span>
 
 	<% applied_class = already_applied?(job) ? "applied_already fa fa-check" : "applied fa fa-check" %>				
 	<% saved_class = has_saved_job?(job) ? "saved fa fa-bookmark" : "save fa fa-bookmark" %>
@@ -63,7 +65,7 @@
 </div>
 
 <!-- COMPANY OVERVIEW -->
-<div class="c-company-overview left">
+<div class="preview-bcard-wrapper left">
 	<h1>About <%= job.listing_company.name %></h1>
 
 	<p class="jobs-editable"
