@@ -1,0 +1,164 @@
+div.sidebar-wrapper {
+  margin-top: 42px;
+  width: 215px;
+  font-family: 'Lato', sans-serif;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  
+  // MIDDLE PORTION
+  .sidebar-middle {
+    cursor: pointer;
+
+    .wrapper {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 5px;
+      background-color: #FDFDFD;
+    }
+    
+    // CATEGORIES
+    h1 {
+      font-size: 14px; 
+      text-indent: 35px;
+      line-height: 30px;
+      color: black;
+      text-transform: uppercase; 
+      position: relative;
+      font-weight: 300;
+      
+      i {
+        position: absolute;
+        left: -18px;
+        top: 3px; 
+        font-weight: 100;
+        font-size: 16px;     
+        line-height: 22px;
+        width: 22px;
+        text-align: center;  
+      }
+      
+      i.fa-caret-right {
+        color: rgba(0,0,0,.25);
+      }
+
+      i.fa-caret-down {
+        color: rgba(2,119,158,1);
+      }
+      
+      &:hover {
+        color: rgba(2,119,158,.5);
+        
+        i {
+          color: rgba(2,119,158,.5);
+        }
+      }
+    }
+    
+    // BULLET POINTS
+    li.job-sidebar {
+      text-indent: 35px;
+      line-height: 30px;
+      color: rgba(0,0,0,0.5);
+      text-transform: capitalize;
+      position: relative;
+      
+      // THIS IS FOR PREFERENCES
+      input[type='text'] {
+        background-color: rgba(240,240,240,.5);
+        border: none;
+        width: 60px;
+        position: absolute;
+        top: 8px;
+        right: 5px;
+        text-align: center;
+      }
+      
+      i.fa-angle-right, i.fa-times-circle {
+        position: absolute;
+        display: none;        
+        font-size: 20px;
+        font-weight: 900;
+        top: 2px;  
+        right: 5px;          
+      }     
+      
+      &:hover {
+        background-color: rgba(46, 204, 113, .25);
+        
+        i.fa-angle-right {
+          display: inline-block;
+          color: rgba(46, 204, 113, .5); 
+          top: 4px;  
+          right: 5px;            
+        }        
+      }
+      
+      &.selected {
+        // background-color: #fafafa;
+        color: rgba(26,26,26,1);
+        
+        i.fa-times-circle {
+          display: none;
+        }
+
+        i.fa-angle-right {
+          display: inline-block;
+          color: rgba(46, 204, 113, 1); 
+          font-size: 20px;           
+        }
+        
+        &:hover {
+          background-color: rgba(50,50,50,.05);
+                  
+          i.fa-angle-right {
+            display: none;
+          }
+          
+          i.fa-times-circle {
+            display: inline-block;
+            color: #CCCCCC; 
+            top: 6px;  
+            right: 5px;    
+          }          
+        }
+      }
+    }  
+  }
+  
+  // CLEAR PORTION
+  .clear {
+    background-color: #FDFDFD;
+    height: 65px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 215px;
+
+    #clear-all-roles, #clear-all-prefs {
+      border: none;
+      margin-top: 18px;
+      margin-left: 23px;
+      height: 30px;
+      width: 168px;
+      // border: 3px solid #7f8c8d;
+      color: white;
+      background-color: black;
+      cursor: pointer;
+
+      &:hover {
+        // border: 3px solid #bdc3c7;
+        color: white;
+        background-color: #7f8c8d;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  
+  input[type='checkbox'], input[type='submit'] {
+    display: none;
+  }
+}

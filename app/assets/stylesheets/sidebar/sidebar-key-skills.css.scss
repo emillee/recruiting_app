@@ -1,0 +1,41 @@
+#sidebar-key-skills {
+  
+  ul {
+    margin-left: 10px;
+
+    li {
+      line-height: 30px;
+      text-indent: 0;        
+      padding: 10px;
+      // margin-left: 20px;
+
+      p {
+        position: relative;
+        right: -40px; 
+      }
+
+      i.skill-icon {
+        font-size: 30px;
+        vertical-align: middle;
+        display: inline-block;
+      }
+
+      img {
+        -webkit-filter: grayscale(85%);
+        display: inline-block;
+        position: relative;
+        top: 0;
+        bottom: 0;
+        margin: auto; 
+        max-height: 23px;
+        vertical-align: middle;
+      } 
+
+      &.selected, &:hover {
+        img {  -webkit-filter: grayscale(15%); }
+      }         
+    }    
+  }
+
+
+}

@@ -129,3 +129,44 @@
     height: 0;
   }          
 }
+
+.c-image-wrapper {
+  position: relative;
+  
+  &:hover {
+    .delete-image {
+      display: block;
+    }
+  }
+  
+  img {
+    margin-bottom: 10px;
+  }
+  
+  .delete-image {
+    position: absolute;
+    left: 5%;
+    bottom: 20px;
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    cursor: pointer; 
+    padding: 5px; 
+    display: none;         
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           

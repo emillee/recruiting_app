@@ -1,4 +1,3 @@
-<% object = locals[:object] %>
 <% article = locals[:article] %>
 <% this_table = locals[:this_table] %>
 
@@ -6,13 +5,9 @@
 	<% section_class = normalize_string(article.tags[0].tag_name) %>
 <% end %>
 
-<div class="editor-class-wrapper article-wrapper 
-		<%= section_class %> 
-		<%= object.respond_to?(:name) ? object.name : object.fname %> 
-		<%= insert_tag_ids(article) %>"
-	data-<%= object.class %>-id = <%= object.id %> 
-	data-articleid=<%= article.id %>
-	data-table=<%= this_table %> >	
+<div class="editor-class-wrapper article-wrapper <%= section_class %> <%= insert_tag_ids(article) %>"
+	data-article-id="<%= article.id %>"
+	data-table="<%= this_table %>">	
 
 	<%= render './shared/editor' %>
 
@@ -24,38 +19,14 @@
 	</div>
 	
 	<article class="editable body" data-placeholder="Type your post">
-		<% section_body = add_placeholders_if_nil('body', article.body) %>	
+		<% section_body = add_placeholders_if_nil('body', article.body).squish %>	
 		<%= raw(section_body) %>
-	
-		<% this_image_url = "#{object.snapshots.url}".split('.')[0] + "#{article.id}" + "." + "#{object.snapshots.url}".split('.')[1] %>
-		<% full_path = "#{Rails.root}" + "/public" + this_image_url %>
-		<% full_path = full_path.split('?')[0] %>
-	
-		<% correct_ext = check_all_extensions(full_path) %>
 
-		<div class="article-<%= article.id %> c-image-wrapper">
-			<% if correct_ext %>
-				<% current_ext = get_paperclip_ext(this_image_url) %>
-				<% image_path = this_image_url.gsub(current_ext, correct_ext) %>
-				<% if !article.body.include?(image_path) %>
-					<%= image_tag image_path %>
-
-					<% if controller_name == 'companies' %>
-						<%= link_to 'Delete Image', delete_snapshot_company_url(path: image_path, article_id: article.id), 
-							class: 'delete-image', method: :post %>
-					<% elsif controller_name == 'investors' %>
-						<%= link_to 'Delete Image', delete_snapshot_investor_url(path: image_path, article_id: article.id), 
-							class: 'delete-image', method: :post %>
-					<% elsif controller_name == 'users' %>
-						<%= link_to 'Delete Image', delete_snapshot_user_url(path: image_path, article_id: article.id), 
-							class: 'delete-image', method: :post %>
-					<% end %>
-				<% end %>
-			<% end %>
-		</div><!-- end-of-image-div -->
+		<% this_image = article.images.last %>		
+		<p><%= image_tag this_image.image_file.url if this_image %></p>
 	</article>
 	
-	<%= render './shared/upload_image_form', locals: { obj: object, article: article } %>
+	<%= render './shared/upload_image_form', locals: { article: article } %>
 	<%= render './tags/tags_form', locals: { article: article } %>
 	<%= render './shared/social_sharing_icons', locals: { article: article } %>
 

@@ -14,16 +14,15 @@
  *= require backgrounds
  *= require session
  *= require states
- *= require font-mfizz
  *= require jquery.ui.all
  *= require_directory ./articles 
  *= require_directory ./chatrooms
  *= require_directory ./companies
- *= require_directory ./flip_view
  *= require_directory ./groups
  *= require_directory ./investors
  *= require_directory ./jobs
  *= require_directory ./navigation  
+ *= require_directory ./sidebar  
  *= require_directory ./shared
  *= require_directory ./users
  */

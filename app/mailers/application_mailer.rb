@@ -1,8 +1,8 @@
 class ApplicationMailer < ActionMailer::Base
 
 	include SendGrid
-
-	default from: 'default@default.com'
+	default from: 'contact@wolfpackbeta.com'
+	default template_path: 'mailers'
 
 	def contact_us(sender, recipient, subject_line, body)
 		@sender_email = sender

@@ -25,6 +25,8 @@ class ArticlesController < ApplicationController
       elsif params[:investor_id]
         investor = Investor.find(params[:investor_id])
         redirect_to investor_url(investor)
+      else
+        redirect_to :back
       end
     end
   end

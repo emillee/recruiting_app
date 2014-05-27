@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   validates :lname, length: { maximum: 30, allow_nil: true }
   validates :password, length: { minimum: 6, maximum: 25, allow_nil: true }
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  # validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   
   before_save { self.email = self.email.downcase unless self.email.nil? }
   before_save { self.job_settings.each { |key, val| val.map!(&:downcase) } }
@@ -41,11 +40,13 @@ class User < ActiveRecord::Base
   has_many :messages
   
   has_attached_file :avatar, styles: { medium: '300x200>', thumb: '100x100>' },
-    default_url: '/images/:style/missing.png'
+    default_url: '/images/:style/missing.png'  
 
   has_attached_file :snapshots, styles: { original: '200x400', medium: '300x300', large: '300x500' },
     path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:normalized_userpic_file_name.:extension",
     url: "/system/:class/:attachment/:id_partition/:style/:normalized_userpic_file_name.:extension"
+
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   
   Paperclip.interpolates :normalized_userpic_file_name do |attachment, style|
     attachment.instance.normalized_userpic_file_name

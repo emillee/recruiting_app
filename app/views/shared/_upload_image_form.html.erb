@@ -8,7 +8,15 @@
 		<i class="fa fa-picture-o"></i>
 		<span>Insert an Image</span>	
 	</span>
+
+	<%= form_for Image.new, html: { multipart: true } do |form| %>
+		<%= form.hidden_field :article_id, value: article.id %>
+		<%= form.file_field :image_file %>
+		<%= form.submit "Upload Image" %>
+	<% end %>
 	
+<% 
+=begin %>
 	<% if controller_name == 'companies' %>
 
 		<%= form_for object, url: company_url(object), html: { multipart: true } do |form| %>
@@ -33,6 +41,8 @@
 			<%= form.submit 'Upload Image' %>
 		<% end %>		
 
-	<% end %>	
+	<% end %>
+<%
+=end %>	
 		
 </div>

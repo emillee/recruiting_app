@@ -7,10 +7,10 @@
 	</span>
 
 	<div class="menu">
-		<%= link_to 'All Activity', '#', class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
-		<%= link_to 'News', '#', class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
+		<%= link_to 'All', all_activity_url, class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
+		<%= link_to 'Articles', articles_url, class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
 		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
-		<%= link_to 'Directory', '#' %>
+		<%= link_to 'People', users_url %>
 
 		<%#= link_to 'People', users_url, class: "#{'selected' if @tab == 'users'}", data: { no_turbolink: true }  %>
 		<%#= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>

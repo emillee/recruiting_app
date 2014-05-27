@@ -3,18 +3,13 @@
 	<%= form_for(@job) do |f| %>
 		
 		<%= f.text_field :title_specific, placeholder: 'Job Title' %>
-		
 		<%= f.text_field :department, placeholder: 'Department' %>
-		
 		<%= f.text_field :experience_required, placeholder: 'Experience level' %>
-		
 		<%= f.text_field :company, placeholder: 'Company name' %>
-		
-		<%= f.text_area :description, placeholder: 'Job description' %>
-		
+		<%= f.text_area  :description, placeholder: 'Job description' %>
 		<%= f.text_field :link, placeholder: 'Link to job posting' %>
-	
+
 		<%= f.submit 'Post Job' %>
-	
 	<% end %>
+
 </div>

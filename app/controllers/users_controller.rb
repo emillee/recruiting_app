@@ -37,6 +37,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@articles = @user.articles.order('updated_at DESC')
 		@recent_articles = @articles.limit(3)
+    @article = Article.new
 	end
 
 	def update

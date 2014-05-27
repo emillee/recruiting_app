@@ -15,7 +15,6 @@ var nav_ready = function() {
 
   $('.fa-pencil-square-o, #contact-us-link').on('click', function() {
     event.preventDefault();
-    console.log('hello')
     $.ajaxSetup({ cache: false });
 
     var form_url = '/contact_us'

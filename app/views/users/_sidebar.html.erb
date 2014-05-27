@@ -17,7 +17,7 @@
 		
 		<div class="sidebar-middle">
 			<!-- KEYWORDS -->
-			<% if !locals[:keywords].nil? && !locals[:keywords].empty? %>
+			<%# if !locals[:keywords].nil? && !locals[:keywords].empty? %>
 				<div class="keywords-wrapper">
 					<h1 class="keywords">Search Words:</h1>
 					<ul class="job-filters keywords-ul">					
@@ -26,7 +26,7 @@
 						</li>
 					</ul>
 				</div>
-			<% end %>
+			<%# end %>
 			
 			<div class="wrapper">
 				<h1>I'm looking for:</h1>
@@ -45,6 +45,8 @@
 				</ul>
 			</div>
 
+<%
+=begin %>
 			<!-- SUB DEPT -->	
 			<div class="wrapper">
 				<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
@@ -66,6 +68,7 @@
 					<% end %>
 				</ul>
 			</div>
+
 			
 			<!-- THIS SHOULD MATCH PEOPLE BASED ON INTENT -->
 			<div class="wrapper">
@@ -87,7 +90,9 @@
 						</li>
 					<% end %>
 				</ul>
-			</div>			
+			</div>	
+<%
+=end %>					
 					
 		</div><!-- sidebar-middle -->
 		
