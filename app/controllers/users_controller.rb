@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 	  
 	  # WHEN UPDATING ARTICLE
     article_id = params[:user][:article_id] if params[:user]
-    @user.store_article_id_temporarily(article_id)    
+    #@user.store_article_id_temporarily(article_id)    
 	  
 		if @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
@@ -113,33 +113,33 @@ class UsersController < ApplicationController
     redirect_to investor_url(@investor)
   end	
 
-	# PRIVATE ---------------------------------------------------------------------------
+	#---------------------------------------------------------------------------------------
 	private
 
-    # TODO: is it security risk for is_admin
-  	def user_params
-  		params.require(:user).permit(
-		    :is_admin, :guest, :biography, :intro, :interested_in_meeting, :investor_company_id, 
-        :snapshots, :email, :password, :password_digest, :avatar, :fname, :lname, :title, 
-        :location, :company_id, :location_from, :link_to_online_profile,
-  		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
-  		  {job_prefs: { company_stage: [], company_industry: [], salary_buckets: [], equity_buckets: [] }},  		
-  		  {company_settings: { company_stage: [] }}
-  		)
-  	end
+  # TODO: is it security risk for is_admin
+	def user_params
+		params.require(:user).permit(
+	    :is_admin, :guest, :biography, :intro, :interested_in_meeting, :investor_company_id, 
+      :snapshots, :email, :password, :password_digest, :avatar, :fname, :lname, :title, 
+      :location, :company_id, :location_from, :link_to_online_profile,
+		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
+		  {job_prefs: { company_stage: [], company_industry: [], salary_buckets: [], equity_buckets: [] }},  		
+		  {company_settings: { company_stage: [] }}
+		)
+	end
 
-    def remove_blanks(params, cat, sub_cat)
-      no_blanks = []
-      
-      if params[cat] && params[cat][sub_cat]
-        params[cat][sub_cat].each do |item|
-          no_blanks << item if item != ''
-          no_blanks.empty? ? params[cat].delete(sub_cat) : params[cat][sub_cat] = no_blanks
-        end
+  def remove_blanks(params, cat, sub_cat)
+    no_blanks = []
+    
+    if params[cat] && params[cat][sub_cat]
+      params[cat][sub_cat].each do |item|
+        no_blanks << item if item != ''
+        no_blanks.empty? ? params[cat].delete(sub_cat) : params[cat][sub_cat] = no_blanks
       end
-
-      params    
     end
+
+    params    
+  end
 	
 end
 

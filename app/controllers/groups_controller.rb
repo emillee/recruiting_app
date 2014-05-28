@@ -6,10 +6,11 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   end
 
+  #---------------------------------------------------------------------------------------
   private
 
-  	def set_this_tab
-  		set_tab('groups')   
-  	end
+	def set_this_tab
+		set_tab('groups')   
+	end
   
 end

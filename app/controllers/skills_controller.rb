@@ -78,12 +78,13 @@ class SkillsController < ApplicationController
 		end
 	end	
 
-	# PRIVATE ---------------------------------------------------------------------------
+	#---------------------------------------------------------------------------------------
 	private
 
-		def skill_params
-			params.require(:skill).permit(:skill_name, :skill_dept, :skill_sub_dept, :logo, 
-				required_phrases: [], preferred_phrases: [])
-		end
+	def skill_params
+		params.require(:skill).permit(:skill_name, :skill_dept, :skill_sub_dept, :logo, 
+			required_phrases: [], preferred_phrases: [])
+	end
 
 end
+

@@ -31,10 +31,11 @@ class MessagesController < ApplicationController
 		Message.find(params[:id]).destroy
 	end
 
+	#---------------------------------------------------------------------------------------
 	private
 
-		def message_params
-			params.require(:message).permit(:message_body, :user_id)
-		end
+	def message_params
+		params.require(:message).permit(:message_body, :user_id)
+	end
 
 end

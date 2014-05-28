@@ -1,5 +1,10 @@
 var nav_ready = function() {
 
+  $('.fa-cog').click(function() {
+    $(this).addClass('selected');
+    $('ul.nav-cog-options').removeClass('hidden');
+  });
+
   // NAVBAR OPACITY ON SCROLL
   $(window).scroll(function() {
     if ($(window).scrollTop() > 25) {
@@ -57,7 +62,6 @@ var nav_ready = function() {
     $('.forward-form').hide();
     $('body').children('.modal-background').remove();
   };
-  
 
 };
 

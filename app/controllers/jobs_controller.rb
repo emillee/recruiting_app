@@ -2,7 +2,6 @@ class JobsController < ApplicationController
   
   respond_to    :html, :json
   before_filter :set_this_tab, only: [:index, :show]
-  before_filter :require_sign_in
 
   # RESTful Routes ---------------------------------------------------------------------------
   def index
@@ -95,38 +94,38 @@ class JobsController < ApplicationController
     redirect_to jobs_url
   end
   
-	# PRIVATE ---------------------------------------------------------------------------
+	#---------------------------------------------------------------------------------------
 	private
 
-    def job_params
-      params.require(:job).permit(:link, :title, :full_text, :is_draft,
-        :company_id, :dept, :sub_dept, :years_exp, :description, key_phrases: [], req_skills: [])
-    end       
+  def job_params
+    params.require(:job).permit(:link, :title, :full_text, :is_draft,
+      :company_id, :dept, :sub_dept, :years_exp, :description, key_phrases: [], req_skills: [])
+  end       
 
-    def filtered_jobs(filter)
-      case filter
-      when 'applied'
-        return current_user.jobs_applied.page(params[:page]).per(10).order('years_exp DESC')
-      when 'interested'
-        return current_user.saved_jobs.page(params[:page]).per(10).order('years_exp DESC')
-      when 'removed'
-        return current_user.removed_jobs.page(params[:page]).per(10).order('years_exp DESC')
-      else
-        return Job.all.page(params[:page]).per(10).order('years_exp DESC')
-      end
+  def filtered_jobs(filter)
+    case filter
+    when 'applied'
+      return current_user.jobs_applied.page(params[:page]).per(10).order('years_exp DESC')
+    when 'interested'
+      return current_user.saved_jobs.page(params[:page]).per(10).order('years_exp DESC')
+    when 'removed'
+      return current_user.removed_jobs.page(params[:page]).per(10).order('years_exp DESC')
+    else
+      return Job.all.page(params[:page]).per(10).order('years_exp DESC')
     end
+  end
 
-	  def job_preapproved?(job)
-	    if current_user
-	      current_user.preapproved_jobs.include?(job)
-      else
-        return false
-      end
+  def job_preapproved?(job)
+    if current_user
+      current_user.preapproved_jobs.include?(job)
+    else
+      return false
     end
+  end
 
-    def set_this_tab
-      set_tab('jobs')  
-    end
+  def set_this_tab
+    set_tab('jobs')  
+  end
   
 end
 

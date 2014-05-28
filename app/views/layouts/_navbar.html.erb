@@ -20,13 +20,39 @@
 	</div>
 
 	<div class="session">
-		<% if signed_in? %>
-			<i class="fa fa-pencil-square-o"></i> 
-			<%= link_to "Feedback", '#', id: 'contact-us-link' %>		
-			<%#= link_to "Apply for Membership", login_url %>		
-			<i class="fa fa-power-off"></i> 
-			<%= link_to "Log Out", logout_url, method: :delete %>		
+		<!-- <i class="fa fa-pencil-square-o"></i>  -->
+		<%#= link_to "Feedback", '#', id: 'contact-us-link' %>		
+		<%#= link_to "Apply for Membership", login_url %>		
+			
+		<% if current_user.guest %>
+			<%= link_to 'You are logged in as a Guest', '#' %>
+			<i class="fa fa-cog"></i>
+		<% elsif current_user.is_member %>
+				<%= link_to current_user.fname, '#' %>
+			<i class="fa fa-cog"></i>
 		<% end %>
+
+		<ul class="nav-cog-options hidden">
+			<% if current_user.is_member %>
+				<li>
+					<%= link_to 'Log Out', logout_url, method: :delete %>	
+					<i class="fa fa-power-off"></i> 
+				</li>
+			<% else %>
+				<li>
+					<%= link_to 'Sign In (Returning Users)', login_url %>
+					<i class="fa fa-key"></i>
+				</li>
+			<% end %>
+			<li>
+				<%= link_to 'Apply for Membership (New Users)', new_user_url %>
+				<i class="fa fa-unlock"></i>
+			</li>
+			<li>
+				<%= link_to 'Update Settings', edit_user_url(current_user) %>
+				<i class="fa fa-cogs"></i>
+			</li>							
+		</ul>				
 	</div>
 </nav>
 

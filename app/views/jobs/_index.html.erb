@@ -1,30 +1,13 @@
-<%= render 'jobs/sidebar' %>
+<ul>
+	<% Job.last(100).sample(10).each do |job| %>
 
-<div class="jobs-wrapper">
+		<% next if job.removed_users.include?(current_user) && @filter != 'removed' %>
+
+		<li><%= render './jobs/job_listing_preview', locals: { job: job } %></li>
+    
+		<div id="div-append-<%= job.id %>"></div>
+	<% end %>
+</ul>
 	
-	<%#= render 'job_navbar' %>
-
-	<ul class="job-posts">
-		
-		<% Job.last(100).sample(10).each do |job| %>		
-			<% if current_user %>
-				<% next if job.removed_users.include?(current_user) && @filter != 'removed' %>
-			<% end %>	
-
-			<li>			
-				<%= render './companies/cards/logo', locals: { company: job.listing_company } %>	
-				<%= render './jobs/cards/listing_summary', locals: { job: job } %>
-				<%= render './jobs/cards/company_overview', locals: { job: job } %>
-			</li>
-      
-			<div id="div-append-<%= job.id %>"></div>
-		<% end %>
-	</ul>
-
-	<div class="kaminari-wrapper">
-		<%#= paginate @jobs %>
-	</div>	
-
-</div>
 
 <%= render './layouts/background' %>

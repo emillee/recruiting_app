@@ -38,11 +38,11 @@ class ImagesController < ApplicationController
     redirect_to :back
 	end
 
-
+  #---------------------------------------------------------------------------------------
 	private
 
-		def image_params
-			params.require(:image).permit(:image_file, :article_id)
-		end
+	def image_params
+		params.require(:image).permit(:image_file, :article_id)
+	end
 
 end

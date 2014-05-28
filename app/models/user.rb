@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   before_save { self.job_settings.each { |key, val| val.map!(&:downcase) } }
   before_create :create_session_token
   
-  after_create :set_is_admin_and_is_member_to_false
+  after_create :set_user_settings
   
   serialize :job_settings, Hash
   serialize :company_settings, Hash
@@ -42,34 +42,17 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: '300x200>', thumb: '100x100>' },
     default_url: '/images/:style/missing.png'  
 
-  has_attached_file :snapshots, styles: { original: '200x400', medium: '300x300', large: '300x500' },
-    path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:normalized_userpic_file_name.:extension",
-    url: "/system/:class/:attachment/:id_partition/:style/:normalized_userpic_file_name.:extension"
-
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  
-  Paperclip.interpolates :normalized_userpic_file_name do |attachment, style|
-    attachment.instance.normalized_userpic_file_name
-  end
-
-  def store_article_id_temporarily(article_id)
-    @article_id = article_id
-  end
-  
-  def normalized_userpic_file_name
-    "id-#{self.id}-name-#{self.fname.squish}-articleid-#{self.article_id}"
-  end
-  
+    
       
   # Sessions / Authentication------------------------------------------
   def self.new_guest 
-    random_email_placeholder = SecureRandom.hex(3) + '@' + 'wolfpackguest.com'
+    random_placeholder = SecureRandom.hex(3) + '@' + 'wolfpackguest.com'
     
-    self.new(
-      email: random_email_placeholder, 
-      guest: true,
-      password: SecureRandom.urlsafe_base64
-    )
+    user = self.new(email: random_placeholder, password: SecureRandom.urlsafe_base64)
+    user.save!
+
+    return user
   end
   
   def password=(password_string)
@@ -162,7 +145,8 @@ class User < ActiveRecord::Base
        self.job_prefs ||= '{}'
     end
     
-    def set_is_admin_and_is_member_to_false
+    def set_user_settings
+      self.guest = true
       self.is_admin = false
       self.is_member = false
       self.save

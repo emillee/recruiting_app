@@ -37,11 +37,11 @@ class ArticlesController < ApplicationController
     redirect_to :back
   end
     
-  #------------------------------------------------------------------------------
+  #---------------------------------------------------------------------------------------
   private
   
-    def article_params
-      params.require(:article).permit(:title, :body, :author_id, :tag_id, :company_id, :investor_id)
-    end
+  def article_params
+    params.require(:article).permit(:title, :body, :author_id, :tag_id, :company_id, :investor_id)
+  end
   
 end

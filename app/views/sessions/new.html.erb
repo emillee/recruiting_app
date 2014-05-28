@@ -4,46 +4,37 @@
 
 <div class="session-form">
 
-	<span class="new-vs-returning">
-		<%= link_to 'New User? Sign Up Here', '#', class: 'selected' %>
-		<%= link_to 'Returning Members, Click Here', '#', class: 'not-selected' %>
-		<%= link_to '', :back, class: 'fa fa-times-circle' %>
-	</span>
-	
-	<div class="session-returning-user-form hidden">
-		<%= form_for(:session, url: session_url) do |f| %>
+	<%= form_for(:session, url: session_url) do |f| %>
 
-			<%#= render 'shared/errors', object: f.object %>
-			<%= render 'shared/flash' %>		
+		<%#= render 'shared/errors', object: f.object %>
+		<%= render 'shared/flash' %>		
 
-			<span class="social guest">
-				<%= link_to "Sign in as Guest", users_url, method: :post %>
-			</span>		
+		<!-- <span class="social guest"> -->
+			<%#= link_to "Sign in as Guest", users_url, method: :post %>
+		<!-- </span>		 -->
+
+		<div class="login-wrap">
+			<h1>Returning Members:</h1>
+			<p>Use the email / password you signed up with to log in below</p>				
+			<p>Click here if you forgot your login or password</p>
+			<%= f.email_field :email, placeholder: 'Enter Email' %>
+			<%= f.password_field :password, placeholder: 'Enter password' %>
 		
-			<span class="social">
-				<h1>Returning Members: Log In Below</h1>
-				<p>To log in, please sign in with any of your social logins below:</p>
-				<%= link_to "", "/auth/facebook", class: "fa fa-facebook-square" %>
-				<%= link_to "", "/auth/twitter", class: "fa fa-twitter-square" %>
-				<%= link_to "", "/auth/google_oauth2/", class: "fa fa-google-plus-square" %>
-				<%= link_to "", "/auth/github", class: "fa fa-github-square" %>
-				<%= link_to "", "/auth/linkedin", class: "fa fa-linkedin-square" %>
-			</span>
-		
-			<div class="login-wrap">
-				<h1>Or sign in via email</h1>
-				<%= f.email_field :email, placeholder: 'Enter Email' %>
-				<%= f.password_field :password, placeholder: 'Enter password' %>
-			
+			<span class="returning-member">
 				<%= f.submit "Submit" %>
-			</div>
+			</span>
+		</div>
 
-		<% end %>
-	</div>
+		<div class="social">
+			<h1>Or sign in via social below</h1>
+			<%= link_to "", "/auth/facebook", class: "fa fa-facebook-square" %>
+			<%= link_to "", "/auth/twitter", class: "fa fa-twitter-square" %>
+			<%= link_to "", "/auth/google_oauth2/", class: "fa fa-google-plus-square" %>
+			<%= link_to "", "/auth/github", class: "fa fa-github-square" %>
+			<%= link_to "", "/auth/linkedin", class: "fa fa-linkedin-square" %>
+		</div>
 
-	<div class="session-new-user-form">
-		<%= render './users/form' %>
-	</div>
+	<% end %>
 
 </div>
 
