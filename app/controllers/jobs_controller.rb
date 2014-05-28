@@ -5,6 +5,8 @@ class JobsController < ApplicationController
 
   # RESTful Routes ---------------------------------------------------------------------------
   def index
+    @page = params[:page]
+
     if params[:filter]
       @jobs = filtered_jobs(params[:filter])
     elsif current_user.job_settings.any? && current_user.job_settings[:key_skills] 

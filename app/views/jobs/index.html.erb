@@ -1,10 +1,15 @@
-<ul>
+<ul class="job-posts">
 
-	<% @jobs.each do |job| %>
+	<% counter ||= 0 %>
+	<% page = @page.nil? ? 1 : @page.to_i %>
+	<% counter = (page - 1) * 10 %>
+
+	<% @jobs.each do |job| %>		
+		<% counter += 1 %>
 
 		<% next if job.removed_users.include?(current_user) && @filter != 'removed' %>
 
-		<li><%= render 'job_listing_preview', locals: { job: job } %></li>
+		<li><%= render 'job_listing_preview', locals: { job: job, counter: counter} %></li>
     
 		<div id="div-append-<%= job.id %>"></div>
 	<% end %>

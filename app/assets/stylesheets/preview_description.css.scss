@@ -20,6 +20,18 @@
     &:hover {
       color: rgb(2,91,121);
     } 
+
+    a {
+      color: #02133B;
+
+      &:hover {
+        color: #3252B2;
+      }
+
+      &:visited {
+        color: #5C4F79;
+      }
+    }
   }  
   
   span.article-text {

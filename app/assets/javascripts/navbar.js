@@ -1,9 +1,31 @@
 var nav_ready = function() {
 
-  $('.fa-cog').click(function() {
-    $(this).addClass('selected');
+  setUpNavDropdown();
+
+  function setUpNavDropdown() {
+    $('.fa-cog, .navbar-guest-a').click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      showNavDropDown();        
+    });
+  };
+
+  function showNavDropDown() {
+    $('.fa-cog').addClass('selected');
     $('ul.nav-cog-options').removeClass('hidden');
-  });
+    setUpNavBlur();
+  };
+
+  function setUpNavBlur() {
+    setUpPropagators('ul.nav-cog-options');
+
+    $(document).click(function() {
+      $('ul.nav-cog-options').addClass('hidden');
+      $('.fa-cog').removeClass('selected');
+      $(document).off('click', setUpNavBlur);
+      setUpNavBlur();
+    });
+  };
 
   // NAVBAR OPACITY ON SCROLL
   $(window).scroll(function() {
@@ -18,7 +40,7 @@ var nav_ready = function() {
     };
   });
 
-  $('.fa-pencil-square-o, #contact-us-link').on('click', function() {
+  $('.nav-contact-us').on('click', function() {
     event.preventDefault();
     $.ajaxSetup({ cache: false });
 
@@ -31,26 +53,26 @@ var nav_ready = function() {
       $('#contact-us').css('left', '250px');
       $('.forward-form').css('top', $top);
       $('#email_info_sender_email').focus();
-      setUpBlurHandlers();
+      setUpBlurHandler.apply(this, ['i.fa-times-circle', '.forward-form']);
       addModalToBody();
     });
   });
 
-  function setUpPropagators() {
-    $('.forward-form').children().click(function(e) {
-      e.stopPropagation();
-    });
-  };
-
-  function setUpBlurHandlers() {
-    setUpPropagators();
+  function setUpBlurHandler(xIcon, propagatorSelector) {
+    setUpPropagators(propagatorSelector);
     
-    $('i.fa-times-circle').on('click', function() {
-      undoModal();
+    $(xIcon).on('click', function() {
+      undoModalRemoveItem(propagatorSelector);
     });
     
     $(document).click(function() {
-      undoModal();
+      undoModalRemoveItem(propagatorSelector);
+    });
+  };
+
+  function setUpPropagators(propagatorSelector) {
+    $(propagatorSelector).children().click(function(e) {
+      e.stopPropagation();
     });
   };
       
@@ -58,8 +80,8 @@ var nav_ready = function() {
     $('body').append('<div class="modal-background"></div>');      
   };       
   
-  function undoModal() {
-    $('.forward-form').hide();
+  function undoModalRemoveItem(propagatorSelector) {
+    $(propagatorSelector).hide();
     $('body').children('.modal-background').remove();
   };
 

@@ -17,7 +17,9 @@
 		data-table="<%= this_table %>"
 		data-model="<%= this_model %>"
 		data-attribute="title">
-		<%= (job.title.nil? || job.title.empty?) ? 'Title Here' : ActionView::Base.full_sanitizer.sanitize(job.title.titleize) %>
+		<a href="<%= job.link %>" target="_blank">
+			<%= "#{locals[:counter].to_s}" + ". " + ActionView::Base.full_sanitizer.sanitize(job.title.titleize) %>
+		</a>
 	</h1>	
 
 	<span class="article-text">

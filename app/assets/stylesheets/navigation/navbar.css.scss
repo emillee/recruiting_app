@@ -56,6 +56,29 @@ nav.navbar-wrapper {
     background-color: rgba(255,255,255,0.1);
     display: inline-block;
 
+    a, a:visited {
+      font-size: 15px;
+      color: #00080E;
+      font-weight: 900; 
+      
+      &:hover {
+        color: #BE2121;
+      }   
+    }
+    
+    i.fa-cog {
+      position: relative;
+      font-size: 16px;
+      background-color: white;
+      padding: 9px;
+      margin-left: 10px;
+      cursor: pointer;
+      
+      &.selected {
+        color: #BE2121;
+      }
+    }
+
     ul.nav-cog-options {
       position: absolute;
       background-color: white;
@@ -85,29 +108,5 @@ nav.navbar-wrapper {
         }
       }
     }
-    
-    a, a:visited {
-      font-size: 17px;
-      color: #00080E;
-      font-weight: 900; 
-      
-      &:hover {
-        color: #BE2121;
-      }   
-    }
-    
-    i.fa-cog {
-      position: relative;
-      font-size: 16px;
-      cursor: pointer;
-      background-color: white;
-      padding: 9px;
-      margin-left: 10px;
-      
-      &.selected {
-        color: #BE2121;
-      }
-    }
-  }
-
+  }   
 }
