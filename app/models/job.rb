@@ -45,6 +45,8 @@ class Job < ActiveRecord::Base
     where("to_tsvector('english', title) @@ #{sanitize_query(key_skills)} OR to_tsvector('english', full_text) @@ #{sanitize_query(key_skills)}") 
   }
 
+  # validates :company_id, presence: true
+
   def self.return_jobs_with_key_skills(user)
     skills = user.job_settings[:key_skills].map do |skill_id|
       Skill.find(skill_id.to_i).skill_name.gsub('-', ' ')
@@ -89,8 +91,6 @@ class Job < ActiveRecord::Base
 
     "to_tsquery('english', #{quote_value t})"
   end  
-
-  validates :company_id, presence: true
 
   def self.return_skills(sub_dept_arr)
     skills = []

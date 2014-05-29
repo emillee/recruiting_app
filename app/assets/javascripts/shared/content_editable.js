@@ -1,6 +1,6 @@
 var ready_editor = function() {   
 
-  if ( $('.companies').length > 0 || $('.investors').length > 0 || $('.users').length > 0 ) {
+  if ( $('.companies').length > 0 || $('.investors').length > 0 || $('.users').length > 0 || $('.jobs').length > 0) {
 
     initializeEditor();
 

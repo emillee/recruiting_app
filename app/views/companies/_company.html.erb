@@ -2,7 +2,7 @@
 <% this_table = "companies" %>
 
 <div class="company-top-wrapper">
-	<%= render 'companies/cards/logo', locals: { company: company } %>
+	<%= render 'companies/company_bcard', locals: { company: company } %>
 	<%= render 'companies/cards/overview', locals: { company: company, this_table: this_table } %>
 	<%= render 'companies/cards/stats', locals: { company: company, this_table: this_table } %>
 </div>

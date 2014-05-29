@@ -1,0 +1,8 @@
+<div class="edit-business-card">
+	<%= form_for @job, url: job_url(@job), html: { multipart: true } do |f| %>
+		<% empty_arr = [] %>
+		<% empty_arr << @job.listing_company.attributes unless @job.listing_company.nil? %>
+		<%= f.text_field :company_id, placeholder: 'Enter Company Name', 'data-pre' => empty_arr.to_json %>
+		<%= f.submit "Submit" %>
+	<% end %>
+</div>

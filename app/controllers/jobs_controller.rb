@@ -27,7 +27,16 @@ class JobsController < ApplicationController
   end
   
   def new
-    @job = Job.new
+    @job = Job.create!
+    @user = current_user
+  end
+
+  def edit
+    @job = Job.find(params[:id])
+  end
+
+  def edit_company
+    @job = Job.find(params[:id])
   end
   
   def create
@@ -52,8 +61,9 @@ class JobsController < ApplicationController
     if @job.update_attributes(job_params)
       flash[:success] = "Job updated"
       @company = @job.listing_company
-      redirect_to companies_url
     end
+
+    redirect_to edit_job_url(@job)
   end
   
   def destroy

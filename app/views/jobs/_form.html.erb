@@ -1,0 +1,95 @@
+<% this_table = 'jobs' %>
+<% this_model = 'job' %>
+<% job = @job %>
+<% user = current_user %>
+<% company = job.listing_company %>
+
+<ul class="job-posts">
+	<li class="new-job-li">
+		<span class="left">
+			<div class="company-business-card">
+				<% if company %>
+	
+					<% if !company.nil? && company.logo.exists? %>
+						<%= image_tag company.logo.url %>
+					<% end %>
+
+					<% if company && (user == current_user || current_user.is_admin) %>
+						<div class="uploader-logo <%= 'hidden' if company.logo.exists? %>">
+							<span class="insert-image-span">
+								<span>Insert Logo</span>	
+								<i class="fa fa-picture-o"></i>
+							</span>	
+							<%= form_for company, url: company_url(company), html: { multipart: true } do |f| %>	
+								<%= f.file_field :logo %>
+								<%= f.submit %>
+							<% end %>
+						</div>
+					<% end %>	
+				<% end %>
+			</div>
+		</span>
+
+		<!-- MAIN PREVIEW SECTION -->
+		<div class="preview-description-wrapper left">	
+			
+			<h1 class="jobs-editable"
+				contenteditable= "true"
+				data-id="<%= job.id %>" 
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-attribute="link">
+				<%= job.link || 'Insert job link here' %>
+			</h1>	
+
+			<br>
+
+			<h1 class="jobs-editable"
+				contenteditable= "true"
+				data-id="<%= job.id %>" 
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-attribute="title">
+				<%= job.title || 'Insert job title here' %>
+			</h1>	
+
+			<span class="article-text">
+				<p class="jobs-editable"
+					contenteditable= "true"
+					data-id="<%= job.id %>" 
+					data-table="<%= this_table %>"
+					data-model="<%= this_model %>"
+					data-attribute="description">				
+					<%= job.description || 'Put description here' %>
+				</p>
+			</span>
+			
+		</div>
+
+		<!-- COMPANY OVERVIEW -->
+		<div class="preview-bcard-wrapper left">
+			<h2 id="change-company" data-id="<%= job.id %>">	
+				<% if company %>
+					About <%= company.name %>
+					<span class="fa fa-pencil">Edit Company</span>
+				<% else %>
+					<span class="fa fa-pencil">Edit Company</span>
+				<% end %>
+			</h2>	
+
+			<p class="jobs-editable"
+				contenteditable="true"
+				data-id="<%= job.listing_company.id if job.listing_company %>" 
+				data-table="companies"
+				data-model="company"
+				data-attribute="overview">		
+				<% if job.listing_company && job.listing_company.overview %>
+					<%= job.listing_company.overview %>
+				<% else %>
+					<%= 'Type company overview here' %>
+				<% end %>
+			</p>
+		</div>	
+
+	</li>
+</div>			

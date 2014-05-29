@@ -29,7 +29,7 @@ var ready_users = function() {
         type: 'GET',
         url: $url,
         success: function(data) {
-          var $edit_data = $(data).filter(' .edit-business-card');
+          var $edit_data = $(data).find(' .edit-business-card');
           $('h2#employer').addClass('hide');
           $('div.bcard-employer').append($edit_data);
           addAutocompleteFields();

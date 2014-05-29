@@ -23,8 +23,11 @@
 			<%= link_to 'You are logged in as a Guest', '#', class: 'navbar-guest-a' %>
 			<i class="fa fa-cog"></i>
 		<% elsif current_user.is_member %>
-				<%= link_to current_user.fname, '#' %>
+			<%= link_to current_user.fname, '#' %>
 			<i class="fa fa-cog"></i>
+		<% elsif current_user.is_admin %>
+				<%= link_to current_user.fname, '#' %>
+			<i class="fa fa-cog"></i>			
 		<% end %>
 
 		<ul class="nav-cog-options hidden">

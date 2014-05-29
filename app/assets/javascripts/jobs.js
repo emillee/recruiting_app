@@ -1,5 +1,76 @@
 var ready_jobs = function() {
   if ($('.jobs').length > 0) {
+
+  $('#new-job-post').on('click', function(e) {
+    e.preventDefault();
+    $('.job-posts').prepend('<li id="new-job-li"></li>');
+    var form_url = '/jobs/new'
+
+    $('#new-job-li').load(form_url + ' .new-job-li', function() {
+      setUpCompanyHandler();
+    });
+  });
+
+    // --------------------------------------------------------------------------------------------------------------
+    // TOKENINPUT
+    // --------------------------------------------------------------------------------------------------------------
+
+    // ADD EDIT FIELD AFTER CLICKING ON EMPLOYER FIELD
+    function setUpCompanyHandler() {
+      $('#change-company').on('click', function() {
+        var $job_id = $(this).data('id');
+        var $url = "/jobs/" + $job_id + "/edit_company";
+
+        $.ajax({
+          type: 'GET',
+          url: $url,
+          success: function(data) {
+            var $edit_data = $(data).find(' .edit-business-card');
+            $('h2#change-company > span').addClass('hide');
+            $('h2#change-company').append($edit_data);
+            addAutocompleteFields();
+          }
+        });
+      });      
+    };
+
+    $('#token-input-job_company_id').on('blur', function() {
+      $('ul.token-input-list').remove();    
+    });
+
+    function addAutocompleteFields() {
+      $('#job_company_id').tokenInput('/companies.json', { 
+        crossDomain: false, 
+        allowFreeTagging: true,
+        hintText: 'Type company name',
+        onReady: setUpBlurHandler,
+        propertyToSearch: 'name',
+        tokenValue: 'id'
+      });
+
+      $('#token-input-job_company_id').css('width', '125px');
+    };
+    
+    function setUpBlurHandler() {
+      $('.token-input-delete-token').click()
+      setUpPropogator();
+      $(document).click(function() {
+        $('.edit-business-card > form').remove();
+        $('h2#change-company > span').removeClass('hide');
+      });
+    };    
+    
+    function setUpPropogator() {   
+      $('form.edit_job > input[type="submit"]').click(function(e) {
+        e.stopPropagation();
+      });
+      
+      $('.token-input-input-token').click(function(e) {
+        e.stopPropagation();
+      });     
+    };
+
+
   
     // ADD SELECTED CLASS TO JOB NAVBAR
     $('.job-actions-wrapper').on('click', '.fa-check, .fa-bookmark, .fa-times', function(e) {
@@ -24,7 +95,7 @@ var ready_jobs = function() {
           $('.fa-times-circle').css('display', 'inline-block');
         }
       })
-    });
+    });  
     
     // EMAIL / FORWARD A JOB POST
     $('ul.job-posts').on('click', '.forward', function(event) {

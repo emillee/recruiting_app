@@ -15,7 +15,7 @@
   font-family: 'Lato';
   width: 1050px;  
 
-  a.new-job-post {
+  a#new-job-post {
     @include link-style;
   }
   

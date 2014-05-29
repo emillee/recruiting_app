@@ -6,6 +6,29 @@
   line-height: 22px;
   overflow: hidden;
   color: #7E7E7E;
+  position: relative;
+
+  // For jobs#new
+  #change-company {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    span {
+      font-size: 14px;
+      color: #2980b9;
+    }
+  }
+
+  .edit-business-card {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    form {
+      margin: 0;
+    }
+  }  
 
   h1, p {
     margin-left: 10px;

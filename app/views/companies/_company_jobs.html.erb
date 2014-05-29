@@ -6,7 +6,7 @@
 <% company.job_listings.order("created_at DESC").each do |job| %>
 
 	<div class="company-job-wrapper left">			
-		<%= render './jobs/cards/listing_summary', locals: { job: job } %>
+		<%= render './jobs/job_listing_preview', locals: { job: job } %>
 	</div>
 	
 	<div class="job-key-stats left">

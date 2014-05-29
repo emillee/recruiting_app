@@ -27,14 +27,17 @@ Nytech::Application.routes.draw do
     collection { get :dept }
     collection { get :sub_dept }
   end
+
   resources :users do 
     resources :articles, only: [:create, :update]
     member { post :delete_snapshot }
   end  
+
   resources :investors do
     resources :articles, only: [:create, :update]
     member { post :delete_snapshot }
   end    
+
   resources :companies, only: [:index, :new, :update, :show, :destroy] do
     member { get :next }
     member { put :add_section }
@@ -43,12 +46,15 @@ Nytech::Application.routes.draw do
     resources :jobs, only: [:create]
     resources :articles, only: [:create, :update]
   end
-  resources :jobs, only: [:show, :index, :new, :update, :destroy] do 
+
+  resources :jobs, only: [:show, :index, :new, :update, :destroy, :edit] do 
+    member { get :edit_company }
     member { post :import_data }
     member { put :update_req_skills }
     member { get :forward_form }
     collection { get :flip_view }
   end
+  
   namespace :admin do 
     resources :jobs, :companies, only: [:index, :show, :new]
   end

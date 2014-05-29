@@ -18,7 +18,7 @@
 		data-model="<%= this_model %>"
 		data-attribute="title">
 		<a href="<%= job.link %>" target="_blank">
-			<%= "#{locals[:counter].to_s}" + ". " + ActionView::Base.full_sanitizer.sanitize(job.title.titleize) %>
+			<%= "#{locals[:counter].to_s}" + ". " + ActionView::Base.full_sanitizer.sanitize(job.title.titleize) unless job.title.nil? %>
 		</a>
 	</h1>	
 
