@@ -1,13 +1,27 @@
 .droppable-wrapper {
-  margin-left: 10px;
-  height: 100%;
-  width: 100%;
+  width: 1050px;
+  background-color: #FDFDFD;
   display: block;
-  width: 640px;
+
+  .skills-drop-banner {
+    width: 100%;
+    background-color: rgba(0,0,0,0.2);
+    height: 20px;
+    padding: 10px;
+  }
+
+  .skill-image {
+    line-height: 75px;
+    display: inline-block;
+
+    img {
+      vertical-align: middle;
+      max-height: 50px;
+    }
+  }
 
   #edit-skills, #save-skills {
     position: absolute;
-    top: 25px;
     right: 25px;
     font-size: 16px;
   }
@@ -21,15 +35,27 @@
   .skills-ul {
     
     li.user-skills {
-//      margin: 5px;
       text-decoration: none;
       background-color: rgba(255,255,255,.8);
-      height: 60px;
-      line-height: 60px;
       border: 2px solid white;
-      
+      text-align: center; 
+      display: inline-block;
+      height: 75px;
+
+      span.skill-icon-wrapper {
+        display: inline-block;
+        height: 75px;
+        line-height: 75px;
+        width: 75px; 
+  
+        i {
+          font-size: 30px;
+        }               
+      }
+
       // this is the "Add a Skill" section
       &:last-of-type {
+        width: 100%;
         font-size: 23px;
         font-style: italic;
         padding-left: 10px;

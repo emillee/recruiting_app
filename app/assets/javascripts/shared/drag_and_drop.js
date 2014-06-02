@@ -27,14 +27,14 @@ var ready_drag_and_drop = function() {
     });    
 
     // ADD BOX OUTILNE WHEN IN EDIT MODE
-    $('.skill-dropzone').on('click', '#edit-skills', function() {
+    $('.skills-drop-banner').on('click', '#edit-skills', function() {
       event.preventDefault();
       toggleBoxOfLogos();
       addDroppableEvents();
     });
 
     // REMOVE OUTLINE BOX AFTER DONE WITH EDIT MODE
-    $('.skill-dropzone').on('click', '#save-skills', function(event) {
+    $('.skills-drop-banner').on('click', '#save-skills', function(event) {
       event.preventDefault();
       toggleBoxOfLogos();
     });

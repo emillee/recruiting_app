@@ -1,21 +1,33 @@
 <% object = locals[:user] || locals[:job] || locals[:company] %>
 <% obj_class_id = object.class.to_s.downcase + '_id' %>
 
-<div class='droppable-wrapper'>
-	<div class="skill-dropzone">
-		<% if current_user %>
+<div class='droppable-wrapper group'>
+
+	<div class="skills-drop-banner">
+		<h1>Tech Stack</h1>
 			<%= link_to 'Add Skills', '#', id: 'edit-skills' %>
 			<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden' %>
-		<% end %>
+	</div>
+
+	<div class="skill-dropzone">
 
 		<ul class="skills-ul <%= object.class.to_s.downcase %>-<%= object.id %>" >
 			<% object.tech_stack.each do |skill_obj| %>
 				<% object_skill = ObjectSkill.where(obj_class_id => object.id, skill_id: skill_obj.id).first %>
-				<li class="user-skills" data-object-skill-id="<%= object_skill.id %>">
-					<% if skill_obj.logo.exists? %>
-						<%= image_tag(skill_obj.logo.url, class: 'is-draggable') %>
+
+				<li class="user-skills is-draggable" data-object-skill-id="<%= object_skill.id %>">
+					<% skill_icon = icon_skill_match(skill_obj.skill_name) %>
+					
+					<% if skill_obj.logo.exists? && skill_icon.nil? %>
+						<span class="skill-image"><%= image_tag(skill_obj.logo.url, class: 'is-draggable') %></span>
+					<% elsif %>
+						<span class="skill-icon-wrapper">
+							<i class="<%= skill_icon %> skill-icon"></i>
+						</span>
 					<% else %>
+						<span class="upload-logo-wrapper">
 						<%= render './shared/upload_logo', locals: { object: skill_obj } %>
+						</span>
 					<% end %>
 				</li>
 			<% end %>
@@ -23,4 +35,5 @@
 		</ul>
 	</div>
 </div>
+
 
