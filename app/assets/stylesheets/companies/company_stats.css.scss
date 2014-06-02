@@ -1,18 +1,17 @@
 .company-stats {
   background-color: #333332;
   padding: 10px 15px;
-  float: right;
   height: 130px;
   width: 270px;
   color: #b3b3b1;
-  position: relative;
+  display: inline-block;
+  position: absolute;
+  left: 750px;
   
   h3 {
-    font-size: 13px;
-    line-height: 19px;
-    
     span:first-of-type {
       color: white;
+      position: relative;
     }
     
     span:nth-of-type(2) {

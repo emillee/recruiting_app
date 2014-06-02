@@ -43,65 +43,6 @@
         z-index: 9999;
       }
       
-      div.level-wrap {
-        float: right;
-        
-        form {
-          display: inline-block;
-          
-          label {
-            margin-left: -5px;
-            text-align: center;
-    //        padding: 0px 15px;
-            display: inline-block;
-            height: 60px;
-            width: 70px;
-//            margin-left: -5px;
-            color: white;
-            font-family: 'Source Sans Pro';
-            letter-spacing: 1px;
-
-            &:nth-of-type(1) { 
-              background-color: rgba(0,255,0,.5); 
-              color: rgba(0,255,0,.2);
-              &:hover { background-color: rgba(0,255,0,.75); color: rgba(255,255,255,.75); }
-              &.selected { background-color: rgba(0,255,0,1); color: white; } 
-            }
-                        
-            &:nth-of-type(2) { 
-              background-color: rgba(0,204,0,.5); 
-              color: rgba(0,204,0,.2); 
-              &:hover { background-color: rgba(0,204,0,.75); color: rgba(255,255,255,.75); }
-              &.selected { background-color: rgba(0,204,0,1); color: white;  } 
-            }         
-            
-            &:nth-of-type(3) { 
-              background-color: rgba(0,153,0,.5); 
-              color: rgba(0,153,0,.2);               
-              &:hover { background-color: rgba(0,153,0,.75); color: rgba(255,255,255,.75); }
-              &.selected { background-color: rgba(0,153,0,1); color: white;  } 
-            }                  
-
-            &:nth-of-type(4) { 
-              background-color: rgba(0,102,0,.5); 
-              color: rgba(0,102,0,.2);              
-              &:hover { background-color: rgba(0,102,0,.75); color: rgba(255,255,255,.75); }
-              &.selected { background-color: rgba(0,102,0,1); color: white;  } 
-            }
-
-             &:nth-of-type(5) { 
-               background-color: rgba(0,51,0,.5);
-               color: rgba(0,51,0,.2);                
-               &:hover { background-color: rgba(0,51,0,.75); color: rgba(255,255,255,.75); }
-               &.selected { background-color: rgba(0,51,0,1); color: white;  } 
-             }            
-          }
-          
-          input[type='radio'], input[type='submit'] {
-            display: none;
-          }       
-        }
-      }
     }
   }
 }

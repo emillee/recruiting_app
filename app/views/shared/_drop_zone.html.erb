@@ -17,26 +17,6 @@
 					<% else %>
 						<%= render './shared/upload_logo', locals: { object: skill_obj } %>
 					<% end %>
-					
-					<div class="level-wrap">
-						<%= form_for object_skill, remote: true, method: :put do |f| %>
-							<% [
-									['Entry', 1],
-									['Junior', 2],
-									['Mid', 3],
-									['Lead', 4],
-									['Guru', 5]
-								].each do |label, year| %>
-								<% selected = (object_skill.level == year) ? 'selected' : '' %>
-								<% this_label = "#{object_skill.skill.skill_name}_" + "#{year}" %>
-								<label for="<%= this_label %>" class="skill-radio <%= selected %>"><%= label %></label>
-								<input id="<%= this_label %>" name="object_skill[level]" type="radio" value="<%= year %>">
-							<% end %>
-							
-							<%= f.submit 'Submit' %>
-						<% end %>
-					</div>
-					
 				</li>
 			<% end %>
 			<li id="add-skill" class="user-skills hidden">+ Drag a new skill from below anywhere up here!</li>

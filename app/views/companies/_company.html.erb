@@ -1,7 +1,7 @@
 <% company = locals[:company] %>
 <% this_table = "companies" %>
 
-<div class="company-top-wrapper">
+<div class="company-top-wrapper group">
 	<%= render 'companies/company_bcard', locals: { company: company } %>
 	<%= render 'companies/cards/overview', locals: { company: company, this_table: this_table } %>
 	<%= render 'companies/cards/stats', locals: { company: company, this_table: this_table } %>
@@ -10,11 +10,6 @@
 <%= render 'nav_and_sections', locals: { company: company, this_table: this_table } %>
 
 <% if company.persisted? %>
-
-	<%= form_for([company, @job]) do |f| %>
-		<%= f.text_field :link, class: "hello", placeholder: "Post New Job" %>
-		<%= f.submit "Create New Job" %>
-	<% end %>
 
 	<%= render './shared/drop_zone', locals: { company: company } %>
 	<%= render './shared/box_of_logos', locals: { company: company }  %>

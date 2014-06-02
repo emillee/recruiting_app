@@ -7,7 +7,6 @@ div.companies-wrapper {
   #edit-skills {
     color: yellow;
     top: 200px;
-
   }
 
   #next {
@@ -54,9 +53,10 @@ div.companies-wrapper {
       height: 100%;
       border-radius: 1px;
       border: 5px solid rgba(0,0,0,.5);
+      width: 1050px;
       
       .company-top-wrapper {
-        display: block;
+        display: inline-block;
         height: 150px;      
       }
       

@@ -1,0 +1,8 @@
+<%= link_to 'Next', company_url(@company, next: true), id: 'next' %>
+
+<div class="new-job-form inline-block right">
+	<%= form_for([@company, @job]) do |f| %>
+		<%= f.text_field :link, class: "hello", placeholder: "Post New Job" %>
+		<%= f.submit "Create New Job" %>
+	<% end %>
+</div>

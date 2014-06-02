@@ -5,7 +5,7 @@
     .uploader-logo {
       cursor: pointer;
       z-index: 9998;
-      display: block;
+      display: inline-block;
 
       .insert-image-span {
         i {
@@ -34,12 +34,12 @@
         }
       }
     }
-
   }
     
   .uploader-logo {
     cursor: pointer;
     z-index: 9998;
+    di
     
     .insert-image-span {
       i {
@@ -67,6 +67,7 @@
       }
     }
   }
+
   input {
     visibility: hidden;
   }
