@@ -10,9 +10,7 @@
 <%= render 'nav_and_sections', locals: { company: company, this_table: this_table } %>
 
 <% if company.persisted? %>
-
 	<%= render './shared/drop_zone', locals: { company: company } %>
 	<%= render './shared/box_of_logos', locals: { company: company }  %>
-	
 	<%= render 'company_jobs', locals: { company: company } %>
 <% end %>

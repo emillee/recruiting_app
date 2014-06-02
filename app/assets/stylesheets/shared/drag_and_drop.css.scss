@@ -1,57 +1,47 @@
-.droppable-wrapper {
+@mixin span-icon-style {
+  display: inline-block;
+  height: 75px;
+  line-height: 75px;
+  width: 75px; 
+
+  i { font-size: 30px; }   
+}
+
+@mixin li-icon-style {
+  text-decoration: none;
+  background-color: rgba(255,255,255,.8);
+  border: 2px solid white;
+  text-align: center;
+  height: 75px;
+  margin: 3px;
+
+  img {
+    height: 100%;
+    background-color: white;
+    cursor: pointer;
+    z-index: 9999;
+  }  
+}
+
+// DROPZONE
+div.droppable-wrapper {
   width: 1050px;
-  background-color: #FDFDFD;
+  background-color: rgb(245,245,245);
   display: block;
 
-  .skills-drop-banner {
-    width: 100%;
-    background-color: rgba(0,0,0,0.2);
-    height: 20px;
-    padding: 10px;
+  h1 {
+    a#edit-skills, a#save-skills {
+      position: absolute;
+      right: 70px;
+      font-size: 16px;
+      color: white;
+    }    
   }
 
-  .skill-image {
-    line-height: 75px;
-    display: inline-block;
-
-    img {
-      vertical-align: middle;
-      max-height: 50px;
-    }
-  }
-
-  #edit-skills, #save-skills {
-    position: absolute;
-    right: 25px;
-    font-size: 16px;
-  }
-  
-  .is-droppable {
-    background-color: #EBEBEB;
-    border: 3px dashed #AAAAAA;
-    border-radius: 5px;
-  }  
-  
-  .skills-ul {
-    
+  ul.skills-ul {
     li.user-skills {
-      text-decoration: none;
-      background-color: rgba(255,255,255,.8);
-      border: 2px solid white;
-      text-align: center; 
+      @include li-icon-style;
       display: inline-block;
-      height: 75px;
-
-      span.skill-icon-wrapper {
-        display: inline-block;
-        height: 75px;
-        line-height: 75px;
-        width: 75px; 
-  
-        i {
-          font-size: 30px;
-        }               
-      }
 
       // this is the "Add a Skill" section
       &:last-of-type {
@@ -60,15 +50,65 @@
         font-style: italic;
         padding-left: 10px;
         color: lightgray;
+        line-height: 35px;
+        height: 35px;
+        text-align: left;
+        border: none;
+        background-color: none;
+        width: 1050px;
+        display: none;
+      }  
+
+      span.skill-image {
+        line-height: 75px;
+        display: inline-block;
+
+        img {
+          vertical-align: middle;
+          max-height: 50px;
+        }
+      }          
+
+      span.skill-icon-wrapper {
+        @include span-icon-style;              
       }
-      
+    }
+  }   
+}
+
+
+// DRAGGABLE
+.box-of-logos {
+  margin-top: 15px;
+  height: 300px;
+  width: 1050px;
+  background-color: lightgray;
+
+  .box-of-logos-ul {
+    position: relative;
+
+    li {
+      @include li-icon-style;
+
+      span.skill-icon-wrapper {
+        @include span-icon-style;              
+      }      
+
+      a {
+        top: 5px;
+        color: black;
+        float: left;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
       img {
-        height: 100%;
-        background-color: white;
+        float: left;
+        height: 60px;
+        margin: 10px;   
+        background-color: white; 
         cursor: pointer;
-        z-index: 9999;
-      }
-      
+      }      
     }
   }
 }

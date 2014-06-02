@@ -50,6 +50,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     @company = @company.next if params[:next]    
     @job = @company.job_listings.build
+    @skill = Skill.new
   end
   
   def update

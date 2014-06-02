@@ -27,14 +27,14 @@ var ready_drag_and_drop = function() {
     });    
 
     // ADD BOX OUTILNE WHEN IN EDIT MODE
-    $('.skills-drop-banner').on('click', '#edit-skills', function() {
+    $('h1').on('click', '#edit-skills', function() {
       event.preventDefault();
       toggleBoxOfLogos();
       addDroppableEvents();
     });
 
     // REMOVE OUTLINE BOX AFTER DONE WITH EDIT MODE
-    $('.skills-drop-banner').on('click', '#save-skills', function(event) {
+    $('h1').on('click', '#save-skills', function(event) {
       event.preventDefault();
       toggleBoxOfLogos();
     });
@@ -53,7 +53,7 @@ var ready_drag_and_drop = function() {
     // SHOW BOX OF LOGOS
     function toggleBoxOfLogos() {
       $('.box-of-logos').toggleClass('hidden');
-      $('.skill-dropzone').toggleClass('is-droppable');
+      $('.skills-ul').toggleClass('is-droppable');
       $('#edit-skills').toggleClass('hidden');      
       $('#save-skills').toggleClass('hidden');
       $('#add-skill').toggleClass('hidden');
@@ -69,7 +69,7 @@ var ready_drag_and_drop = function() {
 
     // ADD DROPPABLE HANDLER
     function addDroppableEvents() {
-      $('.skill-dropzone.is-droppable').droppable({
+      $('.skills-ul.is-droppable').droppable({
         drop: createObjectSkill
       });
 
@@ -113,8 +113,8 @@ var ready_drag_and_drop = function() {
         url: this_url,
         success: function(data) {
           draggable.parent('li').remove();
-          var $box_of_logos = $(data).find(' .box-of-logos-ul');
-          $('ul.box-of-logos-ul').empty().html($box_of_logos);
+          var $box_of_logos = $(data).find(' .box-of-logos');
+          $('ul.box-of-logos').empty().html($box_of_logos);
           addDroppableEvents();
           addDraggableEvents();
         }

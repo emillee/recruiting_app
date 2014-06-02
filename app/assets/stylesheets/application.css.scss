@@ -1,9 +1,9 @@
 /*
- *= require_self
  *= require reset
  *= require general
  *= require backgrounds
  *= require states
+ *= require mixins
  *= require session
  *= require article
  *= require chatroom
@@ -18,7 +18,9 @@
  *= require_directory ./sidebar  
  *= require_directory ./users
  *= require_directory ./shared
+ *= require_self 
 */
+
 
  
 

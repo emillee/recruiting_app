@@ -3,37 +3,38 @@
 
 <div class='droppable-wrapper group'>
 
-	<div class="skills-drop-banner">
-		<h1>Tech Stack</h1>
-			<%= link_to 'Add Skills', '#', id: 'edit-skills' %>
-			<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden' %>
-	</div>
+	<h1 class="dark-banner">
+		Tech Stack
+		<%= link_to 'Add Skills', '#', id: 'edit-skills' %>
+		<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden' %>
+	</h1>
 
-	<div class="skill-dropzone">
+	<ul class="skills-ul <%= object.class.to_s.downcase %>-<%= object.id %>">
+		<% object.tech_stack.each do |skill_obj| %>
+			<% object_skill = ObjectSkill.where(obj_class_id => object.id, skill_id: skill_obj.id).first %>
 
-		<ul class="skills-ul <%= object.class.to_s.downcase %>-<%= object.id %>" >
-			<% object.tech_stack.each do |skill_obj| %>
-				<% object_skill = ObjectSkill.where(obj_class_id => object.id, skill_id: skill_obj.id).first %>
-
-				<li class="user-skills is-draggable" data-object-skill-id="<%= object_skill.id %>">
-					<% skill_icon = icon_skill_match(skill_obj.skill_name) %>
-					
-					<% if skill_obj.logo.exists? && skill_icon.nil? %>
-						<span class="skill-image"><%= image_tag(skill_obj.logo.url, class: 'is-draggable') %></span>
-					<% elsif %>
-						<span class="skill-icon-wrapper">
-							<i class="<%= skill_icon %> skill-icon"></i>
-						</span>
-					<% else %>
-						<span class="upload-logo-wrapper">
+			<li class="user-skills is-draggable" data-object-skill-id="<%= object_skill.id %>">
+				<% skill_icon = icon_skill_match(skill_obj.skill_name) %>
+				
+				<% if skill_icon %>
+					<span class="skill-icon-wrapper">
+						<i class="<%= skill_icon %> skill-icon"></i>
+					</span>
+				<% elsif skill_obj.logo.exists? %>
+					<span class="skill-image">
+						<%= image_tag(skill_obj.logo.url) %>
+					</span>				
+				<% else %>
+					<span class="upload-logo-wrapper">
 						<%= render './shared/upload_logo', locals: { object: skill_obj } %>
-						</span>
-					<% end %>
-				</li>
-			<% end %>
-			<li id="add-skill" class="user-skills hidden">+ Drag a new skill from below anywhere up here!</li>
-		</ul>
-	</div>
+					</span>
+				<% end %>
+			</li>
+		<% end %>
+
+		<li id="add-skill" class="user-skills hidden">+ Drag skill from below up here!</li>
+	</ul>
+
 </div>
 
 
