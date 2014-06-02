@@ -1,0 +1,50 @@
+<% user_id = current_user ? current_user.id : nil %>
+<% job = locals[:job] %>
+
+<% applied_class = already_applied?(job) ? "applied_already fa fa-check" : "applied fa fa-check" %>       
+<% saved_class = has_saved_job?(job) ? "saved fa fa-bookmark" : "save fa fa-bookmark" %>
+<% removed_class = already_removed?(job) ? "removed_already fa-times-circle-o" : "remove fa fa-times" %>
+                      
+<div class="action-items">  
+  <span>To Apply:</span>
+  <%= link_to '  Direct on Company Website', '#', class: 'fa fa-external-link' %>
+  <%= link_to '  Through Wolfpack', '#', class: 'fa fa-paw' %>
+  <%= link_to '  Save for Later', '#', class: 'fa fa-bookmark' %>
+  <%= link_to '  Not Interested, Remove This', '#', class: 'fa fa-times' %>
+</div>
+
+
+<%
+=begin %>
+  <% if already_applied?(job) %>
+    <%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
+        class: 'applied_already fa fa-check', remote: true, method: :delete %>
+  <% else %>
+    <%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
+        class: "applied fa fa-check", remote: true, method: :post %>
+  <% end %>
+
+  <% if has_saved_job?(job) %>
+    <%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
+        class: "saved fa fa-bookmark", remote: true, method: :delete %>
+  <% else %>
+    <%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
+        class: "save fa fa-bookmark", remote: true, method: :post %>
+  <% end %>
+
+  <% if already_removed?(job) %>
+    <%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
+        class: "removed_already fa fa-times-circle-o", remote: true, method: :delete %>
+  <% else %>    
+    <%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
+        class: "remove fa fa-times", remote: true, method: :post %>
+  <% end %>
+
+  <%= link_to '', '#', class: 'forward fa fa-mail-forward', data: { id: job.id } %> 
+</div>
+
+<% 
+=end %>
+
+
+

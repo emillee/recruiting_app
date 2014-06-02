@@ -6,89 +6,106 @@
 
 // for an individual article
 .article-wrapper {
-  width: 910px;
-  padding: 25px;
-  padding-bottom: 0;
-  background-color: #FDFDFD;
-  margin-left: 20px;
+  width: 1050px;
+  background-color: rgb(253,254,255);
   margin-top: 15px; 
   position: relative;
+  // padding-bottom: 50px; 
 
-  a.delete-article-link {
-    position: absolute;
-    bottom: 5px;
-    right: 10px;
-    text-decoration: none;
-    color: black;
-  }  
-
-  h1 {
-    font-size: 24px;
-    padding: 0 0 8px 0;
+  h1, .link {
+    font-size: 30px;
+    line-height: 40px;
     letter-spacing: 1px;
     font-family: 'Source Sans Pro', sans-serif;
     color: #141312;
-    margin-left: -25px;
-    padding-left: 25px;
-    margin-top: -25px;
-    padding-top: 15px;
-    background-color: #F3F9F5;
-    padding-bottom: 15px;
-    width: 960px;    
+    width: 100%;
+    font-weight: 900;
+    padding: 20px 40px 10px 40px;
   }
-  
+
+  .link {
+    font-size: 22px;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   article.body {
-    padding-bottom: 15px;
+    padding-bottom: 0px;
     
     p {
-      color: #232323;
-      font-size: 20px;
-      line-height: 32px;
+      &:first-of-type {
+        margin-top: 10px;
+      }
+
       margin: 0;
       margin-top: 15px;
+      font-family: 'PT Serif';
+      color: #515151;
+      font-size: 22px;
+      line-height: 35px;
+      letter-spacing: 1px;
+      padding-left: 42px;
+      padding-right: 40px;
     }        
   }
 
   .uploader {
-    margin-bottom: 10px;
-    margin-left: 5px;
+    padding-left: 40px;
+    padding-right: 40px;   
+    display: block; 
   }
 
-  .add-tags-wrapper {
-    position: absolute;
-    top: 17px;
-    right: -63px;
-    margin-bottom: 10px;
+  div.admin-options {
+    background-color: rgba(0,0,0,0.05);
+    padding-left: 42px;
+    padding-right: 40px;
+    padding-bottom: 15px; 
+    margin-top: 40px;
 
-    #tagging_tag_id {
-      font-size: 13px;
-    }
+    i.fa-cogs {
+      display: block;
+      line-height: 50px;
+    }   
 
-    i {
-      margin-left: 3px;
-      color: #AAAAAA;
-      font-size: 14px;
-      padding: 3px;      
-    }
-  }
+    a.delete-article-link {
+      // position: absolute;
+      // bottom: 5px;
+      // right: 10px;
+      text-decoration: none;
+      color: black;
+    } 
 
-  div.social-sharing {
-    background-color: #FAFAFA;
-    margin-left: -25px;
-    width: 960px;
-    
-    div.share-buttons-wrapper {
-      display: inline-block;
-      width: 100%;
-      line-height: 35px;
-      margin-left: 25px;
-      
+    .add-tags-wrapper {
+      margin-bottom: 10px;
+
+      #tagging_tag_id {
+        font-size: 13px;
+      }
+
       i {
-        margin-left: 10px;
-        float: left;
+        margin-left: 3px;
+        color: #AAAAAA;
+        font-size: 14px;
+        padding: 3px;      
       }
     }
-  }         
+
+    div.social-sharing {
+      width: 100%;
+      
+      div.share-buttons-wrapper {
+        display: inline-block;
+        width: 100%;
+        line-height: 35px;
+        
+        i {
+          margin-left: 10px;
+          float: left;
+        }
+      }
+    }      
+  }    
 }  
 
 .article.skills { 

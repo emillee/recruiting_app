@@ -4,85 +4,54 @@
 <% this_model = this_table.singularize %>
 
 <!-- COMPANY BUSINESS CARD -->
-<span class="left">
-	<%= render './companies/company_bcard', locals: { company: job.listing_company } %>	
-</span>
-
-<!-- MAIN PREVIEW SECTION -->
-<div class="preview-description-wrapper left">	
-	
-	<h1 class="jobs-editable"
-		contenteditable= "<%= editable_if_admin(current_user) %>"
-		data-id="<%= job.id %>" 
-		data-table="<%= this_table %>"
-		data-model="<%= this_model %>"
-		data-attribute="title">
-		<a href="<%= job.link %>" target="_blank">
-			<%= "#{locals[:counter].to_s}" + ". " + ActionView::Base.full_sanitizer.sanitize(job.title.titleize) unless job.title.nil? %>
-		</a>
-	</h1>	
-
-	<span class="article-text">
-		<% if job.description %>
-			<p><%= job.description.split(' ')[0..35].join(' ') unless job.description.nil? %>...</p>
-		<% else %>
-			<% if job.full_text %>
-				<p>	<%= job.full_text.split(' ')[0..35].join(' ') unless job.full_text.nil? %>...</p>
-			<% end %>
-		<% end %>
+<%= link_to job_url(job) do %>
+	<span class="left">
+		<%= render './companies/company_bcard', locals: { company: job.listing_company } %>	
 	</span>
 
-	<% applied_class = already_applied?(job) ? "applied_already fa fa-check" : "applied fa fa-check" %>				
-	<% saved_class = has_saved_job?(job) ? "saved fa fa-bookmark" : "save fa fa-bookmark" %>
-	<% removed_class = already_removed?(job) ? "removed_already fa-times-circle-o" : "remove fa fa-times" %>
-												
-	<div class="action-items">	
-		<% if already_applied?(job) %>
-			<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
-					class: 'applied_already fa fa-check', remote: true, method: :delete %>
-		<% else %>
-			<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
-					class: "applied fa fa-check", remote: true, method: :post %>
-		<% end %>
+	<!-- MAIN PREVIEW SECTION -->
+	<div class="preview-description-wrapper left">	
+		
+		<h1 class="jobs-editable"
+			contenteditable= "<%= editable_if_admin(current_user) %>"
+			data-id="<%= job.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="title">
+			<%= "#{locals[:counter].to_s}" + ". " + ActionView::Base.full_sanitizer.sanitize(job.title.titleize) unless job.title.nil? %>
+		</h1>	
 
-		<% if has_saved_job?(job) %>
-			<%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
-					class: "saved fa fa-bookmark", remote: true, method: :delete %>
-		<% else %>
-			<%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
-					class: "save fa fa-bookmark", remote: true, method: :post %>
-		<% end %>
+		<span class="article-text">
+			<% if job.description %>
+				<p><%= job.description.split(' ')[0..35].join(' ') unless job.description.nil? %>...</p>
+			<% else %>
+				<% if job.full_text %>
+					<p>	<%= job.full_text.split(' ')[0..35].join(' ') unless job.full_text.nil? %>...</p>
+				<% end %>
+			<% end %>
+		</span>
 
-		<% if already_removed?(job) %>
-			<%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
-					class: "removed_already fa fa-times-circle-o", remote: true, method: :delete %>
-		<% else %>		
-			<%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
-					class: "remove fa fa-times", remote: true, method: :post %>
-		<% end %>
-
-		<%= link_to '', '#', class: 'forward fa fa-mail-forward', data: { id: job.id } %>	
+		
 	</div>
-	
-</div>
 
-<!-- COMPANY OVERVIEW -->
-<div class="preview-bcard-wrapper left">
-	<h1>About <%= job.listing_company.name %></h1>
+	<!-- COMPANY OVERVIEW -->
+	<div class="preview-bcard-wrapper left">
+		<h1>About <%= job.listing_company.name %></h1>
 
-	<p class="jobs-editable"
-		contenteditable= "<%= editable_if_admin(current_user) %>"
-		data-id="<%= job.listing_company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="overview">		
-		<% if job.listing_company.overview %>
-			<%= job.listing_company.overview %>
-		<% else %>
-			<%= 'Pending' %>
-		<% end %>
-	</p>
+		<p class="jobs-editable"
+			contenteditable= "<%= editable_if_admin(current_user) %>"
+			data-id="<%= job.listing_company.id %>" 
+			data-table="companies"
+			data-model="company"
+			data-attribute="overview">		
+			<% if job.listing_company.overview %>
+				<%= job.listing_company.overview %>
+			<% else %>
+				<%= 'Pending' %>
+			<% end %>
+		</p>
 
-	<%#= link_to 'More', company_url(job.listing_company) %>
-</div>				
+		<%#= link_to 'More', company_url(job.listing_company) %>
+	</div>				
 
+<% end %>

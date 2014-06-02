@@ -20,8 +20,8 @@ Nytech::Application.routes.draw do
   resources :messages, only: [:create, :destroy]
 
   # models with views
+  resources :articles
   resource  :session, only: [:new, :create, :destroy]
-  resources :articles, only: [:index, :create, :destroy]
   resources :skills, only: [:index, :create, :update, :destroy] do
     collection { get :name }
     collection { get :dept }
@@ -29,12 +29,10 @@ Nytech::Application.routes.draw do
   end
 
   resources :users do 
-    resources :articles, only: [:create, :update]
     member { post :delete_snapshot }
   end  
 
   resources :investors do
-    resources :articles, only: [:create, :update]
     member { post :delete_snapshot }
   end    
 

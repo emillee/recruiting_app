@@ -1,12 +1,13 @@
 .preview-bcard-wrapper {
   background-color: #f4f5f0;
-  height: 150px;
-  width: 267px;
+  height: 147px;
+  width: 252px;
   display: inline-block;
   line-height: 22px;
   overflow: hidden;
   color: #7E7E7E;
   position: relative;
+  padding-right: 5px;
 
   // For jobs#new
   #change-company {

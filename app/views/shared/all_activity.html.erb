@@ -1,4 +1,5 @@
-<% @feed = @jobs + @articles + @users %>
+<%# @feed = @jobs + @articles + @users %>
+<% @feed = @jobs + @articles %>
 
 <ul>
 	<% @feed.shuffle.each do |feed_item| %>

@@ -1,9 +1,5 @@
 <% this_table = "users" %>
 <% this_model = this_table.singularize %>
-	
-<%#= render 'profile_sidebar', locals: {
-	user: @user
-} %>
 
 <%= render 'user_preview', locals: { user: @user, this_table: this_table } %>
 	
@@ -20,11 +16,7 @@
 		<%= render './articles/article', 
 			locals: { object: @user, article: article, this_table: this_table } %>
 	<% end %>
-<% else %>
-	<% new_article = Article.create %>
-	<% user_article = UserArticle.create(user_id: @user.id, article_id: new_article.id) %>
-	<%= render './articles/article', locals: { object: @user, article: new_article, this_table: this_table } %>
-<% end %>	
+<% end %>
 
 <%= render './layouts/background' %>
 

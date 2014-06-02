@@ -1,0 +1,21 @@
+<% user_id = current_user ? current_user.id : nil %>
+<% job = @job %>
+
+
+<% applied_class = already_applied?(job) ? "applied_already fa fa-check" : "applied fa fa-check" %>				
+<% saved_class = has_saved_job?(job) ? "saved fa fa-bookmark" : "save fa fa-bookmark" %>
+<% removed_class = already_removed?(job) ? "removed_already fa-times-circle-o" : "remove fa fa-times" %>
+
+<ul>
+	<li>
+		<span class="group">
+			<%= render 'job_listing_preview', locals: { job: job } %>
+		</span>
+
+		<div class="wolfpack-report-wrapper">
+			<%= render './companies/wolfpackvc_report', locals: { job: job, company: job.listing_company } %>
+		</div>
+	</li>
+</ul>
+
+<%= render './layouts/background' %>

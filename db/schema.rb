@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527005133) do
+ActiveRecord::Schema.define(version: 20140601204549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140527005133) do
     t.datetime "updated_at"
     t.integer  "company_id"
     t.integer  "investor_id"
+    t.string   "link"
   end
 
   create_table "chatroom_messages", force: true do |t|
@@ -70,6 +71,13 @@ ActiveRecord::Schema.define(version: 20140527005133) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.text     "size_commentary"
+    t.string   "team_soundbite"
+    t.text     "team_commentary"
+    t.text     "funding_commentary"
+    t.string   "outlook"
+    t.text     "outlook_commentary"
+    t.text     "the_big_idea"
   end
 
   create_table "groups", force: true do |t|

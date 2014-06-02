@@ -1,6 +1,6 @@
 var ready_editor = function() {   
 
-  if ( $('.companies').length > 0 || $('.investors').length > 0 || $('.users').length > 0 || $('.jobs').length > 0) {
+  if ( $('.companies').length > 0 || $('.investors').length > 0 || $('.users').length > 0 || $('.jobs').length > 0 || $('.articles').length > 0 ) {
 
     initializeEditor();
 
@@ -12,6 +12,10 @@ var ready_editor = function() {
     $('[contenteditable=true].body').blur(function() {
       handleArticleBlur.apply(this, ['body']);
     });
+
+    $('[contenteditable=true].link').blur(function() {
+      handleArticleBlur.apply(this, ['link']);
+    });    
     
     $('[contenteditable=true].jobs-editable').blur(function(e) {
       persistContentEditable.apply(this);
@@ -30,20 +34,11 @@ var ready_editor = function() {
     });    
         
     function handleArticleBlur(selector) {
-      console.log('aaa');
       var $content = $(this).html();
       var $table = $(this).parent('.article-wrapper').data('table');
       var $article_id = $(this).parent('.article-wrapper').data('article-id');
       
-      if ($table === 'companies') {
-        var $id = $(this).parent('.article-wrapper').data('company-id');
-      } else if ($table === 'investors') {
-        var $id = $(this).parent('.article-wrapper').data('investor-id');
-      } else if ($table === 'users') {
-        var $id = $(this).parent('.article-wrapper').data('user-id');
-      }
-      
-      var this_url = '/' + $table + '/' + $id + '/articles/' + $article_id;
+      var this_url = '/articles/' + $article_id;
       var dataObject = {};
 
       dataObject['article'] = {};

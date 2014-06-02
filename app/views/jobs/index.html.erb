@@ -9,7 +9,9 @@
 
 		<% next if job.removed_users.include?(current_user) && @filter != 'removed' %>
 
-		<li><%= render 'job_listing_preview', locals: { job: job, counter: counter} %></li>
+		<li class="job-link">
+			<%= render 'job_listing_preview', locals: { job: job, counter: counter} %>
+		</li>
     
 		<div id="div-append-<%= job.id %>"></div>
 	<% end %>

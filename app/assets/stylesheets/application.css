@@ -9,6 +9,7 @@
  *= require chatroom
  *= require preview_description
  *= require preview_bcard
+ *= require job_action_items
  *= require forms
  *= require jquery.ui.all
  *= require_directory ./companies

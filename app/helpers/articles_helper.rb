@@ -21,9 +21,9 @@ module ArticlesHelper
     
     case section
     when 'title'
-      return '<h1>Put Title Here</h1>'
+      return '<h1>Title</h1>'
     when 'body'
-      return '<p>Put body here</p>'
+      return '<p>Body</p>'
     end
   end    
   
