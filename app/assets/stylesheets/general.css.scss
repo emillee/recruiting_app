@@ -55,8 +55,12 @@ div.main-content-wrapper {
 
   ul > li {
     position: relative;
-    height: 150px;
-    border-bottom: 5px solid rgba(0,0,0,.1);    
+    // height: 150px;
+    // border-bottom: 5px solid rgba(0,0,0,.1);    
+
+    a {
+      display: inline-block;
+    }
   }
 }
 

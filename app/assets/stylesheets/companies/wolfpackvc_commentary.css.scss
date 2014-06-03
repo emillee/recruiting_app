@@ -2,33 +2,7 @@ div.wolfpack-report {
 	margin-top: 25px;
 	width: 1050px;
 	background-color: #fdfdfd;
-	display: inline-block;
-
-	div.action-items {
-	  background-color: rgba(0,0,0,0.15); 
-	  line-height: 35px;
-
-	  span {
-	  	background-color: rgba(0,0,0,0.05);
-	  	background-color: none;
-	    color: black;
-	    padding-left: 20px;
-	    padding-right: 20px;
-	    font-size: 15px;
-	    display: inline-block;
-	    line-height: 35px;
-	  }
-
-	  a {
-	    color: gray;
-	    font-size: 15px;
-	    padding-left: 20px;
-	    padding-right: 20px;
-	    line-height: 35px;
-	    display: inline-block;
-	    border-right: 1px solid rgba(0,0,0,0.05);
-	  }
-	}		
+	display: inline-block;	
 
 	h2 {
 		font-size: 20px;

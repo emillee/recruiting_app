@@ -1,0 +1,72 @@
+div.preview-action-items {
+  background-color: rgba(0,0,0,.1);
+  width: 30px;
+  height: 50px;
+  line-height: 25px;
+  top: 5px;
+  right: 270px;
+  height: 142px;
+  position: absolute; 
+
+  &:hover {
+    background-color: rgba(0,0,0,.5); 
+  }
+  
+  span {
+    margin-left: 5px;
+  }
+
+  a:first-of-type {
+    margin-top: 5px;
+  }
+
+  .fa-bookmark {
+    margin-left: 2px;
+  }
+  
+  a.applied, a.view, a.forward, a.remove, a.save, a.viewed, a.saved {
+    color: rgb(141,141,141);
+    font-size: 17px; 
+    padding: 8px; 
+    display: block;
+    // padding-left: 7px;
+
+    &:hover {
+      color: #2c3e50;
+    }         
+  }  
+
+  a.viewed, a.saved, a.applied_already, a.removed_already {
+    color: #2ecc71;    
+    font-size: 17px; 
+    padding: 8px;           
+  }
+}
+
+
+
+div.action-items {
+  background-color: rgba(0,0,0,0.15); 
+  line-height: 35px;
+
+  span {
+    background-color: rgba(0,0,0,0.05);
+    background-color: none;
+    color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 15px;
+    display: inline-block;
+    line-height: 35px;
+  }
+
+  a {
+    color: gray;
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 35px;
+    display: inline-block;
+    border-right: 1px solid rgba(0,0,0,0.05);
+  }
+}

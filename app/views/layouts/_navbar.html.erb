@@ -31,7 +31,7 @@
 		<% end %>
 
 		<ul class="nav-cog-options hidden">
-			<% if current_user.is_member %>
+			<% if current_user.is_member || current_user.is_admin %>
 				<li>
 					<%= link_to 'Log Out', logout_url, method: :delete %>	
 					<i class="fa fa-power-off"></i> 

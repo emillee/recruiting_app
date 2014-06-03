@@ -10,15 +10,19 @@
 	</span>
 
 	<!-- MAIN PREVIEW SECTION -->
+
 	<div class="preview-description-wrapper left">	
-		
-		<h1 class="jobs-editable"
-			contenteditable= "<%= editable_if_admin(current_user) %>"
-			data-id="<%= job.id %>" 
-			data-table="<%= this_table %>"
-			data-model="<%= this_model %>"
-			data-attribute="title">
-			<%= "#{locals[:counter].to_s}" + ". " + ActionView::Base.full_sanitizer.sanitize(job.title.titleize) unless job.title.nil? %>
+		<h1>
+			<span><%= locals[:counter].to_s + ". " if locals[:counter] %></span>
+
+			<span class="jobs-editable"
+				contenteditable= "<%= editable_if_admin(current_user) %>"
+				data-id="<%= job.id %>" 
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-attribute="title">
+				<%= ActionView::Base.full_sanitizer.sanitize(job.title.titleize) unless job.title.nil? %>
+			</span>
 		</h1>	
 
 		<span class="article-text">
