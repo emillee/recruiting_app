@@ -6,7 +6,7 @@ nav.navbar-wrapper {
   top: 0;
   font-family: 'PT Serif', serif;
   font-size: 19px;
-  background-color: rgba(255,255,255,.5);
+  background-color: rgba(255,255,255,0.5);
   z-index: 9997;
   
   span.logo-top {  
@@ -66,13 +66,15 @@ nav.navbar-wrapper {
       }   
     }
     
-    i.fa-cog {
+    i.fa-cog, i.fa-caret-down {
       position: relative;
       font-size: 16px;
       background-color: white;
       padding: 9px;
       margin-left: 10px;
       cursor: pointer;
+      width: 15px;
+      text-align: center;
       
       &.selected {
         color: #BE2121;
@@ -85,7 +87,6 @@ nav.navbar-wrapper {
       right: 15px;
       top: 45px;
       width: 300px;
-      text-indent: 10px;
 
       li {
         position: relative;
@@ -95,15 +96,18 @@ nav.navbar-wrapper {
         }
 
         a {
+          display: inline-block;
+          width: 100%;
           font-size: 13px;  
-          padding: 5px;        
+          padding: 5px; 
+          text-indent: 8px;       
         }
 
         i {
           font-size: 13px;          
           position: absolute;
           right: 10px;
-          top: 13px;
+          top: 18px;
           cursor: pointer;
         }
       }

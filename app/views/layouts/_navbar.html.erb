@@ -17,17 +17,16 @@
 		<%#= link_to 'More +', '#', data: { no_turbolink: true } %>
 	</div>
 
-	<div class="session">			
+	<div class="session">
 		<% if current_user.guest %>
 			<%= link_to 'You are logged in as a Guest', '#', class: 'navbar-guest-a' %>
-			<i class="fa fa-cog"></i>
 		<% elsif current_user.is_member %>
-			<%= link_to current_user.fname, '#' %>
-			<i class="fa fa-cog"></i>
+			<%= link_to current_user.fname, '#' %>			
 		<% elsif current_user.is_admin %>
 				<%= link_to current_user.fname, '#' %>
-			<i class="fa fa-cog"></i>			
 		<% end %>
+		<i class="fa fa-cog"></i>
+		<i class="fa fa-caret-down hidden"></i>			
 
 		<ul class="nav-cog-options hidden">
 			<% if current_user.is_member || current_user.is_admin %>

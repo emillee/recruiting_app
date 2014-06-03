@@ -2,46 +2,9 @@ var nav_ready = function() {
 
   setUpNavDropdown();
 
-  function setUpNavDropdown() {
-    $('.fa-cog, .navbar-guest-a').click(function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      showNavDropDown();        
-    });
-  };
-
-  function showNavDropDown() {
-    $('.fa-cog').addClass('selected');
-    $('ul.nav-cog-options').removeClass('hidden');
-    setUpNavBlur();
-  };
-
-  function setUpNavBlur() {
-    setUpPropagators('ul.nav-cog-options');
-
-    $(document).click(function() {
-      $('ul.nav-cog-options').addClass('hidden');
-      $('.fa-cog').removeClass('selected');
-      $(document).off('click', setUpNavBlur);
-      setUpNavBlur();
-    });
-  };
-
-  // NAVBAR OPACITY ON SCROLL
-  $(window).scroll(function() {
-    if ($(window).scrollTop() > 25) {
-      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,1)');
-    };
-  });
-
-  $(window).scroll(function() {
-    if ($(window).scrollTop() < 25) {
-      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,.5)');
-    };
-  });
-
-  $('.nav-contact-us').on('click', function() {
-    event.preventDefault();
+  // show contact form
+  $('#contact-us-link').on('click', function(e) {
+    e.preventDefault();
     $.ajaxSetup({ cache: false });
 
     var form_url = '/contact_us'
@@ -58,6 +21,33 @@ var nav_ready = function() {
     });
   });
 
+  function setUpNavDropdown() {
+    $('.fa-cog, .navbar-guest-a').click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      showNavDropDown();        
+    });
+  };
+
+  function showNavDropDown() {
+    $('i.fa-cog').addClass('hidden');
+    $('i.fa-caret-down').removeClass('hidden');
+    $('i.fa-caret-down').addClass('selected');
+    $('ul.nav-cog-options').removeClass('hidden');
+    setUpNavBlur();
+  };  
+
+   function setUpNavBlur() {
+    $(document).click(function() {
+      $('ul.nav-cog-options').addClass('hidden');
+      $('.fa-cog').removeClass('hidden');
+      $('.fa-caret-down').removeClass('selected');
+      $('.fa-caret-down').addClass('hidden');
+      $(document).off('click', setUpNavBlur);
+      setUpNavBlur();
+    });
+  };   
+
   function setUpBlurHandler(xIcon, propagatorSelector) {
     setUpPropagators(propagatorSelector);
     
@@ -69,12 +59,6 @@ var nav_ready = function() {
       undoModalRemoveItem(propagatorSelector);
     });
   };
-
-  function setUpPropagators(propagatorSelector) {
-    $(propagatorSelector).children().click(function(e) {
-      e.stopPropagation();
-    });
-  };
       
   function addModalToBody() {
     $('body').append('<div class="modal-background"></div>');      
@@ -84,6 +68,19 @@ var nav_ready = function() {
     $(propagatorSelector).hide();
     $('body').children('.modal-background').remove();
   };
+
+  // NAVBAR OPACITY ON SCROLL
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 25) {
+      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,1)');
+    };
+  });
+
+  $(window).scroll(function() {
+    if ($(window).scrollTop() < 25) {
+      $('nav.navbar-wrapper').css('background-color', 'rgba(255,255,255,.5)');
+    };
+  });
 
 };
 
