@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 		@articles = @user.articles.order('updated_at DESC')
 		@recent_articles = @articles.limit(3)
     @article = Article.new
+    @skill = Skill.new
 	end
 
 	def update
