@@ -13,8 +13,6 @@
 			</div>
 		</div>
 		
-		
-		
 		<div class="sidebar-middle">
 			<!-- KEYWORDS -->
 			<%# if !locals[:keywords].nil? && !locals[:keywords].empty? %>
@@ -44,56 +42,7 @@
 					<% end %>
 				</ul>
 			</div>
-
-<%
-=begin %>
-			<!-- SUB DEPT -->	
-			<div class="wrapper">
-				<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
-					Who do:
-					<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:sub_dept] %>"></i>
-					<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:sub_dept] %>"></i>
-				</h1>
-				<ul class="job-filters">
-					<% return_sub_depts.each do |sub| %>
-						<% checked = is_setting_checked?('sub_dept', sub) %>
-						<% is_hidden = (current_user.job_settings[:dept] &&
-						 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
-						<li class="job-sidebar <%= checked ? 'selected' : is_hidden %>">
-							<%= label_tag sub %>
-							<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
-							<i class="fa fa-angle-right"></i>
-							<i class="fa fa-times-circle"></i>								
-						</li>
-					<% end %>
-				</ul>
-			</div>
-
-			
-			<!-- THIS SHOULD MATCH PEOPLE BASED ON INTENT -->
-			<div class="wrapper">
-				<h1 class="sub_dept <%= "hidden" unless return_sub_depts.any? %>">
-					That:
-					<i class="fa fa-caret-down <%= 'hidden' if current_user.job_settings[:sub_dept] %>"></i>
-					<i class="fa fa-caret-right <%= 'hidden' unless current_user.job_settings[:sub_dept] %>"></i>
-				</h1>
-				<ul class="job-filters">
-					<% return_sub_depts.each do |sub| %>
-						<% checked = is_setting_checked?('sub_dept', sub) %>
-						<% is_hidden = (current_user.job_settings[:dept] &&
-						 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>
-						<li class="job-sidebar <%= checked ? 'selected' : is_hidden %>">
-							<%= label_tag sub %>
-							<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
-							<i class="fa fa-angle-right"></i>
-							<i class="fa fa-times-circle"></i>								
-						</li>
-					<% end %>
-				</ul>
-			</div>	
-<%
-=end %>					
-					
+	
 		</div><!-- sidebar-middle -->
 		
 		<%= submit_tag "Submit" %>
