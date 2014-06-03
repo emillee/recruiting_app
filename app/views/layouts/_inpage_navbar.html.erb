@@ -1,0 +1,34 @@
+<div class="in-page-navbar">
+
+	<% if controller_name == 'users' && action_name == 'show' %>
+		<%= link_to 'Post an Article', new_article_url, id: 'new-article-post' %>
+	<% end %>
+
+
+	<% if controller_name == 'jobs' %>
+		<%= link_to 'Post a job', '#', id: 'new-job-post' %>
+
+		<div class="job-actions-wrapper right">
+			<%= link_to ' Applied', '#', class: 'fa fa-check', data: { filter: 'applied' } %>	
+			<%= link_to ' Bookmarked', '#', class: 'fa fa-bookmark', data: { filter: 'interested' } %>
+			<%= link_to ' Removed', '#', class: 'fa fa-times', data: { filter: 'removed' }  %>
+			<%= link_to ' Back', jobs_url, class: 'fa fa-times-circle' %>
+		</div>
+	<% end %>
+	
+	<% if controller_name == 'articles' %>
+		<%= link_to 'Post an Article', new_article_url, id: 'new-article-post' %>
+	<% end %>
+
+	<% if controller_name == 'companies' %>
+		<%= link_to 'Next', company_url(@company, next: true), id: 'next' %>
+
+		<div class="new-job-form inline-block right">
+			<%= form_for([@company, @job]) do |f| %>
+				<%= f.text_field :link, class: "hello", placeholder: "Post New Job" %>
+				<%= f.submit "Create New Job" %>
+			<% end %>
+		</div>
+	<% end %>
+
+</div>

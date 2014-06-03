@@ -1,3 +1,5 @@
+<%= render "./layouts/inpage_navbar" %>
+
 <% @articles.each do |article| %>
 	<%= render 'article_preview', locals: { object: current_user, article: article, this_table: 'users' } %>
 <% end %>

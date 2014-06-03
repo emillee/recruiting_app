@@ -81,8 +81,7 @@
 				<%= (user.location_from.nil? || user.location_from.empty?) ? 'Location' : user.location_from %>		  
 			</h2>
 		</div>	
-
-    <%#= link_to "Build Profile", edit_user_url(current_user), class: 'edit', data: { id: current_user.id } %>
+		
   </div>
 	
 	<% if user.avatar.exists? %>
