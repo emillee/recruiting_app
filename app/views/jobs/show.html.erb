@@ -1,8 +1,6 @@
 <% user_id = current_user ? current_user.id : nil %>
 <% job = @job %>
 
-<%= render "./layouts/inpage_navbar" %>
-
 <% applied_class = already_applied?(job) ? "applied_already fa fa-check" : "applied fa fa-check" %>				
 <% saved_class = has_saved_job?(job) ? "saved fa fa-bookmark" : "save fa fa-bookmark" %>
 <% removed_class = already_removed?(job) ? "removed_already fa-times-circle-o" : "remove fa fa-times" %>
@@ -11,6 +9,7 @@
 	<li>
 		<span class="group">
 			<%= render 'job_listing_preview', locals: { job: job } %>
+			<%= render "./layouts/inpage_navbar" %>
 		</span>
 
 		<div class="wolfpack-report-wrapper">
@@ -18,3 +17,5 @@
 		</div>
 	</li>
 </ul>
+
+

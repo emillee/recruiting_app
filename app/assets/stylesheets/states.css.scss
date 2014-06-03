@@ -8,6 +8,11 @@
 .visibility-visible { visibility: visible; }
 .inline-block { display: inline-block; }
 
+span.opaque {
+  -webkit-transition: opacity 0.25s ease-out;
+  opacity: 0;
+}
+
 .modal-background {
   height: 100%;
   width: 100%;

@@ -17,9 +17,14 @@
 		<% removed_class = already_removed?(job) ? "removed_already fa-times-circle-o" : "remove fa fa-times" %>		
 
 		<li class="job-link">
+
+			<%= link_to '', '#', class: 'forward fa fa-mail-forward', data: { id: job.id } %>
+
 			<%= render 'job_listing_preview', locals: { job: job, counter: counter} %>
 
 			<div class="preview-action-items">	
+				<%= link_to '', job.link, class: 'fa fa-external-link-square', target: '_blank' %>
+
 				<% if already_applied?(job) %>
 					<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
 							class: 'applied_already fa fa-check', remote: true, method: :delete %>
@@ -44,7 +49,6 @@
 							class: "remove fa fa-times", remote: true, method: :post %>
 				<% end %>
 
-				<%= link_to '', '#', class: 'forward fa fa-mail-forward', data: { id: job.id } %>	
 			</div>
 		</li>
     

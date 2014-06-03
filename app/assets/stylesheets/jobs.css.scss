@@ -1,6 +1,18 @@
+li.job-link {
+  .fa-mail-forward {  
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    left: 10px;
+    font-size: 14px;
+    color: rgba(0,0,0,0.2);; 
+    padding: 5px;
+    background-color: rgba(0,0,0,0.02); 
+  }    
+}
+
 div.preview-action-items {
-  background-color: rgba(0,0,0,.1);
-  width: 30px;
+  width: 34px;
   height: 50px;
   line-height: 25px;
   top: 5px;
@@ -17,28 +29,28 @@ div.preview-action-items {
   }
 
   a:first-of-type {
-    margin-top: 5px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    // margin-top: 8px;
   }
 
-  .fa-bookmark {
-    margin-left: 2px;
-  }
-  
-  a.applied, a.view, a.forward, a.remove, a.save, a.viewed {
-    color: rgb(141,141,141);
+  a.applied, a.view, a.forward, a.remove, a.save, a.viewed, a.fa-external-link-square,
+  a.applied_already, a.removed_already, a.saved {
     font-size: 17px; 
-    padding: 8px; 
     display: block;
-
-    &:hover {
-      color: #2c3e50;
-    }         
+    height: 34px;
+    line-height: 34px;
+    width: 34px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0.1);
+  }  
+  
+  a.applied, a.view, a.forward, a.remove, a.save, a.viewed, a.fa-external-link-square {
+    color: rgb(141,141,141);      
   }  
 
   a.viewed, a.saved, a.applied_already, a.removed_already {
-    color: #2ecc71;    
-    font-size: 17px; 
-    padding: 8px;           
+    color: #2ecc71;                
   }
 }  
 

@@ -55,12 +55,15 @@ div.main-content-wrapper {
 
   ul > li {
     position: relative;
-    display: inline-block;    
+    display: inline-block;  
+
+    a { 
+      display: inline-block; 
+    }  
   }
 }
 
 // MIXINS
-
 h1.dark-banner {
   padding: 5px 20px;
   font-size: 26px;

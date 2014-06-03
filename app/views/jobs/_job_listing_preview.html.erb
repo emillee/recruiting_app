@@ -3,6 +3,7 @@
 <% this_table = 'jobs' %>
 <% this_model = this_table.singularize %>
 
+<%= link_to job_url(job) do %>
 <span class="left">
 	<%= render './cards/company_bcard', locals: { company: job.listing_company } %>	
 </span>
@@ -18,9 +19,7 @@
 			data-model="<%= this_model %>"
 			data-attribute="title">
 			<%= sanitize_title(job.title) unless job.title.nil? %>
-		</span>
-
-		<i class="fa fa-external-link"></i>
+		</span>	
 	</h1>	
 
 	<span class="article-text">
@@ -54,5 +53,4 @@
 
 	<%#= link_to 'More', company_url(job.listing_company) %>
 </div>		
-
-
+<% end %>
