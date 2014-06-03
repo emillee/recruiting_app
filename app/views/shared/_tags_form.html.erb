@@ -1,0 +1,26 @@
+<% article = locals[:article] %>
+
+<div class="add-tags-wrapper">
+	<div class="existing-tags <%= article.tags.any? ? '' : 'hidden' %>">
+		<ul class="article-tags-<%= article.id %> article-tags">
+			<h2 class="left">Tags:</h1>
+			<% article.tags.each do |tag| %>
+				<li class=" existing-tag-li left" data-id="<%= find_tagging_id(article, tag) %>">
+					<%= tag.tag_name %>
+					<i class="fa fa-times-circle"></i>
+				</li>
+			<% end %>
+		</ul>		
+	</div>
+	
+	<% @tagging = Tagging.new %>
+	<%= form_for @tagging, url: taggings_url, html: { multipart: true, 'data-article-id' => "#{article.id}" }, remote: true do |f| %>
+	
+		<% empty_arr = [] %>
+		<% empty_arr << @tagging.tag.attributes unless @tagging.tag.nil? %>
+		<%= f.hidden_field :article_id, value: article.id %>
+		<i class="fa fa-tag"></i>
+		<%= f.text_field :tag_id, placeholder: 'Add Tag', class: 'add-tag', 'data-pre' => empty_arr.to_json %>
+		<%= f.submit 'New Tagging' %>
+	<% end %>
+</div>

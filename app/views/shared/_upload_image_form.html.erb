@@ -1,8 +1,6 @@
 <% object = locals[:obj] %>
 <% article = locals[:article]%>
 
-<%# url_path = object.class.to_s.singularize.downcase %>
-
 <div class="uploader">
 	<span class="insert-image-span">
 		<i class="fa fa-picture-o"></i>
@@ -14,35 +12,5 @@
 		<%= form.file_field :image_file %>
 		<%= form.submit "Upload Image" %>
 	<% end %>
-	
-<% 
-=begin %>
-	<% if controller_name == 'companies' %>
-
-		<%= form_for object, url: company_url(object), html: { multipart: true } do |form| %>
-			<%= form.file_field :snapshots, id: "#{object.id}" %>
-			<input type="hidden" name="company[article_id]" value=<%= article.id %>>
-			<%= form.submit 'Upload Image' %>
-		<% end %>		
-		
-	<% elsif controller_name == 'investors' %>
-
-		<%= form_for object, url: investor_url(object), html: { multipart: true } do |form| %>
-			<%= form.file_field :snapshots, id: "#{object.id}" %>
-			<input type="hidden" name="investor[article_id]" value=<%= article.id %>>
-			<%= form.submit 'Upload Image' %>
-		<% end %>		
-
-	<% elsif controller_name == 'users' %>
-
-		<%= form_for object, url: user_url(object), html: { multipart: true } do |form| %>
-			<%= form.file_field :snapshots, id: "#{object.id}" %>
-			<input type="hidden" name="user[article_id]" value=<%= article.id %>>
-			<%= form.submit 'Upload Image' %>
-		<% end %>		
-
-	<% end %>
-<%
-=end %>	
 		
 </div>
