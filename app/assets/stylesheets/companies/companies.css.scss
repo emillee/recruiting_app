@@ -1,53 +1,7 @@
-div.companies-wrapper {
-  position: absolute;
-  top: 75px;
-  left: 300px;
-  margin-bottom: 30px;
-
-  #edit-skills {
-    color: yellow;
-    top: 200px;
-  }
-
-  #next {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    line-height: 50px;
-    text-align: center;
-    width: 50px;
-    color: white;
-    background-color: black;
-    z-index: 9999;
-  }
-  
-  form.new_job {
-    height: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 100%;
-    background-color: black;
-
-    input[type='text'] {
-      border: none;
-      margin-left: 15px;
-      width: 200px;
-      text-indent: 10px;
-    }
-    
-    input[type='submit'] {
-      border: none;
-      height: 15px;
-      line-height: 15px;
-    }
-        
-    input[type='text'], input[type='submit'] {
-      float: left;
-    }
-  }
   
   ul.companies-posts {
-    width: 990px;
+    width: 1050px;
+    margin-bottom: 30px;    
 
     li.company-wrapper {
       height: 100%;
@@ -143,37 +97,6 @@ div.companies-wrapper {
             padding-bottom: 0;
           }
           
-          &:nth-of-type(1) {
-            background-color: rgb(243,249,245);
-          }
-
-          &:nth-of-type(2) {
-            background-color: rgb(243,249,245);         
-          }
-
-          &:nth-of-type(3) {
-            background-color: rgb(243,249,245);
-          }
-
-          &:nth-of-type(4){
-            background-color: rgb(243,249,245);
-          }
-
-          &:nth-of-type(5) {
-            background-color: rgb(243,249,245);
-          } 
-          
-          &:nth-of-type(6) {
-            background-color: rgb(243,249,245);
-          }
-          
-          &:nth-of-type(7) {
-            background-color: rgb(243,249,245);
-          }                 
-                      
-          &:nth-of-type(8) {
-            background-color: rgb(243,249,245);
-          }                             
         }        
       }
     }
@@ -232,7 +155,7 @@ div.companies-wrapper {
       }
     }
   }
-}
+
 
 
 

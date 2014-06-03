@@ -8,41 +8,19 @@
 	<%= render 'job_action_items', locals: { job: job } %>
 
 	<h2>The Big Idea</h2>
-	<p>
-		<%= company.the_big_idea || '-' %>
-	</p>
+	<p><%= company.the_big_idea || '-' %></p>
 
 	<h2>Scale: <%= company.num_employees || 'Pending' %></h2>
-	<p>
-		<%= company.size_commentary || '-' %>
-	</p>
+	<p><%= company.size_commentary || '-' %></p>
 
 	<h2>Team: <%= company.team_soundbite || 'Pending' %></h2>
-	<p>
-		<%= company.team_commentary || '-' %>
-	</p>
+	<p><%= company.team_commentary || '-' %></p>
 
 	<h2>Funding: <%= company.total_money_raised || 'NA' %></h2>
-	<p>
-		<%= company.funding_commentary || '-' %>
-	</p>
+	<p><%= company.funding_commentary || '-' %></p>
 
 	<h2>Outlook: <%= company.outlook || '-' %></h2>
-	<p>
-		<%= company.outlook_commentary || '-' %>
-	</p>
-
-<%
-=begin %>
-	<h2>References:</h2>
-	<% if company.references.none? %>
-		<p>Pending</p>
-		<%= link_to 'Provide a reference!', '#' %>
-	<% else %>
-		<%= company.references %>
-	<% end %>
-<% 
-=end %>
+	<p><%= company.outlook_commentary || '-' %></p>
 
 	<h2>Additional</h2>
 	<p><%= company.neighborhood %></p>

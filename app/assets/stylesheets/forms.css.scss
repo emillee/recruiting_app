@@ -33,3 +33,26 @@
   }
 }
 }
+
+form.new_job {
+  height: 20px;
+  width: 100%;
+  background-color: black;
+
+  input[type='text'] {
+    border: none;
+    margin-left: 15px;
+    width: 200px;
+    text-indent: 10px;
+  }
+  
+  input[type='submit'] {
+    border: none;
+    height: 15px;
+    line-height: 15px;
+  }
+      
+  input[type='text'], input[type='submit'] {
+    float: left;
+  }
+}

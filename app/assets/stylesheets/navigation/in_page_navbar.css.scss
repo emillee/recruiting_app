@@ -6,6 +6,22 @@
   line-height: 13px;  
 }
 
+#edit-skills {
+  color: yellow;
+  top: 200px;
+}
+
+#next {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  text-align: center;
+  width: 50px;
+  color: white;
+  background-color: black;
+  z-index: 9999;
+}
+
 .in-page-navbar {
   height: 30px;
   line-height: 30px;
