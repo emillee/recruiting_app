@@ -11,9 +11,13 @@ class Article < ActiveRecord::Base
 
   has_many :images
 
-  def first_fulltext_sentence
+  def first_sentence
   	return nil if self.body.nil?
   	self.body.split(' ')[0..30].join(' ')
+  end
+
+  def author 
+    self.users.first
   end
 
 end

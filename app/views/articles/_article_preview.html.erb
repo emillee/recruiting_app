@@ -1,17 +1,16 @@
 <% article = locals[:article] %>
 
 <div class="preview-description-wrapper article left">	
-	
 	<span class="left">
 		<%= raw(article.title) %>
 	</span>
-	<span class="article-text left">
-		<%= raw(article.first_fulltext_sentence) %>
-	</span>
 
+	<span class="article-text left">
+		<%= raw(article.first_sentence) %>
+	</span>
 </div>
 
 <span class="left">
-	<%#= render './users/cards/bcard', locals: { user: current_user } %>
+	<%= render './users/user_bcard', locals: { user: article.author } if article.author %>
 </span>
 	

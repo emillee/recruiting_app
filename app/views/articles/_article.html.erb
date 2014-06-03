@@ -5,13 +5,14 @@
 	<% section_class = normalize_string(article.tags[0].tag_name) %>
 <% end %>
 
-<div class="editor-class-wrapper article-wrapper <%= section_class %> <%= insert_tag_ids(article) %>"
-	data-article-id="<%= article.id %>"
+<div class="article-wrapper" 
+	data-article-id="<%= article.id %>" 
 	data-table="<%= this_table %>">	
 
 	<%= render './shared/editor' %>
 
-	<% section_title = add_placeholders_if_nil('title', article.title) %>			
+	<% section_title = add_placeholders_if_nil('title', article.title) %>	
+
 	<div class="title" contenteditable="true" data-placeholder="Enter Title">
 		<%= raw(section_title) %>
 	</div>
@@ -33,8 +34,8 @@
  	<div class="admin-options">
 		<i class="fa fa-cogs"> Additional Options</i>
 		<%= link_to 'Delete Article', article_url(article), method: :delete, confirm: 'Sure?', class: 'delete-article-link' %>		
-		<%#= render './shared/tags_form', locals: { article: article } %>
-		<%#= render './shared/social_sharing_icons', locals: { article: article } %>
+		<%= render './shared/tags_form', locals: { article: article } %>
+		<%= render './shared/social_sharing_icons', locals: { article: article } %>
 	</div>
 
 </div>
