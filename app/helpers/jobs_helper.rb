@@ -1,5 +1,9 @@
 module JobsHelper
 
+  def sanitize_title(title)
+    ActionView::Base.full_sanitizer.sanitize(title).titleize
+  end
+
   # NEEDS REFACTORING - EAGER LOAD THIS
   def return_subcategory(prev_category, target_category)
     previous_category_array = current_user.job_settings[prev_category] 

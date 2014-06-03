@@ -3,57 +3,56 @@
 <% this_table = 'jobs' %>
 <% this_model = this_table.singularize %>
 
-<%= link_to job_url(job) do %>
+<span class="left">
+	<%= render './cards/company_bcard', locals: { company: job.listing_company } %>	
+</span>
 
-	<span class="left">
-		<%= render './cards/company_bcard', locals: { company: job.listing_company } %>	
-	</span>
+<div class="preview-description-wrapper left">	
+	<h1>
+		<span><%= locals[:counter].to_s + ". " if locals[:counter] %></span>
 
-	<div class="preview-description-wrapper left">	
-		<h1>
-			<span><%= locals[:counter].to_s + ". " if locals[:counter] %></span>
-
-			<span class="jobs-editable"
-				contenteditable= "<%= editable_if_admin(current_user) %>"
-				data-id="<%= job.id %>" 
-				data-table="<%= this_table %>"
-				data-model="<%= this_model %>"
-				data-attribute="title">
-				<%= ActionView::Base.full_sanitizer.sanitize(job.title.titleize) unless job.title.nil? %>
-			</span>
-		</h1>	
-
-		<span class="article-text">
-			<% if job.description %>
-				<p><%= job.description.split(' ')[0..35].join(' ') unless job.description.nil? %>...</p>
-			<% else %>
-				<% if job.full_text %>
-					<p>	<%= job.full_text.split(' ')[0..35].join(' ') unless job.full_text.nil? %>...</p>
-				<% end %>
-			<% end %>
+		<span class="jobs-editable"
+			contenteditable= "<%= editable_if_admin(current_user) %>"
+			data-id="<%= job.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="title">
+			<%= sanitize_title(job.title) unless job.title.nil? %>
 		</span>
 
-		
-	</div>
+		<i class="fa fa-external-link"></i>
+	</h1>	
 
-	<!-- COMPANY OVERVIEW -->
-	<div class="preview-bcard-wrapper left">
-		<h1>About <%= job.listing_company.name %></h1>
-
-		<p class="jobs-editable"
-			contenteditable= "<%= editable_if_admin(current_user) %>"
-			data-id="<%= job.listing_company.id %>" 
-			data-table="companies"
-			data-model="company"
-			data-attribute="overview">		
-			<% if job.listing_company.overview %>
-				<%= job.listing_company.overview %>
-			<% else %>
-				<%= 'Pending' %>
+	<span class="article-text">
+		<% if job.description %>
+			<p><%= job.description.split(' ')[0..35].join(' ') unless job.description.nil? %>...</p>
+		<% else %>
+			<% if job.full_text %>
+				<p>	<%= job.full_text.split(' ')[0..35].join(' ') unless job.full_text.nil? %>...</p>
 			<% end %>
-		</p>
+		<% end %>
+	</span>
+	
+</div>
 
-		<%#= link_to 'More', company_url(job.listing_company) %>
-	</div>				
+<!-- COMPANY OVERVIEW -->
+<div class="preview-bcard-wrapper left">
+	<h1>About <%= job.listing_company.name %></h1>
 
-<% end %>
+	<p class="jobs-editable"
+		contenteditable= "<%= editable_if_admin(current_user) %>"
+		data-id="<%= job.listing_company.id %>" 
+		data-table="companies"
+		data-model="company"
+		data-attribute="overview">		
+		<% if job.listing_company.overview %>
+			<%= job.listing_company.overview %>
+		<% else %>
+			<%= 'Pending' %>
+		<% end %>
+	</p>
+
+	<%#= link_to 'More', company_url(job.listing_company) %>
+</div>		
+
+

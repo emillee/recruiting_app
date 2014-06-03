@@ -24,12 +24,11 @@ div.preview-action-items {
     margin-left: 2px;
   }
   
-  a.applied, a.view, a.forward, a.remove, a.save, a.viewed, a.saved {
+  a.applied, a.view, a.forward, a.remove, a.save, a.viewed {
     color: rgb(141,141,141);
     font-size: 17px; 
     padding: 8px; 
     display: block;
-    // padding-left: 7px;
 
     &:hover {
       color: #2c3e50;
@@ -41,7 +40,7 @@ div.preview-action-items {
     font-size: 17px; 
     padding: 8px;           
   }
-}
+}  
 
 div.action-items {
   background-color: rgba(0,0,0,0.15); 
