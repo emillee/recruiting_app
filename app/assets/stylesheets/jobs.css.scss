@@ -30,7 +30,6 @@ div.preview-action-items {
 
   a:first-of-type {
     border-top: 1px solid rgba(0,0,0,0.05);
-    // margin-top: 8px;
   }
 
   a.applied, a.view, a.forward, a.remove, a.save, a.viewed, a.fa-external-link-square,
@@ -62,8 +61,8 @@ div.action-items {
     background-color: rgba(0,0,0,0.05);
     background-color: none;
     color: black;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 15px;
     display: inline-block;
     line-height: 35px;
@@ -72,8 +71,8 @@ div.action-items {
   a {
     color: gray;
     font-size: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     line-height: 35px;
     display: inline-block;
     border-right: 1px solid rgba(0,0,0,0.05);

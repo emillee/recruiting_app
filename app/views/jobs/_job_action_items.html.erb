@@ -7,9 +7,19 @@
                       
 <div class="action-items">  
   <span>To Apply:</span>
-  <%= link_to '  Direct on Company Website', job.link, class: 'fa fa-external-link' %>
-  <%= link_to '  Through Wolfpack', '#', class: 'fa fa-paw' %>
-  <%= link_to '  Save for Later', '#', class: 'fa fa-bookmark' %>
-  <%= link_to '  Not Interested, Remove This', '#', class: 'fa fa-times' %>
+  <%= link_to '  Direct on Company Website', job.link, 
+  	class: 'fa fa-external-link-square', target: '_blank' %>
+  
+  <%= link_to '  Get Preapproved from Wolfpack', '#', class: 'fa fa-paw' %>
+
+	<% if has_saved_job?(job) %>
+		<%= link_to "  I'm Interested, Save for Later", user_jobs_url(user_id: user_id, saved_job_id: job.id), class: "saved fa fa-bookmark", remote: true, method: :delete %>
+	<% else %>
+		<%= link_to "  Save for Later", user_jobs_url(user_id: user_id, 		saved_job_id: job.id), class: "save fa fa-bookmark", remote: true, method: :post %>
+	<% end %>
+
+	<%= link_to '  Not Interestd, Remove', user_jobs_url(user_id: user_id, 
+			removed_job_id: job.id), class: "remove fa fa-times", remote: true, method: :post %>
+
 </div>
 
