@@ -1,5 +1,5 @@
 <% company = locals[:company] %>
-<% this_table = locals[:this_table] %>
+<% this_table = 'companies' %>
 <% this_model = this_table.singularize %>
 
 <div class="company-stats">
@@ -69,6 +69,7 @@
 		<!-- <h3><%#= best_in_place company, :career_page_link %></h3> -->
 		<%= link_to "Go to #{company.name}'s career page", company.career_page_link, target: '_blank' %>
 	<% end %>
+	
 </div><!-- company-stats -->
 
 

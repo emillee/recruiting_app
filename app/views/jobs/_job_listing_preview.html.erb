@@ -3,13 +3,11 @@
 <% this_table = 'jobs' %>
 <% this_model = this_table.singularize %>
 
-<!-- COMPANY BUSINESS CARD -->
 <%= link_to job_url(job) do %>
-	<span class="left">
-		<%= render './companies/company_bcard', locals: { company: job.listing_company } %>	
-	</span>
 
-	<!-- MAIN PREVIEW SECTION -->
+	<span class="left">
+		<%= render './cards/company_bcard', locals: { company: job.listing_company } %>	
+	</span>
 
 	<div class="preview-description-wrapper left">	
 		<h1>

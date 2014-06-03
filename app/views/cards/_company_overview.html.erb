@@ -4,13 +4,13 @@
 
 <div class="company-overview">
 	<h1><%= link_to "#{company.name}", company_url(company) %></h1>
-	<!-- (ID: <%= company.id %>) -->
-	<p contenteditable="true"
+	
+	<p class="companies-editable"
+		contenteditable="true"
 		data-id="<%= company.id %>" 
 		data-table="<%= this_table %>"
 		data-model="<%= this_model %>"
-		data-attribute="overview"
-		class="companies-editable">
+		data-attribute="overview">
 		<%= (company.overview.nil? || company.overview.empty?) ? '-' : company.overview %>
 	</p>
 </div>

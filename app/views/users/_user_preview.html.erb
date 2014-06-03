@@ -4,7 +4,7 @@
 
 <div class="profile-card-positions group">
 
-<%= render './companies/company_bcard', locals: { company: user.employer, user: user }%>
+<%= render './cards/company_bcard', locals: { company: user.employer, user: user }%>
 
 <div class="intro" 
 	contenteditable="<%= editable_if_admin(user) %>"

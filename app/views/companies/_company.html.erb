@@ -2,9 +2,9 @@
 <% this_table = "companies" %>
 
 <div class="company-top-wrapper group">
-	<%= render 'companies/company_bcard', locals: { company: company } %>
-	<%= render 'companies/cards/overview', locals: { company: company, this_table: this_table } %>
-	<%= render 'companies/cards/stats', locals: { company: company, this_table: this_table } %>
+	<%= render './cards/company_bcard', locals: { company: company } %>
+	<%= render './cards/company_overview', locals: { company: company } %>
+	<%= render './cards/company_stats', locals: { company: company } %>
 </div>
 
 <%= render 'nav_and_sections', locals: { company: company, this_table: this_table } %>
