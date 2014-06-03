@@ -1,33 +1,23 @@
-<!-- <%= render 'sidebar' %> -->
-
-<!-- <div class="jobs-wrapper">
-	<ul class="job-posts"> -->
-		<% @companies.each do |company| %>
-			<table class="jobs-table">
-				<h1>company: <%= company.name %></h1>
-				<% company.job_listings.each do |job| %>
-					<tr>
-						<th>title</th>
-						<th>primary_dept</th>
-						<th>secondary_dept: </th>
-						<th>years: </th>
-					</tr>
-					
-					<tr>
-						<td><%= job.title %></td>
-						<td><%= job.dept %></td>
-						<td><%= job.sub_dept %></td>
-						<td><%= job.years_exp %></td>
-					</tr>
-					
-				<% end %>
+<% @companies.each do |company| %>
+	<table class="jobs-table">
+		<h1>company: <%= company.name %></h1>
+		<% company.job_listings.each do |job| %>
+			<tr>
+				<th>title</th>
+				<th>primary_dept</th>
+				<th>secondary_dept: </th>
+				<th>years: </th>
+			</tr>
 			
-			<%= button_to "Add Job", company_jobs_url(company) %>
+			<tr>
+				<td><%= job.title %></td>
+				<td><%= job.dept %></td>
+				<td><%= job.sub_dept %></td>
+				<td><%= job.years_exp %></td>
+			</tr>
+			
 		<% end %>
-				
-	<!-- </ul>
 	
-</div>
-
-<div class="jobs-background"></div>
-<div class="jobs-background-overlay"></div> -->
+	<%= button_to "Add Job", company_jobs_url(company) %>
+<% end %>
+				

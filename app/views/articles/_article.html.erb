@@ -11,8 +11,6 @@
 
 	<%= render './shared/editor' %>
 
-
-	
 	<% section_title = add_placeholders_if_nil('title', article.title) %>			
 	<div class="title" contenteditable="true" data-placeholder="Enter Title">
 		<%= raw(section_title) %>
