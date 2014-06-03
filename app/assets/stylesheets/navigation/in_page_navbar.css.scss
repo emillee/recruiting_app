@@ -39,6 +39,8 @@
     display: inline-block;
     z-index: 2;
     height: 30px;
+    position: absolute;
+    right: 0;
 
     a {
       @include link-style;
@@ -49,7 +51,8 @@
       }
       
       &:hover {
-        background-color: rgba(41,128,185,.65);      
+        background-color: rgba(41,128,185,.65);  
+        height: 8px;    
       }
       
       &.selected {

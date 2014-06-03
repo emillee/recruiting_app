@@ -69,15 +69,13 @@ var ready_jobs = function() {
         e.stopPropagation();
       });     
     };
-
-
   
     // ADD SELECTED CLASS TO JOB NAVBAR
     $('.job-actions-wrapper').on('click', '.fa-check, .fa-bookmark, .fa-times', function(e) {
       e.preventDefault();
       addModalToBody();
       $(this).addClass('selected');
-      $(this).css('z-index', '2');
+      $('.job-actions-wrapper').css('z-index', '2');
       var $filter = $(this).data('filter');
       var $url = "/jobs/?" + "filter=" + $filter;
       

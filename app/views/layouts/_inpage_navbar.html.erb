@@ -9,7 +9,7 @@
 	<% if controller_name == 'jobs' %>
 		<%= link_to 'Post a job', '#', id: 'new-job-post' %>
 
-		<div class="job-actions-wrapper right">
+		<div class="job-actions-wrapper">
 			<%= link_to ' Applied', '#', class: 'fa fa-check', data: { filter: 'applied' } %>	
 			<%= link_to ' Bookmarked', '#', class: 'fa fa-bookmark', data: { filter: 'interested' } %>
 			<%= link_to ' Removed', '#', class: 'fa fa-times', data: { filter: 'removed' }  %>
