@@ -119,6 +119,7 @@ class JobsController < ApplicationController
   end       
 
   def filtered_jobs(filter)
+    @filter = filter
     case filter
     when 'applied'
       return current_user.jobs_applied.page(params[:page]).per(10).order('years_exp DESC')
