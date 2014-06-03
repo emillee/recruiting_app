@@ -7,6 +7,7 @@
  *= require session
  *= require jobs
  *= require article
+ *= require users
  *= require chatroom
  *= require preview_description
  *= require preview_bcard
@@ -14,8 +15,7 @@
  *= require jquery.ui.all
  *= require_directory ./companies
  *= require_directory ./navigation  
- *= require_directory ./sidebar  
- *= require_directory ./users
+ *= require_directory ./sidebar 
  *= require_directory ./shared
  *= require_self 
 */

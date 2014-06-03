@@ -1,17 +1,10 @@
-<%= render './jobs/index' %>
-
 <div class="modal-background"></div>
 
 <div class="session-form">
-
 	<%= form_for(:session, url: session_url) do |f| %>
 
 		<%#= render 'shared/errors', object: f.object %>
-		<%= render 'shared/flash' %>		
-
-		<!-- <span class="social guest"> -->
-			<%#= link_to "Sign in as Guest", users_url, method: :post %>
-		<!-- </span>		 -->
+		<%#= render 'shared/flash' %>		
 
 		<div class="login-wrap">
 			<h1>Returning Members:</h1>
@@ -35,6 +28,5 @@
 		</div>
 
 	<% end %>
-
 </div>
 

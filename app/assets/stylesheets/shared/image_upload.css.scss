@@ -39,7 +39,6 @@
   .uploader-logo {
     cursor: pointer;
     z-index: 9998;
-    di
     
     .insert-image-span {
       i {
@@ -74,7 +73,7 @@
 }
 
 // USER BUSINESS CARD
-.business-card {
+.business-card-wrapper {
   &:hover {
     .uploader {
       display: block;

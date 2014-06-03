@@ -1,10 +1,11 @@
 <div class="in-page-navbar">
 
+	<!-- USERS -->
 	<% if controller_name == 'users' && action_name == 'show' %>
 		<%= link_to 'Post an Article', new_article_url, id: 'new-article-post' %>
 	<% end %>
 
-
+	<!-- JOBS -->
 	<% if controller_name == 'jobs' %>
 		<%= link_to 'Post a job', '#', id: 'new-job-post' %>
 
@@ -16,10 +17,12 @@
 		</div>
 	<% end %>
 	
+	<!-- ARTICLES -->
 	<% if controller_name == 'articles' %>
 		<%= link_to 'Post an Article', new_article_url, id: 'new-article-post' %>
 	<% end %>
 
+	<!-- COMPANIES -->
 	<% if controller_name == 'companies' %>
 		<%= link_to 'Next', company_url(@company, next: true), id: 'next' %>
 

@@ -52,7 +52,6 @@ var ready_editor = function() {
     };  
     
     function persistContentEditable() {
-      console.log('bbb');
       var $id = $(this).data('id');
       var $table = $(this).data('table');
       var $model = $(this).data('model');

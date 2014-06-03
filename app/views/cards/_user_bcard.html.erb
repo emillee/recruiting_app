@@ -3,9 +3,10 @@
 <% this_model = this_table.singularize %>
 <% is_editable = bcard_editable?(user) %>
 
-<div class="business-card">
+<div class="business-card-wrapper">
+
   <div class="info">
-		
+
 		<div class="full-name">	
 		  <h1 class="h1-fname users-editable"
 				contenteditable="<%= is_editable %>"
@@ -66,8 +67,7 @@
 				data-attribute='location'>
 				<%= (user.location.nil? || user.location.empty?) ? 'Location' : user.location %>
 		  </h2>
-		</div>
-		
+		</div>	
 
 		<div class="bcard-location-two">
 			<h2>I'm from </h2>
@@ -81,18 +81,18 @@
 				<%= (user.location_from.nil? || user.location_from.empty?) ? 'Location' : user.location_from %>		  
 			</h2>
 		</div>	
-		
+
   </div>
 	
-	<% if user.avatar.exists? %>
-		<%= image_tag user.avatar.url %>
-	<% end %>
+	<%= image_tag user.avatar.url if user.avatar.exists? %>
+
 	<% if (current_user == user || current_user.is_admin) %>
 		<div class="uploader <%= 'hidden' if user.avatar.exists? %>">
 			<span class="insert-image-span">
 				<i class="fa fa-picture-o"></i>
 				<span>Insert Image</span>	
-			</span>		
+			</span>	
+
 			<%= form_for user, url: user_url(user), html: { multipart: true} do |f| %>
 				<%= f.file_field :avatar %>
 				<%= f.submit %>

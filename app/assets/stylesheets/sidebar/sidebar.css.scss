@@ -5,11 +5,35 @@ div.sidebar-wrapper {
   position: fixed;
   top: 0;
   bottom: 0;
-  overflow-y: auto;
+  overflow-y: auto;  
   
   // MIDDLE PORTION
   .sidebar-middle {
     cursor: pointer;
+
+    form.edit_user {
+      position: absolute;
+      top: 2px;
+      left: 25px;
+          
+      input[type='file'] {
+        display: none;
+        position: absolute;
+        top: 50px;
+        left: 150px;
+      }
+      
+      input[type='submit'] {
+        display: none;
+        border: none;
+        position: absolute;
+        top: 0px;
+        left: 125px;
+        height: 22px;
+        background-color: #27ae60;
+        color: white;
+      }
+    }    
 
     .wrapper {
       border-bottom: 1px solid rgba(0,0,0,0.1);

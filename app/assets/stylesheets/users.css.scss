@@ -1,0 +1,83 @@
+// This wraps the company and user business cards
+.user-preview-wrapper {
+  display: inline-block; 
+  border-left: 1px solid rgba(255,255,255,.25);
+  width: 100%;
+  
+  .company-business-card {
+    margin-top: 15px; 
+    margin-left: 18px;
+    float: left;
+  }
+
+  .intro {
+    p {
+      margin: 15px;
+      font-family: 'Lora', serif;      
+      font-size: 18px;
+      line-height: 24px;     
+    }      
+
+    margin-top: 15px; 
+    float: left;
+    background-color: #f4f5f0;
+    width: 490px;
+    height: 141px;
+    border-top: 5px solid #FAFAFA;
+    border-bottom: 5px solid #FAFAFA;
+  }
+} 
+
+
+// USER BUSINESS CARD
+.business-card-wrapper {
+  height: 140px;
+  width: 255px;
+  background-color: #FAFAFA;
+  font-family: 'Neuton';
+  padding: 5px;
+  position: relative;
+
+  .info {
+    background: #b3b3b1;
+    height: 100%;
+    position: relative;
+
+    h1 {
+      font-size: 19px;
+      color: black;
+      font-family: 'Montserrat';
+      display: inline-block;
+    }
+    
+    h2 {
+      font-size: 13px;
+      font-weight: 400;
+      color: #333332;
+      font-family: 'Merriweather';   
+      display: inline-block;     
+    }    
+
+    .full-name, .bcard-title, .bcard-employer, .bcard-location, .bcard-location-two {
+      left: 5px;
+      z-index: 2;
+      padding: 3px 5px; 
+      position: absolute;
+    }
+
+    .full-name { top: 8px; }
+    .bcard-title, .bcard-employer { top: 40px; }
+    .bcard-employer { top: 61px; }
+    .bcard-location { bottom: 27px; }
+    .bcard-location-two { bottom: 5px; }    
+  }
+
+  img {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    opacity: 0.45;
+	  -webkit-filter: grayscale(90%);
+    height: 140px;
+  }
+}

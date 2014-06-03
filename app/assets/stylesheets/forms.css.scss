@@ -1,37 +1,26 @@
-// USER BUSINESS CARD
-.bcard-employer {
-  .edit-business-card {
-    form.edit_user {
-      input[type='submit'] {
-        display: block;
-      }    
-    }
-  }  
-}
-
 .preview-bcard-wrapper {
   form.edit_user {
-  position: absolute;
-  top: 2px;
-  left: 25px;
-      
-  input[type='file'] {
-    display: none;
     position: absolute;
-    top: 50px;
-    left: 150px;
+    top: 2px;
+    left: 25px;
+        
+    input[type='file'] {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 150px;
+    }
+    input[type='submit'] {
+      display: block;
+      border: none;
+      position: absolute;
+      top: 0px;
+      left: 125px;
+      height: 22px;
+      background-color: #27ae60;
+      color: white;
+    }
   }
-  input[type='submit'] {
-    display: block;
-    border: none;
-    position: absolute;
-    top: 0px;
-    left: 125px;
-    height: 22px;
-    background-color: #27ae60;
-    color: white;
-  }
-}
 }
 
 form.new_job {
@@ -56,3 +45,4 @@ form.new_job {
     float: left;
   }
 }
+

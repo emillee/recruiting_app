@@ -4,7 +4,7 @@
 <% this_table = "users" %>
 <% this_model = this_table.singularize %>
 
-<%= render 'user_preview', locals: { user: @user, this_table: this_table } %>
+<%= render './cards/user_preview', locals: { user: @user, this_table: this_table } %>
 	
 <div id="top-id"></div>		
 
