@@ -4,7 +4,7 @@ var ready_jobs = function() {
   $('#new-job-post').on('click', function(e) {
     e.preventDefault();
     $('.job-posts').prepend('<li id="new-job-li"></li>');
-    var form_url = '/jobs/new'
+    var form_url = '/jobs/new';
 
     $('#new-job-li').load(form_url + ' .new-job-li', function() {
       setUpCompanyHandler();

@@ -7,24 +7,29 @@
 
 	<div class="menu">
 		<%= link_to 'All', all_activity_url, class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
-		<%= link_to 'Articles', articles_url, class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
-		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
-		<%= link_to 'People', users_url %>
 
-		<%#= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
-		<%#= link_to 'Angels & VCs', investors_url,  class: "#{'selected' if @tab == 'investors'}", data: { no_turbolink: true } %>
+		<%= link_to 'Links', articles_url, class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
+
+		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
+
+		<%= link_to 'People', users_url %>
+		
+		<%= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
+
+		<%#= link_to 'Investors', investors_url,  class: "#{'selected' if @tab == 'investors'}", data: { no_turbolink: true } %>
+
 		<%#= link_to 'Groups', '#',  class: "#{'selected' if @tab == 'groups'}", data: { no_turbolink: true } %>
+
 		<%#= link_to 'More +', '#', data: { no_turbolink: true } %>
 	</div>
 
 	<div class="session">
 		<% if current_user.guest %>
-			<%= link_to 'You are logged in as a Guest', '#', class: 'navbar-guest-a' %>
-		<% elsif current_user.is_member %>
-			<%= link_to current_user.fname, '#' %>			
-		<% elsif current_user.is_admin %>
-				<%= link_to current_user.fname, '#' %>
+			<%= link_to 'My Profile: Logged in as Guest', user_url(current_user), class: 'navbar-guest-a' %>
+		<% elsif current_user.is_member || current_user.is_admin %>
+			<%= link_to "My Profile: Logged in as #{current_user.fname}", user_url(current_user) %>			
 		<% end %>
+
 		<i class="fa fa-cog"></i>
 		<i class="fa fa-caret-down hidden"></i>			
 

@@ -22,7 +22,7 @@ var nav_ready = function() {
   });
 
   function setUpNavDropdown() {
-    $('.fa-cog, .navbar-guest-a').click(function(e) {
+    $('.fa-cog').click(function(e) {
       e.preventDefault();
       e.stopPropagation();
       showNavDropDown();        

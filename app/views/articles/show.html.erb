@@ -1,3 +1,8 @@
 <%= render "./layouts/inpage_navbar" %>
 
-<%= render 'article', locals: { article: @article, this_table: 'users' } %>
+<ul class="links">
+	<li>
+		<%#= render 'article', locals: { article: @article, this_table: 'users' } %>
+		<%= render './forms/article_form', locals: { article: @article } %>
+	</li>
+</ul>

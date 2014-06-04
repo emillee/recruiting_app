@@ -1,1 +1,5 @@
-<%= render 'article', locals: { article: @article, this_table: 'users' } %>
+<!-- THIS IS FOR A "FULL BLOWN" ARTICLE -->
+<%#= render 'article', locals: { article: @article, this_table: 'users' } %>
+
+<!-- FOR NOW, USERS WILL JUST POST LINKS -->
+<%= render './forms/article_form', locals: { article: @article } %>

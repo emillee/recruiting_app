@@ -1,5 +1,9 @@
 <% article = locals[:article] %>
 
+<span class="left">
+	<%= render './cards/company_bcard', locals: { company: article.company } %>
+</span>
+
 <div class="preview-description-wrapper article left">	
 	<span class="left">
 		<%= raw(article.title) %>
@@ -10,7 +14,7 @@
 	</span>
 </div>
 
-<span class="left">
-	<%= render './cards/company_bcard', locals: { company: article.company } %>
-</span>
+<!-- <span class="left">
+	<%#= render './cards/company_bcard', locals: { company: article.company } %>
+</span> -->
 	

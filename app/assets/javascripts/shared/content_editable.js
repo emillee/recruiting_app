@@ -32,6 +32,10 @@ var ready_editor = function() {
     $('[contenteditable=true].companies-editable').blur(function(e) {
       persistContentEditable.apply(this);
     });    
+
+    $('[contenteditable=true].articles-editable').blur(function(e) {
+      persistContentEditable.apply(this);
+    });    
         
     function handleArticleBlur(selector) {
       var $content = $(this).html();

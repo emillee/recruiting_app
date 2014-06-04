@@ -1,5 +1,9 @@
 <%= render "./layouts/inpage_navbar" %>
 
-<% @articles.each do |article| %>
-	<%= render 'article_preview', locals: { article: article, this_table: 'users' } %>
-<% end %>
+<ul class="links">
+	<% @articles.each do |article| %>
+		<li>
+			<%= render 'article_preview', locals: { article: article, this_table: 'users' } %>
+		</li>
+	<% end %>
+</ul>

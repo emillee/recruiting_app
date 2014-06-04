@@ -1,0 +1,50 @@
+<% article = locals[:article] %>
+
+<span class="left">
+	<%= render './cards/company_bcard', locals: { company: article.company } %>
+</span>
+
+<div class="preview-description-wrapper article left">	
+	
+	<h1 class="articles-editable"
+		contenteditable= "true"
+		data-id="<%= article.id %>" 
+		data-table="articles"
+		data-model="article"
+		data-attribute="title">
+		<% if article.title.empty? %>
+			Title
+		<% else %>
+			<%= raw(article.title) %>
+		<% end %>
+	</h1>
+
+	<p class="articles-editable"
+		contenteditable= "true"
+		data-id="<%= article.id %>" 
+		data-table="articles"
+		data-model="article"
+		data-attribute="link">
+		<% if article.link.nil? %>
+			Link
+		<% else %>
+			<%= article.link %>
+		<% end %>
+	</p>	
+
+	<p class="articles-editable article-text"
+		contenteditable= "true"
+		data-id="<%= article.id %>" 
+		data-table="articles"
+		data-model="article"
+		data-attribute="body">
+		<% if article.body.empty? %>
+			Body
+		<% else %>
+			<%= raw(article.body) %>
+		<% end %>
+	</p>
+
+</div>
+
+		
