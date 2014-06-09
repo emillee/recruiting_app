@@ -1,18 +1,62 @@
 <% object = locals[:user] || locals[:job] || locals[:company] %>
+<% obj_class_id = object.class.to_s.downcase + '_id' %>
 
+<!-- DROP SKILLS -->
+<div class='droppable-wrapper group'>
+
+	<h1 class="dark-banner">
+		Tech Stack
+		<%= link_to 'Add Skills', '#', id: 'edit-skills', class: 'right' %>
+		<%= link_to 'Done', '#', id: 'save-skills', class: 'hidden right' %>
+	</h1>
+
+	<ul class="skills-ul <%= object.class.to_s.downcase %>-<%= object.id %>">
+		<% object.tech_stack.each do |skill_obj| %>
+			<% object_skill = ObjectSkill.where(obj_class_id => object.id, skill_id: skill_obj.id).first %>
+
+			<li class="user-skills is-draggable" data-object-skill-id="<%= object_skill.id %>">
+				<% skill_icon = icon_skill_match(skill_obj.skill_name) %>
+				
+				<% if skill_icon %>
+					<span class="skill-icon-wrapper">
+						<i class="<%= skill_icon %> skill-icon"></i>
+					</span>
+				<% elsif skill_obj.logo.exists? %>
+					<span class="skill-image">
+						<%= image_tag(skill_obj.logo.url) %>
+					</span>				
+				<% else %>
+					<span class="upload-logo-wrapper">
+						<%= render './shared/upload_logo', locals: { object: skill_obj } %>
+					</span>
+				<% end %>
+			</li>
+		<% end %>
+
+		<li id="add-skill-li" class="user-skills hidden">+ Drag skill from below up here!</li>
+	</ul>
+
+</div>
+
+<!-- DRAG SKILLS -->
 <% if current_user.job_settings[:sub_dept] %>
 	<% first_sub_dept = current_user.job_settings[:sub_dept].first %>
 <% else %>
 	<% first_sub_dept = 'back-end' %>
 <% end %>
 
-
 <div class="box-of-logos is-droppable hidden">
 	<ul class="box-of-logos-ul group">
 
-		<% Taxonomy.departments.each do |dept| %>
-			<div class="dept-selector" data-dept='<%= dept.downcase %>'><%= dept %></div>
+		<span class="dept-selector-wrap">
+			<% Taxonomy.departments.each do |dept| %>
+				<span class="dept-selector" data-dept='<%= dept.downcase %>'>
+					<%= dept %>
+				</span>
+			<% end %>
+		</span>
 
+		<% Taxonomy.departments.each do |dept| %>
 			<% skill_hash = Skill.return_skill_hash_from_dept(dept.downcase) %>
 
 			<div class="group <%= dept.downcase %> ">
@@ -28,7 +72,7 @@
 
 						<% skill_icon = icon_skill_match(skill_obj.skill_name) %>
 
-						<li class="<%= key %> <%= 'hidden' unless key == 'back-end' %> left" 
+						<li class="<%= key %> <%= 'hidden' unless key == 'back-end' %> left is-draggable" 
 							data-skill-id="<%= skill_obj.id %>" data-object-id="<%= object.id %>" 
 							data-object-class="<%= object.class.to_s.downcase %>">
 
@@ -58,7 +102,6 @@
 	<input type="textbox" name="skill[required_phrases][]" placeholder="required phrases">
 	<%= f.submit %>
 <% end %>
-
 
 
 

@@ -2,12 +2,19 @@
 <% this_table = "companies" %>
 
 <div class="company-top-wrapper group">
-	<%= render './cards/company_bcard', locals: { company: company } %>
-	<%= render './cards/company_overview', locals: { company: company } %>
-	<%= render './cards/company_stats', locals: { company: company } %>
+	<span class="left">
+		<%= render './cards/company_bcard', locals: { company: company } %>
+	</span>
+
+	<span class="left">
+		<%= render './cards/company_overview', locals: { company: company } %>
+	</span>
+
+	<span class="left">
+		<%= render './cards/company_stats', locals: { company: company } %>
+	</span>
 </div>
 
 <% if company.persisted? %>
-	<%= render './shared/drop_zone', locals: { company: company } %>
-	<%= render './shared/box_of_logos', locals: { company: company }  %>
+	<%= render './shared/drag_and_drop', locals: { company: company } %>
 <% end %>

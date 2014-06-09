@@ -36,21 +36,23 @@
 
 <!-- COMPANY OVERVIEW -->
 <div class="preview-bcard-wrapper left">
-	<h1>About <%= job.listing_company.name %></h1>
+	<% if job.listing_company %>
+		<h1>About <%= job.listing_company.name %></h1>
 
-	<p class="jobs-editable"
-		contenteditable= "<%= editable_if_admin(current_user) %>"
-		data-id="<%= job.listing_company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="overview">		
-		<% if job.listing_company.overview %>
-			<%= job.listing_company.overview %>
-		<% else %>
-			<%= 'Pending' %>
-		<% end %>
-	</p>
-
+		<p class="jobs-editable"
+			contenteditable= "<%= editable_if_admin(current_user) %>"
+			data-id="<%= job.listing_company.id %>" 
+			data-table="companies"
+			data-model="company"
+			data-attribute="overview">		
+			<% if job.listing_company.overview %>
+				<%= job.listing_company.overview %>
+			<% else %>
+				<%= 'Pending' %>
+			<% end %>
+		</p>
+	<% end %>
+	
 	<%#= link_to 'More', company_url(job.listing_company) %>
 </div>		
 <% end %>

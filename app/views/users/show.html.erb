@@ -9,9 +9,7 @@
 <div id="top-id"></div>		
 
 <div class="article-wrapper skills">
-	<h1>My Skills</h1>
-	<%= render 'shared/drop_zone', locals: { user: @user } %>
-  <%= render 'shared/box_of_logos', locals: { user: @user }  %>
+	<%= render 'shared/drag_and_drop', locals: { user: @user } %>
 </div>				
 
 <% if @articles.any? %>

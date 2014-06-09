@@ -19,9 +19,9 @@
 
 				<!-- SEARCH KEYWORDS -->
 				<div class="sidebar-search-wrapper">
-						<input type="search" name="user[job_settings][keywords][]" 
-									 placeholder="Enter keyword" id="sidebar-search">
-						<i class="fa fa-search"></i>
+					<input type="search" name="user[job_settings][keywords][]" 
+						placeholder="Enter keyword" id="sidebar-search">
+					<i class="fa fa-search"></i>
 				</div>
 
 				<!-- KEYWORDS -->
@@ -50,7 +50,7 @@
 					</h1>
 
 					<ul class="job-filters">
-						<% Taxonomy.departments.each do |dept| %>
+						<% Job.all_uniq_depts.each do |dept| %>
 							<% dept = dept.downcase %>
 							<% checked = is_setting_checked?('dept', dept) %>
 							<li class="job-sidebar department <%= sel_or_hide(dept.downcase) %>">

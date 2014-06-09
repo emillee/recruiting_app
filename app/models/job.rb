@@ -47,6 +47,10 @@ class Job < ActiveRecord::Base
 
   # validates :company_id, presence: true
 
+  def self.all_uniq_depts 
+    Taxonomy.departments
+  end
+
   def self.return_jobs_with_key_skills(user)
     skills = user.job_settings[:key_skills].map do |skill_id|
       Skill.find(skill_id.to_i).skill_name.gsub('-', ' ')

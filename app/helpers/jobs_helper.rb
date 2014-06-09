@@ -5,8 +5,8 @@ module JobsHelper
   end
 
   # NEEDS REFACTORING - EAGER LOAD THIS
-  def return_subcategory(prev_category, target_category)
-    previous_category_array = current_user.job_settings[prev_category] 
+  def return_subcategory(prev_category, target_category, prev_cat = nil)
+    previous_category_array = prev_cat || current_user.job_settings[prev_category] 
     results_array = []
     
     if previous_category_array

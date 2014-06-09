@@ -1,5 +1,5 @@
 // COMPANY BUSINESS CARD - USER#SHOW
-.company-business-card {
+.company-business-card {  
 
   &:hover {
     .uploader-logo {
@@ -33,6 +33,10 @@
           font-weight: 700;
         }
       }
+
+      input {
+        visibility: hidden;
+      }      
     }
   }
     
@@ -65,10 +69,6 @@
         font-weight: 700;
       }
     }
-  }
-
-  input {
-    visibility: hidden;
   }
 }
 

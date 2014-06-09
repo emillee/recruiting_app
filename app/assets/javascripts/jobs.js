@@ -1,6 +1,8 @@
 var ready_jobs = function() {
   if ($('.jobs').length > 0) {
 
+    setUpCompanyHandler();
+
   $('#new-job-post').on('click', function(e) {
     e.preventDefault();
     $('.job-posts').prepend('<li id="new-job-li"></li>');
@@ -17,17 +19,20 @@ var ready_jobs = function() {
 
     // ADD EDIT FIELD AFTER CLICKING ON EMPLOYER FIELD
     function setUpCompanyHandler() {
-      $('#change-company').on('click', function() {
+
+      $('#change-company, #insert-company').on('click', function() {
+        console.log('hello')
         var $job_id = $(this).data('id');
         var $url = "/jobs/" + $job_id + "/edit_company";
+        var that = this;
 
         $.ajax({
           type: 'GET',
           url: $url,
           success: function(data) {
             var $edit_data = $(data).find(' .edit-business-card');
-            $('h2#change-company > span').addClass('hide');
-            $('h2#change-company').append($edit_data);
+            $(that).children('span').addClass('hide');
+            $(that).append($edit_data);
             addAutocompleteFields();
           }
         });
@@ -57,6 +62,7 @@ var ready_jobs = function() {
       $(document).click(function() {
         $('.edit-business-card > form').remove();
         $('h2#change-company > span').removeClass('hide');
+        $('h2#insert-company > span').removeClass('hide');
       });
     };    
     

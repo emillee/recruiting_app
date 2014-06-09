@@ -9,24 +9,25 @@
 		
 		<span class="left">
 			<div class="company-business-card">
-				<% if company %>
-	
-					<% if !company.nil? && company.logo.exists? %>
-						<%= image_tag company.logo.url %>
-					<% end %>
+				<% if company.nil? %>
 
-					<% if company && (user == current_user || current_user.is_admin) %>
-						<div class="uploader-logo <%= 'hidden' if company.logo.exists? %>">
-							<span class="insert-image-span">
-								<span>Insert Logo</span>	
-								<i class="fa fa-picture-o"></i>
-							</span>	
-							<%= form_for company, url: company_url(company), html: { multipart: true } do |f| %>	
-								<%= f.file_field :logo %>
-								<%= f.submit %>
-							<% end %>
-						</div>
-					<% end %>	
+					<h2 id="insert-company" data-id="<%= job.id %>">	
+						<span class="fa fa-pencil">Company Name</span>
+					</h2>				
+
+				<% elsif company.logo.exists? %>
+					<%= image_tag company.logo.url %>	
+				<% else %>
+					<div class="uploader-logo">
+						<span class="insert-image-span">
+							<span>Insert Logo</span>	
+							<i class="fa fa-picture-o"></i>
+						</span>	
+						<%= form_for company, url: company_url(company), html: { multipart: true } do |f| %>	
+							<%= f.file_field :logo %>
+							<%= f.submit %>
+						<% end %>
+					</div>
 				<% end %>
 			</div>
 		</span>
@@ -69,14 +70,14 @@
 
 		<!-- COMPANY OVERVIEW -->
 		<div class="preview-bcard-wrapper left">
-			<h2 id="change-company" data-id="<%= job.id %>">	
+	
+			<h1>	
 				<% if company %>
 					About <%= company.name %>
-					<span class="fa fa-pencil">Edit Company</span>
 				<% else %>
-					<span class="fa fa-pencil">Edit Company</span>
+					About [Company Name]
 				<% end %>
-			</h2>	
+			</h1>				
 
 			<p class="jobs-editable"
 				contenteditable="true"
@@ -93,4 +94,13 @@
 		</div>	
 
 	</li>
-</div>	
+</ul>
+
+<%= render './forms/job_attributes_form', locals: { job: job } %>
+
+
+
+
+
+
+

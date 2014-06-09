@@ -25,14 +25,20 @@
 
 // DROPZONE
 div.droppable-wrapper {
-  width: 1050px;
+  width: 1010px;
   background-color: rgb(245,245,245);
   display: block;
 
-  h1 {
+  h1.dark-banner {
+    padding: 5px 20px;
+    font-size: 26px;
+    line-height: 35px;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: rgba(0,0,0,0.85);
+    color: #fdfdfd;
+    letter-spacing: 2px;    
+
     a#edit-skills, a#save-skills {
-      position: absolute;
-      right: 70px;
       font-size: 16px;
       color: white;
     }    
@@ -41,7 +47,7 @@ div.droppable-wrapper {
   ul.skills-ul {
     li.user-skills {
       @include li-icon-style;
-      display: inline-block;
+      // display: inline-block;
 
       // this is the "Add a Skill" section
       &:last-of-type {
@@ -56,7 +62,6 @@ div.droppable-wrapper {
         border: none;
         background-color: none;
         width: 1050px;
-        display: none;
       }  
 
       span.skill-image {
@@ -76,7 +81,6 @@ div.droppable-wrapper {
   }   
 }
 
-
 // DRAGGABLE
 .box-of-logos {
   margin-top: 15px;
@@ -86,6 +90,22 @@ div.droppable-wrapper {
 
   .box-of-logos-ul {
     position: relative;
+
+    span.dept-selector-wrap {
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      width: 100%;
+      background-color: rgb(150,150,150);
+
+      span.dept-selector {
+        padding: 5px;
+        background-color: rgba(255,255,255,0.3);
+        font-size: 16px;
+        color: rgb(60,60,60);
+      }      
+    }
+
 
     li {
       @include li-icon-style;

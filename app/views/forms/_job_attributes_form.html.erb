@@ -1,0 +1,28 @@
+<% job = locals[:job] %>
+
+<div class="edit-job-form">
+	<%= form_for(job) do |f| %>
+
+		<% Job.all_uniq_depts.each do |dept| %>
+			<% checked = true if job.dept == dept.downcase %>
+			<%= label_tag dept %>
+			<%= radio_button_tag "job[dept]", dept, checked %>
+		<% end %>
+
+		<% sub_depts = return_subcategory(:dept, :sub_dept, [job.dept]) %>
+
+		<% sub_depts.each do |sub_dept| %>
+			<% checked = true if job.sub_dept == sub_dept.downcase %>
+			<%= label_tag sub_dept %>
+			<%= check_box_tag "job[sub_dept]", sub_dept, checked %>
+		<% end %>		
+
+		<% (0..10).each do |year| %>
+			<% checked = true if job.years_exp == year %>	
+			<%= label_tag "#{year}" %>
+			<%= check_box_tag "job[years_exp][]", year, checked %>
+		<% end %>		
+
+		<%= f.submit 'Update' %>
+	<% end %>
+</div>

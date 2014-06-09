@@ -55,24 +55,18 @@ div.main-content-wrapper {
 
   ul > li {
     position: relative;
-    display: inline-block;  
 
     a { 
       display: inline-block; 
     }  
   }
+
+  ul.links > li, ul.skills-ul > li {
+    display: inline-block;  
+  }
 }
 
-// MIXINS
-h1.dark-banner {
-  padding: 5px 20px;
-  font-size: 26px;
-  line-height: 35px;
-  font-family: 'Source Sans Pro', sans-serif;
-  background-color: rgba(0,0,0,0.85);
-  color: #fdfdfd;
-  letter-spacing: 2px;    
-}
+
 
 
 

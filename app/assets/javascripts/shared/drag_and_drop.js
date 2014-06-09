@@ -6,7 +6,7 @@ var ready_drag_and_drop = function() {
     addDroppableEvents();
 
     // SHOW AND HIDE DIFF SKILL SETS BASED ON DEPT
-    $('div.dept-selector').on('click', function() {
+    $('span.dept-selector').on('click', function() {
       var selected_dept = $(this).data('dept');
       console.log(selected_dept);
       var selector = 'a' + '.' + selected_dept;
@@ -19,10 +19,8 @@ var ready_drag_and_drop = function() {
     $('.box-of-logos-ul').on('click', 'a', function(e) {
       e.preventDefault();
       var selected_skill = $(this).data('selected');
-      console.log('selected skill:' + selected_skill)
       var selector = '.box-of-logos-ul > li' + '.' + selected_skill;
       $('.box-of-logos-ul > li').addClass('hidden');
-      console.log('selector:' + selector)
       $(selector).removeClass('hidden');
     });    
 
@@ -112,9 +110,9 @@ var ready_drag_and_drop = function() {
         data: {"_method":"delete"},
         url: this_url,
         success: function(data) {
-          draggable.parent('li').remove();
-          var $box_of_logos = $(data).find(' .box-of-logos');
-          $('ul.box-of-logos').empty().html($box_of_logos);
+          draggable.remove();
+          var $box_of_logos = $(data).find(' .box-of-logos-ul');
+          $('ul.box-of-logos-ul').empty().html($box_of_logos);
           addDroppableEvents();
           addDraggableEvents();
         }
