@@ -18,3 +18,9 @@
 <% if company.persisted? %>
 	<%= render './shared/drag_and_drop', locals: { company: company } %>
 <% end %>
+
+<% if company.job_listings %>
+	<% company.job_listings.each do |job| %>
+		<%= render './jobs/job_listing_preview', locals: { job: job } %>
+	<% end %>
+<% end %>
