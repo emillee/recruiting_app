@@ -13,7 +13,6 @@
   border: 2px solid white;
   text-align: center;
   height: 75px;
-  margin: 3px;
 
   img {
     height: 100%;
@@ -25,32 +24,15 @@
 
 // DROPZONE
 div.droppable-wrapper {
-  width: 1010px;
-  background-color: rgb(245,245,245);
-  display: block;
-
-  h1.dark-banner {
-    padding: 5px 20px;
-    font-size: 26px;
-    line-height: 35px;
-    font-family: 'Source Sans Pro', sans-serif;
-    background-color: rgba(0,0,0,0.85);
-    color: #fdfdfd;
-    letter-spacing: 2px;    
-
-    a#edit-skills, a#save-skills {
-      font-size: 16px;
-      color: white;
-    }    
-  }
 
   ul.skills-ul {
+
     li.user-skills {
       @include li-icon-style;
-      // display: inline-block;
+      margin: 5px;
 
       // this is the "Add a Skill" section
-      &:last-of-type {
+      #add-skill-li {
         width: 100%;
         font-size: 23px;
         font-style: italic;

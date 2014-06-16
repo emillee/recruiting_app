@@ -69,6 +69,10 @@
         font-weight: 700;
       }
     }
+
+    input[type='file'], input[type='submit'] {
+      visibility: hidden;
+    }
   }
 }
 

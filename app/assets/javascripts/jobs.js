@@ -3,15 +3,15 @@ var ready_jobs = function() {
 
     setUpCompanyHandler();
 
-  $('#new-job-post').on('click', function(e) {
-    e.preventDefault();
-    $('.job-posts').prepend('<li id="new-job-li"></li>');
-    var form_url = '/jobs/new';
+    $('#new-job-post').on('click', function(e) {
+      e.preventDefault();
+      $('.job-posts').prepend('<li id="new-job-li"></li>');
+      var form_url = '/jobs/new';
 
-    $('#new-job-li').load(form_url + ' .new-job-li', function() {
-      setUpCompanyHandler();
+      $('#new-job-li').load(form_url + ' .new-job-li', function() {
+        setUpCompanyHandler();
+      });
     });
-  });
 
     // --------------------------------------------------------------------------------------------------------------
     // TOKENINPUT
@@ -99,7 +99,12 @@ var ready_jobs = function() {
           $('.fa-times-circle').css('display', 'inline-block');
         }
       })
-    });  
+    }); 
+
+    $('#wolfpack-option').on('click', function(e) {
+      e.preventDefault();
+      
+    });
     
     // EMAIL / FORWARD A JOB POST
     $('ul.job-posts').on('click', '.forward', function(event) {

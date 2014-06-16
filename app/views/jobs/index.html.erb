@@ -3,13 +3,12 @@
 <% user_id = current_user ? current_user.id : nil %>
 
 <ul class="job-posts">
-
 	<% counter ||= 0 %>
 	<% page = @page.nil? ? 1 : @page.to_i %>
 	<% counter = (page - 1) * 10 %>
 
 	<% @jobs.each do |job| %>		
-		<% next if job.removed_users.include?(current_user) && @filter != 'removed' %>
+		<%# next if job.removed_users.include?(current_user) && @filter != 'removed' %>
 		<% counter += 1 %>
 
 		<% applied_class = already_applied?(job) ? "applied_already fa fa-check" : "applied fa fa-check" %>				
@@ -17,39 +16,9 @@
 		<% removed_class = already_removed?(job) ? "removed_already fa-times-circle-o" : "remove fa fa-times" %>		
 
 		<li class="job-link">
-
 			<%= link_to '', '#', class: 'forward fa fa-mail-forward', data: { id: job.id } %>
 
 			<%= render 'job_listing_preview', locals: { job: job, counter: counter} %>
-
-			<div class="preview-action-items">	
-				<%= link_to '', job.link, class: 'fa fa-external-link-square', target: '_blank' %>
-
-				<% if already_applied?(job) %>
-					<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
-							class: 'applied_already fa fa-check', remote: true, method: :delete %>
-				<% else %>
-					<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
-							class: "applied fa fa-check", remote: true, method: :post %>
-				<% end %>
-
-				<% if has_saved_job?(job) %>
-					<%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
-							class: "saved fa fa-bookmark", remote: true, method: :delete %>
-				<% else %>
-					<%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
-							class: "save fa fa-bookmark", remote: true, method: :post %>
-				<% end %>
-
-				<% if already_removed?(job) %>
-					<%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
-							class: "removed_already fa fa-times-circle-o", remote: true, method: :delete %>
-				<% else %>		
-					<%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
-							class: "remove fa fa-times", remote: true, method: :post %>
-				<% end %>
-
-			</div>
 		</li>
     
 		<div id="div-append-<%= job.id %>"></div>
@@ -59,6 +28,7 @@
 <div class="kaminari-wrapper">
 	<%= paginate @jobs %>
 </div>	
+
 
 
 

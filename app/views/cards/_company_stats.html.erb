@@ -60,10 +60,24 @@
 	</h3>			
 
 	<% if current_user.is_admin %>
+		<% if company.career_page_link %>		
+			<%= link_to 'Career Page', company.career_page_link, target: '_blank' %>
+		<% else %>
 			<%= form_for(company) do |f| %>
 				<%= f.text_field :career_page_link %>
 				<%= f.submit "Submit Career Page" %>
-			<% end %>			
+			<% end %>		
+		<% end %>	
+
+		<% if company.blog_link %>		
+			<%= link_to 'Blog', company.blog_link, target: '_blank' %>
+		<% else %>
+			<%= form_for(company) do |f| %>
+				<%= f.text_field :blog_link %>
+				<%= f.submit "Submit Blog" %>
+			<% end %>		
+		<% end %>	
+
 	<% else %>
 		<!-- <h3>Twitter: <%#= company.twitter_username || "" %></h3> -->
 		<!-- <h3><%#= best_in_place company, :career_page_link %></h3> -->

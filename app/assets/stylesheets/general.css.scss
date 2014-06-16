@@ -53,7 +53,7 @@ div.main-content-wrapper {
   left: 20%;
   margin-bottom: 20px;
 
-  ul > li {
+  ul.job-posts > li {
     position: relative;
 
     a { 
@@ -61,8 +61,29 @@ div.main-content-wrapper {
     }  
   }
 
+  ul.all-activity > li {
+    position: relative;
+
+    a { 
+      display: inline-block; 
+    }  
+  }  
+
+  ul.companies-posts > li {
+    position: relative;
+    display: inline-block;
+
+    a.job-listing { 
+      display: inline-block; 
+    }  
+  }
+
   ul.links > li, ul.skills-ul > li {
     display: inline-block;  
+  }
+
+  ul.job-posts > li.job-link {
+    display: inline-block;
   }
 }
 

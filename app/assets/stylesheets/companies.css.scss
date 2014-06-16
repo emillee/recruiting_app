@@ -1,6 +1,11 @@
+.company-wrapper {
+  width: 1051px;
+}
+
 .company-top-wrapper {
   display: inline-block;
-  height: 150px;      
+  height: 150px;  
+  margin-bottom: 10px;    
 }
   
 .company-mid-wrapper {
@@ -101,8 +106,8 @@ div.company-job-wrapper {
 div.job-key-stats {
   margin-top: 15px;
   padding: 15px;
-  width: 271px;
-  height: 120px;
+  width: 200px;
+  height: 100%;
   background-color: white;
   
   a {
@@ -110,12 +115,10 @@ div.job-key-stats {
   }      
 }
   
-
-
-
 div.job-admin-section {
   padding: 15px;    
   background-color: white;
+  width: 1021px;
   
   a {
     color: #2980b9;
@@ -228,13 +231,20 @@ div.company-business-card {
   a {
     text-align: center;
     line-height: 18px;
-    bottom: 10px;
     padding: 4px 5px;
     width: 260px;
     background-color: black;
     position: absolute;
     color:  #5cb86e;
     font-family: 'Lato';
+  }
+
+  a:first-of-type {
+    bottom: 5px;
+  }
+
+  a:nth-of-type(2) {
+    bottom: 35px;
   }
 }
 

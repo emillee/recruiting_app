@@ -1,7 +1,7 @@
 <%# @feed = @jobs + @articles + @users %>
 <% @feed = @jobs + @articles %>
 
-<ul>
+<ul class="all-activity">
 	<% @feed.shuffle.each do |feed_item| %>
 			<% if feed_item.class == Job %>
 				<li><%= render './jobs/job_listing_preview', locals: { job: feed_item } %></li>

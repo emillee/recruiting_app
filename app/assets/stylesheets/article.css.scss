@@ -1,3 +1,45 @@
+div.article-card-wrapper {
+  // margin-top: 25px;
+  width: 1019px;
+  background-color: #fdfdfd;
+  display: inline-block;  
+  padding: 15px;
+
+  h1.dark-banner {
+    padding: 5px 12px;
+    font-size: 26px;
+    line-height: 35px;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: rgba(0,0,0,0.85);
+    color: #fdfdfd;
+    letter-spacing: 2px;  
+    width: 997px;  
+
+    a {
+      font-size: 16px;
+      color: white;
+    }    
+  }
+
+  h2 {
+    font-size: 22px;
+    line-height: 35px;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding-top: 15px;
+    padding-left: 10px;
+  }
+
+  p {
+    padding-top: 5px;
+    font-size: 18px;
+    line-height: 28px;
+    font-family: 'PT Serif';
+    padding-left: 10px;
+
+  }
+}
+
+// THIS MAY BE OBSOLETE
 .article-wrapper {
   width: 1050px;
   background-color: rgb(253,254,255);

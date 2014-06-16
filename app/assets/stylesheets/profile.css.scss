@@ -1,0 +1,25 @@
+div.profile-card-wrapper {
+  width: 1020px;
+  background-color: white;
+  display: block;
+  padding: 15px;
+  margin-bottom: 15px;
+
+  h1.dark-banner {
+    padding: 5px 20px;
+    font-size: 26px;
+    line-height: 35px;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: rgba(0,0,0,0.85);
+    color: #fdfdfd;
+    letter-spacing: 2px;  
+    width: 980px;  
+
+    a#edit-skills, a#save-skills {
+      font-size: 16px;
+      color: white;
+    }    
+  }
+}
+
+

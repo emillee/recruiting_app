@@ -20,7 +20,13 @@
 <% end %>
 
 <% if company.job_listings %>
+	<ul class="job-posts">
 	<% company.job_listings.each do |job| %>
+	<li class="job-link">
+		<% next unless job.persisted? %>
 		<%= render './jobs/job_listing_preview', locals: { job: job } %>
+		<%= render './admin/jobs/job_details', locals: { job: job } %>
+	</li>
 	<% end %>
+</ul>
 <% end %>

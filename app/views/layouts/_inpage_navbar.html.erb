@@ -35,7 +35,9 @@
 
 	<!-- COMPANIES -->
 	<% if controller_name == 'companies' %>
-		<%= link_to 'Next', company_url(@company, next: true), id: 'next' %>
+		<%= link_to 'Prev', company_url(@company, prev: true), id: 'next', class: 'left' %>
+		<%= link_to 'Next', company_url(@company, next: true), id: 'next', class: 'left' %>
+		<%= link_to 'Delete Company', company_url(@company), method: :delete, id: 'delete', class: 'left' %>
 
 		<div class="new-job-form inline-block right">
 			<%= form_for([@company, @job]) do |f| %>
@@ -43,6 +45,7 @@
 				<%= f.submit "Create New Job" %>
 			<% end %>
 		</div>
+
 	<% end %>
 
 </div>

@@ -8,9 +8,21 @@
 	
 <div id="top-id"></div>		
 
+<div class="article-wrapper">
+	<%= render './cards/recent_work', locals: { user: @user } %>
+</div>	
+
+<div class="article-wrapper">
+	<%= render 'users/profile_history', locals: { user: @user } %>
+</div>	
+
 <div class="article-wrapper skills">
 	<%= render 'shared/drag_and_drop', locals: { user: @user } %>
-</div>				
+</div>					
+
+<div class="article-wrapper">
+	<%= render './cards/references', locals: { user: @user } %>
+</div>
 
 <% if @articles.any? %>
 	<% @articles.each do |article| %>

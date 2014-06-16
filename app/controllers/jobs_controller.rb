@@ -114,7 +114,7 @@ class JobsController < ApplicationController
 	private
 
   def job_params
-    params.require(:job).permit(:link, :title, :full_text, :is_draft,
+    params.require(:job).permit(:link, :title, :full_text, :is_draft, :technical_problem_commentary,
       :company_id, :dept, :sub_dept, :years_exp, :description, key_phrases: [], req_skills: [])
   end       
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601204549) do
+ActiveRecord::Schema.define(version: 20140611150501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140601204549) do
   end
 
   create_table "companies", force: true do |t|
-    t.string   "name",                   null: false
+    t.string   "name",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "num_employees"
@@ -71,13 +71,16 @@ ActiveRecord::Schema.define(version: 20140601204549) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.text     "size_commentary"
+    t.text     "scale_commentary"
     t.string   "team_soundbite"
     t.text     "team_commentary"
-    t.text     "funding_commentary"
-    t.string   "outlook"
-    t.text     "outlook_commentary"
-    t.text     "the_big_idea"
+    t.text     "wolfpack_commentary"
+    t.text     "the_big_idea_commentary"
+    t.string   "blog_link"
+    t.string   "the_big_idea_soundbite"
+    t.string   "scale_soundbite"
+    t.string   "culture_soundbite"
+    t.text     "culture_commentary"
   end
 
   create_table "groups", force: true do |t|
@@ -132,8 +135,9 @@ ActiveRecord::Schema.define(version: 20140601204549) do
     t.integer  "years_exp"
     t.string   "sub_dept"
     t.text     "description"
-    t.string   "key_phrases", default: [], array: true
-    t.string   "req_skills",  default: [], array: true
+    t.string   "key_phrases",                  default: [], array: true
+    t.string   "req_skills",                   default: [], array: true
+    t.text     "technical_problem_commentary"
   end
 
   add_index "jobs", ["company_id"], name: "index_jobs_on_company_id", using: :btree
@@ -250,6 +254,12 @@ ActiveRecord::Schema.define(version: 20140601204549) do
     t.boolean  "is_member"
     t.text     "intro"
     t.string   "link_to_online_profile"
+    t.string   "linkedin_url"
+    t.string   "github_url"
+    t.string   "behance_url"
+    t.string   "personal_blog_url"
+    t.string   "twitter_username"
+    t.string   "stack_overflow"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

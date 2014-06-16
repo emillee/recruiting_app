@@ -48,7 +48,15 @@ class CompaniesController < ApplicationController
   
   def show
     @company = Company.find(params[:id])
-    @company = @company.next if params[:next]    
+
+    if params[:next]
+      @company = @company.next
+    elsif params[:prev]
+      @company = @company.prev
+    else
+      @company = Company.find(params[:id])
+    end
+    
     @job = @company.job_listings.build
     @skill = Skill.new
   end
@@ -67,7 +75,9 @@ class CompaniesController < ApplicationController
   end
   
   def destroy
-    @company.find(params[:id]).destroy
+    @company = Company.find(params[:id])
+    @company.destroy
+    redirect_to company_url(@company.next)
   end
   
   # Non-RESTful Routes -------------------------------------------------------------------
@@ -84,7 +94,9 @@ class CompaniesController < ApplicationController
 	
 	def company_params
     params.require(:company).permit(:name, :total_money_raised, :num_employees, :career_page_link, :overview, :year_founded,
-      :neighborhood, :category_code, :city, :snapshots, :logo, { career_sections: ['Keys Here'] })
+      :blog_link, :neighborhood, :category_code, :city, :snapshots, :logo, { career_sections: ['Keys Here'] },
+      :the_big_idea_soundbite, :the_big_idea_commentary, :scale_soundbite, :scale_commentary,
+      :team_soundbite, :team_commentary, :culture_soundbite, :culture_commentary, :wolfpack_commentary)
 	end
 
   def set_this_tab

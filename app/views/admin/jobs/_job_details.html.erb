@@ -1,0 +1,58 @@
+<% job = locals[:job] %>
+<% this_table = 'jobs' %>
+<% this_model = 'job' %>
+	
+<div class="job-key-stats right">
+	<p><%= link_to 'Import Data', import_data_job_url(job), method: :post %></p>
+	<p><%= link_to 'Destroy job', job_url(job), method: :delete, data: { confirm: 'Sure?' } %></p>
+	<p>(Job ID: <%= job.id %>)</p>
+
+	<p>
+		<span class="jobs-editable"
+			contenteditable= "true"
+			data-id="<%= job.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="dept">
+			<%= (job.dept.nil? || job.dept.empty?) ? 'Dept Here' : job.dept.titleize %>
+		</span>
+	</p>
+	
+	<p>
+		<span class="jobs-editable"
+			contenteditable= "true"
+			data-id="<%= job.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="sub_dept">
+			<%= (job.sub_dept.nil? || job.sub_dept.empty?) ? 'SubDept Here' : job.sub_dept.titleize %>
+		</span>
+	</p>
+	
+	<p>
+		<span class="jobs-editable"
+			contenteditable= "true"
+			data-id="<%= job.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="years_exp">
+			<%= (job.years_exp.nil? || job.years_exp.to_s.empty?) ? 'Years Exp' : job.years_exp %>
+		</span>
+	</p>
+</div>
+	
+
+<div class="job-admin-section">
+		
+	<p><span class="heading">Link: </span><%= link_to "#{job.link}", "#{job.link}" %></p>		
+
+	<p>
+		<span class="jobs-editable"
+			contenteditable= "true"
+			data-id="<%= job.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="full_text">
+			<%= (job.full_text.nil? || job.full_text.empty?) ? 'Full Text Here' : sanitize(job.full_text) %>
+	</p>
+</div>
