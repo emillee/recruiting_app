@@ -19,6 +19,7 @@ class Company < ActiveRecord::Base
 
   include ApiCalls
   include Filterable
+  include Scrape
   
   has_attached_file :snapshots, styles: { original: '200x400', medium: '300x300', large: '300x500' }, 
     path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:normalized_companypic_file_name.:extension",
@@ -33,6 +34,16 @@ class Company < ActiveRecord::Base
     
   validates_attachment_content_type :snapshots, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/    
+
+  def return_job_links
+    if self.career_page_link
+      html = HTTParty.get(self.career_page_link, verify: false)
+      doc = Nokogiri.HTML(html)
+      doc.css('script').remove
+      doc = doc.css('body')
+      links = doc.css('a')
+    end
+  end
   
   # reads this above with attr_read  
   def store_article_id_temporarily(article_id)
