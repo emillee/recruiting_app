@@ -6,6 +6,7 @@ Nytech::Application.routes.draw do
   resources :user_articles, only: [:create, :destroy]
   resources :taggings, only: [:create, :destroy]
   resources :user_articles, only: [:create, :destroy]
+  resources :user_job_preapprovals, only: [:create, :destroy]
   
   # models that don't have views
   resources :tags, only: [:index, :create, :destroy]  

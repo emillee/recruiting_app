@@ -45,7 +45,8 @@
 <div class="job-admin-section">
 		
 	<p><span class="heading">Link: </span><%= link_to "#{job.link}", "#{job.link}" %></p>		
-
+	<p>Status Code: <%= job.link_status_code %></p>
+	
 	<p>
 		<span class="jobs-editable"
 			contenteditable= "true"
@@ -55,4 +56,5 @@
 			data-attribute="full_text">
 			<%= (job.full_text.nil? || job.full_text.empty?) ? 'Full Text Here' : sanitize(job.full_text) %>
 	</p>
+
 </div>

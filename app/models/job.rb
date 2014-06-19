@@ -21,12 +21,14 @@ class Job < ActiveRecord::Base
   has_many :users_that_saved_job, class_name: 'UserJob', foreign_key: :saved_job_id
   has_many :users_that_removed_job, class_name: 'UserJob', foreign_key: :removed_job_id
 
-  has_many :applicants, through: :user_job_applicants, source: :user  
+  has_many :applicants, through: :user_job_applicants, source: :user
   has_many :saved_users, through: :users_that_saved_job, source: :user
   has_many :removed_users, through: :users_that_removed_job, source: :user
 
   has_many :user_job_preapprovals, class_name: 'UserJobPreapproval', foreign_key: :job_id
-  has_many :preapproved_applicants, through: :user_job_preapprovals, source: :user
+  
+  has_many :preapproved_users, through: :user_job_preapprovals, source: :preapproved_user
+  has_many :preapproval_applicants, through: :user_job_preapprovals, source: :preapproval_applicant
 
   has_many :job_skills
   has_many :required_skills, through: :job_skills, source: :job  
@@ -46,6 +48,11 @@ class Job < ActiveRecord::Base
   }
 
   # validates :company_id, presence: true
+
+  def link_status_code
+    response = HTTParty.get(self.link)
+    return response.code
+  end
 
   def self.all_uniq_depts 
     Taxonomy.departments

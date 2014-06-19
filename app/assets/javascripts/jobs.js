@@ -3,6 +3,14 @@ var ready_jobs = function() {
 
     setUpCompanyHandler();
 
+
+    $('#wolfpack-option').on('click', function(e) {
+      e.preventDefault();
+      $('li#wolfpack-option-popup').removeClass('hidden');
+      addModalToBody();
+      
+    });    
+
     $('#new-job-post').on('click', function(e) {
       e.preventDefault();
       $('.job-posts').prepend('<li id="new-job-li"></li>');
@@ -90,6 +98,7 @@ var ready_jobs = function() {
         url: $url,
         success: function(data) {
           var $filtered_jobs = $(data).find(' .job-posts > li');
+          console.log(data)
           var $new_kaminari = $(data).find(' .kaminari-wrapper');
           $('ul.job-posts').empty().html($filtered_jobs);
           $('.kaminari-wrapper').empty().html($new_kaminari);
@@ -100,11 +109,6 @@ var ready_jobs = function() {
         }
       })
     }); 
-
-    $('#wolfpack-option').on('click', function(e) {
-      e.preventDefault();
-      
-    });
     
     // EMAIL / FORWARD A JOB POST
     $('ul.job-posts').on('click', '.forward', function(event) {

@@ -16,7 +16,13 @@
 </div>
 
 <% if company.persisted? %>
-	<%= render './shared/drag_and_drop', locals: { company: company } %>
+	<%= render './companies/company_report', locals: { company: company } %>
+<% end %>
+
+<% if company.persisted? %>
+	<div class="article-card-wrapper">
+		<%= render './shared/drag_and_drop', locals: { company: company } %>
+	</div>
 <% end %>
 
 <% if company.job_listings %>
@@ -26,6 +32,12 @@
 		<% next unless job.persisted? %>
 		<%= render './jobs/job_listing_preview', locals: { job: job } %>
 		<%= render './admin/jobs/job_details', locals: { job: job } %>
+
+		<% if job.preapproval_applicants %>
+			<% job.preapproval_applicants.each do |applicant| %>
+				<%= render './cards/user_preview', locals: { user: applicant } %>
+			<% end %>
+		<% end %>
 	</li>
 	<% end %>
 </ul>

@@ -1,24 +1,59 @@
-<div class="article-card-wrapper recent-work">
-  <h1 class="dark-banner">
-    Profile History
-  </h1>
+<h2 class="dark-banner">
+Online Profiles
+</h2>
 
-  <h2>LI</h2>
-  <p><%= current_user.linkedin_url %></p>
+<p class="users-editable"
+contenteditable= "true"
+data-id="<%= current_user.id %>" 
+data-table="users"
+data-model="user"
+data-attribute="linkedin_url">  
+<%= current_user.linkedin_url || 'Input LinkedIn Profile URL' %></p>
 
-  <h2>GH</h2>
-  <p><%= current_user.github_url %></p>
+<p class="users-editable"
+contenteditable= "true"
+data-id="<%= current_user.id %>" 
+data-table="users"
+data-model="user"
+data-attribute="github_url">  
+<%= current_user.github_url || 'Input GitHub URL' %></p>
 
-  <h2>TW</h2>
-  <p><%= current_user.stack_overflow %></p>
+<p class="users-editable"
+contenteditable= "true"
+data-id="<%= current_user.id %>" 
+data-table="users"
+data-model="user"
+data-attribute="stack_overflow">  
+<%= current_user.stack_overflow || 'Input Stack Overflow Username' %></p>
 
-  <h2>BH</h2>
-  <p><%= current_user.behance_url %></p>
+<p class="users-editable"
+contenteditable= "true"
+data-id="<%= current_user.id %>" 
+data-table="users"
+data-model="user"
+data-attribute="behance_url">  
+<%= current_user.behance_url || 'Input Behance URL' %></p>
 
-  <h2>PB</h2>
-  <p><%= current_user.personal_blog_url %></p>
+<p class="users-editable"
+contenteditable= "true"
+data-id="<%= current_user.id %>" 
+data-table="users"
+data-model="user"
+data-attribute="personal_blog_url">  
+<%= current_user.personal_blog_url || 'Input Personal Blog URL' %></p>
 
-  <h2>TW</h2>
-  <p><%= current_user.twitter_username %></p>
+<p class="users-editable"
+contenteditable= "true"
+data-id="<%= current_user.id %>" 
+data-table="users"
+data-model="user"
+data-attribute="twitter_username">
+<%= current_user.twitter_username %></p>
 
-</div>
+
+
+
+
+
+
+

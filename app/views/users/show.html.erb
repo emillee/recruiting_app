@@ -5,22 +5,15 @@
 <% this_model = this_table.singularize %>
 
 <%= render './cards/user_preview', locals: { user: @user, this_table: this_table } %>
+<%= render 'user_action_items' %>
 	
 <div id="top-id"></div>		
 
-<div class="article-wrapper">
+<div class="article-card-wrapper">
+	<h1 class="dark-banner">About Me</h1>
 	<%= render './cards/recent_work', locals: { user: @user } %>
-</div>	
-
-<div class="article-wrapper">
 	<%= render 'users/profile_history', locals: { user: @user } %>
-</div>	
-
-<div class="article-wrapper skills">
 	<%= render 'shared/drag_and_drop', locals: { user: @user } %>
-</div>					
-
-<div class="article-wrapper">
 	<%= render './cards/references', locals: { user: @user } %>
 </div>
 

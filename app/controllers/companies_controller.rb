@@ -94,7 +94,7 @@ class CompaniesController < ApplicationController
 	
 	def company_params
     params.require(:company).permit(:name, :total_money_raised, :num_employees, :career_page_link, :overview, :year_founded,
-      :blog_link, :neighborhood, :category_code, :city, :snapshots, :logo, { career_sections: ['Keys Here'] },
+      :company_blog_url, :tech_blog_url, :neighborhood, :category_code, :city, :snapshots, :logo, { career_sections: ['Keys Here'] },
       :the_big_idea_soundbite, :the_big_idea_commentary, :scale_soundbite, :scale_commentary,
       :team_soundbite, :team_commentary, :culture_soundbite, :culture_commentary, :wolfpack_commentary)
 	end

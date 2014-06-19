@@ -26,11 +26,11 @@
 .in-page-navbar {
   height: 30px;
   line-height: 30px;
-  width: 963px;
   background-color: #b3b3b1;
   margin-top: 15px;
   font-family: 'Lato';
   width: 1050px;  
+  position: relative;
 
   a#new-job-post, a#new-article-post {
     @include link-style;
@@ -75,7 +75,7 @@
     }
     
     &:last-of-type {
-      float: right;
+      // float: right;
       margin-right: 1px;
       color: #34495e;
     }

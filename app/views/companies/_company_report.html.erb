@@ -20,13 +20,15 @@
 		data-model="company"
 		data-attribute="the_big_idea_commentary">
 		<%= company.the_big_idea_commentary || 'Description about the big idea' %></p>
-	<p class="jobs-editable"
-		contenteditable= "true"
-		data-id="<%= job.id %>" 
-		data-table="jobs"
-		data-model="job"
-		data-attribute="technical_problem_commentary">
-		<%= job.technical_problem_commentary || 'Job Technical Role' %></p>
+	<% if job %>
+		<p class="jobs-editable"
+			contenteditable= "true"
+			data-id="<%= job.id %>" 
+			data-table="jobs"
+			data-model="job"
+			data-attribute="technical_problem_commentary">
+			<%= job.technical_problem_commentary || 'Job Technical Role' %></p>
+	<% end %>
 
 	<!-- How many people will use the code I write -->
 	<h2 class="companies-editable"

@@ -19,7 +19,11 @@
 					data-table="<%= this_table %>"
 					data-model="<%= this_model %>"
 					data-attribute="title">
-					<%= sanitize_title(job.title) unless job.title.nil? %>
+					<% if job.title && !job.title.empty? %>
+						<%= sanitize_title(job.title) %>
+					<% else %>
+						-
+					<% end %>
 				</span>	
 			</h1>	
 

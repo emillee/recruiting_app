@@ -125,7 +125,9 @@ class UsersController < ApplicationController
       :location, :company_id, :location_from, :link_to_online_profile,
 		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
 		  {job_prefs: { company_stage: [], company_industry: [], salary_buckets: [], equity_buckets: [] }},  		
-		  {company_settings: { company_stage: [] }}
+		  {company_settings: { company_stage: [] }},
+      :linkedin_url, :github_url, :behance_url, :personal_blog_url, :twitter_username, :stack_overflow      
+
 		)
 	end
 

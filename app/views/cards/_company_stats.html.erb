@@ -60,7 +60,7 @@
 	</h3>			
 
 	<% if current_user.is_admin %>
-		<% if company.career_page_link %>		
+		<% if company.career_page_link %>				
 			<%= link_to 'Career Page', company.career_page_link, target: '_blank' %>
 		<% else %>
 			<%= form_for(company) do |f| %>
@@ -69,12 +69,35 @@
 			<% end %>		
 		<% end %>	
 
-		<% if company.blog_link %>		
-			<%= link_to 'Blog', company.blog_link, target: '_blank' %>
+		<% if company.company_blog_url %>	
+			<span contenteditable="true"
+				data-id="<%= company.id %>" 
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-attribute="company_blog_url"
+				class="companies-editable">				
+				<%= company.company_blog_url %>
+			</span>
 		<% else %>
 			<%= form_for(company) do |f| %>
-				<%= f.text_field :blog_link %>
-				<%= f.submit "Submit Blog" %>
+				<%= f.text_field :company_blog_url || '-' %>
+				<%= f.submit "Submit Company Blog" %>
+			<% end %>		
+		<% end %>	
+
+		<% if company.tech_blog_url %>		
+			<span contenteditable="true"
+				data-id="<%= company.id %>" 
+				data-table="<%= this_table %>"
+				data-model="<%= this_model %>"
+				data-attribute="tech_blog_url"
+				class="companies-editable">			
+				<%= company.tech_blog_url || '-' %>
+			</span>
+		<% else %>
+			<%= form_for(company) do |f| %>
+				<%= f.text_field :tech_blog_url %>
+				<%= f.submit "Submit Tech Blog" %>
 			<% end %>		
 		<% end %>	
 

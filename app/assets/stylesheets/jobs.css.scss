@@ -1,3 +1,42 @@
+li#wolfpack-option-popup {
+  position: absolute;
+  top: 5px;
+  z-index: 9999;
+
+  .article-card-wrapper.wolfpack-popup {
+    background-color: rgb(230,230,230);
+
+    h2 {
+      padding-top: 0px;
+    }
+  }
+
+  .action-items.wolfpack-popup {
+    height: 30px;
+    background-color: white;
+    padding-bottom: 10px;
+
+    #cancel, #done {
+      display: inline-block;
+      line-height: 25px;
+      height: 25px;
+      width: 75px;
+      text-align: center;
+      color: white;
+      margin-bottom: 10px;
+      margin-left: 15px;
+    }
+
+    #cancel {
+      background-color: #c0392b;
+    }
+
+    #done {
+      background-color: #2ecc71;
+    }
+  }
+}
+
 li.job-link {
   .fa-mail-forward {  
     position: absolute;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611150501) do
+ActiveRecord::Schema.define(version: 20140617181713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,11 +76,12 @@ ActiveRecord::Schema.define(version: 20140611150501) do
     t.text     "team_commentary"
     t.text     "wolfpack_commentary"
     t.text     "the_big_idea_commentary"
-    t.string   "blog_link"
+    t.string   "company_blog_url"
     t.string   "the_big_idea_soundbite"
     t.string   "scale_soundbite"
     t.string   "culture_soundbite"
     t.text     "culture_commentary"
+    t.string   "tech_blog_url"
   end
 
   create_table "groups", force: true do |t|
@@ -208,8 +209,9 @@ ActiveRecord::Schema.define(version: 20140611150501) do
   end
 
   create_table "user_job_preapprovals", force: true do |t|
-    t.integer "user_id"
+    t.integer "preapproved_user_id"
     t.integer "job_id"
+    t.integer "preapproval_applicant_id"
   end
 
   create_table "user_jobs", force: true do |t|
