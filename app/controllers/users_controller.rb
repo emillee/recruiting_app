@@ -120,14 +120,13 @@ class UsersController < ApplicationController
   # TODO: is it security risk for is_admin
 	def user_params
 		params.require(:user).permit(
-	    :is_admin, :guest, :biography, :intro, :interested_in_meeting, :investor_company_id, 
+	    :is_admin, :is_guest, :biography, :intro, :interested_in_meeting, :investor_company_id, 
       :snapshots, :email, :password, :password_digest, :avatar, :fname, :lname, :title, 
       :location, :company_id, :location_from, :link_to_online_profile,
 		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
 		  {job_prefs: { company_stage: [], company_industry: [], salary_buckets: [], equity_buckets: [] }},  		
-		  {company_settings: { company_stage: [] }},
+		  {company_settings: { company_stage: [] }}, :is_applicant, :one_liner,
       :linkedin_url, :github_url, :behance_url, :personal_blog_url, :twitter_username, :stack_overflow      
-
 		)
 	end
 

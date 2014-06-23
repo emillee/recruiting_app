@@ -25,6 +25,11 @@ class ChatController < WebsocketRails::BaseController
     p "#{request.url}"
   end
 
+  def client_disconnected
+    p 'inside client disconnected'
+    p "#{request.url}"
+  end  
+
 end
 
 

@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   def inputs_from_omniauth(auth)
     self.fname, self.lname = auth.info.name.split(' ')[0], auth.info.name.split(' ')[1] if auth.info.name
     self.email = auth.info.email if auth.info.email
-    self
+    self.save
   end
 
   # Autocomplete ------------------------------------------------------------------
@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
     end
     
     def set_user_settings
-      self.guest = true
+      self.is_guest = true
       self.is_admin = false
       self.is_member = false
       self.save

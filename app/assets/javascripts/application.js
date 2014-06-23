@@ -13,6 +13,7 @@
 //= require companies
 //= require investors
 //= require chatrooms
+//= require landing_page
 //= require underscore
 //= require_tree ./shared
 

@@ -1,5 +1,9 @@
 class SharedController < ApplicationController
 
+  def welcome_to_wolfpack
+    @applicant = current_user
+  end
+
 	def contact_us
 	end
 

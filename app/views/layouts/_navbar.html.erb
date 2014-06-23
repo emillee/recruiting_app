@@ -6,26 +6,44 @@
 	</span>
 
 	<div class="menu">
-		<%= link_to 'All', all_activity_url, class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
+	<% if action_name == 'welcome_to_wolfpack' %>
 
-		<%= link_to 'Links', articles_url, class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
-
-		<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
-
-		<%= link_to 'People', users_url %>
 		
-		<%= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
+			<%= link_to 'All', '#', class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
 
-		<%#= link_to 'Investors', investors_url,  class: "#{'selected' if @tab == 'investors'}", data: { no_turbolink: true } %>
+			<%= link_to 'Links', '#', class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
 
-		<%#= link_to 'Groups', '#',  class: "#{'selected' if @tab == 'groups'}", data: { no_turbolink: true } %>
+			<%= link_to 'Jobs', '#', class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
 
-		<%#= link_to 'More +', '#', data: { no_turbolink: true } %>
+			<%= link_to 'People', '#' %>
+			
+			<%= link_to 'Startups', '#', class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>	
+
+	<% else %>
+
+			<%= link_to 'All', all_activity_url, class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
+
+			<%= link_to 'Links', articles_url, class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
+
+			<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
+
+			<%= link_to 'People', users_url %>
+			
+			<%= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
+
+			<%#= link_to 'Investors', investors_url,  class: "#{'selected' if @tab == 'investors'}", data: { no_turbolink: true } %>
+
+			<%#= link_to 'Groups', '#',  class: "#{'selected' if @tab == 'groups'}", data: { no_turbolink: true } %>
+
+			<%#= link_to 'More +', '#', data: { no_turbolink: true } %>
+		
+
+	<% end %>
 	</div>
 
 	<div class="session">
-		<% if current_user.guest %>
-			<%= link_to 'My Profile: Logged in as Guest', user_url(current_user), class: 'navbar-guest-a' %>
+		<% if current_user.is_guest %>
+			<%= link_to "Guest #{current_user.id}", user_url(current_user), class: 'navbar-guest-a' %>
 		<% elsif current_user.is_member || current_user.is_admin %>
 			<%= link_to "My Profile: Logged in as #{current_user.fname}", user_url(current_user) %>			
 		<% end %>
@@ -34,25 +52,27 @@
 		<i class="fa fa-caret-down hidden"></i>			
 
 		<ul class="nav-cog-options hidden">
-			<% if current_user.is_member || current_user.is_admin %>
-				<li>
-					<%= link_to 'Log Out', logout_url, method: :delete %>	
-					<i class="fa fa-power-off"></i> 
-				</li>
-			<% else %>
-				<li>
-					<%= link_to 'Sign In (Returning Users)', login_url %>
-					<i class="fa fa-key"></i>
-				</li>
-			<% end %>
+			
+			<li>
+				<%= link_to 'Log Out', logout_url, method: :delete %>	
+				<i class="fa fa-power-off"></i> 
+			</li>
+
+			<li>
+				<%= link_to 'Sign In (Returning Users)', login_url %>
+				<i class="fa fa-key"></i>
+			</li>
+
 			<li>
 				<%= link_to 'Apply for Membership (New Users)', new_user_url %>
 				<i class="fa fa-unlock"></i>
 			</li>
+
 			<li class="nav-contact-us">
 				<i class="fa fa-pencil-square-o"></i> 
 				<%= link_to "Contact Us", '#', id: 'contact-us-link' %>		
 			</li>
+			
 			<li>
 				<%= link_to 'Update Settings', edit_user_url(current_user) %>
 				<i class="fa fa-cogs"></i>

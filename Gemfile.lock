@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/DanKnox/websocket-rails.git
-  revision: 7b7bc1f08ca2534e1a227537aa8197a8e6a17860
+  revision: 712fd4e35325887956724be388821121a866c7fc
   specs:
     websocket-rails (0.7.0)
       em-synchrony
@@ -257,7 +257,7 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.1)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     prawn (0.8.4)
       prawn-core (>= 0.8.4, < 0.9)
       prawn-layout (>= 0.8.4, < 0.9)
@@ -302,7 +302,7 @@ GEM
     rb-libsvm (1.1.5)
     rdoc (4.1.1)
       json (~> 1.4)
-    redis (3.0.7)
+    redis (3.1.0)
     redis-objects (0.9.1)
       redis (>= 3.0.2)
     reportbuilder (1.4.2)
@@ -381,7 +381,7 @@ GEM
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
     treetop (1.4.15)

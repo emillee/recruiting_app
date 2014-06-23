@@ -15,11 +15,13 @@
 			<%= render "#{controller_name}/#{controller_name}_sidebar" %>
 		</div>
 
-		<div class="main-content-wrapper">
+		<div class=<%= "main-content-wrapper" unless action_name == "welcome_to_wolfpack" %>>
 			<%= yield %>
 		</div>
 
-		<%= render './layouts/background' %>
+		<% unless action_name == 'welcome_to_wolfpack' %>
+			<%= render './layouts/background' %>
+		<% end %>
 
 		<%= render 'layouts/footer' %>
 

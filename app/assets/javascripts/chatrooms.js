@@ -1,9 +1,16 @@
 var ready_chatroom = function() {    
-  if ($('#chat').length > 0 ) {
+  if ($('.chatrooms').length > 0 ) {
+    console.log('chatroomjs')
 
   	// CREATE A DISPATCHER OBJECT
   	var dispatcher = new WebSocketRails($('#chat').data('uri'));
   	var room_id = document.URL.split('room_id=')[1].slice(0,16);
+
+    window.onbeforeunload = function() {
+      return "Please confirm that you want to exit this chatroom"
+
+      dispatcher.trigger('client_disconnected')
+    };
 
   	dispatcher.on_open = function(data) {
   		console.log('connection opened with connection:' + data);
@@ -33,17 +40,20 @@ var ready_chatroom = function() {
   	};
 
 		private_channel.bind('publish_chatroom_message', function(data) {
-			console.log('received publish_chatroom_message:');
-			console.log(data);
 			window.pubchandata = data;
 			$('#chat > ul').append('<li>' + data.user_fname + ' : ' + data.message_body + '</li>');
 			$('#message_message_body').val('');
 		});
 
 		private_channel.bind('client_connected', function(data) {
-			$('#chat > ul').append('<li>WolfpackAdmin : ' + data.user_fname  + ' has joined the room</li>');
+			$('#chat > ul').append('<li>Wolfpack : ' + data.user_fname  + ' has joined the room</li>');
 			$('#user-list-ul').append('<li>' + data.user_fname + '</li>');
 		});
+
+    private_channel.bind('client_disconnected', function(data) {
+      $('#chat > ul').append('<li class="' + data.user_fname +
+           '">Wolfpack : ' + data.user_fname  + ' has left the room</li>');
+    });    
 
   };
 };

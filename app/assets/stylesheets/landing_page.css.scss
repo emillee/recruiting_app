@@ -1,0 +1,225 @@
+div.landing-page-wrapper {
+
+	h1{
+		font-size: 30px;
+		line-height: 40px;
+		font-family: 'Lato';
+		color: white;
+		letter-spacing: 1px;
+	}
+
+	p {
+		margin-top: 15px;
+		font-size: 18px;
+		line-height: 30px;
+		color: white;
+		font-family: 'Lato';
+	}		
+
+	.landing-page-btn, input[type='submit'] {
+		margin-top: 10px;
+		display: inline-block;
+		background-color: #2ecc71;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;	
+		width: 200px;	
+		font-size: 16px;	
+		font-weight: 700;
+		color: white;
+		border-radius: 3px;
+		font-family: 'Open Sans';
+		border: none;
+		cursor: pointer;
+	}		
+
+	#section-1 {
+		position: absolute;
+		height: 800px;
+		width: 100%;
+		top: 44px;
+
+		.landing-page-bg {
+		  background: url('app_images/wolfpack.jpg');
+		  background-size: cover;
+		  height: 100%;
+		  width: 100%;
+		  top: 44px;
+		  z-index: -9998;
+		  -webkit-filter: grayscale(50%);   
+		  max-height: 800px;
+		}			
+
+		div.landing-page-one-wrapper {
+			position: fixed;
+			display: inline-block;
+			top: 62px;
+			left: 20px;
+			width: 300px;
+			height: 85%;
+			background-color: rgba(255,255,255,0.2);
+			opacity: 0.9;	
+			padding: 20px;
+
+			h1 {
+				padding-bottom: 15px;
+				border-bottom: 5px solid white;
+			}
+
+			p {
+				color: #f4f5f0;
+			}
+
+			p.bullet {
+				margin-left: 5px;
+				margin-top: 5px;
+			}
+
+			a {
+				margin-top: 35px;
+			}
+		}		
+	}
+
+	#section-2 {
+		position: absolute;
+		width: 100%;
+		top: 844px;
+		height: 900px;			
+		background-color: rgb(240,240,240);
+		// background-color: #333332;
+		margin-bottom: 0;
+
+		p.free-beer {
+			margin-top: 10px;
+			font-size: 16px;
+			font-style: italic;
+		}			
+	}
+
+	div.landing-page-two-wrapper {
+		position: absolute;
+		top: 50px;
+		left: 50px;
+		width: 40%;
+		height: 71%;
+		background-color: #b3b3b1;
+		background-color: white;		
+		opacity: 0.9;	
+		padding: 20px;
+
+		h1, p {
+			color: black;	
+		}
+
+		h1 {
+			margin-top: 35px;
+
+			&:first-of-type {
+				margin-top: 0px;
+			}
+		}
+
+		h1 + p {
+			margin-top: 0px;
+		}				
+
+		p {
+			margin-top: 10px;			
+		}
+
+		p.bullet {
+			margin-top: 5px;
+		}		
+		
+	}
+
+	div.landing-page-three-wrapper {
+		position: absolute;
+		top: 50px;
+		left: 750px;
+		width: 42%;
+		height: 71%;
+		background-color: rgba(0,0,0,0.5);
+		background-color: white;
+		opacity: 0.9;	
+		padding: 20px;
+
+		h1.header {
+			padding-bottom: 10px;
+			color: black;
+		}	
+
+		h2 {
+			margin-top: 15px;
+			font-size: 24px;
+			line-height: 34px;
+			font-family: 'Lato';
+			color: black;
+			letter-spacing: 1px;			
+		}
+
+		p {
+			color: black;
+		}
+
+		span.step-1 {
+			display: inline-block;	
+			padding-bottom: 30px;
+			width: 100%;
+
+			p.or {
+				text-indent: 5px;
+			}
+
+			p {
+				margin-top: 0px;
+			}
+
+			input[type='text'] {
+				border: 3px solid rgb(230,230,230);
+				height: 25px;
+				line-height: 25px;
+				width: 300px;
+				margin-top: 10px;
+				border-radius: 3px;
+				display: block;	
+				text-indent: 5px;
+			}
+		}
+
+		span.step-2 {
+			display: inline-block;
+			padding-bottom: 30px;
+
+			h2 {
+				margin-top: 30px;
+			}
+
+			p {
+				margin-top: 0px;
+			}
+		}
+
+		h1.the-rest {
+			color: black;
+			margin-top: 30px;
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

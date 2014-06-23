@@ -5,6 +5,7 @@
 		<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
 				class: 'applied_already fa fa-check', remote: true, method: :delete %>
 	<% else %>
+		
 		<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
 				class: "applied fa fa-check", remote: true, method: :post %>
 	<% end %>

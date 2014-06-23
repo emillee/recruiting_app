@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619151859) do
+ActiveRecord::Schema.define(version: 20140622201039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -234,7 +234,7 @@ ActiveRecord::Schema.define(version: 20140619151859) do
     t.datetime "updated_at"
     t.text     "job_settings"
     t.boolean  "is_admin"
-    t.boolean  "guest"
+    t.boolean  "is_guest"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -262,6 +262,8 @@ ActiveRecord::Schema.define(version: 20140619151859) do
     t.string   "personal_blog_url"
     t.string   "twitter_username"
     t.string   "stack_overflow"
+    t.string   "one_liner"
+    t.boolean  "is_applicant"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

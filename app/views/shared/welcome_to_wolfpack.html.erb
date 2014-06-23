@@ -1,0 +1,78 @@
+<div class="landing-page-wrapper">
+
+	<section id="section-1">
+		<div class="landing-page-bg"></div>	
+		<div class="landing-page-one-wrapper">
+			<h1>Find the job where you belong</h1>
+			<p>Due to capacity constraints, we can only serve applicants that:</p>
+			<p class="bullet">Are interested in startups in the NYC-area</p>
+			<p class="bullet">Are seeking programming or design jobs</p>
+			<%= link_to 'Tell me more', '#', class: 'landing-page-btn', id: 'tell-me-more' %>
+		</div>
+	</section>
+
+	<section id="section-2">
+		<div class="landing-page-two-wrapper">
+			<h1>Who We Are</h1>
+			<p>We are a team with backgrounds in programming, VC, recruiting and data science. We have one mission: to help you find a job where you will be happy.</p>
+			
+			<h1>What We Do</h1>
+			<p>We analyze your background, skill set, and prior work history.</p>
+			<p>Using a mix of sentiment analysis, machine learning, industry-based intuition and good old-fashioned manual labor, we match you to companies and careers.</p>
+			<p>Out of the 1,000+ listings in our database, we will only send you the top 0.5%-2.0% matches.</p>
+
+			<h1>What We Don't Do</h1>
+			<p class="bullet">Spam you, or your friends</p>
+			<p class="bullet">Share your information, with anyone, anytime, anywhere</p>
+			<p class="bullet">Charge you or the hiring company. Wolfpack is currently free. Free as in beer</p>
+		</div>
+
+		<div class="landing-page-three-wrapper">
+			<h1 class="header">To Get Started (Two Steps):</h1>
+
+			<span class="step-1">
+				<h2>Step 1</h2>
+				<p>
+					Sign in through LinkedIn
+					<%= link_to "", "/auth/linkedin?origin=landing_page", class: "fa fa-linkedin-square" %>
+				</p>
+				<p class="or">- or - </p>
+				<p>Send us your LinkedIn profile URL and email address:</p>
+				<% email_provider = @applicant.email.split('@')[1] %>
+				<% email_value = email_provider == 'wolfpackguest.com' ? '' : @applicant.email %>
+				
+				<%= form_for(@applicant) do |f| %>
+					<%= f.text_field :linkedin_url, value: @applicant.linkedin_url, placeholder: 'Paste LinkedIn URL' %>
+					<%= f.text_field :email, value: email_value, placeholder: 'Input your email' %>
+	
+				</span>
+
+				<span class="step-2">
+					<h2>Step 2</h2>
+					<p>Send us one-sentence (max 200 characters) about what you're looking for</p>
+						<%= f.text_field :one_liner, value: @applicant.one_liner, placeholder: 'Type text here' %>
+				</span>
+
+				<%= f.hidden_field :is_applicant, value: true %>
+
+
+
+			<h1 class="the-rest">Step 3: We'll take care of the rest</h1>
+				<%= f.submit 'Done' %>
+			<% end %>
+			<%#= link_to "I'm Done", '#', class: 'landing-page-btn' %>
+		</div>		
+	</section>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+

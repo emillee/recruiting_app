@@ -13,18 +13,22 @@
 			<h1>
 				<span><%= locals[:counter].to_s + ". " if locals[:counter] %></span>
 
-				<span class="jobs-editable"
-					contenteditable= "<%= editable_if_admin(current_user) %>"
-					data-id="<%= job.id %>" 
-					data-table="<%= this_table %>"
-					data-model="<%= this_model %>"
-					data-attribute="title">
-					<% if job.title && !job.title.empty? %>
-						<%= sanitize_title(job.title) %>
-					<% else %>
-						-
-					<% end %>
-				</span>	
+				<% if controller_name == 'companies' %>
+					<span class="jobs-editable"
+						contenteditable= "<%= editable_if_admin(current_user) %>"
+						data-id="<%= job.id %>" 
+						data-table="<%= this_table %>"
+						data-model="<%= this_model %>"
+						data-attribute="title">
+						<% if job.title && !job.title.empty? %>
+							<%= sanitize_title(job.title) %>
+						<% else %>
+							-
+						<% end %>
+					</span>	
+				<% else %>
+					<%= job.title.titleize %>
+				<% end %>
 			</h1>	
 
 			<span class="article-text">
@@ -63,4 +67,6 @@
 	</div>	
 
 	<%= render './jobs/job_index_action_items', locals: { job: job } %>
+
+	<%= render 'wolfpack_option', locals: { job: job } %>
 <%# end %>

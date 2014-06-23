@@ -8,8 +8,8 @@ WebsocketRails::EventMap.describe do
 		subscribe :subscribe_private,			to: ChatController, with_method: :authorize_channel
 	end
 
-  subscribe :client_connected,      to: ChatController, with_method: :client_connected
-  # subscribe :client_disconnected,   to: ChatController, with_method: :delete_user
+  subscribe :client_connected,      	to: ChatController, with_method: :client_connected
+  subscribe :client_disconnected,   	to: ChatController, with_method: :client_disconnected
   # subscribe :subscribe_private,     to: ChatController, with_method: :subscribe_private
 end
 

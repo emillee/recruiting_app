@@ -14,12 +14,10 @@ class MessagesController < ApplicationController
 				chatroom = Chatroom.find(chatroom_id.to_i)
 				
 				room_to_publish = chatroom.room_id
-				# room_to_publish = 'awesome'
-				user_fname = @message.user.fname || 'user-name-placeholder'
+				user_fname = @message.user.fname || 'Guest User'
 				message_obj = @message.attributes.merge({user_fname: user_fname})
 
 				WebsocketRails[room_to_publish].trigger(:publish_chatroom_message, message_obj)
-				p 'in message#create'
 			end
 		
 			# causes #SHOW to be served again, which isn't what we want, now causes an internal server errors

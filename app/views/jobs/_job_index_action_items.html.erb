@@ -4,13 +4,15 @@
 <div class="preview-action-items">	
 	<%= link_to '', job.link, class: 'fa fa-external-link-square', target: '_blank' %>
 
-	<% if already_applied?(job) %>
-		<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
-				class: 'applied_already fa fa-check', remote: true, method: :delete %>
-	<% else %>
-		<%= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
-				class: "applied fa fa-check", remote: true, method: :post %>
-	<% end %>
+	<%= link_to '  Let Wolfpack Hunt For You', '#', class: 'fa fa-paw', id: 'wolfpack-option' %>
+	
+	<%# if already_applied?(job) %>
+		<%#= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
+				class: 'applied_already fa fa-paw', remote: true, method: :delete %>
+	<%# else %>
+		<%#= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
+				class: "applied fa fa-paw", remote: true, method: :post %>
+	<%# end %>
 
 	<% if has_saved_job?(job) %>
 		<%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 

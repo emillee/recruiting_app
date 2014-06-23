@@ -69,6 +69,7 @@ Nytech::Application.routes.draw do
   match '/send_contact_us_email',    to: 'shared#send_contact_us_email', via: :post
 
   match '/all_activity',             to: 'shared#all_activity', via: :get
+  match '/welcome_to_wolfpack',      to: 'shared#welcome_to_wolfpack', via: :get
 
   root to: 'jobs#index'
 end
