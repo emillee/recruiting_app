@@ -12,7 +12,7 @@ class UserJobsController < ApplicationController
       UserJob.create(user_id: params[:user_id], removed_job_id: params[:removed_job_id])
     end
       
-    redirect_to jobs_url
+    redirect_to jobs_url, status: 303
   end
 
   def destroy
@@ -24,7 +24,7 @@ class UserJobsController < ApplicationController
       UserJob.where(user_id: params[:user_id], removed_job_id: params[:removed_job_id]).first.destroy
     end
       
-    redirect_to jobs_url
+    redirect_to jobs_url, status: 303
   end  
 
   

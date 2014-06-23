@@ -50,7 +50,7 @@
 				<span class="step-2">
 					<h2>Step 2</h2>
 					<p>Send us one-sentence (max 200 characters) about what you're looking for</p>
-						<%= f.text_field :one_liner, value: @applicant.one_liner, placeholder: 'Type text here' %>
+						<%= f.text_area :one_liner, value: @applicant.one_liner, placeholder: 'Type text here' %>
 				</span>
 
 				<%= f.hidden_field :is_applicant, value: true %>

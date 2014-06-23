@@ -3,6 +3,24 @@ var ready_jobs = function() {
 
     setUpCompanyHandler();
 
+    $('a.fa-paw').on('click', function(e) {
+      e.preventDefault();
+      var $job_id = $(this).data('job-id');
+      console.log($job_id);
+      var $url = '/jobs/' + $job_id + '/wolfpack_option';
+      console.log($url);
+
+      $.ajax({
+        type: 'GET',
+        url: $url,
+        success: function(data) {
+          console.log(data);
+          var popup = $(data).find(' .wolfpack-option-popup');
+          $('.main-content-wrapper').prepend(popup);
+        }
+      });      
+    });
+
 
     $('#wolfpack-option').on('click', function(e) {
       e.preventDefault();
@@ -127,6 +145,11 @@ var ready_jobs = function() {
         addModalToBody();
       });   
     });
+
+    $('ul.job-posts').on('click', '.icon-clicked, .icon-unclicked', function(event) {
+      $(this).toggleClass('icon-clicked');
+      $(this).toggleClass('icon-unclicked');
+    });    
  
     // SAVINGS, APPLYING, REMOVING JOBS
     $('ul.job-posts').on('click', '.save, .saved', function(event) {

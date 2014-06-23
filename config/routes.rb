@@ -46,6 +46,7 @@ Nytech::Application.routes.draw do
   end
 
   resources :jobs, only: [:show, :index, :new, :update, :destroy, :edit] do 
+    member { get :wolfpack_option }
     member { get :edit_company }
     member { post :import_data }
     member { put :update_req_skills }

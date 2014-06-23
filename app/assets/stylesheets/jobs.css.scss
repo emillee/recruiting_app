@@ -1,14 +1,40 @@
-li#wolfpack-option-popup {
+div.wolfpack-option-popup {
   position: absolute;
-  top: 5px;
+  display: block;
+  top: 20px;
+  left: 0px;
   z-index: 9999;
+  background-color: white;
 
   .article-card-wrapper.wolfpack-popup {
-    background-color: rgb(230,230,230);
+    background-color: white;
 
     h2 {
       padding-top: 0px;
     }
+  }
+
+  h2.dark-banner, p.users-editable, p.reminder {
+    margin-left: 25px;
+  }
+
+  h2.dark-banner {
+    font-size: 20px;
+  }
+
+  .users-editable {
+    margin-left: 15px;
+    line-height: 30px;  
+    border: 2px solid rgba(140,140,140,0.5);  
+    width: 90%;
+    margin-top: 8px;
+    text-indent: 5px;
+    color: rgb(40,40,40);
+  }
+
+  p.reminder {
+    margin-top: 15px;
+    padding-bottom: 10px;
   }
 
   .action-items.wolfpack-popup {
@@ -29,10 +55,21 @@ li#wolfpack-option-popup {
 
     #cancel {
       background-color: #c0392b;
+      position: absolute;
+      bottom: 25px;
+      left: 120px;      
     }
 
     #done {
       background-color: #2ecc71;
+      position: absolute;
+      display: inline-block;
+      bottom: 25px;
+      left: 10px;
+      line-height: 22px;
+      border: none;
+      width: 100px;
+      font-size: 15px;
     }
   }
 }
@@ -67,8 +104,7 @@ div.preview-action-items {
     border-top: 1px solid rgba(0,0,0,0.05);
   }
 
-  a.applied, a.view, a.forward, a.remove, a.save, a.viewed, a.fa-external-link-square,
-  a.applied_already, a.removed_already, a.saved {
+  a.icon-unclicked, a.icon-clicked {
     font-size: 17px; 
     display: block;
     height: 34px;
@@ -79,11 +115,11 @@ div.preview-action-items {
     background-color: rgba(0,0,0,0.1);
   }  
   
-  a.applied, a.view, a.forward, a.remove, a.save, a.viewed, a.fa-external-link-square {
+  a.icon-unclicked {
     color: rgb(141,141,141);      
   }  
 
-  a.viewed, a.saved, a.applied_already, a.removed_already {
+  a.icon-clicked {
     color: #2ecc71;                
   }
 

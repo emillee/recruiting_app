@@ -7,8 +7,9 @@ contenteditable= "true"
 data-id="<%= current_user.id %>" 
 data-table="users"
 data-model="user"
-data-attribute="linkedin_url">  
-<%= current_user.linkedin_url || 'Input LinkedIn Profile URL' %></p>
+data-attribute="linkedin_url"
+placeholder="Input LinkedIn Profile URL (optional)">  
+<%= current_user.linkedin_url %></p>
 
 <p class="users-editable"
 contenteditable= "true"
@@ -16,7 +17,8 @@ data-id="<%= current_user.id %>"
 data-table="users"
 data-model="user"
 data-attribute="github_url">  
-<%= current_user.github_url || 'Input GitHub URL' %></p>
+	<%= current_user.github_url || 'Input Github URL (optional)'  %>
+</p>
 
 <p class="users-editable"
 contenteditable= "true"
@@ -24,7 +26,7 @@ data-id="<%= current_user.id %>"
 data-table="users"
 data-model="user"
 data-attribute="stack_overflow">  
-<%= current_user.stack_overflow || 'Input Stack Overflow Username' %></p>
+<%= current_user.stack_overflow || 'Input Stack Overflow Username (optional)' %></p>
 
 <p class="users-editable"
 contenteditable= "true"
@@ -32,7 +34,7 @@ data-id="<%= current_user.id %>"
 data-table="users"
 data-model="user"
 data-attribute="behance_url">  
-<%= current_user.behance_url || 'Input Behance URL' %></p>
+<%= current_user.behance_url || 'Input Behance URL (optional)' %></p>
 
 <p class="users-editable"
 contenteditable= "true"
@@ -40,15 +42,7 @@ data-id="<%= current_user.id %>"
 data-table="users"
 data-model="user"
 data-attribute="personal_blog_url">  
-<%= current_user.personal_blog_url || 'Input Personal Blog URL' %></p>
-
-<p class="users-editable"
-contenteditable= "true"
-data-id="<%= current_user.id %>" 
-data-table="users"
-data-model="user"
-data-attribute="twitter_username">
-<%= current_user.twitter_username %></p>
+<%= current_user.personal_blog_url || 'Input Personal Blog URL (optional)' %></p>
 
 
 

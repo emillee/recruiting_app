@@ -78,6 +78,10 @@ class JobsController < ApplicationController
   end
   
   # NON RESTFUL ---------------------------------------------------------------------------
+  def wolfpack_option
+    @job = Job.find(params[:id])
+  end
+
   def import_data
     @job = Job.find(params[:id])
     @job.import_data

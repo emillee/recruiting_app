@@ -199,6 +199,12 @@ div.landing-page-wrapper {
 			p {
 				margin-top: 0px;
 			}
+
+			textarea#user_one_liner {
+				height: 40px;
+				width: 301px;
+				border: 3px solid rgb(230,230,230);
+			}
 		}
 
 		h1.the-rest {
