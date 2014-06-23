@@ -68,11 +68,6 @@ class User < ActiveRecord::Base
     self.session_token = SecureRandom.urlsafe_base64
   end
   
-  def inputs_from_omniauth(auth)
-    self.fname, self.lname = auth.info.name.split(' ')[0], auth.info.name.split(' ')[1] if auth.info.name
-    self.email = auth.info.email if auth.info.email
-    self.save
-  end
 
   # Autocomplete ------------------------------------------------------------------
   def user_company=(id)
