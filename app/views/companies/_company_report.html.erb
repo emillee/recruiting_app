@@ -13,6 +13,7 @@
 		data-model="company"
 		data-attribute="the_big_idea_soundbite">	
 		<%= company.the_big_idea_soundbite || 'The Big Idea Soundbite' %></h2>
+
 	<p class="companies-editable"
 		contenteditable= "true"
 		data-id="<%= company.id %>" 
@@ -20,6 +21,7 @@
 		data-model="company"
 		data-attribute="the_big_idea_commentary">
 		<%= company.the_big_idea_commentary || 'Description about the big idea' %></p>
+		
 	<% if job %>
 		<p class="jobs-editable"
 			contenteditable= "true"
