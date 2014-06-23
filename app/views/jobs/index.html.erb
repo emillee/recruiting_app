@@ -18,7 +18,7 @@
 		<li class="job-link">
 			<%= link_to '', '#', class: 'forward fa fa-mail-forward', data: { id: job.id } %>
 
-			<%#= render 'job_listing_preview', locals: { job: job, counter: counter} %>
+			<%= render 'job_listing_preview', locals: { job: job, counter: counter} %>
 		</li>
     
 		<div id="div-append-<%= job.id %>"></div>
