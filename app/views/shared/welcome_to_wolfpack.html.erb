@@ -42,7 +42,8 @@
 				<% email_value = email_provider == 'wolfpackguest.com' ? '' : @applicant.email %>
 				
 				<%= form_for(@applicant) do |f| %>
-					<%= f.text_field :linkedin_url, value: @applicant.linkedin_url, placeholder: 'Paste LinkedIn URL' %>
+					<% li_url = @applicant.linkedin_url ? @applicant.linkedin_url.squish : nil %>
+					<%= f.text_field :linkedin_url, value: li_url, placeholder: 'Paste LinkedIn URL' %>
 					<%= f.text_field :email, value: email_value, placeholder: 'Input your email' %>
 	
 				</span>
