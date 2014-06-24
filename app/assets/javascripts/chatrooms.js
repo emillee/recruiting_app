@@ -4,7 +4,7 @@ var ready_chatroom = function() {
 
   	// CREATE A DISPATCHER OBJECT
   	var dispatcher = new WebSocketRails($('#chat').data('uri'));
-  	var room_id = document.URL.split('room_id=')[1].slice(0,16);
+  	// var room_id = document.URL.split('room_id=')[1].slice(0,16);
 
     window.onbeforeunload = function() {
       return "Please confirm that you want to exit this chatroom"

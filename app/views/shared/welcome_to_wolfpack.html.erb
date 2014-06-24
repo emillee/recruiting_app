@@ -38,7 +38,7 @@
 				</p>
 				<p class="or">- or - </p>
 				<p>Send us your LinkedIn profile URL and email address:</p>
-				<% email_provider = @applicant.email.split('@')[1] %>
+				<% email_provider = @applicant.email.split('@')[1] if @applicant_email %>
 				<% email_value = email_provider == 'wolfpackguest.com' ? '' : @applicant.email %>
 				
 				<%= form_for(@applicant) do |f| %>

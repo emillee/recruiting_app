@@ -24,11 +24,14 @@ class Authentication
     @identity = Identity.find_with_omniauth(@oauth_hash)
     
     if @identity.nil? 
+      p "------ IN HERE"
     	@identity = Identity.initialize_from_omniauth(@oauth_hash)
     	@identity.user = current_user
     	@identity.save
     	return @identity.user
-    elsif current_user.is_member
+    else
+    # elsif current_user.is_member
+      p "------ IN HERE"
     	return @identity.user if @identity.user.present?
     end
   end	
