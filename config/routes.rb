@@ -71,6 +71,7 @@ Nytech::Application.routes.draw do
 
   match '/all_activity',             to: 'shared#all_activity', via: :get
   match '/welcome_to_wolfpack',      to: 'shared#welcome_to_wolfpack', via: :get
+  match '/pending_applicant',        to: 'shared#pending_applicant', via: :get
 
   root to: 'jobs#index'
 end

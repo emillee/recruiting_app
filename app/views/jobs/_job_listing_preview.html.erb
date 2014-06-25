@@ -26,14 +26,16 @@
 							-
 						<% end %>
 					</span>	
+				<% elsif current_user.is_admin %>
+					<%= link_to job.title.titleize, company_url(job.listing_company), target: '_blank' %>
 				<% else %>
-					<%= job.title.titleize %>
+					<%= link_to job.title.titleize, job.link %>
 				<% end %>
 			</h1>	
 
 			<span class="article-text">
 				<% if job.description %>
-					<p><%= job.description.split(' ')[0..35].join(' ') unless job.description.nil? %>...</p>
+					<p><%= job.description unless job.description.nil? %></p>
 				<% else %>
 					<% if job.full_text %>
 						<p>	<%= job.full_text.split(' ')[0..35].join(' ') unless job.full_text.nil? %>...</p>

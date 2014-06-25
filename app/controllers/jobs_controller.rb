@@ -2,6 +2,7 @@ class JobsController < ApplicationController
   
   respond_to    :html, :json
   before_filter :set_this_tab, only: [:index, :show]
+  before_filter :redirect_if_applicant
 
   # RESTful Routes ---------------------------------------------------------------------------
   def index
@@ -120,7 +121,13 @@ class JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:link, :title, :full_text, :is_draft, :technical_problem_commentary,
       :company_id, :dept, :sub_dept, :years_exp, :description, key_phrases: [], req_skills: [])
-  end       
+  end  
+
+  def redirect_if_applicant
+    if current_user.is_applicant
+      redirect_to pending_applicant_url
+    end
+  end
 
   def filtered_jobs(filter)
     @filter = filter

@@ -31,7 +31,7 @@ class Authentication
     	return @identity.user
     else
     # elsif current_user.is_member
-      p "------ IN HERE"
+      p "------ DOWN HERE"
     	return @identity.user if @identity.user.present?
     end
   end	

@@ -46,7 +46,19 @@
 		
 	<p><span class="heading">Link: </span><%= link_to "#{job.link}", "#{job.link}" %></p>		
 	<p>Status Code: <%= job.link_status_code %></p>
+
+	<p>One Sentence Description:</p>
+		<span class="jobs-editable"
+			contenteditable= "true"
+			data-id="<%= job.id %>" 
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-attribute="description">
+			<%= (job.description.nil? || job.description.empty?) ? 'description' : sanitize(job.description) %>
+		</span>
+	</p>
 	
+	<p>Full Text:</p>
 	<p>
 		<span class="jobs-editable"
 			contenteditable= "true"
@@ -55,6 +67,7 @@
 			data-model="<%= this_model %>"
 			data-attribute="full_text">
 			<%= (job.full_text.nil? || job.full_text.empty?) ? 'Full Text Here' : sanitize(job.full_text) %>
+		</span>
 	</p>
 
 </div>
