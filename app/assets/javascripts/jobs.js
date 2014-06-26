@@ -3,31 +3,104 @@ var ready_jobs = function() {
 
     setUpCompanyHandler();
 
-    $('a.fa-paw').on('click', function(e) {
+    // --------------------------------------------------------------------------------------------------------------
+    // JOB: ACTION ITEMS
+    // --------------------------------------------------------------------------------------------------------------
+
+    $('a.fa-external-link-square.unviewed').click(function(e) {
+      toggleHiddenClass(this);
+      createOrDestroyUserJobObject.apply(this);
+    });
+
+    $('a.fa-paw').click(function(e) {
       e.preventDefault();
-      var $job_id = $(this).data('job-id');
-      console.log($job_id);
+      toggleHiddenClass(this);
+      createOrDestroyUserJobObject.apply(this);
+    });
+
+    $('a.fa-bookmark').click(function(e) {
+      e.preventDefault();
+      toggleHiddenClass(this);
+      createOrDestroyUserJobObject.apply(this);      
+    });
+
+    $('a.fa-times').click(function(e) {
+      e.preventDefault();
+      $(this).closest('li').remove();
+      createOrDestroyUserJobObject.apply(this);
+    })
+
+    function toggleHiddenClass(thisObj) {
+      $(thisObj).closest('span.action-span').children('span').toggleClass('hidden')
+    };
+
+    function createOrDestroyUserJobObject() {
+      var $attr = $(this).data('attr')
+      var $user_id = $(this).data('user-id');
+      var $this_method = $(this).data('this-method');
+
+      var $viewed_job_id = $(this).data('viewed-job-id');
+      var $bookmarked_job_id = $(this).data('bookmarked-job-id');
+      var $applied_via_wolfpack_job_id = $(this).data('applied-via-wolfpack-job-id');
+      var $removed_job_id = $(this).data('removed-job-id')
+
+      if ($viewed_job_id) {
+        var $job_id = $viewed_job_id;
+        var $attr = 'viewed_job_id';
+      } else if ($bookmarked_job_id) {
+        var $job_id = $bookmarked_job_id;
+        var $attr = 'bookmarked_job_id';
+      } else if ($applied_via_wolfpack_job_id) {
+        var $job_id = $applied_via_wolfpack_job_id;
+        var $attr = 'applied_via_wolfpack_job_id';
+      } else if ($removed_job_id) {
+        var $job_id = $removed_job_id;
+        var $attr = 'removed_job_id';
+      }
+
+      var dataObject = {}
+      dataObject['user_id'] = $user_id;
+      dataObject[$attr] = $job_id ;
+
+      $.ajax({
+        url: 'user_jobs',
+        method: $this_method,
+        data: dataObject
+      });    
+    };
+
+    // --------------------------------------------------------------------------------------------------------------
+    // WOLPFACK APPLY POPUP
+    // --------------------------------------------------------------------------------------------------------------    
+
+    $('a.fa-paw.open-popup').on('click', function(e) {
+      e.preventDefault();
+      console.log('hello')
+      var $job_id = $(this).data('applied-via-wolfpack-job-id');
       var $url = '/jobs/' + $job_id + '/wolfpack_option';
-      console.log($url);
+
+      console.log($url)
 
       $.ajax({
         type: 'GET',
         url: $url,
         success: function(data) {
-          console.log(data);
           var popup = $(data).find(' .wolfpack-option-popup');
+          addModalToBody();
           $('.main-content-wrapper').prepend(popup);
         }
       });      
     });
 
+    // $('#wolfpack-option').on('click', function(e) {
+    //   e.preventDefault();
+    //   $('li#wolfpack-option-popup').removeClass('hidden');
+    //   addModalToBody();
+    // });  
 
-    $('#wolfpack-option').on('click', function(e) {
-      e.preventDefault();
-      $('li#wolfpack-option-popup').removeClass('hidden');
-      addModalToBody();
-      
-    });    
+    // --------------------------------------------------------------------------------------------------------------
+    // NEW JOB POST
+    // --------------------------------------------------------------------------------------------------------------          
 
     $('#new-job-post').on('click', function(e) {
       e.preventDefault();
@@ -101,8 +174,12 @@ var ready_jobs = function() {
         e.stopPropagation();
       });     
     };
-  
-    // ADD SELECTED CLASS TO JOB NAVBAR
+
+    // --------------------------------------------------------------------------------------------------------------
+    // INPAGE NAVBAR
+    // --------------------------------------------------------------------------------------------------------------
+
+      // ADD SELECTED CLASS TO JOB NAVBAR
     $('.job-actions-wrapper').on('click', '.fa-check, .fa-bookmark, .fa-times', function(e) {
       e.preventDefault();
       addModalToBody();
@@ -127,8 +204,11 @@ var ready_jobs = function() {
         }
       })
     }); 
-    
+
+    // --------------------------------------------------------------------------------------------------------------
     // EMAIL / FORWARD A JOB POST
+    // --------------------------------------------------------------------------------------------------------------
+
     $('ul.job-posts').on('click', '.forward', function(event) {
       event.preventDefault();  
       $.ajaxSetup({ cache: false });
@@ -146,28 +226,7 @@ var ready_jobs = function() {
       });   
     });
 
-    $('ul.job-posts').on('click', '.icon-clicked, .icon-unclicked', function(event) {
-      $(this).toggleClass('icon-clicked');
-      $(this).toggleClass('icon-unclicked');
-    });    
- 
-    // SAVINGS, APPLYING, REMOVING JOBS
-    $('ul.job-posts').on('click', '.save, .saved', function(event) {
-      $(this).toggleClass('saved');
-      $(this).toggleClass('save');
-    });
-
-    $('ul.job-posts').on('click', '.applied, .applied_already', function(event) {
-      $(this).toggleClass('applied_already');
-      $(this).toggleClass('applied');
-    });  
-  
-    // REMOVE A JOB WHEN CLICK REMOVE
-    $('ul.job-posts').on('click', '.remove, .removed', function(event) {
-      $(this).parents('li').remove();
-      $(this).toggleClass('removed');
-      $(this).toggleClass('remove');
-    });   
+   
 
     function setUpPropagators() {
       $('.forward-form').children().click(function(e) {

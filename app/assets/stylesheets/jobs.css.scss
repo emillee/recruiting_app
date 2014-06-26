@@ -88,43 +88,35 @@ li.job-link {
 }
 
 div.preview-action-items {
-  width: 34px;
-  height: 50px;
+  width: 532px;
+  height: 25px;
   line-height: 25px;
-  top: 5px;
+  bottom: 10px;
   right: 255px;
-  height: 142px;
   position: absolute; 
+  // background-color: yellow;
   
   span {
+    margin-left: 3px;
+  }
+
+  a.icon {
     margin-left: 5px;
-  }
-
-  a:first-of-type {
-    border-top: 1px solid rgba(0,0,0,0.05);
-  }
-
-  a.icon-unclicked, a.icon-clicked {
-    font-size: 17px; 
+    font-size: 14px; 
     display: block;
-    height: 34px;
-    line-height: 34px;
-    width: 34px;
-    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 5px;
     border-bottom: 1px solid rgba(0,0,0,0.05);
-    background-color: rgba(0,0,0,0.1);
-  }  
-  
-  a.icon-unclicked {
-    color: rgb(141,141,141);      
-  }  
+    color: rgb(141,141,141); 
 
-  a.icon-clicked {
-    color: #2ecc71;                
-  }
+    &:hover {
+      background-color: rgba(0,0,0,.5); 
+    }     
 
-  a:hover {
-    background-color: rgba(0,0,0,.5); 
+    &.selected {
+      color: #2ecc71;                
+    }    
   }  
 }  
 

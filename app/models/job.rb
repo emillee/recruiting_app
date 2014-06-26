@@ -17,13 +17,15 @@ class Job < ActiveRecord::Base
   
   belongs_to :listing_company, class_name: 'Company', foreign_key: :company_id
   
-  has_many :user_job_applicants, class_name: 'UserJob', foreign_key: :applied_job_id
-  has_many :users_that_saved_job, class_name: 'UserJob', foreign_key: :saved_job_id
-  has_many :users_that_removed_job, class_name: 'UserJob', foreign_key: :removed_job_id
+  has_many :user_job_views, class_name: 'UserJob', foreign_key: :viewed_job_id
+  has_many :user_job_bookmarks, class_name: 'UserJob', foreign_key: :bookmarked_job_id
+  has_many :user_job_wolfpack_applicants, class_name: 'UserJob', foreign_key: :applied_via_wolfpack_job_id
+  has_many :user_job_removals, class_name: 'UserJob', foreign_key: :removed_job_id
 
-  has_many :applicants, through: :user_job_applicants, source: :user
-  has_many :saved_users, through: :users_that_saved_job, source: :user
-  has_many :removed_users, through: :users_that_removed_job, source: :user
+  has_many :users_that_viewed_job, through: :user_job_views, source: :user
+  has_many :users_that_bookmarked_job, through: :user_job_bookmarks, source: :user
+  has_many :users_applying_view_wolfpack, through: :user_job_wolfpack_applicants, source: :user
+  has_many :users_that_removed_job, through: :user_job_removals, source: :user
 
   has_many :user_job_preapprovals, class_name: 'UserJobPreapproval', foreign_key: :job_id
   
@@ -71,14 +73,14 @@ class Job < ActiveRecord::Base
    Job.filter(user
     .job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))
     .key_skills(skills)
-    .includes([{listing_company: :tech_stack}, :applicants, :saved_users, :removed_users])
+    .includes([{listing_company: :tech_stack}, :users_that_viewed_job, :users_that_bookmarked_job, :users_applying_view_wolfpack, :users_that_removed_job])
     .order("#{rank} DESC")
   end 
 
   def self.return_jobs_without_key_skills(user)
     Job.filter(user
       .job_settings.slice(:dept, :sub_dept, :years_exp, :keywords))
-      .includes([{listing_company: :tech_stack}, :applicants, :saved_users, :removed_users])
+      .includes([{listing_company: :tech_stack}, :users_that_viewed_job, :users_that_bookmarked_job, :users_applying_view_wolfpack, :users_that_removed_job])
       .order('years_exp DESC')
   end
 
@@ -126,7 +128,7 @@ class Job < ActiveRecord::Base
   def self.return_skills_by_sub_dept(job_sub_dept, skill_sub_dept=nil)
     sub_dept = job_sub_dept.downcase
     jobs = Job.where(sub_dept: sub_dept)
-    company_objs = jobs.map(&:listing_company).uniq
+    company_objs = jobs.map(&:listing_company).uniq.compact
     skill_objs = company_objs.select { |c| !c.tech_stack.empty? }.map(&:tech_stack).flatten.uniq
     sub_dept = sub_dept.split(' ').join('-')
     skill_objs = skill_objs.select { |s| s.skill_sub_dept ==  (skill_sub_dept || sub_dept) }

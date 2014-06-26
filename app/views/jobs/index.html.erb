@@ -11,9 +11,9 @@
 		<%# next if job.removed_users.include?(current_user) && @filter != 'removed' %>
 		<% counter += 1 %>
 
-		<% applied_class = already_applied?(job) ? "applied_already fa fa-check" : "applied fa fa-check" %>				
-		<% saved_class = has_saved_job?(job) ? "saved fa fa-bookmark" : "save fa fa-bookmark" %>
-		<% removed_class = already_removed?(job) ? "removed_already fa-times-circle-o" : "remove fa fa-times" %>		
+		<%# applied_class = already_applied?(job) ? "applied_already fa fa-check" : "applied fa fa-check" %>				
+		<%# saved_class = has_saved_job?(job) ? "saved fa fa-bookmark" : "save fa fa-bookmark" %>
+		<%# removed_class = already_removed?(job) ? "removed_already fa-times-circle-o" : "remove fa fa-times" %>		
 
 		<li class="job-link">
 			<%= link_to '', '#', class: 'forward fa fa-mail-forward', data: { id: job.id } %>

@@ -2,34 +2,92 @@
 <% job = locals[:job] %>
 
 <div class="preview-action-items">	
-	<%= link_to '', job.link, class: 'icon-unclicked fa fa-external-link-square', target: '_blank' %>
 
-	<%= link_to ' ', '#', class: 'icon-unclicked fa fa-paw', id: 'wolfpack-option', data: {
-		job_id: job.id
-	} %>
-	
-	<%# if already_applied?(job) %>
-		<%#= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
-				class: 'applied_already fa fa-paw', remote: true, method: :delete %>
-	<%# else %>
-		<%#= link_to '', user_jobs_url(user_id: user_id, applied_job_id: job.id), 
-				class: "applied fa fa-paw", remote: true, method: :post %>
-	<%# end %>
+	<span class="action-span">
+		<span class=<%= has_viewed_job?(job) ? 'selected' : 'hidden' %>>
+			<%= link_to ' Viewed', job.link, 
+				class: "icon fa fa-external-link-square selected",
+				data: { 
+					user_id: current_user.id, 
+					viewed_job_id: job.id, 
+					this_method: 'DELETE', 
+					attribute: 'viewed_job_id' },
+				target: '_blank' %>
+		</span>
 
-	<% if has_saved_job?(job) %>
-		<%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
-				class: "icon-unclicked fa fa-bookmark", remote: true, method: :delete %>
-	<% else %>
-		<%= link_to '', user_jobs_url(user_id: user_id, saved_job_id: job.id), 
-				class: "icon-clicked fa fa-bookmark", remote: true, method: :post %>
-	<% end %>
+		<span class=<%= has_viewed_job?(job) ? 'hidden' : 'selected' %>>
+			<%= link_to ' View Listing', job.link, 
+				class: "icon fa fa-external-link-square unviewed",
+				data: { 
+					user_id: current_user.id, 
+					viewed_job_id: job.id, 
+					this_method: 'POST' }, 
+				target: '_blank' %>
+		</span>
+	</span>
 
-	<% if already_removed?(job) %>
-		<%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
-				class: "icon-unclicked fa fa-times-circle-o", remote: true, method: :delete %>
-	<% else %>		
-		<%= link_to '', user_jobs_url(user_id: user_id, removed_job_id: job.id), 
-				class: "icon-clicked fa fa-times", remote: true, method: :post %>
-	<% end %>
+	<span class="action-span">
+		<span class=<%= has_applied_to_job_via_wolfpack?(job) ? 'selected' : 'hidden' %>>
+			<%= link_to ' Applied Via Wolfpack', '#', 
+			class: 'icon selected fa fa-paw', id: 'wolfpack-option', 
+			data: {
+				user_id: current_user.id, 
+				applied_via_wolfpack_job_id: job.id, 
+				this_method: 'DELETE'} %>
+		</span>
+
+		<span class=<%= has_applied_to_job_via_wolfpack?(job) ? 'hidden' : 'selected' %>>
+			<%= link_to ' Apply Via Wolfpack', '#', 
+				class: 'icon fa fa-paw open-popup', id: 'wolfpack-option',
+				data: { 
+					user_id: current_user.id, 
+					applied_via_wolfpack_job_id: job.id, 
+					this_method: 'POST' } %>
+		</span>
+	</span>
+
+	<span class="action-span">
+		<span class=<%= has_bookmarked_job?(job) ? 'selected' : 'hidden' %>>	
+			<%= link_to ' Bookmarked', '#', 
+				class: "icon selected fa fa-bookmark", 
+				data: { 
+					user_id: current_user.id, 
+					bookmarked_job_id: job.id, 
+					this_method: 'DELETE' } %>
+		</span>
+
+		<span class=<%= has_bookmarked_job?(job) ? 'hidden' : 'selected' %>>
+			<%= link_to ' Bookmark', '#',
+				class: "icon fa fa-bookmark",
+				data: { 
+					user_id: current_user.id, 
+					bookmarked_job_id: job.id, 
+					this_method: 'POST' } %>
+		</span>
+	</span>
+
+	<span class="action-span">
+		<span class=<%= has_removed_job?(job) ? 'selected' : 'hidden' %>>	
+			<%= link_to ' Removed', '#',
+				class: "icon selected fa fa-times-circle-o",
+				data: { 
+					user_id: current_user.id, 
+					removed_job_id: job.id, 
+					this_method: 'DELETE' } %>	
+		</span>
+
+		<span class=<%= has_removed_job?(job) ? 'hidden' : 'selected' %>>
+			<%= link_to ' Remove', '#', 
+				class: "icon fa fa-times", 
+				data: { 
+					user_id: current_user.id, 
+					removed_job_id: job.id, 
+					this_method: 'POST' } %>	
+		</span>
+	</span>
 
 </div>
+
+
+
+

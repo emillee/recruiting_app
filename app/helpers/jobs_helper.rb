@@ -1,5 +1,25 @@
 module JobsHelper
 
+  def has_viewed_job?(job)
+    return true if current_user.viewed_jobs.include?(job)
+    return false
+  end
+
+  def has_applied_to_job_via_wolfpack?(job)
+    return true if current_user.jobs_applied_via_wolpfack.include?(job)
+    return false
+  end
+
+  def has_bookmarked_job?(job)
+    return true if current_user.bookmarked_jobs.include?(job)
+    return false
+  end
+
+  def has_removed_job?(job)
+    return true if current_user.removed_jobs.include?(job)
+    return false
+  end
+
   def sanitize_title(title)
     ActionView::Base.full_sanitizer.sanitize(title).titleize
   end
@@ -137,24 +157,6 @@ module JobsHelper
   def return_years_exp
     return current_user.job_settings[:years_exp] if current_user && current_user.job_settings[:years_exp]
   end  
-	
-	def has_saved_job?(job)
-	  # return true if current_user && current_user.saved_jobs.include?(job)
-    return true if current_user && job.saved_users.include?(current_user)
-	  return false
-  end
-  
-  def already_applied?(job)
-    #return true if current_user && current_user.jobs_applied.include?(job)
-    return true if current_user && job.applicants.include?(current_user)
-    return false
-  end
-
-  def already_removed?(job)
-    # return true if current_user && current_user.removed_jobs.include?(job)
-    return true if current_user && job.removed_users.include?(current_user)
-    return false
-  end
 
   
   def description_snippet(job)

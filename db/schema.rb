@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622201039) do
+ActiveRecord::Schema.define(version: 20140625035909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,14 +216,15 @@ ActiveRecord::Schema.define(version: 20140622201039) do
 
   create_table "user_jobs", force: true do |t|
     t.integer "user_id"
-    t.integer "saved_job_id"
-    t.integer "applied_job_id"
+    t.integer "bookmarked_job_id"
+    t.integer "applied_via_wolfpack_job_id"
     t.integer "removed_job_id"
+    t.integer "viewed_job_id"
   end
 
-  add_index "user_jobs", ["user_id", "applied_job_id"], name: "index_user_jobs_on_user_id_and_applied_job_id", using: :btree
+  add_index "user_jobs", ["user_id", "applied_via_wolfpack_job_id"], name: "index_user_jobs_on_user_id_and_applied_via_wolfpack_job_id", using: :btree
+  add_index "user_jobs", ["user_id", "bookmarked_job_id"], name: "index_user_jobs_on_user_id_and_bookmarked_job_id", using: :btree
   add_index "user_jobs", ["user_id", "removed_job_id"], name: "index_user_jobs_on_user_id_and_removed_job_id", using: :btree
-  add_index "user_jobs", ["user_id", "saved_job_id"], name: "index_user_jobs_on_user_id_and_saved_job_id", using: :btree
   add_index "user_jobs", ["user_id"], name: "index_user_jobs_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
