@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   attr_reader :password # for password length validation
   attr_reader :user_company # for autocomplete
   attr_reader :article_id
+  attr_reader :user
+  attr_accessor :user
   
   validates :fname, length: { maximum: 25, allow_nil: true }
   validates :lname, length: { maximum: 30, allow_nil: true }

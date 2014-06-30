@@ -1,0 +1,21 @@
+<%= form_tag send_listings_url, method: :post do %>
+	
+  <%= text_field_tag "greeting", 
+  	"Hey #{@recipient.fname.squish}," 
+  %>
+
+  <%= text_field_tag "first_paragraph", 
+  	"We know as a [Title Type] you get bombarded with emails all the time. If you've received this email in error, please unsubscribe here: " 
+  %>
+
+  <%= text_field_tag "email_info[second_paragraph]", 
+  	"We're trying something different. Instead of throwing the kitchen sink at you, we're filtering the noise (through a combination of machine learning and the good old-fashioned human intution) so that we don't waste your time. We thought you might be interested in:"
+  %>
+
+  <% @jobs.each do |job| %>
+  	<%= check_box_tag "job[ids][]", job.id %>
+  	<%= text_field_tag "job[one_liner]", job.description || job.full_text %>
+  <% end %>
+
+  <%= submit_tag "Send" %>
+<% end %>

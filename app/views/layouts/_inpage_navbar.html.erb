@@ -7,13 +7,13 @@
 
 	<!-- JOBS -->
 	<% if controller_name == 'jobs' && action_name == 'index' %>
-		<%= link_to 'Post a job', '#', id: 'new-job-post' %>
+		<%#= link_to 'Post a job', '#', id: 'new-job-post' %>
 
 		<div class="job-actions-wrapper">
-			<%= link_to ' Applied', '#', class: 'fa fa-check', data: { filter: 'applied' } %>	
-			<%= link_to ' Bookmarked', '#', class: 'fa fa-bookmark', data: { filter: 'interested' } %>
-			<%= link_to ' Removed', '#', class: 'fa fa-times', data: { filter: 'removed' }  %>
-			<%= link_to ' Back', jobs_url, class: 'fa fa-times-circle' %>
+			<%#= link_to ' Applied', '#', class: 'fa fa-check', data: { filter: 'applied' } %>	
+			<%#= link_to ' Bookmarked', '#', class: 'fa fa-bookmark', data: { filter: 'interested' } %>
+			<%#= link_to ' Removed', '#', class: 'fa fa-times', data: { filter: 'removed' }  %>
+			<%#= link_to ' Back', jobs_url, class: 'fa fa-times-circle' %>
 		</div>
 	<% end %>
 
@@ -29,9 +29,7 @@
 	<% end %>	
 	
 	<!-- ARTICLES -->
-	<% if controller_name == 'articles' %>
-		<%= link_to 'Post a Link', new_article_url, id: 'new-link-a' %>
-	<% end %>
+	<%#= link_to 'Post an Article', new_user_article_url(current_user), id: 'new-link-a' %>
 
 	<!-- COMPANIES -->
 	<% if controller_name == 'companies' %>

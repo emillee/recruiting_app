@@ -18,5 +18,16 @@ class JobMailer < ActionMailer::Base
       email_body: @email_body
     )
   end
+
+  def send_listings(greeting, jobs)
+    @greeting = greeting
+    @jobs = jobs
+
+    mail(
+      to: 'from',
+      from: 'to',
+      subject: 'blah'
+    )
+  end
   
 end

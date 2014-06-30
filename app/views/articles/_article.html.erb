@@ -21,7 +21,7 @@
 		<%= article.link || 'Enter Link' %>
 	</div>
 	
-	<article class="editable body" data-placeholder="Type your post">
+	<article class="editable body" contenteditable="true" data-placeholder="Type your post">
 		<% section_body = add_placeholders_if_nil('body', article.body).squish %>	
 		<%= raw(section_body) %>
 

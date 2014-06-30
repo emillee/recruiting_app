@@ -31,6 +31,7 @@ Nytech::Application.routes.draw do
 
   resources :users do 
     member { post :delete_snapshot }
+    resources :articles, only: [:create, :update, :new, :index, :edit]
   end  
 
   resources :investors do
@@ -42,7 +43,7 @@ Nytech::Application.routes.draw do
     member { post :delete_snapshot }
     collection { get :autocomplete_fields }
     resources :jobs, only: [:create]
-    resources :articles, only: [:create, :update]
+    resources :articles, only: [:create, :update, :new, :index]
   end
 
   resources :jobs, only: [:show, :index, :new, :update, :destroy, :edit] do 
@@ -55,7 +56,9 @@ Nytech::Application.routes.draw do
   end
   
   namespace :admin do 
-    resources :jobs, :companies, only: [:index, :show, :new]
+    resources :jobs, :companies, only: [:index, :show, :new] do 
+      collection { get :send_listings_form }
+    end
   end
   
   # authentication
@@ -65,6 +68,7 @@ Nytech::Application.routes.draw do
   match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
 
   # mailers
+  match '/send_listings',            to: 'admin/jobs#send_listings', via: :post
   match '/forward_job',              to: 'jobs#forward_job', via: :post
   match '/contact_us',               to: 'shared#contact_us', via: :get
   match '/send_contact_us_email',    to: 'shared#send_contact_us_email', via: :post
@@ -73,5 +77,6 @@ Nytech::Application.routes.draw do
   match '/welcome_to_wolfpack',      to: 'shared#welcome_to_wolfpack', via: :get
   match '/pending_applicant',        to: 'shared#pending_applicant', via: :get
 
+  match '/',                         to: 'articles#index', constraints: { subdomain: /blog/ }, via: :get
   root to: 'jobs#index'
 end

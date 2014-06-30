@@ -1,13 +1,22 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all
+    if request.subdomain == 'blog'
+      @user = User.find(77)
+      @articles = @user.articles
+    elsif params[:company_id]
+      @company = Company.find(params[:company_id])
+      @articles = @company.articles
+    else
+      @articles = Article.all
+    end
   end
 
   def new
     @article = Article.create
-    UserArticle.create(user_id: current_user.id, article_id: @article.id)
-    redirect_to article_url(@article)
+    @user = current_user
+    UserArticle.create(article_id: @article.id, user_id: @user.id)
+    redirect_to edit_user_article_url(@user, @article)
   end
 
   def show
@@ -15,15 +24,16 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:user_id])
     @article = Article.find(params[:id])
   end  
   
   def create
     @article = Article.new
     if params[:article].nil? && params[:investor_id]
-      Article.create(investor_id: params[:investor_id])
-    else
-      @article.save(article_params)
+      Article.create(investor_id: params[:investor_id])  
+    else 
+      @article.save(article_params) && params[:user_id]
     end
     
     redirect_to :back

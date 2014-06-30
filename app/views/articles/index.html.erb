@@ -3,7 +3,7 @@
 <ul class="links">
 	<% @articles.each do |article| %>
 		<li>
-			<%= render 'article_preview', locals: { article: article, this_table: 'users' } %>
+			<%= render 'article', locals: { article: article, this_table: 'articles' } %>
 		</li>
 	<% end %>
 </ul>

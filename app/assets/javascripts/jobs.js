@@ -88,6 +88,8 @@ var ready_jobs = function() {
           var popup = $(data).find(' .wolfpack-option-popup');
           addModalToBody();
           $('.main-content-wrapper').prepend(popup);
+          var $top = $(window).scrollTop() + 50 + 'px';
+          $('.wolfpack-option-popup').css('top', $top);
         }
       });      
     });

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def require_current_user_or_guest
  	  user = current_user || User.new_guest
-     sign_in(user)
+    sign_in(user)
   end
   
 end
