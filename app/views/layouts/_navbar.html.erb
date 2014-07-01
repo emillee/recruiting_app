@@ -43,13 +43,13 @@
 
 	<div class="session">
 		<% if current_user.is_guest %>
-			<%= link_to "Guest #{current_user.id}", user_url(current_user), class: 'navbar-guest-a' %>
+			<%#= link_to "Guest #{current_user.id}", user_url(current_user), class: 'navbar-guest-a' %>
 		<% elsif current_user.is_member || current_user.is_admin %>
-			<%= link_to "#{current_user.fname} #{current_user.id}", user_url(current_user) %>			
+			<%#= link_to "#{current_user.fname} #{current_user.id}", user_url(current_user) %>			
 		<% end %>
 
-		<i class="fa fa-cog"></i>
-		<i class="fa fa-caret-down hidden"></i>			
+		<!-- <i class="fa fa-cog"></i> -->
+		<!-- <i class="fa fa-caret-down hidden"></i>			 -->
 
 		<ul class="nav-cog-options hidden">
 			

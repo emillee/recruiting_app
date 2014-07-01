@@ -28,7 +28,7 @@
 
 	<span class="action-span">
 		<span class=<%= has_applied_to_job_via_wolfpack?(job) ? 'selected' : 'hidden' %>>
-			<%= link_to ' Applied Via Wolfpack', '#', 
+			<%#= link_to ' Applied Via Wolfpack', '#', 
 			class: 'icon selected fa fa-paw', id: 'wolfpack-option', 
 			data: {
 				user_id: current_user.id, 
@@ -37,7 +37,7 @@
 		</span>
 
 		<span class=<%= has_applied_to_job_via_wolfpack?(job) ? 'hidden' : 'selected' %>>
-			<%= link_to ' Apply Via Wolfpack', '#', 
+			<%#= link_to ' Apply Via Wolfpack', '#', 
 				class: 'icon fa fa-paw open-popup', id: 'wolfpack-option',
 				data: { 
 					user_id: current_user.id, 
@@ -48,7 +48,7 @@
 
 	<span class="action-span">
 		<span class=<%= has_bookmarked_job?(job) ? 'selected' : 'hidden' %>>	
-			<%= link_to ' Bookmarked', '#', 
+			<%#= link_to ' Bookmarked', '#', 
 				class: "icon selected fa fa-bookmark", 
 				data: { 
 					user_id: current_user.id, 
@@ -57,7 +57,7 @@
 		</span>
 
 		<span class=<%= has_bookmarked_job?(job) ? 'hidden' : 'selected' %>>
-			<%= link_to ' Bookmark', '#',
+			<%#= link_to ' Bookmark', '#',
 				class: "icon fa fa-bookmark",
 				data: { 
 					user_id: current_user.id, 
@@ -68,7 +68,7 @@
 
 	<span class="action-span">
 		<span class=<%= has_removed_job?(job) ? 'selected' : 'hidden' %>>	
-			<%= link_to ' Removed', '#',
+			<%#= link_to ' Removed', '#',
 				class: "icon selected fa fa-times-circle-o",
 				data: { 
 					user_id: current_user.id, 
@@ -77,7 +77,7 @@
 		</span>
 
 		<span class=<%= has_removed_job?(job) ? 'hidden' : 'selected' %>>
-			<%= link_to ' Remove', '#', 
+			<%#= link_to ' Remove', '#', 
 				class: "icon fa fa-times", 
 				data: { 
 					user_id: current_user.id, 
