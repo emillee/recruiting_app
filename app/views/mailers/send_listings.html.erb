@@ -1,17 +1,22 @@
-<h1><%= @greeting %></h1>
+<div class="send-listings-wrapper">
+	<p><%= @greeting %></p>
 
-<p><%= @first_paragraph %></p>
+	<p><%= @first_paragraph %></p>
 
-<p><%= @second_paragraph %></p>
+	<p><%= @second_paragraph %></p>
 
-<% @jobs.each do |job| %>
-	<h1><%= job.title %> @ <%= job.listing_company.name %></h1>
-	<p><%= job.description %></p>
+	<p>-------------------------------</p>
 
-	<h1>About <%= job.listing_company.name %></h1>
-	<p><%= job.listing_company.overview %></p>
-<% end %>
+	<% @jobs.each do |job| %>
+		<h5><%= job.title.titleize %> @ <%= job.listing_company.name %></h5>
+		<p><%= job.description %></p>
 
-<p><%= @closing_paragraph %></p>
+		<h5>About <%= job.listing_company.name %>: <%= job.listing_company.overview %></h5>
+	<% end %>
 
-<p>Team Wolfpack</p>
+	<p>-------------------------------</p>
+
+	<p><%= @closing_paragraph %></p>
+
+	<h5>Team Wolfpack</h5>
+</div>

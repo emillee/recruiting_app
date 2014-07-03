@@ -33,7 +33,7 @@ class Admin::JobsController < Admin::ApplicationController
     closing_paragraph = params[:closing_paragraph]
 
     jobs = params[:job][:ids].map { |id| Job.find(id) }
-    subject = "#{jobs.size}" + " jobs we thought you might be interested in"
+    subject = "#{jobs.size}" + " #{'job'.pluralize(jobs.size)} we thought you might be interested in"
     subject = subject.titleize
 
     if JobMailer.send_listings(
