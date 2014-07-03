@@ -17,12 +17,10 @@ class SessionsController < ApplicationController
       user = oauth_hash ? auth.user_from_omniauth(current_user) : auth.user_from_email_and_pw
   
       if user
-        p "-------what the heck"
         sign_in(user)
         flash[:welcome] = ""
         redirect_to root_url      
       else    
-        p "-------huh"
         flash[:error] = 'Invalid login credentials. Please try again.'
         render :new         
       end 

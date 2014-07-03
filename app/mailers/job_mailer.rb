@@ -19,14 +19,17 @@ class JobMailer < ActionMailer::Base
     )
   end
 
-  def send_listings(greeting, jobs)
+  def send_listings(sender, recipient, subject, greeting, first_paragraph, second_paragraph, jobs, closing_paragraph)
     @greeting = greeting
+    @first_paragraph = first_paragraph
+    @second_paragraph = second_paragraph
     @jobs = jobs
-
+    @closing_paragraph = closing_paragraph 
+    
     mail(
-      to: 'from',
-      from: 'to',
-      subject: 'blah'
+      to: recipient,
+      from: sender,
+      subject: subject
     )
   end
   

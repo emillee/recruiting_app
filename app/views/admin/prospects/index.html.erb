@@ -1,0 +1,30 @@
+<%= form_tag create_from_link_admin_prospects_url, method: :post do %>
+	<%= text_field_tag :link %>
+	<%= submit_tag "Submit" %>
+<% end %>
+
+<table class="prospects">
+	<tr>
+		<th>ID</th>
+		<th>Github Username</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>City</th>
+		<th>Date Joined</th>
+		<th>Email</th>
+		<th>Language</th>
+	</tr>
+
+	<% @prospects.each do |prospect| %>
+		<tr>
+			<td><%= prospect.id %></td>
+			<td><%= prospect.github_username %></td>
+			<td><%= prospect.first_name %></td>
+			<td><%= prospect.last_name %></td>
+			<td><%= prospect.city %></td>
+			<td><%= prospect.date_joined %></td>
+			<td><%= prospect.email %></td>
+			<td><%= prospect.language %></td>
+		</tr>
+	<% end %>
+</table>

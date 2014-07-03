@@ -25,38 +25,28 @@ class Admin::JobsController < Admin::ApplicationController
   end
 
   def send_listings
+    sender = params[:sender]
+    recipient = params[:recipient]
     greeting = params[:greeting]
     first_paragraph = params[:first_paragraph]
-    third_paragraph = params[:third_paragraph]
+    second_paragraph = params[:second_paragraph]
+    closing_paragraph = params[:closing_paragraph]
+
     jobs = params[:job][:ids].map { |id| Job.find(id) }
+    subject = "#{jobs.size}" + " jobs we thought you might be interested in"
+    subject = subject.titleize
 
     if JobMailer.send_listings(
+        sender,
+        recipient,
+        subject,
         greeting,
-        jobs
+        first_paragraph,
+        second_paragraph,
+        jobs,
+        closing_paragraph
       ).deliver
     end
-  end
-
-  # def forward_job 
-  #   job = Job.find(params[:job_id])
-  #   sender_email = params[:email_info][:sender_email]
-  #   recipient_email = params[:email_info][:recipient_email]
-  #   subject_line = "You received a forward from #{sender_email}: #{job.title.titleize}"
-  #   email_body = params[:email_info][:body]
-    
-  #   if JobMailer.forward_job(
-  #     recipient_email,
-  #     subject_line,
-  #     email_body,
-  #     job,
-  #     sender_email
-  #     ).deliver
-  #     flash[:notice] = "Forwarded successfully"
-  #   else
-  #     flash[:notice] = "Please try again"
-  #   end
-    
-  #   redirect_to jobs_url
-  # end  
+  end 
    
 end

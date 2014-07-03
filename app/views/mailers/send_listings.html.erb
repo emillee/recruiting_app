@@ -1,5 +1,17 @@
-<%= @greeting %>
+<h1><%= @greeting %></h1>
+
+<p><%= @first_paragraph %></p>
+
+<p><%= @second_paragraph %></p>
 
 <% @jobs.each do |job| %>
-	<%= job.title %>
+	<h1><%= job.title %> @ <%= job.listing_company.name %></h1>
+	<p><%= job.description %></p>
+
+	<h1>About <%= job.listing_company.name %></h1>
+	<p><%= job.listing_company.overview %></p>
 <% end %>
+
+<p><%= @closing_paragraph %></p>
+
+<p>Team Wolfpack</p>

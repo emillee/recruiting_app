@@ -1,21 +1,83 @@
-<%= form_tag send_listings_url, method: :post do %>
-	
+<%= form_tag send_listings_url, method: :post, class: 'email-composer' do %>
+
+  <h1>From:</h1>
+  <%= text_field_tag "sender", nil, value: 'contact@wolfpackbeta.com' %>
+
+  <h1>To:</h1>
+  <%= text_field_tag "recipient", nil, value: @recipient.email %>
+
+  <h1>Greeting:</h1>
   <%= text_field_tag "greeting", 
-  	"Hey #{@recipient.fname.squish}," 
+  	"Hey #{@recipient.fname.squish},"     
   %>
 
-  <%= text_field_tag "first_paragraph", 
-  	"We know as a [Title Type] you get bombarded with emails all the time. If you've received this email in error, please unsubscribe here: " 
+  <h1>First paragraph:</h1>
+  <% this_title = @recipient.job_settings[:dept] ? @recipient.job_settings[:dept][0] : 'developer' %>
+
+  <%= text_field_tag "first_paragraph",
+  	"We know as #{article_helper(this_title)} you get bombarded with emails all the time. If you've received this email in error, please unsubscribe here: ",
+    class: 'paragraph'
   %>
 
-  <%= text_field_tag "email_info[second_paragraph]", 
-  	"We're trying something different. Instead of throwing the kitchen sink at you, we're filtering the noise (through a combination of machine learning and the good old-fashioned human intution) so that we don't waste your time. We thought you might be interested in:"
+  <h1>Second paragraph:</h1>
+  <%= text_field_tag "second_paragraph", 
+  	"We're trying something different. Instead of throwing the kitchen sink at you, we're filtering the noise (through a combination of machine learning and the good old-fashioned human intution) so that we don't waste your time. We thought you might be interested in:",
+    class: 'paragraph'
   %>
 
-  <% @jobs.each do |job| %>
-  	<%= check_box_tag "job[ids][]", job.id %>
-  	<%= text_field_tag "job[one_liner]", job.description || job.full_text %>
-  <% end %>
+  <h1>Jobs:</h1>
+  <ul>
+    <% @jobs.each do |job| %>
+      <li>
+        <%= check_box_tag "job[ids][]", job.id %>
+
+        <span class="jobs-editable"
+          contenteditable= "<%= editable_if_admin(current_user) %>"
+          data-id="<%= job.id %>" 
+          data-table="jobs"
+          data-model="job"
+          data-attribute="title">
+          <% if job.title && !job.title.empty? %>
+            <%= sanitize_title(job.title) %>
+          <% else %>
+            -
+          <% end %>
+        </span>  
+
+        <span>@ <%= job.listing_company.name %></span>
+
+        <span class="jobs-editable"
+          contenteditable= "<%= editable_if_admin(current_user) %>"
+          data-id="<%= job.id %>" 
+          data-table="jobs"
+          data-model="job"
+          data-attribute="description">
+          <% if job.description && !job.description.empty? %>
+            <%= job.description %>
+          <% else %>
+            -
+          <% end %>
+        </span>          
+               
+      </li>
+    <% end %>
+  </ul>
+
+  <h1>Closing paragraph:</h1>
+  <%= text_field_tag "closing_paragraph", 
+    "Hope we did a good job here. If we didn't, your feedback is more than welcome!",
+    class: 'paragraph'
+  %>  
 
   <%= submit_tag "Send" %>
 <% end %>
+
+
+
+
+
+
+
+
+
+

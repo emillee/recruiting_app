@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625035909) do
+ActiveRecord::Schema.define(version: 20140703015348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,18 @@ ActiveRecord::Schema.define(version: 20140625035909) do
 
   add_index "object_skills", ["company_id"], name: "index_object_skills_on_company_id", using: :btree
   add_index "object_skills", ["user_id"], name: "index_object_skills_on_user_id", using: :btree
+
+  create_table "prospects", force: true do |t|
+    t.string   "github_username"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "city"
+    t.string   "date_joined"
+    t.string   "email"
+    t.string   "language"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "search_suggestions", force: true do |t|
     t.string   "term"

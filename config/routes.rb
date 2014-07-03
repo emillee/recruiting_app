@@ -59,12 +59,15 @@ Nytech::Application.routes.draw do
     resources :jobs, :companies, only: [:index, :show, :new] do 
       collection { get :send_listings_form }
     end
+    resources :prospects, only: [:index] do 
+      collection { post :create_from_link }
+    end
   end
   
   # authentication
   match '/signup',                   to: 'users#new', via: :get
+  match '/login',                    to: 'sessions#new', via: :delete
   match '/logout',                   to: 'sessions#destroy', via: :delete
-  match '/login',                    to: 'sessions#new', via: :get
   match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
 
   # mailers
