@@ -8,10 +8,14 @@
 	<p>-------------------------------</p>
 
 	<% @jobs.each do |job| %>
-		<h5><%= job.title.titleize %> @ <%= job.listing_company.name %></h5>
-		<p><%= job.description %></p>
+		<h5>
+			<%= job.title.titleize %> @ <%= job.listing_company.name %>
+			<br>
+			<%= job.description %>
+		</h5>
 
 		<h5>About <%= job.listing_company.name %>: <%= job.listing_company.overview %></h5>
+		<p>View listing: <%= link_to job.link, job.link %></p>
 	<% end %>
 
 	<p>-------------------------------</p>
