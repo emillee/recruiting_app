@@ -66,7 +66,7 @@ Nytech::Application.routes.draw do
   
   # authentication
   match '/signup',                   to: 'users#new', via: :get
-  match '/login',                    to: 'sessions#new', via: :delete
+  match '/login',                    to: 'sessions#new', via: :get
   match '/logout',                   to: 'sessions#destroy', via: :delete
   match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
 
