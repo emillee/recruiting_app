@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   
 	def index
     set_tab('users')  	  
-		@users = User.all
+		@users = User.all.members_only
 	end
 	
 	def new

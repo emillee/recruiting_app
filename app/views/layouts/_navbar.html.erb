@@ -6,9 +6,8 @@
 	</span>
 
 	<div class="menu">
-	<% if action_name == 'welcome_to_wolfpack' %>
-
-		
+		<% if action_name == 'welcome_to_wolfpack' %>
+			
 			<%= link_to 'All', '#', class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
 
 			<%= link_to 'Links', '#', class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
@@ -19,26 +18,25 @@
 			
 			<%= link_to 'Startups', '#', class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>	
 
-	<% else %>
+		<% else %>
 
-			<%#= link_to 'All', all_activity_url, class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
+			<%= link_to 'All', all_activity_url, class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
 
-			<%#= link_to 'Links', articles_url, class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
+			<%= link_to 'Links', articles_url, class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
 
-			<%#= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
+			<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
 
-			<%#= link_to 'People', users_url %>
+			<%= link_to 'People', users_url %>
 			
-			<%#= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
+			<%= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
 
 			<%#= link_to 'Investors', investors_url,  class: "#{'selected' if @tab == 'investors'}", data: { no_turbolink: true } %>
 
 			<%#= link_to 'Groups', '#',  class: "#{'selected' if @tab == 'groups'}", data: { no_turbolink: true } %>
 
 			<%#= link_to 'More +', '#', data: { no_turbolink: true } %>
-		
 
-	<% end %>
+		<% end %>
 	</div>
 
 	<div class="session">
@@ -52,7 +50,6 @@
 		<i class="fa fa-caret-down hidden"></i>			
 
 		<ul class="nav-cog-options hidden">
-			
 			<li>
 				<%= link_to 'Log Out', logout_url, method: :delete %>	
 				<i class="fa fa-power-off"></i> 

@@ -1,7 +1,7 @@
 class Prospect < ActiveRecord::Base
 
 	def self.create_from_link_pages(start, stop)
-		first_part = 'https://github.com/search?l=Java&p='
+		first_part = 'https://github.com/search?l=PHP&p='
 		last_part = '&q=location%3Anew%2Byork&ref=searchresults&type=Users'
 		counter = start
 
@@ -25,7 +25,7 @@ class Prospect < ActiveRecord::Base
 			email = div.css('a.email').inner_text
 
 			prospect = Prospect.new
-			prospect.language = "Java"
+			prospect.language = "PHP"
 			prospect.city = "NYC"
 
 			if arr.length <= 3

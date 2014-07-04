@@ -49,6 +49,8 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
     
+
+  scope :members_only, where(is_member: true) 
       
   # Sessions / Authentication------------------------------------------
   def self.new_guest 
