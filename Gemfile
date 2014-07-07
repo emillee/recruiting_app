@@ -16,6 +16,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 
+# Style email
+gem 'premailer-rails'
+
 # For Chat 
 gem 'puma'
 gem 'redis'

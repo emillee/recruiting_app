@@ -29,6 +29,7 @@ class Admin::JobsController < Admin::ApplicationController
   end
 
   def send_listings
+    first_name = params[:first_name]
     sender = params[:sender]
     recipient = params[:recipient]
     greeting = params[:greeting]
@@ -37,7 +38,8 @@ class Admin::JobsController < Admin::ApplicationController
     closing_paragraph = params[:closing_paragraph]
 
     jobs = params[:job][:ids].map { |id| Job.find(id) }
-    subject = "#{jobs.size}" + " #{'job'.pluralize(jobs.size)} we thought you might be interested in"
+    subject = "#{first_name}: Out of 1,000+ Listings in our 
+      Database, here's #{jobs.size} We Picked For You"
     subject = subject.titleize
 
     if JobMailer.send_listings(

@@ -1,6 +1,9 @@
 <% user = locals[:user] %>
 
 <%= form_tag send_listings_url, method: :post, class: 'email-composer' do %>
+  
+  <h1>Recipient Name</h1>
+  <%= text_field_tag "first_name", nil, value: "#{user.fname.squish}" %>
 
   <h1>From:</h1>
   <%= text_field_tag "sender", nil, value: 'contact@wolfpackbeta.com' %>
