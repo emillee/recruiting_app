@@ -64,15 +64,19 @@ class UsersController < ApplicationController
 			sign_in(@user)
 		end
 		
-		if params[:user] && (params[:user][:job_settings] || params[:user][:job_prefs])
-		  redirect_to jobs_url
-	  elsif params[:user] && params[:user][:company_settings]
-	    redirect_to companies_url
-    elsif params[:user] && params[:user][:article_id]
-      redirect_to user_url(@user)
+    if params[:controller] == 'admin/users'
+      # do nothing, redirect handled in admin
     else
-			redirect_to :back
-		end
+      if params[:user] && (params[:user][:job_settings] || params[:user][:job_prefs])
+  		  redirect_to jobs_url
+  	  elsif params[:user] && params[:user][:company_settings]
+  	    redirect_to companies_url
+      elsif params[:user] && params[:user][:article_id]
+        redirect_to user_url(@user)
+      else
+  			redirect_to :back
+      end
+    end
 	end
 
 	def destroy

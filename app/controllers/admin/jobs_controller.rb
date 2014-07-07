@@ -10,7 +10,11 @@ class Admin::JobsController < Admin::ApplicationController
     end
 
     @jobs.sort! { |a,b| b.job_score <=> a.job_score }  
-   end
+  end
+
+  def preapproval_applicants
+    @preapprovals = UserJobPreapproval.all.where_user_is_applicant
+  end
 
   def send_listings_form
     @recipient = User.find(77)

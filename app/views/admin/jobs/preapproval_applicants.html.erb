@@ -1,0 +1,4 @@
+<% @preapprovals.each do |preapproval| %>
+	<%= preapproval.job.title %>
+	<%= preapproval.preapproval_applicant.fname %>
+<% end %>

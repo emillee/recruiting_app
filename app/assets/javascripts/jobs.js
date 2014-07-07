@@ -182,7 +182,7 @@ var ready_jobs = function() {
     // --------------------------------------------------------------------------------------------------------------
 
       // ADD SELECTED CLASS TO JOB NAVBAR
-    $('.job-actions-wrapper').on('click', '.fa-check, .fa-bookmark, .fa-times', function(e) {
+    $('.job-actions-wrapper').on('click', '.fa-paw, .fa-check, .fa-bookmark, .fa-times', function(e) {
       e.preventDefault();
       addModalToBody();
       $(this).addClass('selected');

@@ -21,10 +21,10 @@ class Authentication
   end
 
   def user_from_omniauth(current_user)
+    p "------ IN HERE"
     @identity = Identity.find_with_omniauth(@oauth_hash)
     
     if @identity.nil? 
-      p "------ IN HERE"
     	@identity = Identity.initialize_from_omniauth(@oauth_hash)
     	@identity.user = current_user
     	@identity.save

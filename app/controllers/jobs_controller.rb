@@ -11,11 +11,11 @@ class JobsController < ApplicationController
     if params[:filter]
       @jobs = filtered_jobs(params[:filter])
     elsif current_user.job_settings.any? && current_user.job_settings[:key_skills] 
-      @jobs = Job.return_jobs_with_key_skills(current_user).page(params[:page]).per(10) 
+      @jobs = Job.return_jobs_with_key_skills(current_user).page(params[:page]).per(5) 
     elsif current_user.job_settings.any?
-      @jobs = Job.return_jobs_without_key_skills(current_user).page(params[:page]).per(10)
+      @jobs = Job.return_jobs_without_key_skills(current_user).page(params[:page]).per(5)
     else
-      @jobs = Job.all.page(params[:page]).per(10)
+      @jobs = Job.all.page(params[:page]).per(5)
       respond_to do |format|
         format.html
         format.csv { render text: @jobs.to_csv }
@@ -132,14 +132,16 @@ class JobsController < ApplicationController
   def filtered_jobs(filter)
     @filter = filter
     case filter
-    when 'applied'
-      return current_user.jobs_applied.page(params[:page]).per(10).order('years_exp DESC')
-    when 'interested'
-      return current_user.saved_jobs.page(params[:page]).per(10).order('years_exp DESC')
+    when 'viewed'
+      return current_user.viewed_jobs.page(params[:page]).per(5).order('years_exp DESC')
+    when 'wp-app'
+      return current_user.jobs_applied_via_wolpfack.page(params[:page]).per(5).order('years_exp DESC')
+    when 'bookmarked'
+      return current_user.bookmarked_jobs.page(params[:page]).per(5).order('years_exp DESC')
     when 'removed'
-      return current_user.removed_jobs.page(params[:page]).per(10).order('years_exp DESC')
+      return current_user.removed_jobs.page(params[:page]).per(5).order('years_exp DESC')
     else
-      return Job.all.page(params[:page]).per(10).order('years_exp DESC')
+      return Job.all.page(params[:page]).per(5).order('years_exp DESC')
     end
   end
 

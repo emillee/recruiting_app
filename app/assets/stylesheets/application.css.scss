@@ -19,6 +19,7 @@
  *= require forms
  *= require landing_page
  *= require jquery.ui.all
+ *= require_directory ./admin  
  *= require_directory ./navigation  
  *= require_directory ./sidebar 
  *= require_directory ./shared

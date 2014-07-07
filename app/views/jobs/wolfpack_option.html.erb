@@ -1,14 +1,13 @@
 <div class="wolfpack-option-popup">
 	<div class="article-card-wrapper wolfpack-popup">
 		<h2>Let Wolfpack do the work for you!</h2>
-		<p>Wolfpack will review your background and skill set. If we think there is a good fit, we will reach out to <%= @job.listing_company.name %> on your behalf.</p>
-		<p>As a disclaimer, there is no guarantee that we will be successful in making a connection for you. Alternatively, you may apply directly with the company by clicking <%= link_to 'here', @job.link, target: '_blank' %></p>
+		<p>We'll approach <%= @job.listing_company.name %> on your behalf to see if there is mutual interest. All inquiries are double-blind, double opt-in (both parties have to agree first).</p>
+		<p>Note: you may also apply directly with the company by clicking <%= link_to 'here', @job.link, target: '_blank' %></p>
 		<p>To proceed, complete the form below (all fields optional):</p>
 	</div>
 
 	<%= render './users/profile_history' %>
 
-	
 	<div class="action-items wolfpack-popup">  
 		<%= link_to 'Cancel', :back, id: 'cancel' %>
 		<%= button_to 'Done', user_job_preapprovals_url(job_id: @job.id, preapproval_applicant_id: current_user.id), id: 'done' %>

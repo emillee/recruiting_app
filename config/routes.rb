@@ -58,10 +58,12 @@ Nytech::Application.routes.draw do
   namespace :admin do 
     resources :jobs, :companies, only: [:index, :show, :new] do 
       collection { get :send_listings_form }
+      collection { get :preapproval_applicants }
     end
     resources :prospects, only: [:index] do 
       collection { post :create_from_link }
     end
+    resources :users, only: [:edit, :update]
   end
   
   # authentication

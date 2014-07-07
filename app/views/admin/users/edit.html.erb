@@ -1,0 +1,148 @@
+<div class="admin-edit-user-wrapper">
+
+	<%= form_for [:admin, @user], class: 'admin edit-user' do |f| %>
+		<%= f.label :fname, 'First Name' %>
+		<%= f.text_field :fname %>
+
+		<%= f.label :lname, 'Last Name' %>
+		<%= f.text_field :lname %>
+
+		<%= f.label :email, 'Email' %>
+		<%= f.text_field :email %>
+
+		<h1>Admin?</h1>
+		<%= f.label :is_admin, 'True' %>
+		<%= f.radio_button :is_admin, true %>
+		<%= f.label :is_admin, 'False' %>
+		<%= f.radio_button :is_admin, false %>
+
+		<h1>Guest?</h1>
+		<%= f.label :is_guest, 'True' %>
+		<%= f.radio_button :is_guest, true %>
+		<%= f.label :is_guest, 'False' %>
+		<%= f.radio_button :is_guest, false %>
+		
+		<h1>Member?</h1>
+		<%= f.label :is_member, 'True' %>
+		<%= f.radio_button :is_member, true %>	
+		<%= f.label :is_member, 'False' %>
+		<%= f.radio_button :is_member, false %>	
+
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+
+		<%= f.label :location %>
+		<%= f.text_field :location %>
+
+		<%= f.label :linkedin_url %>
+		<%= f.text_field :linkedin_url %>
+
+		<%= f.label :github_url %>
+		<%= f.text_field :github_url %>
+
+		<%= f.label :behance_url %>
+		<%= f.text_field :behance_url %>
+
+		<%= f.label :twitter_username %>
+		<%= f.text_field :twitter_username %>
+
+		<%= f.label :personal_blog_url %>
+		<%= f.text_field :personal_blog_url %>
+
+		<%= f.label :behance_url %>
+		<%= f.text_field :behance_url %>			
+
+		<%= f.label :one_liner %>
+		<%= f.text_field :one_liner %>
+
+		<ul class="job-filters">
+			<% Job.all_uniq_depts.each do |dept| %>
+				<% dept = dept.downcase %>
+				<% checked = is_setting_checked?('dept', dept) %>
+				<li class="job-sidebar department%>">
+					<i class="<%= icon_dept_match(dept) %>">
+						<%= label_tag dept %>
+						<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
+					</i>
+				</li>
+			<% end %>
+		</ul>				
+
+		<ul class="job-filters">
+			<% return_subcategory(:dept, :sub_dept).each do |sub| %>
+				<% sub = sub.downcase %>
+				<% checked = is_setting_checked?('sub_dept', sub) %>
+				<li class="job-sidebar">
+					<%= label_tag sub %>
+					<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
+				</li>
+			<% end %>
+		</ul>
+
+		<ul class="job-filters">
+			<% Taxonomy.years_exp.each do |label, num_years| %>
+				<% checked = is_setting_checked?('years_exp', num_years) %>	
+				<% is_hidden = (current_user.job_settings[:dept] &&
+				 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>													
+				<li class="job-sidebar">
+					<%= label_tag "#{num_years}" %>
+					<%= check_box_tag "user[job_settings][years_exp][]", num_years, checked %>
+				</li>
+			<% end %>
+		</ul>
+
+		<!-- <ul class="job-filters group">	 -->
+			<%# if current_user.job_settings[:sub_dept] %>
+				<%# Job.return_skills(current_user.job_settings[:sub_dept]).each do |skill_obj| %>
+					<%# checked = is_setting_checked?('key_skills', skill_obj.id) %>
+					<!-- <li class="job-sidebar key-skills"> -->
+						<%#= label_tag skill_obj.skill_name %>
+						<%#= check_box_tag "user[job_settings][key_skills][]", skill_obj.id, checked %>
+					<!-- </li>									 -->
+				<%# end %>
+			<%# end %>
+		<!-- </ul>		 -->
+
+		<% Taxonomy.departments.each do |dept| %>
+			<h1><%= dept %></h1>
+			<% skill_hash = Skill.return_skill_hash_from_dept(dept.downcase) %>
+
+			<% skill_hash.each do |key, val_obj_arr| %>
+					<% val_obj_arr.each do |skill_obj| %>
+
+						<% skill_icon = icon_skill_match(skill_obj.skill_name) %>
+
+						<li>
+							<% checked = is_setting_checked?('key_skills', skill_obj.id) %>
+							<%= label_tag skill_obj.skill_name %>
+							<%= check_box_tag "user[job_settings][key_skills][]", skill_obj.id, checked %>
+						</li>
+					<% end %>
+			<% end %>												
+		<% end %>
+
+		<%= f.submit 'Update' %>
+	<% end %>
+
+	<%= render './admin/jobs/listings_email_form', locals: { user: @user} %>
+
+</div>
+
+
+
+<!--     t.text     "job_settings"
+    t.integer  "company_id"
+    t.hstore   "job_filters",            default: {}
+    t.text     "company_settings"
+    t.integer  "investor_company_id"
+    t.text     "job_prefs"
+    t.string   "location_from"
+    
+    t.text     "intro"
+    t.string   "link_to_online_profile"
+    t.string   "personal_blog_url"
+    t.string   "stack_overflow"
+    t.boolean  "is_applicant"
+  end -->
+
+

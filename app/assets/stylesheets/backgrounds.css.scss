@@ -9,7 +9,8 @@
 
 .jobs-background {
   opacity: 1;
-  background-image: url('flip/fabric_plaid.png');
+  background-color: rgb(245,245,245);
+  // background-image: url('flip/fabric_plaid.png');
   @include background-style;
 }
 

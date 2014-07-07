@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   
   belongs_to :employer, class_name: 'Company', foreign_key: :company_id  
   belongs_to :vc_employer, class_name: 'Investor', foreign_key: :investor_company_id
+
   has_many :user_jobs
   has_many :identities
 
@@ -38,8 +39,10 @@ class User < ActiveRecord::Base
 
   has_many :user_job_preapprovals, class_name: 'UserJobPreapproval', foreign_key: :user_id
   has_many :preapproved_jobs, through: :user_job_preapprovals, source: :job
+
   has_many :object_skills
   has_many :tech_stack, through: :object_skills, source: :skill
+
   has_many :user_articles
   has_many :articles, through: :user_articles, source: :article
   has_many :messages
@@ -51,6 +54,42 @@ class User < ActiveRecord::Base
     
 
   scope :members_only, where(is_member: true) 
+
+  # LinkedIn------------------------------------------
+  def linkedin_client
+    client = OAuth2::Client.new(
+      ENV['LINKEDIN_KEY'],
+      ENV['LINKEDIN_SECRET'],
+      :authorize_url => "/uas/oauth2/authorization?response_type=code", 
+      :token_url => "/uas/oauth2/accessToken", 
+      :site => "https://www.linkedin.com"
+    )
+  end
+
+  def self.get_linkedin_connections(user)
+    token = user.identities.where(provider: 'linkedin').first.oauth_token
+    
+    access_token = OAuth2::AccessToken.new(user.linkedin_client, token, {
+      :mode => :query,
+      :param_name => "oauth2_access_token",
+    })
+
+    response = access_token.get('https://api.linkedin.com/v1/people/~/connections?format=json')
+    response = JSON.parse(response.body)
+    response
+  end
+
+  # headline consists of title @ company
+  def return_connections_title_and_co(user)
+    hash_data = User.get_linked_connections(user)
+    return_arr = []
+    hash_data["values"].each do |value|
+      return_arr << value["headline"]
+    end
+
+    return_arr
+  end
+
       
   # Sessions / Authentication------------------------------------------
   def self.new_guest 
