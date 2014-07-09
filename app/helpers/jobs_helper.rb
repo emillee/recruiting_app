@@ -25,8 +25,11 @@ module JobsHelper
   end
 
   # NEEDS REFACTORING - EAGER LOAD THIS
-  def return_subcategory(prev_category, target_category, prev_cat = nil)
-    previous_category_array = prev_cat || current_user.job_settings[prev_category] 
+  def return_subcategory(prev_category, target_category, prev_cat = nil, user = nil)
+    # if user is passed in, then use that, otherwise use current user
+    user = user ? user : current_user
+
+    previous_category_array = prev_cat || user.job_settings[prev_category] 
     results_array = []
     
     if previous_category_array
@@ -125,9 +128,11 @@ module JobsHelper
     obj.public_send(this_attr).include?(val)
   end
   
-  def is_setting_checked?(this_attr, val)
-    return false if current_user.job_settings[this_attr].nil?
-    return true if current_user.job_settings[this_attr].include?(val.to_s.downcase)
+  def is_setting_checked?(this_attr, val, user=nil)
+    # if user is passed in, then use that, otherwise use current user
+    user = user ? user : current_user
+    return false if user.job_settings[this_attr].nil?
+    return true if user.job_settings[this_attr].include?(val.to_s.downcase)
     return false    
   end
 

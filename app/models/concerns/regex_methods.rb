@@ -21,12 +21,12 @@ module RegexMethods
   end
 
   def get_years_exp
-    if self.full_text.match(/(\d+) (years|yrs|year)/)
+    if self.full_text.match(/\d-\d (years|yrs|year\(s\))/)
+      years = self.full_text.match(/(\d)-\d (years|yrs|year\(s\))/)[1]
+    elsif self.full_text.match(/(\d+) (years|yrs|year)/)
       years = self.full_text.match(/(\d+) (years|yrs|year)/)[1]
     elsif self.full_text.match(/(\d+)(\+)* (years|yrs|year\(s\))/)
       years = self.full_text.match(/(\d+)\+ (years|yrs|year\(s\))/)[1]
-    elsif self.full_text.match(/(\d)-\d (years|yrs|year\(s\))/)
-      years = self.full_text.match(/(\d)-\d (years|yrs|year\(s\))/)[1]
     elsif self.full_text.match(/(\d) (years|yrs|year\(s\))/)
       years = self.full_text.match(/(\d+) (years|yrs|year\(s\))/)[1]
     elsif self.full_text.match(/(one|two|three|four|five|six|seven|eight|nine|ten) (or more )*(years|yrs|year\(s\)) (of|experience)/i)

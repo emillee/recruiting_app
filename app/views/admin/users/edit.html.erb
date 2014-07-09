@@ -28,6 +28,12 @@
 		<%= f.label :is_member, 'False' %>
 		<%= f.radio_button :is_member, false %>	
 
+		<h1>Prospect?</h1>
+		<%= f.label :is_member, 'True' %>
+		<%= f.radio_button :is_prospect, true %>	
+		<%= f.label :is_member, 'False' %>
+		<%= f.radio_button :is_prospect, false %>	
+
 		<%= f.label :title %>
 		<%= f.text_field :title %>
 
@@ -49,16 +55,19 @@
 		<%= f.label :personal_blog_url %>
 		<%= f.text_field :personal_blog_url %>
 
-		<%= f.label :behance_url %>
-		<%= f.text_field :behance_url %>			
+		<%= f.label :stack_overflow %>
+		<%= f.text_field :stack_overflow %>			
 
 		<%= f.label :one_liner %>
 		<%= f.text_field :one_liner %>
 
+		<%= f.label :notes %>
+		<%= f.text_area :notes %>
+
 		<ul class="job-filters">
 			<% Job.all_uniq_depts.each do |dept| %>
 				<% dept = dept.downcase %>
-				<% checked = is_setting_checked?('dept', dept) %>
+				<% checked = is_setting_checked?('dept', dept, @user) %>
 				<li class="job-sidebar department%>">
 					<i class="<%= icon_dept_match(dept) %>">
 						<%= label_tag dept %>
@@ -69,9 +78,9 @@
 		</ul>				
 
 		<ul class="job-filters">
-			<% return_subcategory(:dept, :sub_dept).each do |sub| %>
+			<% return_subcategory(:dept, :sub_dept, nil, @user).each do |sub| %>
 				<% sub = sub.downcase %>
-				<% checked = is_setting_checked?('sub_dept', sub) %>
+				<% checked = is_setting_checked?('sub_dept', sub, @user) %>
 				<li class="job-sidebar">
 					<%= label_tag sub %>
 					<%= check_box_tag "user[job_settings][sub_dept][]", sub, checked %>
@@ -81,7 +90,7 @@
 
 		<ul class="job-filters">
 			<% Taxonomy.years_exp.each do |label, num_years| %>
-				<% checked = is_setting_checked?('years_exp', num_years) %>	
+				<% checked = is_setting_checked?('years_exp', num_years, @user) %>	
 				<% is_hidden = (current_user.job_settings[:dept] &&
 				 		current_user.job_settings[:sub_dept]) ? 'hidden' : '' %>													
 				<li class="job-sidebar">
@@ -113,7 +122,7 @@
 						<% skill_icon = icon_skill_match(skill_obj.skill_name) %>
 
 						<li>
-							<% checked = is_setting_checked?('key_skills', skill_obj.id) %>
+							<% checked = is_setting_checked?('key_skills', skill_obj.id, @user) %>
 							<%= label_tag skill_obj.skill_name %>
 							<%= check_box_tag "user[job_settings][key_skills][]", skill_obj.id, checked %>
 						</li>
@@ -124,25 +133,12 @@
 		<%= f.submit 'Update' %>
 	<% end %>
 
-	<%= render './admin/jobs/listings_email_form', locals: { user: @user} %>
+	<% unless @user.is_guest %>
+		<%= render './admin/jobs/listings_email_form', locals: { user: @user} %>
+	<% end %>
 
 </div>
 
 
-
-<!--     t.text     "job_settings"
-    t.integer  "company_id"
-    t.hstore   "job_filters",            default: {}
-    t.text     "company_settings"
-    t.integer  "investor_company_id"
-    t.text     "job_prefs"
-    t.string   "location_from"
-    
-    t.text     "intro"
-    t.string   "link_to_online_profile"
-    t.string   "personal_blog_url"
-    t.string   "stack_overflow"
-    t.boolean  "is_applicant"
-  end -->
 
 

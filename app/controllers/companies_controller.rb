@@ -8,6 +8,8 @@ class CompaniesController < ApplicationController
     @job = Job.new
     @keywords = params[:company_search][:keywords] if params[:company_search]
     @all_scopes = %w(is_hiring page_available page_unavailable page_blank)
+    @skill = Skill.new
+    
     params[:company_search] ||= {}
     
     if params[:company_search].empty?

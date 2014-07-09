@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703015348) do
+ActiveRecord::Schema.define(version: 20140707154106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,6 +277,9 @@ ActiveRecord::Schema.define(version: 20140703015348) do
     t.string   "stack_overflow"
     t.string   "one_liner"
     t.boolean  "is_applicant"
+    t.text     "intro_paragraph"
+    t.boolean  "is_prospect"
+    t.text     "notes"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

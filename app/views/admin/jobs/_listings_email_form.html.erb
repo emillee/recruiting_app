@@ -26,7 +26,7 @@
 
   <h1>Second paragraph:</h1>
   <%= text_field_tag "second_paragraph", 
-  	"We're trying something different. Instead of throwing the kitchen sink at you, we're filtering the noise (through a combination of machine learning and the good old-fashioned human intution) so that we don't waste your time. We thought you might be interested in:",
+  	"We're trying something different. Instead of throwing the kitchen sink at you, we're filtering the noise so that we don't waste your time. We thought you might be interested in some of the following:",
     class: 'paragraph'
   %>
 
@@ -62,7 +62,9 @@
           <% else %>
             -
           <% end %>
-        </span>          
+        </span>    
+
+        <%= link_to 'link', job.link, target: '_blank' %>      
                
       </li>
     <% end %>

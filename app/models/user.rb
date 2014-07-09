@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
     
 
   scope :members_only, where(is_member: true) 
+  scope :prospects_only, where(is_prospect: true) 
 
   # LinkedIn------------------------------------------
   def linkedin_client

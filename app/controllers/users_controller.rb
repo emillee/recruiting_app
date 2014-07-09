@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 	  
 		if @user.update_attributes(user_params)
 			flash[:success] = 'Your profile was updated successfully.'
-			sign_in(@user)
+			# sign_in(@user)
 		end
 		
     if params[:controller] == 'admin/users'
@@ -131,7 +131,7 @@ class UsersController < ApplicationController
 		  {job_prefs: { company_stage: [], company_industry: [], salary_buckets: [], equity_buckets: [] }},  		
 		  {company_settings: { company_stage: [] }}, :is_applicant, :one_liner,
       :linkedin_url, :github_url, :behance_url, :personal_blog_url, :twitter_username, :stack_overflow,
-      :is_member      
+      :is_member, :intro_paragraph, :is_prospect, :notes  
 		)
 	end
 

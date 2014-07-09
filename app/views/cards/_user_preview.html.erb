@@ -2,22 +2,46 @@
 <% this_table = 'users' %>
 <% this_model = this_table.singularize %>
 
-<div class="user-preview-wrapper group">
+<div class="profile-wrapper">
 
-	<%= render './cards/company_bcard', locals: { company: user.employer, user: user }%>
+	<% if user.avatar.exists? %>
+		<%= image_tag user.avatar.url, class: 'user-profile-pic left' %>
+	<% end %>
 
-	<div class="intro" 
-		contenteditable="<%= editable_if_admin(user) %>"
-		data-table="<%= this_table %>"
-		data-model="<%= this_model %>"
-		data-id=<%= current_user.id if current_user %>
-		data-attribute='intro'>
-		<% intro = user.intro ? user.intro : '<p>Tell us about YOU!</p><p>What are you working on, who are you looking to meet?</p>' %>
-		<%= raw(intro) %>
+	<div class="user-bio left">
+
+		<h1 class="users-editable" 
+			contenteditable="<%= editable_if_admin(user) %>"
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-id=<%= user.id %>
+			data-attribute='intro'>
+			<%= user.intro || 'Headline here' %>
+		</h1>
+
+		<% intro = user.intro_paragraph || '<p>More about you here</p>' %>
+		<div class="users-editable" 
+			contenteditable="<%= editable_if_admin(user) %>"
+			data-table="<%= this_table %>"
+			data-model="<%= this_model %>"
+			data-id=<%= user.id %>
+			data-attribute='intro_paragraph'>
+			<%= raw(intro) %>
+		</div>
+
 	</div>
 
-	<span class="right">
-		<%= render './cards/user_bcard', locals: { user: user } %>
-	</span>
+	<div class="profile-action-items left">
+		<%= link_to "Preapprove for Interview", '#' %>
+		<%= link_to "Message Me", '#' %>
+		<%= link_to "Howl At Me", '#' %>
 
+		<div class="social-icons">
+			<i class="fa fa-git"></i>
+			<i class="fa fa-facebook"></i>
+			<i class="fa fa-linkedin"></i>		
+			<i class="fa fa-twitter"></i>
+		</div>
+	</div>
 </div>
+

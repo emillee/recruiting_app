@@ -20,11 +20,11 @@ class Admin::JobsController < Admin::ApplicationController
     @recipient = User.find(77)
 
 		if current_user.job_settings.any? && current_user.job_settings[:key_skills] 
-	  	@jobs = Job.return_jobs_with_key_skills(current_user).limit(20)
+	  	@jobs = Job.return_jobs_with_key_skills(current_user).limit(30)
 	  elsif current_user.job_settings.any?
-	    @jobs = Job.return_jobs_without_key_skills(current_user).limit(20)
+	    @jobs = Job.return_jobs_without_key_skills(current_user).limit(30)
 	  else
-	    @jobs = Job.all.limit(20)
+	    @jobs = Job.all.limit(30)
 	  end
   end
 

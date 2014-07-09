@@ -1,27 +1,4 @@
-<div class="profile-wrapper">
-
-	<% if @user.avatar.exists? %>
-		<%= image_tag @user.avatar.url, class: 'user-profile-pic left' %>
-	<% end %>
-
-	<div class="user-bio left">
-		<h1>Novice Programmer by Day, Novice Programmer by Night</h1>
-		<p class="about-me">More stuff about me</p>
-	</div>
-
-	<div class="profile-action-items left">
-		<%= link_to "Preapprove for Interview", '#' %>
-		<%= link_to "Message Me", '#' %>
-		<%= link_to "Howl At Me", '#' %>
-
-		<div class="social-icons">
-			<i class="fa fa-git"></i>
-			<i class="fa fa-facebook"></i>
-			<i class="fa fa-linkedin"></i>		
-			<i class="fa fa-twitter"></i>
-		</div>
-	</div>
-</div>
+<%= render './cards/user_preview', locals: { user: @user } %>
 
 <div class="profile-navbar">
 	<%= link_to 'All Activity', '#' %>
@@ -43,5 +20,3 @@
 		<%= render 'shared/drag_and_drop', locals: { user: @user } %>
 	</div>
 </div>
-
-<%#= render './cards/user_preview', locals: { user: @user, this_table: 'users' } %>

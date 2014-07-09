@@ -1,5 +1,8 @@
 class Admin::UsersController < UsersController 
 
+	def index
+	end
+
 	def edit
 		@user = User.find(params[:id])
 
