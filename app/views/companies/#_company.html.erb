@@ -1,0 +1,48 @@
+<% company = locals[:company] %>
+<% this_table = "companies" %>
+
+<div class="company-top-wrapper group">
+	<span class="left">
+		<%= render './cards/company_bcard', locals: { company: company } %>
+	</span>
+
+	<span class="left">
+		<%= render './cards/company_overview', locals: { company: company } %>
+	</span>
+
+	<span class="left">
+		<%= render './cards/company_stats', locals: { company: company } %>
+	</span>
+</div>
+
+<% if company.persisted? %>
+	<%= render './companies/company_report', locals: { company: company } %>
+<% end %>
+
+<% if company.persisted? %>
+	<div class="article-card-wrapper">
+		<%= render './shared/drag_and_drop', locals: { company: company } %>
+	</div>
+<% end %>
+
+<% if company.career_page_link %>
+	
+<% end %>
+
+	<% if company.job_listings %>
+		<ul class="job-posts">
+		<% company.job_listings.each do |job| %>
+		<li class="job-link">
+			<% next unless job.persisted? %>
+			<%= render './jobs/job_listing_preview', locals: { job: job } %>
+			<%= render './admin/jobs/job_details', locals: { job: job } %>
+
+			<% if job.preapproval_applicants %>
+				<% job.preapproval_applicants.each do |applicant| %>
+					<%= render './cards/user_preview', locals: { user: applicant } %>
+				<% end %>
+			<% end %>
+		</li>
+		<% end %>
+	</ul>
+<% end %>

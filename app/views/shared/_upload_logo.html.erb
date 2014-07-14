@@ -1,6 +1,6 @@
 <% object = locals[:object] %>
 
-<div class="uploader-logo <%= 'hidden' if object.logo.exists? %>">
+<div class="uploader-logo <%= 'hidden' if object.logo.exists? && object.class != Skill %>">
 		<%= form_for object, url: skill_url(object), html: { multipart: true } do |f| %>
 			<span class="insert-image-span">
 				<span>Insert Logo for <%= object.skill_name %></span>	

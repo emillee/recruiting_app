@@ -4,28 +4,12 @@ div.article-card-wrapper {
   background-color: #fdfdfd;
   display: inline-block;  
   padding: 15px;
-
-  h1.dark-banner {
-    padding: 5px 12px; 
-    font-size: 26px;
-    line-height: 35px;
-    font-family: 'Source Sans Pro', sans-serif;
-    background-color: rgba(0,0,0,0.85);
-    color: #fdfdfd;
-    letter-spacing: 2px;  
-    width: 997px;  
-
-    a {
-      font-size: 16px;
-      color: white;
-    }    
-  }
+  border-top: 3px solid rgba(0,0,0,0.1);
 
   h2 {
     font-size: 22px;
     line-height: 35px;
     font-family: 'Source Sans Pro', sans-serif;
-    padding-top: 15px;
     padding-left: 10px;
   }
 
@@ -35,7 +19,6 @@ div.article-card-wrapper {
     line-height: 28px;
     font-family: 'PT Serif';
     padding-left: 10px;
-
   }
 }
 

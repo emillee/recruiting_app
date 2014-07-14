@@ -11,11 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707154106) do
+ActiveRecord::Schema.define(version: 20140711225735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "article_comments", force: true do |t|
+    t.integer  "article_id"
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "article_topics", force: true do |t|
+    t.integer  "article_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "articles", force: true do |t|
     t.string   "title",       default: ""
@@ -25,6 +39,9 @@ ActiveRecord::Schema.define(version: 20140707154106) do
     t.integer  "company_id"
     t.integer  "investor_id"
     t.string   "link"
+    t.integer  "views",       default: 0
+    t.text     "howl_action"
+    t.integer  "recs",        default: 0
   end
 
   create_table "chatroom_messages", force: true do |t|
@@ -47,6 +64,12 @@ ActiveRecord::Schema.define(version: 20140707154106) do
   create_table "chatrooms", force: true do |t|
     t.integer "admin_id"
     t.string  "room_id"
+  end
+
+  create_table "comments", force: true do |t|
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "companies", force: true do |t|
@@ -213,6 +236,17 @@ ActiveRecord::Schema.define(version: 20140707154106) do
     t.string "base_title"
     t.string "dept"
     t.hstore "expert_phrases"
+  end
+
+  create_table "topic_tags", force: true do |t|
+    t.integer "topic_id"
+    t.integer "tag_id"
+  end
+
+  create_table "topics", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_articles", force: true do |t|

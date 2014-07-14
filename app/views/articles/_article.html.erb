@@ -1,45 +1,96 @@
 <% article = locals[:article] %>
 <% this_table = locals[:this_table] %>
 
-<% if article.tags.any? %>
-	<% section_class = normalize_string(article.tags[0].tag_name) %>
-<% end %>
+<li class="user-skills is-draggable article">					
+	<span class="skill-icon-wrapper article left">
+		<!-- <i class="<%#= icon_dept_match(job.dept) %> join-us"></i> -->
+		<span class="skill-name article">
+			<h1>
+				<%= link_to article.title, article.link, target: '_blank', class: "article-link",
+				data: { article_id: article.id } %>
+			</h1>
 
-<div class="article-wrapper editable" 
-	data-article-id="<%= article.id %>" 
-	data-table="<%= this_table %>">	
+			<h3 class="left">Posted by: <%= article.users.first.fname %></h3>
+<!-- 
+			<h3 class="left">
+				<%#= link_to "Discuss (#{article.comments.size})", '#' %>
+			</h3>
+			
+			<h3 class="left">
+				<%#= link_to "Recommend (#{article.recs})", '#', class: "recommend-link article-#{article.id}",
+					data: { article_id: article.id } %>
+			</h3> -->
+			
+			<%# article.topics.each do |topic| %>
+				<!-- <h3 class="left tag"> | <%#= topic.name %></h3> -->
+			<%# end %>
+			
+			<%# article.tags.each do |tag| %>
+				<!-- <h3 class="left tag"> | <%#= tag.tag_name.titleize %></h3> -->
+			<%# end %>				
+		</span>
+	</span>
 
-	<%= render './shared/editor' %>
+	<span class="comments-wrapper left">
+		<h1 class="views-count article-<%= article.id %>"><%= article.views %></h1>
+		<h1 class="views">Recommends</h1>
+	</span>	
 
-	<% section_title = add_placeholders_if_nil('title', article.title) %>	
+<!-- 	<span class="comments-wrapper left">
+		<h1 class="views-count article-<%#= article.id %>"><%#= article.views %></h1>
+		<h1 class="views">Comments</h1>
+	</span> -->
 
-	<div class="title" contenteditable="true" data-placeholder="Enter Title">
-		<%= raw(section_title) %>
+	<span class="views-wrapper left">
+		<h1 class="views-count article-<%= article.id %>"><%= article.views %></h1>
+		<h1 class="views">Views</h1>
+	</span>
+
+<!-- 	<span class="howl-wrapper left">
+		<%#= link_to 'Reply', '#' %>
+	</span>	 -->
+
+<%
+=begin %>
+	<div class="comments-wrapper">
+		<%= form_for([article, @comment]) do |f| %>
+			<%= f.text_field :body %>
+
+			<%= f.submit 'Post Comment' %>
+		<% end %>
+
+		<% article.comments.each do |comment| %>
+			<%= comment.body %>
+		<% end %>
 	</div>
+<%
+=end %>
 
-	<div class="link" contenteditable="true" data-placeholder="Enter Link">
-		<%= article.link || 'Enter Link' %>
-	</div>
-	
-	<article class="editable body" contenteditable="true" data-placeholder="Type your post">
-		<% section_body = add_placeholders_if_nil('body', article.body).squish %>	
-		<%= raw(section_body) %>
+</li>
 
-		<% this_image = article.images.last %>		
-		<p><%= image_tag this_image.image_file.url if this_image %></p>
-	</article>
-	
-	<%= render './shared/upload_image_form', locals: { article: article } %>
 
- 	<div class="admin-options">
-		<i class="fa fa-cogs"> Additional Options</i>
-		<%= link_to 'Delete Article', article_url(article), method: :delete, 
-				confirm: 'Sure?', class: 'delete-article-link' %>		
-		<%= render './shared/tags_form', locals: { article: article } %>
-		<%= render './shared/social_sharing_icons', locals: { article: article } %>
-	</div>
+<%#= render './shared/tags_form', locals: { article: article } %>
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

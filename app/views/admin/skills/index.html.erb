@@ -1,0 +1,32 @@
+<div class="droppable-wrapper">
+	<ul class="skills-ul left">
+		<% @skills.all.each do |skill| %>
+			<li class="">
+				<%= form_for(skill) do |f| %>
+					<%= f.text_field :skill_name %>
+					<%= f.text_field :skill_dept %>
+					<%= f.text_field :skill_sub_dept %>
+					<%= f.submit 'Submit' %>
+				<% end %>
+
+				<% if icon_skill_match(skill.skill_name) %>
+					<i class="<%= icon_skill_match(skill.skill_name) %> skill-icon"></i>
+				<% elsif skill.logo %>
+					<%= image_tag skill.logo.url if icon_skill_match(skill.skill_name).nil? %>
+				<% end %>
+
+				<%= render './shared/upload_logo', locals: { object: skill } %>
+			</li>
+		<% end %>
+	</ul>
+
+		<!-- add_new_skill_form.css.scss -->
+	<%= form_for(@skill) do |f| %>
+		<%= f.text_field :skill_name, placeholder: 'Skill name' %>
+		<%= f.text_field :skill_dept, placeholder: 'Skill dept' %>
+		<%= f.text_field :skill_sub_dept, placeholder: 'Skill sub dept' %>
+		<input type="textbox" name="skill[preferred_phrases][]" placeholder="preferred phrases" >
+		<input type="textbox" name="skill[required_phrases][]" placeholder="required phrases">
+		<%= f.submit %>
+	<% end %>
+</div>

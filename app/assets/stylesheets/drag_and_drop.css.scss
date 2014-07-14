@@ -1,63 +1,230 @@
-@mixin span-icon-style {
-  display: inline-block;
-  height: 75px;
-  line-height: 75px;
-  width: 75px; 
-
-  i { font-size: 30px; }   
-}
-
-@mixin li-icon-style {
-  text-decoration: none;
-  background-color: rgba(255,255,255,.8);
-  border: 2px solid white;
-  text-align: center;
-  height: 75px;
-
-  img {
-    height: 100%;
-    background-color: white;
-    cursor: pointer;
-    z-index: 9999;
-  }  
-}
-
 // DROPZONE
 div.droppable-wrapper {
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  h1 {
+    font-size: 26px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+    a {
+      font-size: 20px;
+      color: gray;
+      margin-right: 5px;
+    }
+  }
 
   ul.skills-ul {
 
+    #add-skill-li {
+      text-indent: 20px;
+    }      
+
     li.user-skills {
-      @include li-icon-style;
-      margin: 5px;
+      text-decoration: none;
+      height: 50px;
+      line-height: 50px;
+      background-color: #FAFAFA;
+      width: 99%;
+      margin: 5px;       
+      // background-color: #FAFAFA;
 
-      // this is the "Add a Skill" section
-      #add-skill-li {
-        width: 100%;
-        font-size: 23px;
-        font-style: italic;
-        padding-left: 10px;
-        color: lightgray;
-        line-height: 35px;
-        height: 35px;
-        text-align: left;
-        border: none;
-        background-color: none;
-        width: 1050px;
-      }  
+      &.article {
+        height: 75px;
+        line-height: 75px;        
+      }
 
+      &.job-listing {
+        height: 100px;
+        // line-height: 100px;
+      }
+
+      // FOR IMAGES
       span.skill-image {
-        line-height: 75px;
+        height: 50px;
+        line-height: 50px;
         display: inline-block;
+        background-color: rgb(240,240,240);
 
         img {
-          vertical-align: middle;
-          max-height: 50px;
+          height: 25px;
+          max-height: 25px;
+          cursor: pointer;
+          opacity: 0.75;  
+          padding-left: 30px;
+          padding-right: 15px;
         }
+
+        span.skill-name {
+          padding-right: 30px;  
+          font-size: 30px; 
+        }                
       }          
 
+      // FOR ICONS
       span.skill-icon-wrapper {
-        @include span-icon-style;              
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        background-color: rgb(240,240,240);
+
+        &.article {
+          padding-left: 20px;
+          height: 75px;
+          line-height: 75px;
+          padding-right: 20px;
+          background-color: rgba(0,0,0,0.08);
+
+          h1 {
+            font-size: 23px;  
+            line-height: 50px;  
+            margin-left: 0;
+            margin-bottom: 0;
+
+            a {
+              font-size: 22px;
+            }
+          }
+
+          h3 {
+            font-size: 15px; 
+            line-height: 10px;   
+            margin-right: 10px;         
+          }
+
+          h3.tag {
+            margin-left: 10px;
+          }
+        }
+
+        &.job-listing {
+          height: 100px;
+          line-height: 100px;   
+          padding-left: 0px;
+          padding-right: 0px;       
+        }
+
+        i {
+          font-size: 35px;
+          padding-left: 30px;
+          padding-right: 15px;
+        }
+
+        i.join-us {
+          font-size: 25px;
+        }
+
+        span.skill-name {
+          padding-right: 30px;  
+          font-size: 30px;   
+
+          &.article {
+            padding-right: 0px;  
+            font-size: 0px;              
+          }    
+        }
+
+        span.skill-name.join-us {
+          font-size: 20px;
+
+          a {
+            color: black;
+            margin-left: -5px;
+          }
+        }
+      }
+
+      span.comments-wrapper {
+        text-align: center;
+        width: 75px;
+        height: 75px;
+        line-height: 75px;
+        display: inline-block;
+        border-right: 1px solid rgba(0,0,0,0.05);
+        border-left: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+        text-align: center;
+        background-color: rgb(240,240,240);
+        padding-left: 20px;
+        padding-right: 20px;
+
+        h1.views-count {
+          position: absolute;
+          top: -10px;
+          left: 0px;
+          right: 0px;
+          font-size: 16px;
+          margin-left: 0px;
+          color: #95a5a6;
+        }
+        h1.views {
+          position: absolute;
+          font-size: 16px;
+          margin-left: 0px;  
+          top: 10px;
+          left: 0px;
+          right: 0px;
+          color: #95a5a6;
+        }
+      }      
+
+      span.views-wrapper {
+        text-align: center;
+        width: 75px;
+        height: 75px;
+        line-height: 75px;
+        display: inline-block;
+        border-right: 1px solid rgba(0,0,0,0.05);
+        border-left: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+        text-align: center;
+        background-color: rgb(240,240,240);
+
+        h1.views-count {
+          position: absolute;
+          top: -10px;
+          left: 0px;
+          right: 0px;
+          font-size: 16px;
+          margin-left: 0px;
+          color: #95a5a6;
+        }
+        h1.views {
+          position: absolute;
+          font-size: 16px;
+          margin-left: 0px;  
+          top: 10px;
+          left: 0px;
+          right: 0px;
+          color: #95a5a6;
+        }
+      }
+
+      span.howl-wrapper {
+        text-align: center;
+        height: 75px;
+        line-height: 75px;
+        // width: 75px;
+        display: block;
+        border-right: 1px solid rgba(0,0,0,0.05);
+        border-left: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+        text-align: center;
+        background-color: rgb(245,245,245);
+        padding-left: 20px;
+        padding-right: 20px;
+
+        a {
+          color: black;
+        }
+      }      
+
+      div.listing-desc {
+        text-wrap: normal;
+        width: 625px;
+        height: 74px;
+        margin-left: 10px;
       }
     }
   }   
@@ -67,7 +234,7 @@ div.droppable-wrapper {
 .box-of-logos {
   margin-top: 15px;
   height: 300px;
-  width: 1050px;
+  width: 1015px;
   background-color: lightgray;
 
   .box-of-logos-ul {
@@ -78,39 +245,74 @@ div.droppable-wrapper {
       height: 30px;
       line-height: 30px;
       width: 100%;
-      background-color: rgb(150,150,150);
+      background-color: black;
 
       span.dept-selector {
         padding: 5px;
-        background-color: rgba(255,255,255,0.3);
+        // background-color: rgba(255,255,255,0.3);
         font-size: 16px;
-        color: rgb(60,60,60);
+        color: white;
       }      
+    }
+
+    div.sub-dept-selector {
+      line-height: 25px;
+      background-color: rgb(150,150,150);
+
+      a {
+        color: black;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
     }
 
 
     li {
-      @include li-icon-style;
+      text-decoration: none;
+      border: 2px solid white;  
+      height: 50px;
+      line-height: 50px;
+      background-color: #FAFAFA;
 
       span.skill-icon-wrapper {
-        @include span-icon-style;              
-      }      
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        background-color: white;
+        background-color: rgb(240,240,240);
 
-      a {
-        top: 5px;
-        color: black;
-        float: left;
-        padding-left: 5px;
-        padding-right: 5px;
-      }
+        i {
+          font-size: 35px;
+          padding-left: 30px;
+          padding-right: 15px;
+        }
 
-      img {
-        float: left;
-        height: 60px;
-        margin: 10px;   
-        background-color: white; 
-        cursor: pointer;
-      }      
+        span.skill-name {
+          padding-right: 30px;  
+          font-size: 30px;        
+        }
+      }  
+
+      span.skill-image {
+        height: 50px;
+        line-height: 50px;
+        display: inline-block;
+        background-color: rgb(240,240,240);
+
+        img {
+          height: 25px;
+          max-height: 25px;
+          cursor: pointer;
+          opacity: 0.75;  
+          padding-left: 30px;
+          padding-right: 15px;
+        }
+
+        span.skill-name {
+          padding-right: 30px;  
+          font-size: 30px;        
+        }        
+      }     
     }
   }
 }

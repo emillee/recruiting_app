@@ -9,8 +9,7 @@
 				</div>
 			</div>
 			
-			<div class="keywords-wrapper 
-			<%= "hidden" unless show_keywords? %>">
+			<div class="keywords-wrapper <%= "hidden" unless show_keywords? %>">
 				<h1 class="keywords-h1">Search Words:</h1>
 				<ul class="job-filters keywords-ul">
 					<% if current_user.job_settings[:keywords] %>
@@ -26,6 +25,7 @@
 			</div>
 			
 			<%= f.submit "Submit" %>
+			
 		<% end %>
 	<% end %>
 	

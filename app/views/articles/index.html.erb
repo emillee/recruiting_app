@@ -1,9 +1,58 @@
-<%= render "./layouts/inpage_navbar" %>
+<%#= render "./layouts/inpage_navbar" %>
 
-<ul class="links">
-	<% @articles.each do |article| %>
-		<li>
-			<%= render 'article', locals: { article: article, this_table: 'articles' } %>
-		</li>
+<div class="article-card-wrapper">
+	<div class='droppable-wrapper group'>
+		
+		<h1>
+			NYTech:
+			<% Topic.all.each do |topic| %>
+				<%= link_to topic.name, '#' %>
+			<% end %>
+
+			<%= link_to 'My Articles', articles_url(my_articles: true), class: 'right' %>
+			<%= link_to 'New Link', articles_url(new_article: true), class: 'right' %>
+		</h1>
+
+
+		<ul class="skills-ul">
+			<% if @new_article %>
+
+				<%= form_for(@new_article) do |f| %>
+					<li class="user-skills is-draggable">					
+						<span class="skill-icon-wrapper">
+							<span class="skill-name join-us">
+								<%= f.text_field :title, placeholder: 'Enter Title' %>
+								<%= f.text_field :link, placeholder: 'Enter Link to Article' %>
+								<%= text_field_tag :topic_id, nil, placeholder: 'Topic' %>
+								<%= text_field_tag :tag_id, nil, placeholder: 'Tags', class: 'add-tag' %>
+							</span>
+						</span>
+
+						<%= f.submit 'Publish' %>
+					</li>				
+				<% end %>
+
+<%
+=begin %>				
+	<% @tagging = Tagging.new %>
+	<%= form_for @tagging, url: taggings_url, html: { multipart: true, 'data-article-id' => "#{article.id}" }, remote: true do |f| %>
+	
+		<% empty_arr = [] %>
+		<% empty_arr << @tagging.tag.attributes unless @tagging.tag.nil? %>
+		<%= f.hidden_field :article_id, value: article.id %>
+		<i class="fa fa-tag"></i>
+		<%= f.text_field :tag_id, placeholder: 'Add Tag', class: 'add-tag', 'data-pre' => empty_arr.to_json %>
+		<%= f.submit 'New Tagging' %>
 	<% end %>
-</ul>
+<%
+=end %>
+
+			<% end %>
+
+			<% @articles.each do |article| %>
+					<%= render 'article', locals: { article: article, this_table: 'articles' } %>
+			<% end %>
+		</ul>
+
+	</div>
+</div>

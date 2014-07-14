@@ -4,6 +4,7 @@
 //= require jquery.ui.all
 //= require jquery.tokeninput
 //= require editor
+//= require articles
 //= require sidebar
 //= require navbar
 //= require sessions

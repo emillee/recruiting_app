@@ -55,6 +55,7 @@ var ready_drag_and_drop = function() {
       $('#edit-skills').toggleClass('hidden');      
       $('#save-skills').toggleClass('hidden');
       $('#add-skill').toggleClass('hidden');
+      $('span.add-skill').toggleClass('hidden');
     };     
 
     // ADD DRAGABLE HANDLER

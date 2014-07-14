@@ -75,7 +75,6 @@ var ready_jobs = function() {
 
     $('a.fa-paw.open-popup').on('click', function(e) {
       e.preventDefault();
-      console.log('hello')
       var $job_id = $(this).data('applied-via-wolfpack-job-id');
       var $url = '/jobs/' + $job_id + '/wolfpack_option';
 
@@ -122,7 +121,6 @@ var ready_jobs = function() {
     function setUpCompanyHandler() {
 
       $('#change-company, #insert-company').on('click', function() {
-        console.log('hello')
         var $job_id = $(this).data('id');
         var $url = "/jobs/" + $job_id + "/edit_company";
         var that = this;

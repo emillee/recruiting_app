@@ -21,20 +21,22 @@
 				<% if skill_icon %>
 					<span class="skill-icon-wrapper">
 						<i class="<%= skill_icon %> skill-icon"></i>
+						<span class="skill-name"><%= skill_obj.skill_name.titleize %></span>
 					</span>
-				<% elsif skill_obj.logo.exists? %>
-					<span class="skill-image">
-						<%= image_tag(skill_obj.logo.url) %>
-					</span>				
 				<% else %>
-					<span class="upload-logo-wrapper">
-						<%= render './shared/upload_logo', locals: { object: skill_obj } %>
-					</span>
+					<% if skill_obj.logo.exists? %>
+						<span class="skill-image">
+							<%= image_tag(skill_obj.logo.url) %>
+							<span class="skill-name"><%= skill_obj.skill_name.titleize %></span>
+						</span>				
+					<% end %>
 				<% end %>
 			</li>
 		<% end %>
 
-		<!-- <li id="add-skill-li" class="user-skills hidden">+ Drag skill from below up here!</li> -->
+		<span class="add-skill hidden">
+			<li id="add-skill-li" class="user-skills">+ Drag skill from below up here!</li>
+		</span>
 	</ul>
 
 </div>
@@ -60,10 +62,10 @@
 		<% Taxonomy.departments.each do |dept| %>
 			<% skill_hash = Skill.return_skill_hash_from_dept(dept.downcase) %>
 
-			<div class="group <%= dept.downcase %> ">
+			<div class="group <%= dept.downcase %> sub-dept-selector">
 				<% skill_hash.each do |key, val_obj_arr| %>
 					<% this_class = "#{key} " + "#{dept.downcase} " + "#{'hidden' if dept.downcase != 'engineer'}" %>
-					<%= link_to key, '#', class: this_class, data: { selected: key } %>
+					<%= link_to key.gsub('-', ' ').titleize, '#', class: this_class, data: { selected: key } %>
 				<% end %>
 			</div> 
 
@@ -80,27 +82,22 @@
 							<% if skill_icon %>
 								<span class="skill-icon-wrapper">
 									<i class="<%= skill_icon %> skill-icon"></i>
+									<span class="skill-name"><%= skill_obj.skill_name.titleize %></span>
 								</span>
-							<% elsif skill_obj.logo.exists? %>
-								<%= image_tag(skill_obj.logo.url, class: 'is-draggable') %>
 							<% else %>
-								<%= render './shared/upload_logo', locals: { object: skill_obj } %>
+								<% if skill_obj.logo.exists? %>
+									<span class="skill-image">
+										<%= image_tag(skill_obj.logo.url) %>
+										<span class="skill-name"><%= skill_obj.skill_name.titleize %></span>
+									</span>				
+								<% end %>
 							<% end %>
 						</li>
 					<% end %>
 			<% end %>												
 		<% end %>
 	</ul>
-
-	<!-- add_new_skill_form.css.scss -->
-	<%= form_for(@skill) do |f| %>
-		<%= f.text_field :skill_name, placeholder: 'Skill name' %>
-		<%= f.text_field :skill_dept, placeholder: 'Skill dept' %>
-		<%= f.text_field :skill_sub_dept, placeholder: 'Skill sub dept' %>
-		<input type="textbox" name="skill[preferred_phrases][]" placeholder="preferred phrases" >
-		<input type="textbox" name="skill[required_phrases][]" placeholder="required phrases">
-		<%= f.submit %>
-	<% end %>	
+	
 </div>
 
 

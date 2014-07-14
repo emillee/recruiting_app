@@ -5,6 +5,7 @@ var ready_editor = function() {
     // to fix -- initializing editor interferes with handle article blur
     // initializeEditor();
 
+
     // CONTENTEDITABLE FOR TITLE
     $('[contenteditable=true].title').blur(function() {
       handleArticleBlur.apply(this, ['title']);

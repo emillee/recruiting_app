@@ -3,85 +3,9 @@
 <% company = locals[:company] %>
 
 <div class="article-card-wrapper">
-	<h1 class="dark-banner">Why <%= company.name %>?</h1>
-
-	<!-- Is it an interesting technical problem? -->
-	<h2 class="companies-editable"
-		contenteditable= "true"
-		data-id="<%= company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="the_big_idea_soundbite">	
-		<%= company.the_big_idea_soundbite || 'The Big Idea Soundbite' %></h2>
-
-	<p class="companies-editable"
-		contenteditable= "true"
-		data-id="<%= company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="the_big_idea_commentary">
-		<%= company.the_big_idea_commentary || 'Description about the big idea' %></p>
-		
-	<% if job %>
-		<p class="jobs-editable"
-			contenteditable= "true"
-			data-id="<%= job.id %>" 
-			data-table="jobs"
-			data-model="job"
-			data-attribute="technical_problem_commentary">
-			<%= job.technical_problem_commentary || 'Job Technical Role' %></p>
-	<% end %>
-
-	<!-- How many people will use the code I write -->
-	<h2 class="companies-editable"
-		contenteditable= "true"
-		data-id="<%= company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="scale_soundbite">	
-		<%= company.scale_soundbite || 'Scale Soundbite' %></h2>
-	<p class="companies-editable"
-		contenteditable= "true"
-		data-id="<%= company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="scale_commentary">
-		<%= company.scale_commentary || 'Scale Commentary' %></p>
-
-	<!-- Will I be working with other talented people? -->
-	<h2 class="companies-editable"
-		contenteditable= "true"
-		data-id="<%= company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="team_soundbite">	
-		<%= company.team_soundbite || 'Team Soundbite' %></h2>
-	<p class="companies-editable"
-		contenteditable= "true"
-		data-id="<%= company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="team_commentary">
-		<%= company.team_commentary || 'Team Commentary' %></p>
-
-	<!-- How is the environment -->
-	<h2 class="companies-editable"
-		contenteditable= "true"
-		data-id="<%= company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="culture_soundbite">
-		<%= company.culture_soundbite || 'Culture Soundbite' %></h2>
-	<p class="companies-editable"
-		contenteditable= "true"
-		data-id="<%= company.id %>" 
-		data-table="companies"
-		data-model="company"
-		data-attribute="culture_commentary">
-		<%= company.culture_commentary || 'Culture Commentary' %></p>	
 
 	<!-- Add a momentum score? -->
-	<h2>Wolfpack Analysis</h2>
+	<h2>Our "VC" Analysis</h2>
 	<p class="companies-editable"
 		contenteditable= "true"
 		data-id="<%= company.id %>" 
@@ -90,12 +14,6 @@
 		data-attribute="wolfpack_commentary">
 		<%= company.wolfpack_commentary || 'Wolfpack Commentary' %></p>
 
-	<h2>Additional</h2>
-	<p><%= company.total_money_raised || 'NA' %></p>
-	<p><%= company.neighborhood %></p>
-	<p><%= company.twitter_username %><p>
-	<p><%= company.city %></p>
-	<p><%= company.twitter_followers %></p>
 </div>
 
 

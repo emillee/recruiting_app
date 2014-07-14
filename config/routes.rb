@@ -21,7 +21,11 @@ Nytech::Application.routes.draw do
   resources :messages, only: [:create, :destroy]
 
   # models with views
-  resources :articles
+  resources :articles do 
+    member { put :increase_views }
+    member { put :increase_recs }
+    resources :comments, only: [:create]
+  end
   resource  :session, only: [:new, :create, :destroy]
   resources :skills, only: [:index, :create, :update, :destroy] do
     collection { get :name }
@@ -64,6 +68,7 @@ Nytech::Application.routes.draw do
       collection { post :create_from_link }
     end
     resources :users, only: [:edit, :update]
+    resources :skills, only: [:index, :create, :destroy]
   end
   
   # authentication

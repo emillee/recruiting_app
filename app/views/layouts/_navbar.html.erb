@@ -10,25 +10,25 @@
 			
 			<%= link_to 'All', '#', class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
 
-			<%= link_to 'Links', '#', class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
+			<%= link_to 'Articles', '#', class: "#{'selected' if @tab == 'articles'}", data: { no_turbolink: true } %>
 
 			<%= link_to 'Jobs', '#', class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
 
-			<%= link_to 'People', '#' %>
-			
 			<%= link_to 'Startups', '#', class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>	
+
+			<%= link_to 'People', '#' %>
 
 		<% else %>
 
 			<%= link_to 'All', all_activity_url, class: "#{'selected' if @tab == 'all'}", data: { no_turbolink: true } %>
 
-			<%= link_to 'Links', articles_url, class: "#{'selected' if @tab == 'news'}", data: { no_turbolink: true } %>
+			<%= link_to 'Articles', articles_url, class: "#{'selected' if @tab == 'articles'}", data: { no_turbolink: true } %>
 
 			<%= link_to 'Jobs', jobs_url, class: "#{'selected' if @tab == 'jobs'}", data: { no_turbolink: true } %>
 
-			<%= link_to 'People', users_url %>
-			
 			<%= link_to 'Startups', companies_url, class: "#{'selected' if @tab == 'companies'}", data: { no_turbolink: true } %>
+
+			<%= link_to 'People', users_url %>
 
 			<%#= link_to 'Investors', investors_url,  class: "#{'selected' if @tab == 'investors'}", data: { no_turbolink: true } %>
 

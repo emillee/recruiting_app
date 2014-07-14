@@ -1,48 +1,173 @@
 <% company = locals[:company] %>
-<% this_table = "companies" %>
 
-<div class="company-top-wrapper group">
-	<span class="left">
-		<%= render './cards/company_bcard', locals: { company: company } %>
-	</span>
+<!-- this is for companies and users -->
+<div class="profile-wrapper">
 
-	<span class="left">
-		<%= render './cards/company_overview', locals: { company: company } %>
-	</span>
+	<% if company.logo.exists? %>
+		<div class="company-logo-wrap left">
+			<%= image_tag company.logo.url, class: 'company-logo' %>
+		</div>
+	<% end %>
 
-	<span class="left">
-		<%= render './cards/company_stats', locals: { company: company } %>
-	</span>
+	<div class="user-bio left">
+		<h1><%= company.name %></h1>
+		<p class="companies-editable"
+			contenteditable="true"
+			data-id="<%= company.id %>" 
+			data-table="companies"
+			data-model="company"
+			data-attribute="overview">
+			<%= (company.overview.nil? || company.overview.empty?) ? '-' : company.overview %>
+		</p>
+	</div>	
+
+	<div class="profile-action-items left">
+		<h3>
+			<span>Founded:</span>
+			<span contenteditable="true"
+				data-id="<%= company.id %>" 
+				data-table="companies"
+				data-model="company"
+				data-attribute="year_founded"
+				class="companies-editable">				
+				<%= company.year_founded.nil? ? "-" : company.year_founded %>
+			</span>
+		</h3>		
+
+		<h3>
+			<span>Funding:</span>
+			<span contenteditable="true"
+				data-id="<%= company.id %>" 
+				data-table="companies"
+				data-model="company"
+				data-attribute="total_money_raised"
+				class="companies-editable">				
+				<%= (company.total_money_raised.nil? || company.total_money_raised.empty?) ? "-" : company.total_money_raised %>
+			</span>
+		</h3>
+		<h3>
+			<span>Employees:</span>
+			<span contenteditable="true"
+				data-id="<%= company.id %>" 
+				data-table="companies"
+				data-model="company"
+				data-attribute="num_employees"
+				class="companies-editable">				
+				<%= company.num_employees.nil? ? "-" : company.num_employees %>
+			</span>			
+		</h3>
+		<h3>
+			<span>Category:</span>
+			<span contenteditable="true"
+				data-id="<%= company.id %>" 
+				data-table="companies"
+				data-model="company"
+				data-attribute="category_code"
+				class="companies-editable">				
+				<%= (company.category_code.nil? || company.category_code.empty?) ? "-" : company.category_code %>
+			</span>			
+		</h3>
+		<h3>
+			<span>City:</span>
+			<span contenteditable="true"
+				data-id="<%= company.id %>" 
+				data-table="companies"
+				data-model="company"
+				data-attribute="city"
+				class="companies-editable">				
+				<%= (company.city.nil? || company.city.empty?) ? "-" : company.city %>
+			</span>			
+		</h3>						
+		<h3>
+			<span>Hood:</span>
+			<span contenteditable="true"
+				data-id="<%= company.id %>" 
+				data-table="companies"
+				data-model="company"
+				data-attribute="neighborhood"
+				class="companies-editable">				
+				<%= (company.neighborhood.nil? || company.neighborhood.empty?) ? "-" : company.neighborhood %>
+			</span>			
+		</h3>			
+	</div>	
+
 </div>
 
-<% if company.persisted? %>
-	<%= render './companies/company_report', locals: { company: company } %>
-<% end %>
+<div class="profile-navbar">
+	<%#= link_to 'All Activity', '#' %>
+	<%#= link_to 'Biography', '#' %>
+	<%#= link_to 'My Tech Stack', '#' %>
+	<%#= link_to "I'm Working On...", '#' %>
+	<%#= link_to 'For Fun I...', '#' %>
 
-<% if company.persisted? %>
-	<div class="article-card-wrapper">
-		<%= render './shared/drag_and_drop', locals: { company: company } %>
-	</div>
-<% end %>
+	<%= link_to 'Prev', company_url(company, prev: true), class: 'right' %>
+	<%= link_to 'Next', company_url(company, next: true), class: 'right' %>
+	<%= link_to 'Delete Company', company_url(company), method: :delete, class: 'right' %>
+</div>	
 
-<% if company.career_page_link %>
-	
-<% end %>
+<div class="article-card-wrapper">
+	<%= render './shared/drag_and_drop', locals: { company: company } %>
+</div>
 
+
+<div class="article-card-wrapper">
+	<div class='droppable-wrapper group'>
+
+		<h1>Join Us!</h1>
+
+		<% counter = 0 %>
+
+		<ul class="skills-ul">
+			<% company.job_listings.each do |job| %>
+				<% next unless job.persisted? %>
+				<li class="user-skills is-draggable job-listing">					
+					<span class="skill-icon-wrapper job-listing left">
+						<i class="<%= icon_dept_match(job.dept) %> join-us"></i>
+						<span class="skill-name join-us">
+							<%= link_to job.title.titleize, job.link, target: '_blank' %>
+						</span>					
+					</span>
+
+					<div class="listing-desc left">
+						<p><%= job.description %></p>
+					</div>					
+				</li>
+			<% end %>
+		</ul>
+
+	</div>	
+</div>
+
+<%#= render './companies/company_report', locals: { company: company } %>
+
+<%
+=begin %>
 <% if company.job_listings %>
 	<ul class="job-posts">
-	<% company.job_listings.each do |job| %>
-	<li class="job-link">
-		<% next unless job.persisted? %>
-		<%= render './jobs/job_listing_preview', locals: { job: job } %>
-		<%= render './admin/jobs/job_details', locals: { job: job } %>
-
-		<% if job.preapproval_applicants %>
-			<% job.preapproval_applicants.each do |applicant| %>
-				<%= render './cards/user_preview', locals: { user: applicant } %>
-			<% end %>
+		<% company.job_listings.each do |job| %>
+			<li class="job-link">
+				<% next unless job.persisted? %>
+				<%= render './jobs/job_listing_preview', locals: { job: job } %>
+				<%#= render './admin/jobs/job_details', locals: { job: job } %>
+			</li>
 		<% end %>
-	</li>
-	<% end %>
-</ul>
+	</ul>
 <% end %>
+<%
+=end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

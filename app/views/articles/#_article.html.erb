@@ -1,0 +1,42 @@
+<% article = locals[:article] %>
+<% this_table = locals[:this_table] %>
+
+<% if article.tags.any? %>
+	<% section_class = normalize_string(article.tags[0].tag_name) %>
+<% end %>
+
+<div class="article-wrapper editable" 
+	data-article-id="<%= article.id %>" 
+	data-table="<%= this_table %>">	
+
+	<%= render './shared/editor' %>
+
+	<% section_title = add_placeholders_if_nil('title', article.title) %>	
+
+	<div class="title" contenteditable="true" data-placeholder="Enter Title">
+		<%= raw(section_title) %>
+	</div>
+
+	<div class="link" contenteditable="true" data-placeholder="Enter Link">
+		<%= article.link || 'Enter Link' %>
+	</div>
+
+	<article class="editable body" contenteditable="true" data-placeholder="Type your post">
+		<% section_body = add_placeholders_if_nil('body', article.body).squish %>	
+		<%= raw(section_body) %>
+
+		<% this_image = article.images.last %>		
+		<p><%= image_tag this_image.image_file.url if this_image %></p>
+	</article>
+
+	<%= render './shared/upload_image_form', locals: { article: article } %>
+
+ 	<div class="admin-options">
+		<i class="fa fa-cogs"> Additional Options</i>
+		<%= link_to 'Delete Article', article_url(article), method: :delete, 
+				confirm: 'Sure?', class: 'delete-article-link' %>		
+		<%= render './shared/tags_form', locals: { article: article } %>
+		<%= render './shared/social_sharing_icons', locals: { article: article } %>
+	</div>
+
+</div>
