@@ -3,16 +3,20 @@
 <% company = locals[:company] %>
 
 <div class="article-card-wrapper">
+	
+	<h1>Our "VC" Analysis</h1>
+	<% commentary = (company.wolfpack_commentary.nil? || company.wolfpack_commentary.empty?) ? 
+		'<p>Coming soon!</p>' : company.wolfpack_commentary %>
 
-	<!-- Add a momentum score? -->
-	<h2>Our "VC" Analysis</h2>
-	<p class="companies-editable"
+	<div class="companies-editable"
 		contenteditable= "true"
 		data-id="<%= company.id %>" 
 		data-table="companies"
 		data-model="company"
-		data-attribute="wolfpack_commentary">
-		<%= company.wolfpack_commentary || 'Wolfpack Commentary' %></p>
+		data-attribute="wolfpack_commentary">	
+
+		<%= raw(commentary) %>
+	</div>
 
 </div>
 

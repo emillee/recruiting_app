@@ -1,0 +1,126 @@
+// DROPZONE
+div.tech-stack {
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  ul.skills-ul {
+
+    #add-skill-li {
+      text-indent: 20px;
+    }      
+
+    li.user-skills {
+      text-decoration: none;
+      height: 80px;
+      background-color: #FAFAFA;
+      width: 99%;
+      margin: 5px; 
+
+      &.selected {
+        border: 4px solid rgba(46,204,113,0.2);
+      }
+        
+
+      // FOR ICONS
+      span.skill-icon-wrapper {
+        // display: inline-block;
+        height: 60px;
+        // line-height: 50px;
+        padding: 10px;      
+        max-width: 200px;
+        // position: relative;
+        // background-color: black;
+        background-color: rgb(240,240,240);
+
+        i {
+          font-size: 25px;
+          font-size: 20px;
+          margin-right: 10px; 
+          height: 50px;         
+        }
+
+        span.skill-name.join-us {
+        //   font-size: 20px;
+        //   left: 25px;
+          line-height: 22px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          
+        //   height: 
+
+          a {
+            line-height: 25px;
+            color: black;
+            font-size: 20px;
+        //     background-color: yellow;
+          }
+        }
+      }        
+
+      div.listing-desc {
+        width: 650px;
+        height: 80px;
+        // background-color: rgb(245,245,245);
+
+        p {
+          padding-left: 15px;
+          line-height: 23px;
+          color: rgb(70,70,70);
+        }   
+      }
+
+      div.wolfpack {
+        height: 65px;
+        width: 100px;
+        // text-align: center;
+        background-color: rgb(240,240,240);
+        position: relative;
+        margin-top: 7px;
+        margin-right: 7px;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgb(220,220,220);
+        }
+
+        .action-span {
+          a.icon {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            color: rgb(180,180,180);
+          }          
+        }
+
+        p {
+          position: absolute;
+          top: 30;
+          bottom: 0;
+          font-size: 16px;
+          color: rgb(180,180,180);  
+        }
+
+        i.fa-bolt {
+          position: absolute;
+          top: 10px;
+          left: 40px;
+          font-size: 29px;
+          color: rgb(180,180,180);
+        }
+
+        div.wolf-howl {
+          background: url('app_images/wolfhowl.jpg');
+          height: 30px;
+          width: 30px;
+          position: absolute;
+          top: 10px;
+          left: 28px;
+          -webkit-filter: grayscale(50%); 
+          opacity: 0.25; 
+        }
+      }
+    }
+  }   
+}
+

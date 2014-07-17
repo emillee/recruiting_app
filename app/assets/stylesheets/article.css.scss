@@ -6,6 +6,22 @@ div.article-card-wrapper {
   padding: 15px;
   border-top: 3px solid rgba(0,0,0,0.1);
 
+  &:last-of-type {
+    margin-bottom: 40px;
+  }
+  
+  h1 {
+    font-size: 26px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+    a {
+      font-size: 20px;
+      color: gray;
+      margin-right: 5px;
+    }
+  }
+
   h2 {
     font-size: 22px;
     line-height: 35px;
@@ -19,6 +35,7 @@ div.article-card-wrapper {
     line-height: 28px;
     font-family: 'PT Serif';
     padding-left: 10px;
+    margin-bottom: 5px;
   }
 }
 

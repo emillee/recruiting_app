@@ -56,7 +56,7 @@
 							<li class="job-sidebar department <%= sel_or_hide(dept.downcase) %>">
 								<i class="<%= icon_dept_match(dept) %>">
 									<%= label_tag dept %>
-									<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
+									<%= check_box_tag "user[job_settings][dept][]", dept, checked %>
 								</i>
 							</li>
 						<% end %>

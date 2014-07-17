@@ -10,7 +10,7 @@ class Company < ActiveRecord::Base
   scope :page_unavailable, ->(arg) { where('companies.career_page_link = ?', 'NA') }
   scope :page_blank, ->(arg) { where('companies.career_page_link IS NULL') }
   scope :is_hiring, ->(arg){ Company.joins(:job_listings) }
-  
+
   has_many :job_listings, class_name: 'Job', foreign_key: :company_id
   has_many :employees
   has_many :articles
@@ -43,6 +43,10 @@ class Company < ActiveRecord::Base
       doc = doc.css('body')
       links = doc.css('a')
     end
+  end
+
+  def self.companies_with_job_listings
+    Company.select { |c| c.job_listings.any? }
   end
   
   # reads this above with attr_read  

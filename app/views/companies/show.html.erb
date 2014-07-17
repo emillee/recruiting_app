@@ -6,6 +6,128 @@
 	</li>
 </ul>
 
+<div class="profile-navbar">
+	<%#= link_to 'All Activity', '#' %>
+	<%#= link_to 'Biography', '#' %>
+	<%#= link_to 'My Tech Stack', '#' %>
+	<%#= link_to "I'm Working On...", '#' %>
+	<%#= link_to 'For Fun I...', '#' %>
+
+	<%= link_to 'Prev', company_url(@company, prev: true), class: 'right' %>
+	<%= link_to 'Next', company_url(@company, next: true), class: 'right' %>
+	<%= link_to 'Delete Company', company_url(@company), method: :delete, class: 'right' %>
+</div>	
+
+<div class="article-card-wrapper">
+	<%= render './shared/drag_and_drop', locals: { company: @company } %>
+</div>
+
+
+<div class="article-card-wrapper">
+	<div class='tech-stack group'>
+
+		<h1>Join Us!</h1>
+
+		<% counter = 0 %>
+
+		<ul class="skills-ul">
+			<% @company.job_listings.each do |job| %>
+				<% next unless job.persisted? %>
+				<li class="user-skills job-listing <%= 'selected' if @jobs.include?(job) %>">					
+					<span class="skill-icon-wrapper job-listing left">
+						<!-- <i class="<%#= icon_dept_match(job.dept) %> join-us"></i> -->
+						<span class="skill-name join-us jobs-editable"
+		          contenteditable= "true"
+		          data-id="<%= job.id %>" 
+		          data-table="jobs"
+		          data-model="job"
+		          data-attribute="title">						
+							<%= job.title.titleize %>
+						</span>					
+					</span>
+
+					<div class="listing-desc left">
+		       	<p class="jobs-editable"
+		          contenteditable= "true"
+		          data-id="<%= job.id %>" 
+		          data-table="jobs"
+		          data-model="job"
+		          data-attribute="description">
+		          <% if job.description && !job.description.empty? %>
+		            <%= job.description %>
+		          <% else %>
+		            -
+		          <% end %>
+		        </p>  
+					</div>	
+
+					<div class="wolfpack right open-popup">
+						<i class="fa fa-bolt"></i>
+
+						<span class="action-span">
+							<span class=<%= has_applied_to_job_via_wolfpack?(job) ? 'selected' : 'hidden' %>>
+								<%= link_to " Interested", '#', 
+									class: 'icon selected', id: 'wolfpack-option', 
+									data: {
+										user_id: current_user.id, 
+										applied_via_wolfpack_job_id: job.id, 
+										this_method: 'DELETE'} %>
+							</span>
+
+							<span class=<%= has_applied_to_job_via_wolfpack?(job) ? 'hidden' : 'selected' %>>
+								<%= link_to " Interested?", '#', 
+									class: 'icon popup-option', id: 'wolfpack-option',
+									data: { 
+										user_id: current_user.id, 
+										applied_via_wolfpack_job_id: job.id, 
+										this_method: 'POST' } %>
+							</span>
+						</span>
+					</div>		
+
+
+				</li>
+			<% end %>
+		</ul>
+
+	</div>	
+</div>
+
+<div class="article-card-wrapper">
+	<div class='tech-stack group'>
+		<h1>Team</h1>
+	</div>
+</div>
+
+<div class="article-card-wrapper">
+	<h1>Blog Posts / News</h1>
+</div>
+
+<div class="article-card-wrapper">
+	<h1>Reviews</h1>
+	<p>User Testimonial</p>
+	<p>Work Environment</p>
+</div>
+
+<%= render './companies/company_report', locals: { company: @company } %>
+
+<%
+=begin %>
+<% if company.job_listings %>
+	<ul class="job-posts">
+		<% company.job_listings.each do |job| %>
+			<li class="job-link">
+				<% next unless job.persisted? %>
+				<%= render './jobs/job_listing_preview', locals: { job: job } %>
+				<%#= render './admin/jobs/job_details', locals: { job: job } %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
+<%
+=end %>
+
+
 
 
 

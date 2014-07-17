@@ -15,7 +15,7 @@
 		<% object.tech_stack.each do |skill_obj| %>
 			<% object_skill = ObjectSkill.where(obj_class_id => object.id, skill_id: skill_obj.id).first %>
 
-			<li class="user-skills is-draggable" data-object-skill-id="<%= object_skill.id %>">
+			<li class="user-skills is-draggable left" data-object-skill-id="<%= object_skill.id %>">
 				<% skill_icon = icon_skill_match(skill_obj.skill_name) %>
 				
 				<% if skill_icon %>
@@ -31,8 +31,9 @@
 						</span>				
 					<% end %>
 				<% end %>
-			</li>
+			
 		<% end %>
+		</li>
 
 		<span class="add-skill hidden">
 			<li id="add-skill-li" class="user-skills">+ Drag skill from below up here!</li>

@@ -1,12 +1,64 @@
-<%= render "./layouts/inpage_navbar" %>
+<%#= render "./layouts/inpage_navbar" %>
 	
 <ul class="companies-posts">
 	<% @companies.each do |company| %>
-		<li class="company-wrapper">
+		<%# next if company.job_listings.none? %>
+		<li class="company-wrapper">			
 			<%= render 'company', locals: { company: company } %>
+
+<div class="article-card-wrapper">
+	<div class='tech-stack group'>
+
+		<h1>Join Us!</h1>
+
+		<% counter = 0 %>
+
+		<ul class="skills-ul">
+			<% company.job_listings.each do |job| %>
+				<% next unless job.persisted? %>
+				<li class="user-skills job-listing">					
+					<span class="skill-icon-wrapper job-listing left">
+						<!-- <i class="<%#= icon_dept_match(job.dept) %> join-us"></i> -->
+						<span class="skill-name join-us">
+							<%= link_to job.title.titleize, job.link, target: '_blank' %>
+						</span>					
+					</span>
+
+					<div class="listing-desc left">
+		       	<p class="jobs-editable"
+		          contenteditable= "true"
+		          data-id="<%= job.id %>" 
+		          data-table="jobs"
+		          data-model="job"
+		          data-attribute="description">
+		          <% if job.description && !job.description.empty? %>
+		            <%= job.description %>
+		          <% else %>
+		            Pending
+		          <% end %>
+		        </p>  
+					</div>	
+
+					<div class="wolfpack right">
+						<!-- <i class="fa fa-paw"></i> -->
+						<i class="fa fa-bolt"></i>
+						<p>Interested</p>
+					</div>				
+				</li>
+			<% end %>
+		</ul>
+
+	</div>	
+</div>
+			
 		</li>
 	<% end %>
 </ul>
+
+<div class="kaminari-wrapper">
+	<%= paginate @companies %>
+</div>	
+
 	
 
 

@@ -1,5 +1,33 @@
 var ready_companies = function() {    
   if ($('.companies').length > 0 ) {
+
+    // --------------------------------------------------------------------------------------------------------------
+    // WOLPFACK APPLY POPUP
+    // --------------------------------------------------------------------------------------------------------------    
+
+    $('div.open-popup').on('click', function(e) {
+      e.preventDefault();
+      var $job_id = $(this).find('.popup-option').data('applied-via-wolfpack-job-id');
+      var $url = '/jobs/' + $job_id + '/wolfpack_option';
+
+      console.log($url)
+
+      $.ajax({
+        type: 'GET',
+        url: $url,
+        success: function(data) {
+          var popup = $(data).find(' .wolfpack-option-popup');
+          addModalToBody();
+          $('.main-content-wrapper').prepend(popup);
+          var $top = $(window).scrollTop() + 50 + 'px';
+          $('.wolfpack-option-popup').css('top', $top);
+        }
+      });      
+    });    
+
+    function addModalToBody() {
+      $('body').append('<div class="modal-background"></div>');      
+    };     
   
     // --------------------------------------------------------------------------------------------------------------
     // COMPANIES SHOW
