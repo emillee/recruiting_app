@@ -69,7 +69,7 @@
 				<% dept = dept.downcase %>
 				<% checked = is_setting_checked?('dept', dept, @user) %>
 				<li class="job-sidebar department%>">
-					<i class="<%= icon_dept_match(dept) %>">
+					<i class="<%= icon_dept_match(dept) %> <%= 'selected' if checked %>">
 						<%= label_tag dept %>
 						<%= check_box_tag "user[job_settings][dept][]", dept, checked  %>
 					</i>

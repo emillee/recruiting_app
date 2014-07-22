@@ -16,6 +16,7 @@ Nytech::Application.routes.draw do
   end
   
   # models in progress
+  resources :prospects, only: [:index]
   resources :groups
   resources :chatrooms, only: [:index, :create, :destroy, :show]
   resources :messages, only: [:create, :destroy]

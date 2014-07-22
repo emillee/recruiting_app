@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711225735) do
+ActiveRecord::Schema.define(version: 20140721181046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,12 +189,20 @@ ActiveRecord::Schema.define(version: 20140711225735) do
     t.string   "github_username"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "city"
-    t.string   "date_joined"
+    t.string   "city_github"
+    t.string   "date_joined_github"
     t.string   "email"
     t.string   "language"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "company_github"
+    t.string   "website_github"
+    t.integer  "github_followers"
+    t.integer  "github_stars"
+    t.integer  "github_following"
+    t.string   "li_url"
+    t.string   "li_title"
+    t.string   "li_company"
   end
 
   create_table "search_suggestions", force: true do |t|
@@ -314,6 +322,7 @@ ActiveRecord::Schema.define(version: 20140711225735) do
     t.text     "intro_paragraph"
     t.boolean  "is_prospect"
     t.text     "notes"
+    t.text     "prospect_settings"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

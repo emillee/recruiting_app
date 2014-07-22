@@ -36,14 +36,14 @@
 				<li class="user-skills job-listing <%= 'selected' if @jobs.include?(job) %>">					
 					<span class="skill-icon-wrapper job-listing left">
 						<!-- <i class="<%#= icon_dept_match(job.dept) %> join-us"></i> -->
-						<span class="skill-name join-us jobs-editable"
+<!-- 						<span class="skill-name join-us jobs-editable"
 		          contenteditable= "true"
 		          data-id="<%= job.id %>" 
 		          data-table="jobs"
 		          data-model="job"
-		          data-attribute="title">						
-							<%= job.title.titleize %>
-						</span>					
+		          data-attribute="title">		 -->				
+							<%= link_to job.title.titleize, job.link, target: '_blank' %>
+						<!-- </span>					 -->
 					</span>
 
 					<div class="listing-desc left">

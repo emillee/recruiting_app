@@ -1,0 +1,31 @@
+<ul>
+	<% @prospects.each do |prospect| %>
+		<li>
+			<%= prospect.id %>
+			<%= prospect.first_name %>
+			<%= prospect.last_name %>
+			| <%= prospect.city_github %>	
+			| <%= prospect.date_joined_github %>
+			| <%= prospect.language %>	
+			| <%= prospect.company_github %>	
+			| <%= link_to 'Website', prospect.website_github %>	
+			| <%= prospect.github_followers %>	
+			| <%= prospect.github_stars %>	
+			| <%= prospect.github_following %>	
+			<% github_url = "https://www.github.com/" + prospect.github_username %>
+			| <%= link_to "Github", github_url, target: '_blank' %>		
+			| <%= link_to "LinkedIn", prospect.li_url, target: '_blank' %>		
+			| <%= prospect.li_title %>
+			| <%= prospect.li_company %>
+		</li>
+	<% end %>
+</ul>
+
+<!-- 
+  	rename_column :prospects, :city, :city_github
+  	rename_column :prospects, :date_joined, :date_joined_github
+  	rename_column :prospects, :company, :company_github
+  	rename_column :prospects, :website, :website_github
+  	add_column :prospects, :li_url, :string
+  	add_column :prospects, :li_title, :string
+  	add_column :prospects, :li_company, :string -->

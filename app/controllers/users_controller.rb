@@ -124,14 +124,15 @@ class UsersController < ApplicationController
   # TODO: is it security risk for is_admin
 	def user_params
 		params.require(:user).permit(
-	    :is_admin, :is_guest, :biography, :intro, :interested_in_meeting, :investor_company_id, 
-      :snapshots, :email, :password, :password_digest, :avatar, :fname, :lname, :title, 
-      :location, :company_id, :location_from, :link_to_online_profile,
-		  {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
-		  {job_prefs: { company_stage: [], company_industry: [], salary_buckets: [], equity_buckets: [] }},  		
-		  {company_settings: { company_stage: [] }}, :is_applicant, :one_liner,
+	    :is_admin, :is_guest, :biography, :is_member, :is_prospect, :is_applicant, 
+      :email, :fname, :lname, :title, :password, :password_digest, :location_from, :location, 
+      :intro, :interested_in_meeting, :link_to_online_profile, :intro_paragraph, :notes, :one_liner,
       :linkedin_url, :github_url, :behance_url, :personal_blog_url, :twitter_username, :stack_overflow,
-      :is_member, :intro_paragraph, :is_prospect, :notes  
+      :company_id, :investor_company_id, :snapshots, :avatar, 
+      {job_settings: { keywords: [], dept: [], sub_dept: [], years_exp: [], key_skills: [] }},
+      {prospect_settings: { has_email: [] }},     
+      {job_prefs: { company_stage: [], company_industry: [], salary_buckets: [], equity_buckets: [] }},     
+      {company_settings: { keywords: [], company_stage: [] }}
 		)
 	end
 

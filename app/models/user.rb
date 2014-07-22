@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   serialize :job_settings, Hash
   serialize :company_settings, Hash
   serialize :job_prefs, Hash
+  serialize :prospect_settings, Hash
     
   after_initialize :initialize_settings
   store_accessor :job_filters, :keywords, :dept, :sub_dept, :experience
@@ -185,6 +186,7 @@ class User < ActiveRecord::Base
        self.job_settings ||= '{}'
        self.company_settings ||= '{}'
        self.job_prefs ||= '{}'
+       self.prospect_settings ||= '{}'
     end
     
     def set_user_settings

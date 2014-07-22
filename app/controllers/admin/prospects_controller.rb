@@ -1,4 +1,4 @@
-class Admin::ProspectsController < Admin::ApplicationController
+class Admin::ProspectsController < ProspectsController
 
 	def create
 		@prospect = Prospect.new(prospect_params)
@@ -12,15 +12,14 @@ class Admin::ProspectsController < Admin::ApplicationController
 	end
 
 	def index
-		@prospects = Prospect.all.order('id DESC')
+		super
 	end
 
 	#---------------------------------------------------------------------------------------
 	private
 
 	def prospect_params
-		params.require(:prospect).permit(:github_username, :first_name, :last_name, 
-			:city, :date_joined, :email, :language)
+		super
 	end
 
 end
