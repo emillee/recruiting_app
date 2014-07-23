@@ -55,7 +55,7 @@
 						<li><%= link_to "Github", github_url, target: '_blank' %></li>
 					<% end %>
 
-					<% if !prospect.website_github.empty? %>
+					<% if prospect.website_github && !prospect.website_github.empty? %>
 						<li><%= link_to 'Website', prospect.website_github %></li>
 					<% end %>
 					
@@ -80,11 +80,7 @@
 	<% end %>
 
 </table>
-<!-- 
-  	rename_column :prospects, :city, :city_github
-  	rename_column :prospects, :date_joined, :date_joined_github
-  	rename_column :prospects, :company, :company_github
-  	rename_column :prospects, :website, :website_github
-  	add_column :prospects, :li_url, :string
-  	add_column :prospects, :li_title, :string
-  	add_column :prospects, :li_company, :string -->
+
+<div class="kaminari-wrapper">
+	<%= paginate @prospects %>
+</div>	

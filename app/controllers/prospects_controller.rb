@@ -2,9 +2,9 @@ class ProspectsController < ApplicationController
 
 	def index
 		if current_user.prospect_settings.any? 
-			@prospects = Prospect.return_matches(current_user)
+			@prospects = Kaminari.paginate_array(Prospect.return_matches(current_user)).page(params[:page]).per(10)
 		else
-			@prospects = Prospect.all.order('id DESC').limit(10)
+			@prospects = Prospect.all.order('id DESC').page(params[:page]).per(10)
 		end
 	end
 
