@@ -1,0 +1,34 @@
+table.prospect-table {
+	// width: 100%;	
+	margin-right: 30px;
+
+	td, th {
+		padding: 10px;
+	}
+
+	th {
+		text-align: left;
+		height: 50px;
+		color: #2c3e50;
+		font-weight: 900;
+		font-size: 19px;
+		vertical-align: middle;
+		border-bottom: 3px solid #2c3e50;
+		margin-bottom: 5px;
+		padding-bottom: 5px;
+
+		&:last-of-type {
+			width: 100px;
+		}
+	}
+
+	td {
+		border-bottom: 1px solid #2c3e50;
+		color: #7f8c8d;
+
+		a {
+			color: #7f8c8d;
+		}
+	}	
+
+}

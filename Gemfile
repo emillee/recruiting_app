@@ -16,6 +16,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 
+gem 'less-rails'
+gem 'therubyracer'
+
 # Style email
 gem 'premailer-rails'
 

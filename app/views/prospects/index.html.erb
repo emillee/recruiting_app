@@ -1,26 +1,85 @@
-<ul>
-	<% @prospects.each do |prospect| %>
-		<li>
-			<%= prospect.id %>
-			<%= prospect.first_name %>
-			<%= prospect.last_name %>
-			| <%= prospect.city_github %>	
-			| <%= prospect.date_joined_github %>
-			| <%= prospect.language %>	
-			| <%= prospect.company_github %>	
-			| <%= link_to 'Website', prospect.website_github %>	
-			| <%= prospect.github_followers %>	
-			| <%= prospect.github_stars %>	
-			| <%= prospect.github_following %>	
-			<% github_url = "https://www.github.com/" + prospect.github_username %>
-			| <%= link_to "Github", github_url, target: '_blank' %>		
-			| <%= link_to "LinkedIn", prospect.li_url, target: '_blank' %>		
-			| <%= prospect.li_title %>
-			| <%= prospect.li_company %>
-		</li>
-	<% end %>
-</ul>
+<table class="prospect-table">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>City</th>
+		
+		<th>Title</th>
+		<th>Company</th>
+		
+		<th>Languages</th>
+		<th>Core Lang</th>
+		<th>Links</th>
+		<th>Github Stats</th>
+		
+	</tr>
 
+	<% @prospects.each do |prospect| %>
+		<tr>
+			<td><%= prospect.id %></td>
+			<td><%= prospect.first_name %> <%= prospect.last_name %></td>
+			<td><%= prospect.city_github %></td>	
+			
+			<td><%= prospect.li_title || '-' %></td>
+
+			<td>
+				<ul>
+					<li>
+						<% if prospect.company_github && !prospect.company_github.empty? %>
+							<%= "#{prospect.company_github} (source: Github)" %> 
+						<% else %>
+							-
+						<% end %>
+					</li>
+
+					<br>
+
+					<li>
+						<% if prospect.li_company %>
+							<%= "#{prospect.li_company} (source: LinkedIn)" || '-' %> 
+						<% else %>
+							-
+						<% end %>					
+					</li>
+				</ul>
+			</td>
+
+			<td><%= prospect.github_languages %></td>
+			<td><%= prospect.language %></td>	
+
+			<td>
+				<ul>
+					<% github_url = "https://www.github.com/" + prospect.github_username %>
+					
+					<% if prospect.github_username %>
+						<li><%= link_to "Github", github_url, target: '_blank' %></li>
+					<% end %>
+
+					<% if !prospect.website_github.empty? %>
+						<li><%= link_to 'Website', prospect.website_github %></li>
+					<% end %>
+					
+					<% if prospect.li_url %>
+						<li><%= link_to "LinkedIn", prospect.li_url, target: '_blank' %></li>
+					<% end %>
+				</ul>
+			</td>	
+
+			<td>
+				<ul>
+					<li>Followers: <%= prospect.github_followers %></li>
+					<li>Stars: <%= prospect.github_stars %></li>
+					<li>Following: <%= prospect.github_following %></li>
+					<!-- <li>Joined: <%#= prospect.date_joined_github %></li> -->
+					<li># Repos: <%= prospect.num_repos %></li>
+					<li>Yrs on Github: <%= prospect.yrs_on_github %></li>
+				</ul>
+			</td>				
+			
+		</tr>
+	<% end %>
+
+</table>
 <!-- 
   	rename_column :prospects, :city, :city_github
   	rename_column :prospects, :date_joined, :date_joined_github
